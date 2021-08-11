@@ -1,0 +1,5 @@
+* On Ubuntu 16.04+, only file-roller 3.16.5 archive manager is supported to extract redgpu.tar file correctly.
+* On Ubuntu 16.04+, place or symlink RedGpuSDK folder to /opt/ folder.
+* On Ubuntu 16.04+, to get debug messages, link against redgpu_debug library and place or symlink 1.2.135.0 folder of Vulkan SDK to /opt/RedGpuSDK/sdk/ folder. (Vulkan SDK: vulkansdk-linux-x86_64-1.2.135.0.tar.gz, https://vulkan.lunarg.com/sdk/home#linux, b5987f06b603988ad538472a46424602e7103bf27017c2919acc6ea2f81125a3)
+* To use NV debuggers and profilers, link against redgpu_nv library.
+* For high level GPU code language, use DXC: https://github.com/microsoft/DirectXShaderCompiler

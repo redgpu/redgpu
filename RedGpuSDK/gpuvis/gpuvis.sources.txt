@@ -1,0 +1,3 @@
+https://github.com/mikesart/gpuvis/commit/14c4600b5d857f0c9ce6e4c0a9524d7e90a6445b
+libsdl2-2.0-0_2.0.4+dfsg1-2ubuntu2.16.04.2_amd64.deb
+libsndio6.1_1.1.0-2_amd64.deb
