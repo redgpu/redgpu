@@ -1,0 +1,8 @@
+Aug 25, 2021:
+
+  * Fix redCreatePresent::outStatuses setting that could incorrectly set ::statusProcedureId and ::statusErrorProcedureId to RED_PROCEDURE_ID_redQueuePresent.
+  * Internal statuses setting optimizations.
+
+Aug 11, 2021:
+
+  * Release REDGPU under Apache License, Version 2.0.
