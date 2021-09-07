@@ -1,3 +1,10 @@
+Sep 07, 2021:
+
+  * Add a new extension: Computing Language.
+  * Add the ability to create REDGPU context from VK handles.
+  * Minor improvement to internal GPU statuses setting of redCreateContext.
+  * Status code info strings are now set to RedStatuses::statusErrorDescription.
+
 Aug 25, 2021:
 
   * Fix redCreatePresent::outStatuses setting that could incorrectly set ::statusProcedureId and ::statusErrorProcedureId to RED_PROCEDURE_ID_redQueuePresent.

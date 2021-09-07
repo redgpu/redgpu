@@ -1,6 +1,7 @@
 #pragma once
 
 #include "redgpu.h"
+#include "redgpu_computing_language.h"
 
 #define REDGPU_PRINT_STATUS(x) (\
   (x) == RED_STATUS_SUCCESS                       ? "RED_STATUS_SUCCESS"                       :\
@@ -32,82 +33,83 @@
 )
 
 #define REDGPU_PRINT_PROCEDURE_ID(x) (\
-  (x) == RED_PROCEDURE_ID_UNDEFINED                                      ? "RED_PROCEDURE_ID_UNDEFINED"                                      :\
-  (x) == RED_PROCEDURE_ID_redMemoryGetBudget                             ? "RED_PROCEDURE_ID_redMemoryGetBudget"                             :\
-  (x) == RED_PROCEDURE_ID_redMemoryAllocate                              ? "RED_PROCEDURE_ID_redMemoryAllocate"                              :\
-  (x) == RED_PROCEDURE_ID_redMemoryAllocateMappable                      ? "RED_PROCEDURE_ID_redMemoryAllocateMappable"                      :\
-  (x) == RED_PROCEDURE_ID_redMemoryFree                                  ? "RED_PROCEDURE_ID_redMemoryFree"                                  :\
-  (x) == RED_PROCEDURE_ID_redMemorySet                                   ? "RED_PROCEDURE_ID_redMemorySet"                                   :\
-  (x) == RED_PROCEDURE_ID_redMemoryMap                                   ? "RED_PROCEDURE_ID_redMemoryMap"                                   :\
-  (x) == RED_PROCEDURE_ID_redMemoryUnmap                                 ? "RED_PROCEDURE_ID_redMemoryUnmap"                                 :\
-  (x) == RED_PROCEDURE_ID_redMemoryNonCoherentFlush                      ? "RED_PROCEDURE_ID_redMemoryNonCoherentFlush"                      :\
-  (x) == RED_PROCEDURE_ID_redMemoryNonCoherentInvalidate                 ? "RED_PROCEDURE_ID_redMemoryNonCoherentInvalidate"                 :\
-  (x) == RED_PROCEDURE_ID_redStructsMemoryAllocate                       ? "RED_PROCEDURE_ID_redStructsMemoryAllocate"                       :\
-  (x) == RED_PROCEDURE_ID_redStructsMemoryAllocateSamplers               ? "RED_PROCEDURE_ID_redStructsMemoryAllocateSamplers"               :\
-  (x) == RED_PROCEDURE_ID_redStructsMemorySuballocateStructs             ? "RED_PROCEDURE_ID_redStructsMemorySuballocateStructs"             :\
-  (x) == RED_PROCEDURE_ID_redStructsMemoryReset                          ? "RED_PROCEDURE_ID_redStructsMemoryReset"                          :\
-  (x) == RED_PROCEDURE_ID_redStructsMemoryFree                           ? "RED_PROCEDURE_ID_redStructsMemoryFree"                           :\
-  (x) == RED_PROCEDURE_ID_redStructsSet                                  ? "RED_PROCEDURE_ID_redStructsSet"                                  :\
-  (x) == RED_PROCEDURE_ID_redCreateContext                               ? "RED_PROCEDURE_ID_redCreateContext"                               :\
-  (x) == RED_PROCEDURE_ID_redCreateArray                                 ? "RED_PROCEDURE_ID_redCreateArray"                                 :\
-  (x) == RED_PROCEDURE_ID_redCreateImage                                 ? "RED_PROCEDURE_ID_redCreateImage"                                 :\
-  (x) == RED_PROCEDURE_ID_redCreateSampler                               ? "RED_PROCEDURE_ID_redCreateSampler"                               :\
-  (x) == RED_PROCEDURE_ID_redCreateTexture                               ? "RED_PROCEDURE_ID_redCreateTexture"                               :\
-  (x) == RED_PROCEDURE_ID_redCreateGpuCode                               ? "RED_PROCEDURE_ID_redCreateGpuCode"                               :\
-  (x) == RED_PROCEDURE_ID_redCreateOutputDeclaration                     ? "RED_PROCEDURE_ID_redCreateOutputDeclaration"                     :\
-  (x) == RED_PROCEDURE_ID_redCreateStructDeclaration                     ? "RED_PROCEDURE_ID_redCreateStructDeclaration"                     :\
-  (x) == RED_PROCEDURE_ID_redCreateProcedureParameters                   ? "RED_PROCEDURE_ID_redCreateProcedureParameters"                   :\
-  (x) == RED_PROCEDURE_ID_redCreateProcedureCache                        ? "RED_PROCEDURE_ID_redCreateProcedureCache"                        :\
-  (x) == RED_PROCEDURE_ID_redCreateProcedure                             ? "RED_PROCEDURE_ID_redCreateProcedure"                             :\
-  (x) == RED_PROCEDURE_ID_redCreateProcedureCompute                      ? "RED_PROCEDURE_ID_redCreateProcedureCompute"                      :\
-  (x) == RED_PROCEDURE_ID_redCreateOutput                                ? "RED_PROCEDURE_ID_redCreateOutput"                                :\
-  (x) == RED_PROCEDURE_ID_redCreateCpuSignal                             ? "RED_PROCEDURE_ID_redCreateCpuSignal"                             :\
-  (x) == RED_PROCEDURE_ID_redCreateGpuSignal                             ? "RED_PROCEDURE_ID_redCreateGpuSignal"                             :\
-  (x) == RED_PROCEDURE_ID_redCreateGpuToCpuSignal                        ? "RED_PROCEDURE_ID_redCreateGpuToCpuSignal"                        :\
-  (x) == RED_PROCEDURE_ID_redCreateCalls                                 ? "RED_PROCEDURE_ID_redCreateCalls"                                 :\
-  (x) == RED_PROCEDURE_ID_redCreateCallsReusable                         ? "RED_PROCEDURE_ID_redCreateCallsReusable"                         :\
-  (x) == RED_PROCEDURE_ID_redDestroyContext                              ? "RED_PROCEDURE_ID_redDestroyContext"                              :\
-  (x) == RED_PROCEDURE_ID_redDestroyArray                                ? "RED_PROCEDURE_ID_redDestroyArray"                                :\
-  (x) == RED_PROCEDURE_ID_redDestroyImage                                ? "RED_PROCEDURE_ID_redDestroyImage"                                :\
-  (x) == RED_PROCEDURE_ID_redDestroySampler                              ? "RED_PROCEDURE_ID_redDestroySampler"                              :\
-  (x) == RED_PROCEDURE_ID_redDestroyTexture                              ? "RED_PROCEDURE_ID_redDestroyTexture"                              :\
-  (x) == RED_PROCEDURE_ID_redDestroyGpuCode                              ? "RED_PROCEDURE_ID_redDestroyGpuCode"                              :\
-  (x) == RED_PROCEDURE_ID_redDestroyOutputDeclaration                    ? "RED_PROCEDURE_ID_redDestroyOutputDeclaration"                    :\
-  (x) == RED_PROCEDURE_ID_redDestroyStructDeclaration                    ? "RED_PROCEDURE_ID_redDestroyStructDeclaration"                    :\
-  (x) == RED_PROCEDURE_ID_redDestroyProcedureParameters                  ? "RED_PROCEDURE_ID_redDestroyProcedureParameters"                  :\
-  (x) == RED_PROCEDURE_ID_redDestroyProcedureCache                       ? "RED_PROCEDURE_ID_redDestroyProcedureCache"                       :\
-  (x) == RED_PROCEDURE_ID_redDestroyProcedure                            ? "RED_PROCEDURE_ID_redDestroyProcedure"                            :\
-  (x) == RED_PROCEDURE_ID_redDestroyOutput                               ? "RED_PROCEDURE_ID_redDestroyOutput"                               :\
-  (x) == RED_PROCEDURE_ID_redDestroyCpuSignal                            ? "RED_PROCEDURE_ID_redDestroyCpuSignal"                            :\
-  (x) == RED_PROCEDURE_ID_redDestroyGpuSignal                            ? "RED_PROCEDURE_ID_redDestroyGpuSignal"                            :\
-  (x) == RED_PROCEDURE_ID_redDestroyGpuToCpuSignal                       ? "RED_PROCEDURE_ID_redDestroyGpuToCpuSignal"                       :\
-  (x) == RED_PROCEDURE_ID_redDestroyCalls                                ? "RED_PROCEDURE_ID_redDestroyCalls"                                :\
-  (x) == RED_PROCEDURE_ID_redProcedureCacheGetBlob                       ? "RED_PROCEDURE_ID_redProcedureCacheGetBlob"                       :\
-  (x) == RED_PROCEDURE_ID_redProcedureCacheMergeCaches                   ? "RED_PROCEDURE_ID_redProcedureCacheMergeCaches"                   :\
-  (x) == RED_PROCEDURE_ID_redCpuSignalGetStatus                          ? "RED_PROCEDURE_ID_redCpuSignalGetStatus"                          :\
-  (x) == RED_PROCEDURE_ID_redCpuSignalWait                               ? "RED_PROCEDURE_ID_redCpuSignalWait"                               :\
-  (x) == RED_PROCEDURE_ID_redCpuSignalUnsignal                           ? "RED_PROCEDURE_ID_redCpuSignalUnsignal"                           :\
-  (x) == RED_PROCEDURE_ID_redGpuToCpuSignalGetStatus                     ? "RED_PROCEDURE_ID_redGpuToCpuSignalGetStatus"                     :\
-  (x) == RED_PROCEDURE_ID_redGpuToCpuSignalUnsignal                      ? "RED_PROCEDURE_ID_redGpuToCpuSignalUnsignal"                      :\
-  (x) == RED_PROCEDURE_ID_redCallsSet                                    ? "RED_PROCEDURE_ID_redCallsSet"                                    :\
-  (x) == RED_PROCEDURE_ID_redCallsEnd                                    ? "RED_PROCEDURE_ID_redCallsEnd"                                    :\
-  (x) == RED_PROCEDURE_ID_redGetCallProceduresAndAddresses               ? "RED_PROCEDURE_ID_redGetCallProceduresAndAddresses"               :\
-  (x) == RED_PROCEDURE_ID_redQueueSubmit                                 ? "RED_PROCEDURE_ID_redQueueSubmit"                                 :\
-  (x) == RED_PROCEDURE_ID_redMark                                        ? "RED_PROCEDURE_ID_redMark"                                        :\
-  (x) == RED_PROCEDURE_ID_redMarkSet                                     ? "RED_PROCEDURE_ID_redMarkSet"                                     :\
-  (x) == RED_PROCEDURE_ID_redMarkEnd                                     ? "RED_PROCEDURE_ID_redMarkEnd"                                     :\
-  (x) == RED_PROCEDURE_ID_redCreateSurfaceWin32                          ? "RED_PROCEDURE_ID_redCreateSurfaceWin32"                          :\
-  (x) == RED_PROCEDURE_ID_redCreateSurfaceXlibOrXcb                      ? "RED_PROCEDURE_ID_redCreateSurfaceXlibOrXcb"                      :\
-  (x) == RED_PROCEDURE_ID_redCreatePresent                               ? "RED_PROCEDURE_ID_redCreatePresent"                               :\
-  (x) == RED_PROCEDURE_ID_redDestroySurface                              ? "RED_PROCEDURE_ID_redDestroySurface"                              :\
-  (x) == RED_PROCEDURE_ID_redDestroyPresent                              ? "RED_PROCEDURE_ID_redDestroyPresent"                              :\
-  (x) == RED_PROCEDURE_ID_redQueueFamilyIndexGetSupportsPresent          ? "RED_PROCEDURE_ID_redQueueFamilyIndexGetSupportsPresent"          :\
-  (x) == RED_PROCEDURE_ID_redSurfaceGetPresentFeatures                   ? "RED_PROCEDURE_ID_redSurfaceGetPresentFeatures"                   :\
-  (x) == RED_PROCEDURE_ID_redSurfaceGetCurrentPropertiesAndPresentLimits ? "RED_PROCEDURE_ID_redSurfaceGetCurrentPropertiesAndPresentLimits" :\
-  (x) == RED_PROCEDURE_ID_redPresentGetImageIndex                        ? "RED_PROCEDURE_ID_redPresentGetImageIndex"                        :\
-  (x) == RED_PROCEDURE_ID_redQueuePresent                                ? "RED_PROCEDURE_ID_redQueuePresent"                                :\
-  (x) == RED_PROCEDURE_ID_redDebugArrayGetHandle                         ? "RED_PROCEDURE_ID_redDebugArrayGetHandle"                         :\
-  (x) == RED_PROCEDURE_ID_redDebugArrayCallPrint                         ? "RED_PROCEDURE_ID_redDebugArrayCallPrint"                         :\
+  (unsigned)(x) == RED_PROCEDURE_ID_UNDEFINED                                      ? "RED_PROCEDURE_ID_UNDEFINED"                                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryGetBudget                             ? "RED_PROCEDURE_ID_redMemoryGetBudget"                             :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryAllocate                              ? "RED_PROCEDURE_ID_redMemoryAllocate"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryAllocateMappable                      ? "RED_PROCEDURE_ID_redMemoryAllocateMappable"                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryFree                                  ? "RED_PROCEDURE_ID_redMemoryFree"                                  :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemorySet                                   ? "RED_PROCEDURE_ID_redMemorySet"                                   :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryMap                                   ? "RED_PROCEDURE_ID_redMemoryMap"                                   :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryUnmap                                 ? "RED_PROCEDURE_ID_redMemoryUnmap"                                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryNonCoherentFlush                      ? "RED_PROCEDURE_ID_redMemoryNonCoherentFlush"                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMemoryNonCoherentInvalidate                 ? "RED_PROCEDURE_ID_redMemoryNonCoherentInvalidate"                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryAllocate                       ? "RED_PROCEDURE_ID_redStructsMemoryAllocate"                       :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryAllocateSamplers               ? "RED_PROCEDURE_ID_redStructsMemoryAllocateSamplers"               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemorySuballocateStructs             ? "RED_PROCEDURE_ID_redStructsMemorySuballocateStructs"             :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryReset                          ? "RED_PROCEDURE_ID_redStructsMemoryReset"                          :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryFree                           ? "RED_PROCEDURE_ID_redStructsMemoryFree"                           :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsSet                                  ? "RED_PROCEDURE_ID_redStructsSet"                                  :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateContext                               ? "RED_PROCEDURE_ID_redCreateContext"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateArray                                 ? "RED_PROCEDURE_ID_redCreateArray"                                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateImage                                 ? "RED_PROCEDURE_ID_redCreateImage"                                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateSampler                               ? "RED_PROCEDURE_ID_redCreateSampler"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateTexture                               ? "RED_PROCEDURE_ID_redCreateTexture"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateGpuCode                               ? "RED_PROCEDURE_ID_redCreateGpuCode"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateOutputDeclaration                     ? "RED_PROCEDURE_ID_redCreateOutputDeclaration"                     :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateStructDeclaration                     ? "RED_PROCEDURE_ID_redCreateStructDeclaration"                     :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedureParameters                   ? "RED_PROCEDURE_ID_redCreateProcedureParameters"                   :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedureCache                        ? "RED_PROCEDURE_ID_redCreateProcedureCache"                        :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedure                             ? "RED_PROCEDURE_ID_redCreateProcedure"                             :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedureCompute                      ? "RED_PROCEDURE_ID_redCreateProcedureCompute"                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateOutput                                ? "RED_PROCEDURE_ID_redCreateOutput"                                :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateCpuSignal                             ? "RED_PROCEDURE_ID_redCreateCpuSignal"                             :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateGpuSignal                             ? "RED_PROCEDURE_ID_redCreateGpuSignal"                             :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateGpuToCpuSignal                        ? "RED_PROCEDURE_ID_redCreateGpuToCpuSignal"                        :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateCalls                                 ? "RED_PROCEDURE_ID_redCreateCalls"                                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateCallsReusable                         ? "RED_PROCEDURE_ID_redCreateCallsReusable"                         :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyContext                              ? "RED_PROCEDURE_ID_redDestroyContext"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyArray                                ? "RED_PROCEDURE_ID_redDestroyArray"                                :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyImage                                ? "RED_PROCEDURE_ID_redDestroyImage"                                :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroySampler                              ? "RED_PROCEDURE_ID_redDestroySampler"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyTexture                              ? "RED_PROCEDURE_ID_redDestroyTexture"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyGpuCode                              ? "RED_PROCEDURE_ID_redDestroyGpuCode"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyOutputDeclaration                    ? "RED_PROCEDURE_ID_redDestroyOutputDeclaration"                    :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyStructDeclaration                    ? "RED_PROCEDURE_ID_redDestroyStructDeclaration"                    :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyProcedureParameters                  ? "RED_PROCEDURE_ID_redDestroyProcedureParameters"                  :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyProcedureCache                       ? "RED_PROCEDURE_ID_redDestroyProcedureCache"                       :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyProcedure                            ? "RED_PROCEDURE_ID_redDestroyProcedure"                            :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyOutput                               ? "RED_PROCEDURE_ID_redDestroyOutput"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyCpuSignal                            ? "RED_PROCEDURE_ID_redDestroyCpuSignal"                            :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyGpuSignal                            ? "RED_PROCEDURE_ID_redDestroyGpuSignal"                            :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyGpuToCpuSignal                       ? "RED_PROCEDURE_ID_redDestroyGpuToCpuSignal"                       :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyCalls                                ? "RED_PROCEDURE_ID_redDestroyCalls"                                :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redProcedureCacheGetBlob                       ? "RED_PROCEDURE_ID_redProcedureCacheGetBlob"                       :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redProcedureCacheMergeCaches                   ? "RED_PROCEDURE_ID_redProcedureCacheMergeCaches"                   :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCpuSignalGetStatus                          ? "RED_PROCEDURE_ID_redCpuSignalGetStatus"                          :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCpuSignalWait                               ? "RED_PROCEDURE_ID_redCpuSignalWait"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCpuSignalUnsignal                           ? "RED_PROCEDURE_ID_redCpuSignalUnsignal"                           :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redGpuToCpuSignalGetStatus                     ? "RED_PROCEDURE_ID_redGpuToCpuSignalGetStatus"                     :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redGpuToCpuSignalUnsignal                      ? "RED_PROCEDURE_ID_redGpuToCpuSignalUnsignal"                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCallsSet                                    ? "RED_PROCEDURE_ID_redCallsSet"                                    :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCallsEnd                                    ? "RED_PROCEDURE_ID_redCallsEnd"                                    :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redGetCallProceduresAndAddresses               ? "RED_PROCEDURE_ID_redGetCallProceduresAndAddresses"               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redQueueSubmit                                 ? "RED_PROCEDURE_ID_redQueueSubmit"                                 :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMark                                        ? "RED_PROCEDURE_ID_redMark"                                        :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMarkSet                                     ? "RED_PROCEDURE_ID_redMarkSet"                                     :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redMarkEnd                                     ? "RED_PROCEDURE_ID_redMarkEnd"                                     :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateSurfaceWin32                          ? "RED_PROCEDURE_ID_redCreateSurfaceWin32"                          :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateSurfaceXlibOrXcb                      ? "RED_PROCEDURE_ID_redCreateSurfaceXlibOrXcb"                      :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreatePresent                               ? "RED_PROCEDURE_ID_redCreatePresent"                               :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroySurface                              ? "RED_PROCEDURE_ID_redDestroySurface"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyPresent                              ? "RED_PROCEDURE_ID_redDestroyPresent"                              :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redQueueFamilyIndexGetSupportsPresent          ? "RED_PROCEDURE_ID_redQueueFamilyIndexGetSupportsPresent"          :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redSurfaceGetPresentFeatures                   ? "RED_PROCEDURE_ID_redSurfaceGetPresentFeatures"                   :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redSurfaceGetCurrentPropertiesAndPresentLimits ? "RED_PROCEDURE_ID_redSurfaceGetCurrentPropertiesAndPresentLimits" :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redPresentGetImageIndex                        ? "RED_PROCEDURE_ID_redPresentGetImageIndex"                        :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redQueuePresent                                ? "RED_PROCEDURE_ID_redQueuePresent"                                :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDebugArrayGetHandle                         ? "RED_PROCEDURE_ID_redDebugArrayGetHandle"                         :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDebugArrayCallPrint                         ? "RED_PROCEDURE_ID_redDebugArrayCallPrint"                         :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedureComputingLanguage            ? "RED_PROCEDURE_ID_redCreateProcedureComputingLanguage"            :\
   "(unknown)"\
 )
 
@@ -412,6 +414,11 @@
   #x".supportsRayTracing = %d;\n"\
   ,\
   ((const RedGpuInfoOptionalInfoRayTracing *)(x))->supportsRayTracing
+
+#define REDGPU_PRINT_OPTIONAL_INFO_COMPUTING_LANGUAGE_FEATURE_LEVEL_1(x)\
+  #x".supportsComputingLanguageFeatureLevel1 = %d;\n"\
+  ,\
+  ((const RedGpuInfoOptionalInfoComputingLanguageFeatureLevel1 *)(x))->supportsComputingLanguageFeatureLevel1
 
 #define REDGPU_PRINT_MEMORY_BUDGET(x)\
   #x".memoryHeapsBudget = {[0] = %lu, [1] = %lu, [2] = %lu, [3] = %lu, [4] = %lu, [5] = %lu, [6] = %lu, [7] = %lu, [8] = %lu, [9] = %lu, [10] = %lu, [11] = %lu, [12] = %lu, [13] = %lu, [14] = %lu, [15] = %lu};\n"\
