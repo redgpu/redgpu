@@ -1,3 +1,7 @@
+Sep 19, 2021:
+
+  * Add RedContextOptionalSettingsContextFromVkGetInstanceProcAddr struct.
+
 Sep 07, 2021:
 
   * Add a new extension: Computing Language.
