@@ -2,6 +2,7 @@
 
 #include "redgpu.h"
 #include "redgpu_computing_language.h"
+#include "redgpu_array_timestamp.h"
 
 #define REDGPU_PRINT_STATUS(x) (\
   (x) == RED_STATUS_SUCCESS                       ? "RED_STATUS_SUCCESS"                       :\
@@ -110,6 +111,9 @@
   (unsigned)(x) == RED_PROCEDURE_ID_redDebugArrayGetHandle                         ? "RED_PROCEDURE_ID_redDebugArrayGetHandle"                         :\
   (unsigned)(x) == RED_PROCEDURE_ID_redDebugArrayCallPrint                         ? "RED_PROCEDURE_ID_redDebugArrayCallPrint"                         :\
   (unsigned)(x) == RED_PROCEDURE_ID_redCreateProcedureComputingLanguage            ? "RED_PROCEDURE_ID_redCreateProcedureComputingLanguage"            :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redCreateArrayTimestamp                        ? "RED_PROCEDURE_ID_redCreateArrayTimestamp"                        :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redDestroyArrayTimestamp                       ? "RED_PROCEDURE_ID_redDestroyArrayTimestamp"                       :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redArrayTimestampRead                          ? "RED_PROCEDURE_ID_redArrayTimestampRead"                          :\
   "(unknown)"\
 )
 
@@ -118,13 +122,13 @@
   #x".statusCode             = %d;\n"\
   #x".statusHresult          = %d;\n"\
   #x".statusProcedureId      = %s;\n"\
-  #x".statusFile             = %s;\n"\
+  #x".statusFile             = %s%s%s;\n"\
   #x".statusLine             = %d;\n"\
   #x".statusError            = %s;\n"\
   #x".statusErrorCode        = %d;\n"\
   #x".statusErrorHresult     = %d;\n"\
   #x".statusErrorProcedureId = %s;\n"\
-  #x".statusErrorFile        = %s;\n"\
+  #x".statusErrorFile        = %s%s%s;\n"\
   #x".statusErrorLine        = %d;\n"\
   #x".statusErrorDescription = \"%s\";\n"\
   ,\
@@ -132,13 +136,17 @@
   (x).statusCode,\
   (x).statusHresult,\
   REDGPU_PRINT_PROCEDURE_ID((x).statusProcedureId),\
+  (x).statusFile == 0 ? "" : "\"",\
   (x).statusFile,\
+  (x).statusFile == 0 ? "" : "\"",\
   (x).statusLine,\
   REDGPU_PRINT_STATUS((x).statusError),\
   (x).statusErrorCode,\
   (x).statusErrorHresult,\
   REDGPU_PRINT_PROCEDURE_ID((x).statusErrorProcedureId),\
+  (x).statusErrorFile == 0 ? "" : "\"",\
   (x).statusErrorFile,\
+  (x).statusErrorFile == 0 ? "" : "\"",\
   (x).statusErrorLine,\
   (x).statusErrorDescription
   
@@ -420,6 +428,13 @@
   ,\
   ((const RedGpuInfoOptionalInfoComputingLanguageFeatureLevel1 *)(x))->supportsComputingLanguageFeatureLevel1
 
+#define REDGPU_PRINT_OPTIONAL_INFO_ARRAY_TIMESTAMP(x)\
+  #x".supportsArrayTimestamp = %d;\n"\
+  #x".nanosecondsPerTick = %.9g;\n"\
+  ,\
+  ((const RedGpuInfoOptionalInfoArrayTimestamp *)(x))->supportsArrayTimestamp,\
+  ((const RedGpuInfoOptionalInfoArrayTimestamp *)(x))->nanosecondsPerTick
+
 #define REDGPU_PRINT_MEMORY_BUDGET(x)\
   #x".memoryHeapsBudget = {[0] = %lu, [1] = %lu, [2] = %lu, [3] = %lu, [4] = %lu, [5] = %lu, [6] = %lu, [7] = %lu, [8] = %lu, [9] = %lu, [10] = %lu, [11] = %lu, [12] = %lu, [13] = %lu, [14] = %lu, [15] = %lu};\n"\
   #x".memoryHeapsUsage  = {[0] = %lu, [1] = %lu, [2] = %lu, [3] = %lu, [4] = %lu, [5] = %lu, [6] = %lu, [7] = %lu, [8] = %lu, [9] = %lu, [10] = %lu, [11] = %lu, [12] = %lu, [13] = %lu, [14] = %lu, [15] = %lu};\n"\
@@ -487,31 +502,32 @@
 )
 
 #define REDGPU_PRINT_HANDLE_TYPE(x) (\
-  (x) == RED_HANDLE_TYPE_CONTEXT              ? "RED_HANDLE_TYPE_CONTEXT"              :\
-  (x) == RED_HANDLE_TYPE_GPU                  ? "RED_HANDLE_TYPE_GPU"                  :\
-  (x) == RED_HANDLE_TYPE_GPU_DEVICE           ? "RED_HANDLE_TYPE_GPU_DEVICE"           :\
-  (x) == RED_HANDLE_TYPE_QUEUE                ? "RED_HANDLE_TYPE_QUEUE"                :\
-  (x) == RED_HANDLE_TYPE_MEMORY               ? "RED_HANDLE_TYPE_MEMORY"               :\
-  (x) == RED_HANDLE_TYPE_ARRAY                ? "RED_HANDLE_TYPE_ARRAY"                :\
-  (x) == RED_HANDLE_TYPE_IMAGE                ? "RED_HANDLE_TYPE_IMAGE"                :\
-  (x) == RED_HANDLE_TYPE_SAMPLER              ? "RED_HANDLE_TYPE_SAMPLER"              :\
-  (x) == RED_HANDLE_TYPE_TEXTURE              ? "RED_HANDLE_TYPE_TEXTURE"              :\
-  (x) == RED_HANDLE_TYPE_GPU_CODE             ? "RED_HANDLE_TYPE_GPU_CODE"             :\
-  (x) == RED_HANDLE_TYPE_OUTPUT_DECLARATION   ? "RED_HANDLE_TYPE_OUTPUT_DECLARATION"   :\
-  (x) == RED_HANDLE_TYPE_STRUCT_DECLARATION   ? "RED_HANDLE_TYPE_STRUCT_DECLARATION"   :\
-  (x) == RED_HANDLE_TYPE_PROCEDURE_PARAMETERS ? "RED_HANDLE_TYPE_PROCEDURE_PARAMETERS" :\
-  (x) == RED_HANDLE_TYPE_PROCEDURE_CACHE      ? "RED_HANDLE_TYPE_PROCEDURE_CACHE"      :\
-  (x) == RED_HANDLE_TYPE_PROCEDURE            ? "RED_HANDLE_TYPE_PROCEDURE"            :\
-  (x) == RED_HANDLE_TYPE_OUTPUT               ? "RED_HANDLE_TYPE_OUTPUT"               :\
-  (x) == RED_HANDLE_TYPE_STRUCT               ? "RED_HANDLE_TYPE_STRUCT"               :\
-  (x) == RED_HANDLE_TYPE_STRUCTS_MEMORY       ? "RED_HANDLE_TYPE_STRUCTS_MEMORY"       :\
-  (x) == RED_HANDLE_TYPE_CALLS                ? "RED_HANDLE_TYPE_CALLS"                :\
-  (x) == RED_HANDLE_TYPE_CALLS_MEMORY         ? "RED_HANDLE_TYPE_CALLS_MEMORY"         :\
-  (x) == RED_HANDLE_TYPE_CPU_SIGNAL           ? "RED_HANDLE_TYPE_CPU_SIGNAL"           :\
-  (x) == RED_HANDLE_TYPE_GPU_SIGNAL           ? "RED_HANDLE_TYPE_GPU_SIGNAL"           :\
-  (x) == RED_HANDLE_TYPE_GPU_TO_CPU_SIGNAL    ? "RED_HANDLE_TYPE_GPU_TO_CPU_SIGNAL"    :\
-  (x) == RED_HANDLE_TYPE_SURFACE              ? "RED_HANDLE_TYPE_SURFACE"              :\
-  (x) == RED_HANDLE_TYPE_PRESENT              ? "RED_HANDLE_TYPE_PRESENT"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_CONTEXT              ? "RED_HANDLE_TYPE_CONTEXT"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_GPU                  ? "RED_HANDLE_TYPE_GPU"                  :\
+  (unsigned)(x) == RED_HANDLE_TYPE_GPU_DEVICE           ? "RED_HANDLE_TYPE_GPU_DEVICE"           :\
+  (unsigned)(x) == RED_HANDLE_TYPE_QUEUE                ? "RED_HANDLE_TYPE_QUEUE"                :\
+  (unsigned)(x) == RED_HANDLE_TYPE_MEMORY               ? "RED_HANDLE_TYPE_MEMORY"               :\
+  (unsigned)(x) == RED_HANDLE_TYPE_ARRAY                ? "RED_HANDLE_TYPE_ARRAY"                :\
+  (unsigned)(x) == RED_HANDLE_TYPE_IMAGE                ? "RED_HANDLE_TYPE_IMAGE"                :\
+  (unsigned)(x) == RED_HANDLE_TYPE_SAMPLER              ? "RED_HANDLE_TYPE_SAMPLER"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_TEXTURE              ? "RED_HANDLE_TYPE_TEXTURE"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_GPU_CODE             ? "RED_HANDLE_TYPE_GPU_CODE"             :\
+  (unsigned)(x) == RED_HANDLE_TYPE_OUTPUT_DECLARATION   ? "RED_HANDLE_TYPE_OUTPUT_DECLARATION"   :\
+  (unsigned)(x) == RED_HANDLE_TYPE_STRUCT_DECLARATION   ? "RED_HANDLE_TYPE_STRUCT_DECLARATION"   :\
+  (unsigned)(x) == RED_HANDLE_TYPE_PROCEDURE_PARAMETERS ? "RED_HANDLE_TYPE_PROCEDURE_PARAMETERS" :\
+  (unsigned)(x) == RED_HANDLE_TYPE_PROCEDURE_CACHE      ? "RED_HANDLE_TYPE_PROCEDURE_CACHE"      :\
+  (unsigned)(x) == RED_HANDLE_TYPE_PROCEDURE            ? "RED_HANDLE_TYPE_PROCEDURE"            :\
+  (unsigned)(x) == RED_HANDLE_TYPE_OUTPUT               ? "RED_HANDLE_TYPE_OUTPUT"               :\
+  (unsigned)(x) == RED_HANDLE_TYPE_STRUCT               ? "RED_HANDLE_TYPE_STRUCT"               :\
+  (unsigned)(x) == RED_HANDLE_TYPE_STRUCTS_MEMORY       ? "RED_HANDLE_TYPE_STRUCTS_MEMORY"       :\
+  (unsigned)(x) == RED_HANDLE_TYPE_CALLS                ? "RED_HANDLE_TYPE_CALLS"                :\
+  (unsigned)(x) == RED_HANDLE_TYPE_CALLS_MEMORY         ? "RED_HANDLE_TYPE_CALLS_MEMORY"         :\
+  (unsigned)(x) == RED_HANDLE_TYPE_CPU_SIGNAL           ? "RED_HANDLE_TYPE_CPU_SIGNAL"           :\
+  (unsigned)(x) == RED_HANDLE_TYPE_GPU_SIGNAL           ? "RED_HANDLE_TYPE_GPU_SIGNAL"           :\
+  (unsigned)(x) == RED_HANDLE_TYPE_GPU_TO_CPU_SIGNAL    ? "RED_HANDLE_TYPE_GPU_TO_CPU_SIGNAL"    :\
+  (unsigned)(x) == RED_HANDLE_TYPE_SURFACE              ? "RED_HANDLE_TYPE_SURFACE"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_PRESENT              ? "RED_HANDLE_TYPE_PRESENT"              :\
+  (unsigned)(x) == RED_HANDLE_TYPE_ARRAY_TIMESTAMP      ? "RED_HANDLE_TYPE_ARRAY_TIMESTAMP"      :\
   "(unknown)"\
 )
 
