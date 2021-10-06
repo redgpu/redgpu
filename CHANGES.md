@@ -1,3 +1,10 @@
+Oct 07, 2021:
+
+  * libredgpu.so is now compiled with Clang 13.
+  * libredgpu.so.su static stack usage analysis file is added, it specifies the maximum amount of stack used per procedure, in bytes. (Not relevant to the public API: internally, PPHI stands for Procedure Parameters Handles Implementation.)
+  * Fixed a bug when procedures could return empty RedStatuses::statusErrorDescription strings for some errors.
+  * The stack size of internal statuses setting procedures is minimized.
+
 Oct 03, 2021:
 
   * **NEW**: `redgpu_array_timestamp.h` extension.
