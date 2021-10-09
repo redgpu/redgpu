@@ -1,3 +1,8 @@
+Oct 09, 2021:
+
+  * REDGPU log debug libraries are added, they redirect the console debug print output to /tmp/redgpu.txt file on Linux and redgpu.txt file located in executable's folder on Windows.
+  * REDGPU debug library: context pointers are now printed as well.
+
 Oct 07, 2021:
 
   * libredgpu.so is now compiled with Clang 13.
