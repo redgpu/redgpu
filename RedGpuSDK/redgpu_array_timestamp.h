@@ -6,7 +6,11 @@
 extern "C" {
 #endif
 
+#if defined(_WIN32) && !defined(_WIN64)
+typedef uint64_t                             RedHandleArrayTimestamp;
+#else
 typedef struct RedTypeHandleArrayTimestamp * RedHandleArrayTimestamp;
+#endif
 
 typedef enum RedProcedureId2 {
   RED_PROCEDURE_ID_redCreateArrayTimestamp  = 77,
