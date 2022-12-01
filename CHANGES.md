@@ -1,3 +1,12 @@
+Dec 01, 2022:
+
+  * redgpu.h: redCallSetProcedureOutput::inlineOutput parameter is corrected to be const.
+  * redgpu_wsi.h: new features are added, see the comments at the bottom of the header file.
+
+Aug 13, 2022:
+
+  * Correct RedHandleArrayTimestamp type in redgpu_array_timestamp.h for 32-bit systems.
+
 Oct 09, 2021:
 
   * REDGPU log debug libraries are added, they redirect the console debug print output to /tmp/redgpu.txt file on Linux and redgpu.txt file located in executable's folder on Windows.

@@ -133,3 +133,5 @@ REDGPU_DECLSPEC void REDGPU_API redQueuePresent           (RedContext context, R
 // * redPresentGetImageIndex may or may not block.
 // * redQueuePresent         may or may not block.
 // * If redPresentGetImageIndex won't block implicitly, you can block explicitly on a CPU signal.
+// * Since Dec 01, 2022, you can set redCreatePresent::imagesCount to max value (0xFFFFFFFF), pass to redCreatePresent::outImages an array of count RedSurfaceCurrentPropertiesAndPresentLimits::maxPresentImagesCount and pass to redCreatePresent::outTextures either a null pointer or an array of count RedSurfaceCurrentPropertiesAndPresentLimits::maxPresentImagesCount for the graphics driver to return a system-preferable number of images and textures between RedSurfaceCurrentPropertiesAndPresentLimits::minPresentImagesCount and RedSurfaceCurrentPropertiesAndPresentLimits::maxPresentImagesCount.
+// * Since Dec 01, 2022, redQueuePresent called with redQueuePresent::waitForAndUnsignalGpuSignalsCount == 0 and redQueuePresent::presentsCount == 0 does nothing but waits for the redQueuePresent::queue to become idle. This partially addresses the issue #1678.
