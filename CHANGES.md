@@ -1,3 +1,7 @@
+Dec 03, 2022:
+
+  * Make calling redQueuePresent with redQueuePresent::waitForAndUnsignalGpuSignalsCount set to 0 and redQueuePresent::presentsCount set to 0 before calling redDestroyPresent mandatory.
+
 Dec 01, 2022:
 
   * redgpu.h: redCallSetProcedureOutput::inlineOutput parameter is corrected to be const.
