@@ -781,7 +781,7 @@ typedef RedBool32 (REDGPU_CALLING_CONVENTION *RedTypeProcedureDebugCallback) (Re
 
 typedef enum RedArrayType {
   RED_ARRAY_TYPE_ARRAY_RW          = REDGPU_B32(0000,0000,0000,0000,0000,0000,0010,0011), // GPU code: RWByteAddressBuffer (RW), RWStructuredBuffer<T> (RW). RWByteAddressBuffer's Load() method expects a byte offset and returns uint value that can be casted to a float with asfloat() procedure. Structured buffer elements cannot be larger than 2048 bytes
-  RED_ARRAY_TYPE_ARRAY_R0          = REDGPU_B32(1000,0000,0000,0000,0000,0000,0000,0000), // GPU code: ByteAddressBuffer   (RO), StructuredBuffer<T>   (RO). ByteAddressBuffer's   Load() method expects a byte offset and returns uint value that can be casted to a float with asfloat() procedure. Structured buffer elements cannot be larger than 2048 bytes
+  RED_ARRAY_TYPE_ARRAY_RO          = REDGPU_B32(1000,0000,0000,0000,0000,0000,0000,0000), // GPU code: ByteAddressBuffer   (RO), StructuredBuffer<T>   (RO). ByteAddressBuffer's   Load() method expects a byte offset and returns uint value that can be casted to a float with asfloat() procedure. Structured buffer elements cannot be larger than 2048 bytes
   RED_ARRAY_TYPE_ARRAY_RO_CONSTANT = REDGPU_B32(0000,0000,0000,0000,0000,0000,0001,0010), // GPU code: ConstantBuffer<T>   (RO)
   RED_ARRAY_TYPE_INDEX_RO          = REDGPU_B32(0000,0000,0000,0000,0000,0000,0100,0010),
 } RedArrayType;

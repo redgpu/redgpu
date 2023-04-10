@@ -1,3 +1,7 @@
+Apr 10, 2023:
+
+  * redgpu.h: RedArrayType::RED_ARRAY_TYPE_ARRAY_R0 name is corrected to RedArrayType::RED_ARRAY_TYPE_ARRAY_RO.
+
 Dec 03, 2022:
 
   * Make calling redQueuePresent with redQueuePresent::waitForAndUnsignalGpuSignalsCount set to 0 and redQueuePresent::presentsCount set to 0 before calling redDestroyPresent mandatory.
