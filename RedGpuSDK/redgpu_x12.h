@@ -2127,212 +2127,216 @@ typedef enum DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAG {
 #define X12_DECLSPEC
 #endif
 
+#ifndef X12_API
+#define X12_API
+#endif
+
 // Memory budget
 
-X12_DECLSPEC HRESULT  x12AdapterRegisterVideoMemoryBudgetChangeNotificationEvent (X12Adapter3 * pAdapter, void * hEvent, unsigned * outdwCookie, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12AdapterUnregisterVideoMemoryBudgetChangeNotification    (X12Adapter3 * pAdapter, unsigned dwCookie, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12AdapterRegisterVideoMemoryBudgetChangeNotificationEvent (X12Adapter3 * pAdapter, void * hEvent, unsigned * outdwCookie, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12AdapterUnregisterVideoMemoryBudgetChangeNotification    (X12Adapter3 * pAdapter, unsigned dwCookie, const char * optionalFile, int optionalLine);
 
 // Memory
 
-X12_DECLSPEC HRESULT  x12AdapterQueryVideoMemoryInfo                      (X12Adapter3 * pAdapter, unsigned NodeIndex, DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup, DXGI_QUERY_VIDEO_MEMORY_INFO * pVideoMemoryInfo, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12AdapterSetVideoMemoryReservation                 (X12Adapter3 * pAdapter, unsigned NodeIndex, DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup, uint64_t Reservation, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateHeap                                 (X12Device3 * pDevice, const D3D12_HEAP_DESC * pDesc, X12Heap ** outpHeap, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceGetResourceAllocationInfo                  (X12Device3 * pDevice, unsigned visibleMask, unsigned numResourceDescs, const D3D12_RESOURCE_DESC * pResourceDescs, D3D12_RESOURCE_ALLOCATION_INFO * outResourceAllocationInfo, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreatePlacedResource                       (X12Device3 * pDevice, X12Heap * pHeap, uint64_t HeapOffset, const D3D12_RESOURCE_DESC * pDesc, D3D12_RESOURCE_STATES InitialState, const D3D12_CLEAR_VALUE * pOptimizedClearValue, X12Resource ** outpResource, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateCommittedResource                    (X12Device3 * pDevice, const D3D12_HEAP_PROPERTIES * pHeapProperties, D3D12_HEAP_FLAGS HeapFlags, const D3D12_RESOURCE_DESC * pDesc, D3D12_RESOURCE_STATES InitialResourceState, const D3D12_CLEAR_VALUE * pOptimizedClearValue, X12Resource ** outpResource, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12ResourceMap                                      (X12Resource * pResource, unsigned Subresource, const D3D12_RANGE * pReadRange, void ** outpData, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12ResourceUnmap                                    (X12Resource * pResource, unsigned Subresource, const D3D12_RANGE * pWrittenRange, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12AdapterQueryVideoMemoryInfo                      (X12Adapter3 * pAdapter, unsigned NodeIndex, DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup, DXGI_QUERY_VIDEO_MEMORY_INFO * pVideoMemoryInfo, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12AdapterSetVideoMemoryReservation                 (X12Adapter3 * pAdapter, unsigned NodeIndex, DXGI_MEMORY_SEGMENT_GROUP MemorySegmentGroup, uint64_t Reservation, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateHeap                                 (X12Device3 * pDevice, const D3D12_HEAP_DESC * pDesc, X12Heap ** outpHeap, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceGetResourceAllocationInfo                  (X12Device3 * pDevice, unsigned visibleMask, unsigned numResourceDescs, const D3D12_RESOURCE_DESC * pResourceDescs, D3D12_RESOURCE_ALLOCATION_INFO * outResourceAllocationInfo, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreatePlacedResource                       (X12Device3 * pDevice, X12Heap * pHeap, uint64_t HeapOffset, const D3D12_RESOURCE_DESC * pDesc, D3D12_RESOURCE_STATES InitialState, const D3D12_CLEAR_VALUE * pOptimizedClearValue, X12Resource ** outpResource, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateCommittedResource                    (X12Device3 * pDevice, const D3D12_HEAP_PROPERTIES * pHeapProperties, D3D12_HEAP_FLAGS HeapFlags, const D3D12_RESOURCE_DESC * pDesc, D3D12_RESOURCE_STATES InitialResourceState, const D3D12_CLEAR_VALUE * pOptimizedClearValue, X12Resource ** outpResource, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12ResourceMap                                      (X12Resource * pResource, unsigned Subresource, const D3D12_RANGE * pReadRange, void ** outpData, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12ResourceUnmap                                    (X12Resource * pResource, unsigned Subresource, const D3D12_RANGE * pWrittenRange, const char * optionalFile, int optionalLine);
 
 // Memory struct
 
-X12_DECLSPEC HRESULT  x12DeviceCreateDescriptorHeap                       (X12Device3 * pDevice, const D3D12_DESCRIPTOR_HEAP_DESC * pDescriptorHeapDesc, X12DescriptorHeap ** outpHeap, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DescriptorHeapGetCPUDescriptorHandleForHeapStart (X12DescriptorHeap * pDescriptorHeap, D3D12_CPU_DESCRIPTOR_HANDLE * pCpuDescriptorHandle);
-X12_DECLSPEC void     x12DeviceCopyDescriptors                            (X12Device3 * pDevice, unsigned NumDestDescriptorRanges, const D3D12_CPU_DESCRIPTOR_HANDLE * pDestDescriptorRangeStarts, const unsigned * pDestDescriptorRangeSizes, unsigned NumSrcDescriptorRanges, const D3D12_CPU_DESCRIPTOR_HANDLE * pSrcDescriptorRangeStarts, const unsigned * pSrcDescriptorRangeSizes, D3D12_DESCRIPTOR_HEAP_TYPE DescriptorHeapsType, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DescriptorHeapGetGPUDescriptorHandleForHeapStart (X12DescriptorHeap * pDescriptorHeap, D3D12_GPU_DESCRIPTOR_HANDLE * pGpuDescriptorHandle);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateDescriptorHeap                       (X12Device3 * pDevice, const D3D12_DESCRIPTOR_HEAP_DESC * pDescriptorHeapDesc, X12DescriptorHeap ** outpHeap, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DescriptorHeapGetCPUDescriptorHandleForHeapStart (X12DescriptorHeap * pDescriptorHeap, D3D12_CPU_DESCRIPTOR_HANDLE * pCpuDescriptorHandle);
+X12_DECLSPEC void     X12_API x12DeviceCopyDescriptors                            (X12Device3 * pDevice, unsigned NumDestDescriptorRanges, const D3D12_CPU_DESCRIPTOR_HANDLE * pDestDescriptorRangeStarts, const unsigned * pDestDescriptorRangeSizes, unsigned NumSrcDescriptorRanges, const D3D12_CPU_DESCRIPTOR_HANDLE * pSrcDescriptorRangeStarts, const unsigned * pSrcDescriptorRangeSizes, D3D12_DESCRIPTOR_HEAP_TYPE DescriptorHeapsType, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DescriptorHeapGetGPUDescriptorHandleForHeapStart (X12DescriptorHeap * pDescriptorHeap, D3D12_GPU_DESCRIPTOR_HANDLE * pGpuDescriptorHandle);
 
 // Memory residency
 
-X12_DECLSPEC HRESULT  x12DeviceSetResidencyPriority                       (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const unsigned * pPriorities, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceEvict                                      (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceMakeResident                               (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceEnqueueMakeResident                        (X12Device3 * pDevice, D3D12_RESIDENCY_FLAGS Flags, unsigned NumObjects, const X12Pageable ** ppObjects, X12Fence * pFenceToSignal, uint64_t FenceValueToSignal, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceSetResidencyPriority                       (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const unsigned * pPriorities, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceEvict                                      (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceMakeResident                               (X12Device3 * pDevice, unsigned NumObjects, const X12Pageable ** ppObjects, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceEnqueueMakeResident                        (X12Device3 * pDevice, D3D12_RESIDENCY_FLAGS Flags, unsigned NumObjects, const X12Pageable ** ppObjects, X12Fence * pFenceToSignal, uint64_t FenceValueToSignal, const char * optionalFile, int optionalLine);
 
 // Create
 
-X12_DECLSPEC void *   x12DebugEnable                                      (const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DebugReport                                      (void * debugContext, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12CreateFactory2                                   (DXGI_CREATE_FACTORY_FLAGS Flags, X12Factory4 ** outpFactory, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryEnumAdapters1                             (X12Factory4 * pFactory, unsigned Adapter, X12Adapter3 ** outpAdapter, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12CreateDevice                                     (X12Adapter3 * pAdapter, D3D_FEATURE_LEVEL MinimumFeatureLevel, X12Device3 ** outpDevice, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateUnorderedAccessView                  (X12Device3 * pDevice, X12Resource * pResource, X12Resource * pCounterResource, const D3D12_UNORDERED_ACCESS_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateShaderResourceView                   (X12Device3 * pDevice, X12Resource * pResource, const D3D12_SHADER_RESOURCE_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateConstantBufferView                   (X12Device3 * pDevice, const D3D12_CONSTANT_BUFFER_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateSampler                              (X12Device3 * pDevice, const D3D12_SAMPLER_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateRenderTargetView                     (X12Device3 * pDevice, X12Resource * pResource, const D3D12_RENDER_TARGET_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12DeviceCreateDepthStencilView                     (X12Device3 * pDevice, X12Resource * pResource, const D3D12_DEPTH_STENCIL_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SerializeRootSignature                           (const D3D12_ROOT_SIGNATURE_DESC * pRootSignature, D3D_ROOT_SIGNATURE_VERSION Version, X12Blob ** outpBlob, X12Blob ** outpErrorBlob, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateRootSignature                        (X12Device3 * pDevice, unsigned nodeMask, const void * pBlobWithRootSignature, size_t blobLengthInBytes, X12RootSignature ** outpRootSignature, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateGraphicsPipelineState                (X12Device3 * pDevice, const D3D12_GRAPHICS_PIPELINE_STATE_DESC * pDesc, X12PipelineState ** outpPipelineState, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateComputePipelineState                 (X12Device3 * pDevice, const D3D12_COMPUTE_PIPELINE_STATE_DESC * pDesc, X12PipelineState ** outpPipelineState, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateFence                                (X12Device3 * pDevice, uint64_t InitialValue, D3D12_FENCE_FLAGS Flags, X12Fence ** outpFence, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateCommandQueue                         (X12Device3 * pDevice, const D3D12_COMMAND_QUEUE_DESC * pDesc, X12CommandQueue ** outpCommandQueue, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateCommandAllocator                     (X12Device3 * pDevice, D3D12_COMMAND_LIST_TYPE type, X12CommandAllocator ** outpCommandAllocator, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCreateCommandList                          (X12Device3 * pDevice, unsigned nodeMask, D3D12_COMMAND_LIST_TYPE type, X12CommandAllocator * pCommandAllocator, X12PipelineState * pInitialState, X12CommandList ** outpCommandList, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void *   X12_API x12DebugEnable                                      (const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DebugReport                                      (void * debugContext, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CreateFactory2                                   (DXGI_CREATE_FACTORY_FLAGS Flags, X12Factory4 ** outpFactory, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryEnumAdapters1                             (X12Factory4 * pFactory, unsigned Adapter, X12Adapter3 ** outpAdapter, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CreateDevice                                     (X12Adapter3 * pAdapter, D3D_FEATURE_LEVEL MinimumFeatureLevel, X12Device3 ** outpDevice, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateUnorderedAccessView                  (X12Device3 * pDevice, X12Resource * pResource, X12Resource * pCounterResource, const D3D12_UNORDERED_ACCESS_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateShaderResourceView                   (X12Device3 * pDevice, X12Resource * pResource, const D3D12_SHADER_RESOURCE_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateConstantBufferView                   (X12Device3 * pDevice, const D3D12_CONSTANT_BUFFER_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateSampler                              (X12Device3 * pDevice, const D3D12_SAMPLER_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateRenderTargetView                     (X12Device3 * pDevice, X12Resource * pResource, const D3D12_RENDER_TARGET_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceCreateDepthStencilView                     (X12Device3 * pDevice, X12Resource * pResource, const D3D12_DEPTH_STENCIL_VIEW_DESC * pDesc, D3D12_CPU_DESCRIPTOR_HANDLE DestDescriptor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SerializeRootSignature                           (const D3D12_ROOT_SIGNATURE_DESC * pRootSignature, D3D_ROOT_SIGNATURE_VERSION Version, X12Blob ** outpBlob, X12Blob ** outpErrorBlob, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateRootSignature                        (X12Device3 * pDevice, unsigned nodeMask, const void * pBlobWithRootSignature, size_t blobLengthInBytes, X12RootSignature ** outpRootSignature, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateGraphicsPipelineState                (X12Device3 * pDevice, const D3D12_GRAPHICS_PIPELINE_STATE_DESC * pDesc, X12PipelineState ** outpPipelineState, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateComputePipelineState                 (X12Device3 * pDevice, const D3D12_COMPUTE_PIPELINE_STATE_DESC * pDesc, X12PipelineState ** outpPipelineState, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateFence                                (X12Device3 * pDevice, uint64_t InitialValue, D3D12_FENCE_FLAGS Flags, X12Fence ** outpFence, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateCommandQueue                         (X12Device3 * pDevice, const D3D12_COMMAND_QUEUE_DESC * pDesc, X12CommandQueue ** outpCommandQueue, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateCommandAllocator                     (X12Device3 * pDevice, D3D12_COMMAND_LIST_TYPE type, X12CommandAllocator ** outpCommandAllocator, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCreateCommandList                          (X12Device3 * pDevice, unsigned nodeMask, D3D12_COMMAND_LIST_TYPE type, X12CommandAllocator * pCommandAllocator, X12PipelineState * pInitialState, X12CommandList ** outpCommandList, const char * optionalFile, int optionalLine);
 
 // Resource
 
-X12_DECLSPEC D3D12_GPU_VIRTUAL_ADDRESS x12ResourceGetGPUVirtualAddress    (X12Resource * pResource);
+X12_DECLSPEC D3D12_GPU_VIRTUAL_ADDRESS X12_API x12ResourceGetGPUVirtualAddress    (X12Resource * pResource);
 
 // Blob
 
-X12_DECLSPEC HRESULT  x12PipelineStateGetCachedBlob                       (X12PipelineState * pPipelineState, X12Blob ** outpBlob, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void *   x12BlobGetBufferPointer                             (X12Blob * pBlob);
-X12_DECLSPEC size_t   x12BlobGetBufferSize                                (X12Blob * pBlob);
+X12_DECLSPEC HRESULT  X12_API x12PipelineStateGetCachedBlob                       (X12PipelineState * pPipelineState, X12Blob ** outpBlob, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void *   X12_API x12BlobGetBufferPointer                             (X12Blob * pBlob);
+X12_DECLSPEC size_t   X12_API x12BlobGetBufferSize                                (X12Blob * pBlob);
 
 // Blob root signature description deserializer
 
-X12_DECLSPEC HRESULT  x12CreateRootSignatureDeserializer                  (const void * pSrcData, size_t SrcDataSizeInBytes, X12RootSignatureDeserializer ** outpRootSignatureDeserializer, const char * optionalFile, int optionalLine);
-X12_DECLSPEC const D3D12_ROOT_SIGNATURE_DESC * x12RootSignatureDeserializerGetRootSignatureDesc (X12RootSignatureDeserializer * pRootSignatureDeserializer, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CreateRootSignatureDeserializer                  (const void * pSrcData, size_t SrcDataSizeInBytes, X12RootSignatureDeserializer ** outpRootSignatureDeserializer, const char * optionalFile, int optionalLine);
+X12_DECLSPEC const D3D12_ROOT_SIGNATURE_DESC * X12_API x12RootSignatureDeserializerGetRootSignatureDesc (X12RootSignatureDeserializer * pRootSignatureDeserializer, const char * optionalFile, int optionalLine);
 
 // Signal
 
-X12_DECLSPEC uint64_t x12FenceGetCompletedValue                           (X12Fence * pFence, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FenceSetEventOnCompletion                        (X12Fence * pFence, uint64_t Value, void * hEvent, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceSetEventOnMultipleFenceCompletion          (X12Device3 * pDevice, const X12Fence ** ppFences, const uint64_t * pFenceValues, unsigned NumFences, D3D12_MULTIPLE_FENCE_WAIT_FLAG Flag, void * hEvent, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FenceSignal                                      (X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
+X12_DECLSPEC uint64_t X12_API x12FenceGetCompletedValue                           (X12Fence * pFence, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FenceSetEventOnCompletion                        (X12Fence * pFence, uint64_t Value, void * hEvent, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceSetEventOnMultipleFenceCompletion          (X12Device3 * pDevice, const X12Fence ** ppFences, const uint64_t * pFenceValues, unsigned NumFences, D3D12_MULTIPLE_FENCE_WAIT_FLAG Flag, void * hEvent, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FenceSignal                                      (X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
 
 // Calls
 
-X12_DECLSPEC HRESULT  x12CommandAllocatorReset                            (X12CommandAllocator * pCommandAllocator, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12CommandListReset                                 (X12CommandList * pCommandList, X12CommandAllocator * pAllocator, X12PipelineState * pInitialState, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12CommandListClose                                 (X12CommandList * pCommandList, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CommandAllocatorReset                            (X12CommandAllocator * pCommandAllocator, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CommandListReset                                 (X12CommandList * pCommandList, X12CommandAllocator * pAllocator, X12PipelineState * pInitialState, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CommandListClose                                 (X12CommandList * pCommandList, const char * optionalFile, int optionalLine);
 
 // Calls recording
 
-X12_DECLSPEC void     x12CommandListCopyBufferRegion                      (X12CommandList * pCommandList, X12Resource * pDstBuffer, uint64_t DstOffset, X12Resource * pSrcBuffer, uint64_t SrcOffset, uint64_t NumBytes);
-X12_DECLSPEC void     x12CommandListClearUnorderedAccessViewUint          (X12CommandList * pCommandList, D3D12_GPU_DESCRIPTOR_HANDLE ViewGPUHandleInCurrentHeap, D3D12_CPU_DESCRIPTOR_HANDLE ViewCPUHandle, X12Resource * pResource, const unsigned Values[4], unsigned NumRects, const D3D12_RECT * pRects);
-X12_DECLSPEC void     x12CommandListClearUnorderedAccessViewFloat         (X12CommandList * pCommandList, D3D12_GPU_DESCRIPTOR_HANDLE ViewGPUHandleInCurrentHeap, D3D12_CPU_DESCRIPTOR_HANDLE ViewCPUHandle, X12Resource * pResource, const float Values[4], unsigned NumRects, const D3D12_RECT * pRects);
-X12_DECLSPEC void     x12CommandListDrawInstanced                         (X12CommandList * pCommandList, unsigned VertexCountPerInstance, unsigned InstanceCount, unsigned StartVertexLocation, unsigned StartInstanceLocation);
-X12_DECLSPEC void     x12CommandListDrawIndexedInstanced                  (X12CommandList * pCommandList, unsigned IndexCountPerInstance, unsigned InstanceCount, unsigned StartIndexLocation, int BaseVertexLocation, unsigned StartInstanceLocation);
-X12_DECLSPEC void     x12CommandListDispatch                              (X12CommandList * pCommandList, unsigned ThreadGroupCountX, unsigned ThreadGroupCountY, unsigned ThreadGroupCountZ);
-X12_DECLSPEC void     x12CommandListSetDescriptorHeaps                    (X12CommandList * pCommandList, unsigned NumDescriptorHeaps, const X12DescriptorHeap ** ppDescriptorHeaps);
-X12_DECLSPEC void     x12CommandListSetGraphicsRootSignature              (X12CommandList * pCommandList, X12RootSignature * pRootSignature);
-X12_DECLSPEC void     x12CommandListSetGraphicsRoot32BitConstant          (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned SrcData, unsigned DestOffsetIn32BitValues);
-X12_DECLSPEC void     x12CommandListSetGraphicsRoot32BitConstants         (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned Num32BitValuesToSet, const void * pSrcData, unsigned DestOffsetIn32BitValues);
-X12_DECLSPEC void     x12CommandListSetGraphicsRootDescriptorTable        (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE BaseDescriptor);
-X12_DECLSPEC void     x12CommandListSetGraphicsRootUnorderedAccessView    (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListSetGraphicsRootShaderResourceView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListSetGraphicsRootConstantBufferView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListSetComputeRootSignature               (X12CommandList * pCommandList, X12RootSignature * pRootSignature);
-X12_DECLSPEC void     x12CommandListSetComputeRoot32BitConstant           (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned SrcData, unsigned DestOffsetIn32BitValues);
-X12_DECLSPEC void     x12CommandListSetComputeRoot32BitConstants          (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned Num32BitValuesToSet, const void * pSrcData, unsigned DestOffsetIn32BitValues);
-X12_DECLSPEC void     x12CommandListSetComputeRootDescriptorTable         (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE BaseDescriptor);
-X12_DECLSPEC void     x12CommandListSetComputeRootUnorderedAccessView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListSetComputeRootShaderResourceView      (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListSetComputeRootConstantBufferView      (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
-X12_DECLSPEC void     x12CommandListClearState                            (X12CommandList * pCommandList, X12PipelineState * pPipelineState);
-X12_DECLSPEC void     x12CommandListSetPipelineState                      (X12CommandList * pCommandList, X12PipelineState * pPipelineState);
-X12_DECLSPEC void     x12CommandListIASetPrimitiveTopology                (X12CommandList * pCommandList, D3D12_PRIMITIVE_TOPOLOGY PrimitiveTopology);
-X12_DECLSPEC void     x12CommandListIASetIndexBuffer                      (X12CommandList * pCommandList, const D3D12_INDEX_BUFFER_VIEW * pView);
-X12_DECLSPEC void     x12CommandListOMSetStencilRef                       (X12CommandList * pCommandList, unsigned StencilRef);
-X12_DECLSPEC void     x12CommandListOMSetBlendFactor                      (X12CommandList * pCommandList, const float * BlendFactor4Values);
-X12_DECLSPEC void     x12CommandListRSSetViewports                        (X12CommandList * pCommandList, unsigned NumViewports, const D3D12_VIEWPORT * pViewports);
-X12_DECLSPEC void     x12CommandListRSSetScissorRects                     (X12CommandList * pCommandList, unsigned NumRects, const D3D12_RECT * pRects);
-X12_DECLSPEC void     x12CommandListClearRenderTargetView                 (X12CommandList * pCommandList, D3D12_CPU_DESCRIPTOR_HANDLE RenderTargetView, const float ColorRGBA[4], unsigned NumRects, const D3D12_RECT * pRects);
-X12_DECLSPEC void     x12CommandListClearDepthStencilView                 (X12CommandList * pCommandList, D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView, D3D12_CLEAR_FLAGS ClearFlags, float Depth, unsigned char Stencil, unsigned NumRects, const D3D12_RECT * pRects);
-X12_DECLSPEC void     x12CommandListDiscardResource                       (X12CommandList * pCommandList, X12Resource * pResource, const D3D12_DISCARD_REGION * pRegion);
-X12_DECLSPEC void     x12CommandListOMSetRenderTargets                    (X12CommandList * pCommandList, unsigned NumRenderTargetDescriptors, const D3D12_CPU_DESCRIPTOR_HANDLE * pRenderTargetDescriptors, X12Bool RTsSingleHandleToDescriptorRange, const D3D12_CPU_DESCRIPTOR_HANDLE * pDepthStencilDescriptor);
-X12_DECLSPEC void     x12CommandListResolveSubresource                    (X12CommandList * pCommandList, X12Resource * pDstResource, unsigned DstSubresource, X12Resource * pSrcResource, unsigned SrcSubresource, DXGI_FORMAT Format);
-X12_DECLSPEC void     x12CommandListResourceBarrier                       (X12CommandList * pCommandList, unsigned NumBarriers, const D3D12_RESOURCE_BARRIER * pBarriers);
+X12_DECLSPEC void     X12_API x12CommandListCopyBufferRegion                      (X12CommandList * pCommandList, X12Resource * pDstBuffer, uint64_t DstOffset, X12Resource * pSrcBuffer, uint64_t SrcOffset, uint64_t NumBytes);
+X12_DECLSPEC void     X12_API x12CommandListClearUnorderedAccessViewUint          (X12CommandList * pCommandList, D3D12_GPU_DESCRIPTOR_HANDLE ViewGPUHandleInCurrentHeap, D3D12_CPU_DESCRIPTOR_HANDLE ViewCPUHandle, X12Resource * pResource, const unsigned Values[4], unsigned NumRects, const D3D12_RECT * pRects);
+X12_DECLSPEC void     X12_API x12CommandListClearUnorderedAccessViewFloat         (X12CommandList * pCommandList, D3D12_GPU_DESCRIPTOR_HANDLE ViewGPUHandleInCurrentHeap, D3D12_CPU_DESCRIPTOR_HANDLE ViewCPUHandle, X12Resource * pResource, const float Values[4], unsigned NumRects, const D3D12_RECT * pRects);
+X12_DECLSPEC void     X12_API x12CommandListDrawInstanced                         (X12CommandList * pCommandList, unsigned VertexCountPerInstance, unsigned InstanceCount, unsigned StartVertexLocation, unsigned StartInstanceLocation);
+X12_DECLSPEC void     X12_API x12CommandListDrawIndexedInstanced                  (X12CommandList * pCommandList, unsigned IndexCountPerInstance, unsigned InstanceCount, unsigned StartIndexLocation, int BaseVertexLocation, unsigned StartInstanceLocation);
+X12_DECLSPEC void     X12_API x12CommandListDispatch                              (X12CommandList * pCommandList, unsigned ThreadGroupCountX, unsigned ThreadGroupCountY, unsigned ThreadGroupCountZ);
+X12_DECLSPEC void     X12_API x12CommandListSetDescriptorHeaps                    (X12CommandList * pCommandList, unsigned NumDescriptorHeaps, const X12DescriptorHeap ** ppDescriptorHeaps);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRootSignature              (X12CommandList * pCommandList, X12RootSignature * pRootSignature);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRoot32BitConstant          (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned SrcData, unsigned DestOffsetIn32BitValues);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRoot32BitConstants         (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned Num32BitValuesToSet, const void * pSrcData, unsigned DestOffsetIn32BitValues);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRootDescriptorTable        (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE BaseDescriptor);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRootUnorderedAccessView    (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRootShaderResourceView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListSetGraphicsRootConstantBufferView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRootSignature               (X12CommandList * pCommandList, X12RootSignature * pRootSignature);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRoot32BitConstant           (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned SrcData, unsigned DestOffsetIn32BitValues);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRoot32BitConstants          (X12CommandList * pCommandList, unsigned RootParameterIndex, unsigned Num32BitValuesToSet, const void * pSrcData, unsigned DestOffsetIn32BitValues);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRootDescriptorTable         (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_DESCRIPTOR_HANDLE BaseDescriptor);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRootUnorderedAccessView     (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRootShaderResourceView      (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListSetComputeRootConstantBufferView      (X12CommandList * pCommandList, unsigned RootParameterIndex, D3D12_GPU_VIRTUAL_ADDRESS BufferLocation);
+X12_DECLSPEC void     X12_API x12CommandListClearState                            (X12CommandList * pCommandList, X12PipelineState * pPipelineState);
+X12_DECLSPEC void     X12_API x12CommandListSetPipelineState                      (X12CommandList * pCommandList, X12PipelineState * pPipelineState);
+X12_DECLSPEC void     X12_API x12CommandListIASetPrimitiveTopology                (X12CommandList * pCommandList, D3D12_PRIMITIVE_TOPOLOGY PrimitiveTopology);
+X12_DECLSPEC void     X12_API x12CommandListIASetIndexBuffer                      (X12CommandList * pCommandList, const D3D12_INDEX_BUFFER_VIEW * pView);
+X12_DECLSPEC void     X12_API x12CommandListOMSetStencilRef                       (X12CommandList * pCommandList, unsigned StencilRef);
+X12_DECLSPEC void     X12_API x12CommandListOMSetBlendFactor                      (X12CommandList * pCommandList, const float * BlendFactor4Values);
+X12_DECLSPEC void     X12_API x12CommandListRSSetViewports                        (X12CommandList * pCommandList, unsigned NumViewports, const D3D12_VIEWPORT * pViewports);
+X12_DECLSPEC void     X12_API x12CommandListRSSetScissorRects                     (X12CommandList * pCommandList, unsigned NumRects, const D3D12_RECT * pRects);
+X12_DECLSPEC void     X12_API x12CommandListClearRenderTargetView                 (X12CommandList * pCommandList, D3D12_CPU_DESCRIPTOR_HANDLE RenderTargetView, const float ColorRGBA[4], unsigned NumRects, const D3D12_RECT * pRects);
+X12_DECLSPEC void     X12_API x12CommandListClearDepthStencilView                 (X12CommandList * pCommandList, D3D12_CPU_DESCRIPTOR_HANDLE DepthStencilView, D3D12_CLEAR_FLAGS ClearFlags, float Depth, unsigned char Stencil, unsigned NumRects, const D3D12_RECT * pRects);
+X12_DECLSPEC void     X12_API x12CommandListDiscardResource                       (X12CommandList * pCommandList, X12Resource * pResource, const D3D12_DISCARD_REGION * pRegion);
+X12_DECLSPEC void     X12_API x12CommandListOMSetRenderTargets                    (X12CommandList * pCommandList, unsigned NumRenderTargetDescriptors, const D3D12_CPU_DESCRIPTOR_HANDLE * pRenderTargetDescriptors, X12Bool RTsSingleHandleToDescriptorRange, const D3D12_CPU_DESCRIPTOR_HANDLE * pDepthStencilDescriptor);
+X12_DECLSPEC void     X12_API x12CommandListResolveSubresource                    (X12CommandList * pCommandList, X12Resource * pDstResource, unsigned DstSubresource, X12Resource * pSrcResource, unsigned SrcSubresource, DXGI_FORMAT Format);
+X12_DECLSPEC void     X12_API x12CommandListResourceBarrier                       (X12CommandList * pCommandList, unsigned NumBarriers, const D3D12_RESOURCE_BARRIER * pBarriers);
 
 // Queue
 
-X12_DECLSPEC HRESULT  x12CommandQueueWait                                 (X12CommandQueue * pCommandQueue, X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12CommandQueueExecuteCommandLists                  (X12CommandQueue * pCommandQueue, unsigned NumCommandLists, const X12CommandList ** ppCommandLists, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12CommandQueueSignal                               (X12CommandQueue * pCommandQueue, X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CommandQueueWait                                 (X12CommandQueue * pCommandQueue, X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12CommandQueueExecuteCommandLists                  (X12CommandQueue * pCommandQueue, unsigned NumCommandLists, const X12CommandList ** ppCommandLists, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12CommandQueueSignal                               (X12CommandQueue * pCommandQueue, X12Fence * pFence, uint64_t Value, const char * optionalFile, int optionalLine);
 
 // Factory
 
-X12_DECLSPEC X12Bool  x12FactoryIsCurrent                                 (X12Factory4 * pFactory, const char * optionalFile, int optionalLine);
+X12_DECLSPEC X12Bool  X12_API x12FactoryIsCurrent                                 (X12Factory4 * pFactory, const char * optionalFile, int optionalLine);
 
 // Adapter
 
-X12_DECLSPEC HRESULT  x12AdapterGetDesc2                                  (X12Adapter3 * pAdapter, DXGI_ADAPTER_DESC2 * outDesc, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12AdapterEnumOutputs                               (X12Adapter3 * pAdapter, unsigned Output, X12Output4 ** outpOutput, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12AdapterGetDesc2                                  (X12Adapter3 * pAdapter, DXGI_ADAPTER_DESC2 * outDesc, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12AdapterEnumOutputs                               (X12Adapter3 * pAdapter, unsigned Output, X12Output4 ** outpOutput, const char * optionalFile, int optionalLine);
 
 // Device
 
-X12_DECLSPEC void     x12DeviceGetAdapterLuid                             (X12Device3 * pDevice, uint64_t * outLuid, const char * optionalFile, int optionalLine);
-X12_DECLSPEC unsigned x12DeviceGetDescriptorHandleIncrementSize           (X12Device3 * pDevice, D3D12_DESCRIPTOR_HEAP_TYPE DescriptorHeapType, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceCheckFeatureSupport                        (X12Device3 * pDevice, D3D12_FEATURE Feature, void * pFeatureSupportData, unsigned FeatureSupportDataSize, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceGetDeviceRemovedReason                     (X12Device3 * pDevice, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12DeviceSetStablePowerState                        (X12Device3 * pDevice, X12Bool Enable, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12DeviceGetAdapterLuid                             (X12Device3 * pDevice, uint64_t * outLuid, const char * optionalFile, int optionalLine);
+X12_DECLSPEC unsigned X12_API x12DeviceGetDescriptorHandleIncrementSize           (X12Device3 * pDevice, D3D12_DESCRIPTOR_HEAP_TYPE DescriptorHeapType, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceCheckFeatureSupport                        (X12Device3 * pDevice, D3D12_FEATURE Feature, void * pFeatureSupportData, unsigned FeatureSupportDataSize, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceGetDeviceRemovedReason                     (X12Device3 * pDevice, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12DeviceSetStablePowerState                        (X12Device3 * pDevice, X12Bool Enable, const char * optionalFile, int optionalLine);
 
 // WSI
 
 // Factory
 
-X12_DECLSPEC HRESULT  x12FactoryCreateSwapChainForHwnd                    (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, void * hWnd, const DXGI_SWAP_CHAIN_DESC1 * pDesc, const DXGI_SWAP_CHAIN_FULLSCREEN_DESC * pFullscreenDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryCreateSwapChainForCoreWindow              (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, const void * pWindow, const DXGI_SWAP_CHAIN_DESC1 * pDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryCreateSwapChainForComposition             (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, const DXGI_SWAP_CHAIN_DESC1 * pDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryMakeWindowAssociation                     (X12Factory4 * pFactory, void * WindowHandle, DXGI_MWA_FLAGS Flags, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryGetWindowAssociation                      (X12Factory4 * pFactory, void ** outWindowHandle, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryRegisterOcclusionStatusWindow             (X12Factory4 * pFactory, void * WindowHandle, unsigned wMsg, unsigned * pdwCookie, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12FactoryRegisterOcclusionStatusEvent              (X12Factory4 * pFactory, void * hEvent, unsigned * pdwCookie, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12FactoryUnregisterOcclusionStatus                 (X12Factory4 * pFactory, unsigned dwCookie, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryCreateSwapChainForHwnd                    (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, void * hWnd, const DXGI_SWAP_CHAIN_DESC1 * pDesc, const DXGI_SWAP_CHAIN_FULLSCREEN_DESC * pFullscreenDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryCreateSwapChainForCoreWindow              (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, const void * pWindow, const DXGI_SWAP_CHAIN_DESC1 * pDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryCreateSwapChainForComposition             (X12Factory4 * pFactory, X12CommandQueue * pCommandQueue, const DXGI_SWAP_CHAIN_DESC1 * pDesc, X12Output4 * pRestrictToOutput, X12SwapChain3 ** outpSwapChain, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryMakeWindowAssociation                     (X12Factory4 * pFactory, void * WindowHandle, DXGI_MWA_FLAGS Flags, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryGetWindowAssociation                      (X12Factory4 * pFactory, void ** outWindowHandle, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryRegisterOcclusionStatusWindow             (X12Factory4 * pFactory, void * WindowHandle, unsigned wMsg, unsigned * pdwCookie, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12FactoryRegisterOcclusionStatusEvent              (X12Factory4 * pFactory, void * hEvent, unsigned * pdwCookie, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12FactoryUnregisterOcclusionStatus                 (X12Factory4 * pFactory, unsigned dwCookie, const char * optionalFile, int optionalLine);
 
 // Swap chain
 
-X12_DECLSPEC HRESULT  x12SwapChainGetBuffer                               (X12SwapChain3 * pSwapChain, unsigned Buffer, X12Resource ** outpSurface, const char * optionalFile, int optionalLine);
-X12_DECLSPEC unsigned x12SwapChainGetCurrentBackBufferIndex               (X12SwapChain3 * pSwapChain, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainPresent1                                (X12SwapChain3 * pSwapChain, unsigned SyncInterval, DXGI_PRESENT_FLAGS PresentFlags, const DXGI_PRESENT_PARAMETERS * pPresentParameters, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainResizeTarget                            (X12SwapChain3 * pSwapChain, const DXGI_MODE_DESC * pNewTargetParameters, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainResizeBuffers1                          (X12SwapChain3 * pSwapChain, unsigned BufferCount, unsigned Width, unsigned Height, DXGI_FORMAT Format, unsigned SwapChainFlags, const unsigned * pCreationNodeMask, const X12CommandQueue ** ppPresentQueue, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetFullscreenState                      (X12SwapChain3 * pSwapChain, X12Bool Fullscreen, X12Output4 * pTarget, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetFullscreenDesc                       (X12SwapChain3 * pSwapChain, DXGI_SWAP_CHAIN_FULLSCREEN_DESC * outDesc, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetLastPresentCount                     (X12SwapChain3 * pSwapChain, unsigned * outLastPresentCount, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetFrameStatistics                      (X12SwapChain3 * pSwapChain, DXGI_FRAME_STATISTICS * outStats, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetBackgroundColor                      (X12SwapChain3 * pSwapChain, const DXGI_RGBA * pColor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetBackgroundColor                      (X12SwapChain3 * pSwapChain, DXGI_RGBA * outColor, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetRotation                             (X12SwapChain3 * pSwapChain, DXGI_MODE_ROTATION Rotation, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetRotation                             (X12SwapChain3 * pSwapChain, DXGI_MODE_ROTATION * outRotation, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetSourceSize                           (X12SwapChain3 * pSwapChain, unsigned Width, unsigned Height, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetSourceSize                           (X12SwapChain3 * pSwapChain, unsigned * outWidth, unsigned * outHeight, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetMaximumFrameLatency                  (X12SwapChain3 * pSwapChain, unsigned MaxLatency, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetMaximumFrameLatency                  (X12SwapChain3 * pSwapChain, unsigned * outMaxLatency, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void *   x12SwapChainGetFrameLatencyWaitableObject           (X12SwapChain3 * pSwapChain, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetMatrixTransform                      (X12SwapChain3 * pSwapChain, const DXGI_MATRIX_3X2_F * pMatrix, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainGetMatrixTransform                      (X12SwapChain3 * pSwapChain, DXGI_MATRIX_3X2_F * outMatrix, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainCheckColorSpaceSupport                  (X12SwapChain3 * pSwapChain, DXGI_COLOR_SPACE_TYPE ColorSpace, DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAGS * outColorSpaceSupport, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12SwapChainSetColorSpace1                          (X12SwapChain3 * pSwapChain, DXGI_COLOR_SPACE_TYPE ColorSpace, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetBuffer                               (X12SwapChain3 * pSwapChain, unsigned Buffer, X12Resource ** outpSurface, const char * optionalFile, int optionalLine);
+X12_DECLSPEC unsigned X12_API x12SwapChainGetCurrentBackBufferIndex               (X12SwapChain3 * pSwapChain, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainPresent1                                (X12SwapChain3 * pSwapChain, unsigned SyncInterval, DXGI_PRESENT_FLAGS PresentFlags, const DXGI_PRESENT_PARAMETERS * pPresentParameters, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainResizeTarget                            (X12SwapChain3 * pSwapChain, const DXGI_MODE_DESC * pNewTargetParameters, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainResizeBuffers1                          (X12SwapChain3 * pSwapChain, unsigned BufferCount, unsigned Width, unsigned Height, DXGI_FORMAT Format, unsigned SwapChainFlags, const unsigned * pCreationNodeMask, const X12CommandQueue ** ppPresentQueue, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetFullscreenState                      (X12SwapChain3 * pSwapChain, X12Bool Fullscreen, X12Output4 * pTarget, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetFullscreenDesc                       (X12SwapChain3 * pSwapChain, DXGI_SWAP_CHAIN_FULLSCREEN_DESC * outDesc, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetLastPresentCount                     (X12SwapChain3 * pSwapChain, unsigned * outLastPresentCount, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetFrameStatistics                      (X12SwapChain3 * pSwapChain, DXGI_FRAME_STATISTICS * outStats, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetBackgroundColor                      (X12SwapChain3 * pSwapChain, const DXGI_RGBA * pColor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetBackgroundColor                      (X12SwapChain3 * pSwapChain, DXGI_RGBA * outColor, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetRotation                             (X12SwapChain3 * pSwapChain, DXGI_MODE_ROTATION Rotation, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetRotation                             (X12SwapChain3 * pSwapChain, DXGI_MODE_ROTATION * outRotation, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetSourceSize                           (X12SwapChain3 * pSwapChain, unsigned Width, unsigned Height, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetSourceSize                           (X12SwapChain3 * pSwapChain, unsigned * outWidth, unsigned * outHeight, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetMaximumFrameLatency                  (X12SwapChain3 * pSwapChain, unsigned MaxLatency, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetMaximumFrameLatency                  (X12SwapChain3 * pSwapChain, unsigned * outMaxLatency, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void *   X12_API x12SwapChainGetFrameLatencyWaitableObject           (X12SwapChain3 * pSwapChain, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetMatrixTransform                      (X12SwapChain3 * pSwapChain, const DXGI_MATRIX_3X2_F * pMatrix, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainGetMatrixTransform                      (X12SwapChain3 * pSwapChain, DXGI_MATRIX_3X2_F * outMatrix, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainCheckColorSpaceSupport                  (X12SwapChain3 * pSwapChain, DXGI_COLOR_SPACE_TYPE ColorSpace, DXGI_SWAP_CHAIN_COLOR_SPACE_SUPPORT_FLAGS * outColorSpaceSupport, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12SwapChainSetColorSpace1                          (X12SwapChain3 * pSwapChain, DXGI_COLOR_SPACE_TYPE ColorSpace, const char * optionalFile, int optionalLine);
 
 // Output
 
-X12_DECLSPEC HRESULT  x12OutputGetDesc                                    (X12Output4 * pOutput, DXGI_OUTPUT_DESC * outDesc, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputGetDisplayModeList1                        (X12Output4 * pOutput, DXGI_FORMAT EnumFormat, DXGI_ENUM_MODES_FLAGS Flags, unsigned * pNumModes, DXGI_MODE_DESC1 * outDesc, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputFindClosestMatchingMode1                   (X12Output4 * pOutput, const DXGI_MODE_DESC1 * pModeToMatch, DXGI_MODE_DESC1 * pClosestMatch, X12Device3 * pConcernedDevice, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputWaitForVBlank                              (X12Output4 * pOutput, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputGetGammaControlCapabilities                (X12Output4 * pOutput, DXGI_GAMMA_CONTROL_CAPABILITIES * outGammaCaps, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputSetGammaControl                            (X12Output4 * pOutput, const DXGI_GAMMA_CONTROL * pArray, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputGetGammaControl                            (X12Output4 * pOutput, DXGI_GAMMA_CONTROL * outArray, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputGetFrameStatistics                         (X12Output4 * pOutput, DXGI_FRAME_STATISTICS * outStats, const char * optionalFile, int optionalLine);
-X12_DECLSPEC X12Bool  x12OutputSupportsOverlays                           (X12Output4 * pOutput, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputCheckOverlaySupport                        (X12Output4 * pOutput, DXGI_FORMAT EnumFormat, X12Device3 * pConcernedDevice, unsigned * pFlags, const char * optionalFile, int optionalLine);
-X12_DECLSPEC HRESULT  x12OutputCheckOverlayColorSpaceSupport              (X12Output4 * pOutput, DXGI_FORMAT Format, DXGI_COLOR_SPACE_TYPE ColorSpace, X12Device3 * pConcernedDevice, DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAGS * outFlags, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputGetDesc                                    (X12Output4 * pOutput, DXGI_OUTPUT_DESC * outDesc, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputGetDisplayModeList1                        (X12Output4 * pOutput, DXGI_FORMAT EnumFormat, DXGI_ENUM_MODES_FLAGS Flags, unsigned * pNumModes, DXGI_MODE_DESC1 * outDesc, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputFindClosestMatchingMode1                   (X12Output4 * pOutput, const DXGI_MODE_DESC1 * pModeToMatch, DXGI_MODE_DESC1 * pClosestMatch, X12Device3 * pConcernedDevice, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputWaitForVBlank                              (X12Output4 * pOutput, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputGetGammaControlCapabilities                (X12Output4 * pOutput, DXGI_GAMMA_CONTROL_CAPABILITIES * outGammaCaps, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputSetGammaControl                            (X12Output4 * pOutput, const DXGI_GAMMA_CONTROL * pArray, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputGetGammaControl                            (X12Output4 * pOutput, DXGI_GAMMA_CONTROL * outArray, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputGetFrameStatistics                         (X12Output4 * pOutput, DXGI_FRAME_STATISTICS * outStats, const char * optionalFile, int optionalLine);
+X12_DECLSPEC X12Bool  X12_API x12OutputSupportsOverlays                           (X12Output4 * pOutput, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputCheckOverlaySupport                        (X12Output4 * pOutput, DXGI_FORMAT EnumFormat, X12Device3 * pConcernedDevice, unsigned * pFlags, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12OutputCheckOverlayColorSpaceSupport              (X12Output4 * pOutput, DXGI_FORMAT Format, DXGI_COLOR_SPACE_TYPE ColorSpace, X12Device3 * pConcernedDevice, DXGI_OVERLAY_COLOR_SPACE_SUPPORT_FLAGS * outFlags, const char * optionalFile, int optionalLine);
 
 // Other
 
-X12_DECLSPEC HRESULT  x12ObjectSetName                                    (void * handle, const wchar_t * Name, const char * optionalFile, int optionalLine);
-X12_DECLSPEC void     x12Release                                          (void * handle, const char * optionalFile, int optionalLine);
+X12_DECLSPEC HRESULT  X12_API x12ObjectSetName                                    (void * handle, const wchar_t * Name, const char * optionalFile, int optionalLine);
+X12_DECLSPEC void     X12_API x12Release                                          (void * handle, const char * optionalFile, int optionalLine);
 
 // PIX
 
-X12_DECLSPEC void     x12CommandListSetMarker                             (X12CommandList * handle, unsigned Metadata, const void * pData, unsigned Size);
-X12_DECLSPEC void     x12CommandListBeginEvent                            (X12CommandList * handle, unsigned Metadata, const void * pData, unsigned Size);
-X12_DECLSPEC void     x12CommandListEndEvent                              (X12CommandList * handle);
-X12_DECLSPEC void     x12CommandQueueSetMarker                            (X12CommandQueue * handle, unsigned Metadata, const void * pData, unsigned Size);
-X12_DECLSPEC void     x12CommandQueueBeginEvent                           (X12CommandQueue * handle, unsigned Metadata, const void * pData, unsigned Size);
-X12_DECLSPEC void     x12CommandQueueEndEvent                             (X12CommandQueue * handle);
+X12_DECLSPEC void     X12_API x12CommandListSetMarker                             (X12CommandList * handle, unsigned Metadata, const void * pData, unsigned Size);
+X12_DECLSPEC void     X12_API x12CommandListBeginEvent                            (X12CommandList * handle, unsigned Metadata, const void * pData, unsigned Size);
+X12_DECLSPEC void     X12_API x12CommandListEndEvent                              (X12CommandList * handle);
+X12_DECLSPEC void     X12_API x12CommandQueueSetMarker                            (X12CommandQueue * handle, unsigned Metadata, const void * pData, unsigned Size);
+X12_DECLSPEC void     X12_API x12CommandQueueBeginEvent                           (X12CommandQueue * handle, unsigned Metadata, const void * pData, unsigned Size);
+X12_DECLSPEC void     X12_API x12CommandQueueEndEvent                             (X12CommandQueue * handle);
 
 #ifdef __cplusplus
 }
