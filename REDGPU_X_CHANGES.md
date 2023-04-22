@@ -1,3 +1,7 @@
+Apr 22, 2023:
+
+  * RadeonRays 4.1 for REDGPU X is added.
+
 Apr 20, 2023:
 
   * **NEW**: misc/np/np_*.h headers for REDGPU function variants with C++ named parameters.
