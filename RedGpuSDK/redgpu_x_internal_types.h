@@ -169,10 +169,10 @@ typedef struct RedXInternalTypeTexture {
 typedef struct RedXInternalTypeStructDeclaration {
   RedContext                              context;
   unsigned                                gpuIndex;
+  RedBool32                               procedureParametersHandlesDeclaration;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_VECTOR
   std::vector<RedStructDeclarationMember> structDeclarationMembers;
 #endif
-  RedBool32                               procedureParametersHandlesDeclaration;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
   std::string                             handleName;
 #endif
@@ -224,6 +224,16 @@ typedef struct RedXInternalTypeQueue {
   std::string     handleName;
 #endif
 } RedXInternalTypeQueue;
+
+typedef struct RedXInternalTypeSignal {
+  X12Fence    handle;
+  uint64_t    value;
+  RedContext  context;
+  unsigned    gpuIndex;
+#ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
+  std::string handleName;
+#endif
+} RedXInternalTypeSignal;
 
 typedef struct RedXInternalTypeCalls {
   X12CommandList                       handle;

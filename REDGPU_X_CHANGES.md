@@ -1,3 +1,8 @@
+Apr 26, 2023:
+
+  * Internal signal implementation changes with newly added `RedXInternalTypeSignal` struct.
+  * `RedXInternalTypeStructDeclaration::procedureParametersHandlesDeclaration` is moved higher in the struct.
+
 Apr 25, 2023:
 
   * **NEW**: `redXCallCopyImageRegion` procedure, it takes structs of ID3D12GraphicsCommandList::CopyTextureRegion parameters.
