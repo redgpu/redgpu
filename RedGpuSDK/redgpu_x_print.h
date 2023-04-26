@@ -136,6 +136,7 @@
   (unsigned)(x) == REDX_PROCEDURE_ID_redXGetHandleResourceArray                    ? "REDX_PROCEDURE_ID_redXGetHandleResourceArray"                    :\
   (unsigned)(x) == REDX_PROCEDURE_ID_redXGetHandleResourceImage                    ? "REDX_PROCEDURE_ID_redXGetHandleResourceImage"                    :\
   (unsigned)(x) == REDX_PROCEDURE_ID_redXCreateSurfaceWinRT                        ? "REDX_PROCEDURE_ID_redXCreateSurfaceWinRT"                        :\
+  (unsigned)(x) == REDX_PROCEDURE_ID_redXCallCopyImageRegion                       ? "REDX_PROCEDURE_ID_redXCallCopyImageRegion"                       :\
   "(unknown)"\
 )
 

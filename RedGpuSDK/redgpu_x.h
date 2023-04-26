@@ -33,6 +33,7 @@ typedef enum RedXProcedureId {
   REDX_PROCEDURE_ID_redXGetHandleResourceArray               = 12018,
   REDX_PROCEDURE_ID_redXGetHandleResourceImage               = 12019,
   REDX_PROCEDURE_ID_redXCreateSurfaceWinRT                   = 12020,
+  REDX_PROCEDURE_ID_redXCallCopyImageRegion                  = 12021,
 } RedXProcedureId;
 
 // redMemoryAllocate
@@ -222,6 +223,7 @@ REDGPU_X_DECLSPEC RedXHandleResource REDGPU_X_API redXGetHandleResourceImage    
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallSetProcedureOutput               (RedHandleCalls calls, RedHandleTexture depthStencil, unsigned colorsCount, RedHandleTexture * colors, RedSetProcedureOutputOp depthSetProcedureOutputOp, RedSetProcedureOutputOp stencilSetProcedureOutputOp, RedSetProcedureOutputOp * colorsSetProcedureOutputOp, float depthClearValue, unsigned stencilClearValue, const RedColorsClearValuesFloat * colorsClearValuesFloat);
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallEndProcedureOutput               (RedHandleCalls calls, RedHandleTexture * resolveTargetColors, RedXFormat * resolveTargetColorsFormat, RedEndProcedureOutputOp depthEndProcedureOutputOp, RedEndProcedureOutputOp stencilEndProcedureOutputOp, RedEndProcedureOutputOp * colorsEndProcedureOutputOp);
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallUsageAliasOrderBarrier           (RedHandleCalls calls, unsigned barriersCount, const void * barriers);
+REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallCopyImageRegion                  (RedHandleCalls calls, unsigned copiesCount, const void * copies);
 
 // WSI
 
