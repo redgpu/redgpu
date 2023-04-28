@@ -1,3 +1,7 @@
+Apr 28, 2023:
+
+  * Update misc named parameters header files.
+
 Apr 26, 2023:
 
   * Internal signal implementation changes with newly added `RedXInternalTypeSignal` struct.

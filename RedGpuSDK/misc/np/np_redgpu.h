@@ -296,6 +296,7 @@ void np_redStructsMemoryAllocateSamplers(_a6a65124_context & context, _a6a65124_
 }
 #endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redStructsMemorySuballocateStructs redStructsMemorySuballocateStructs
 #define _2aeabcb8_context(value) value
@@ -325,7 +326,9 @@ void np_redStructsMemorySuballocateStructs(_2aeabcb8_context & context, _2aeabcb
   redStructsMemorySuballocateStructs(context.value, gpu.value, handleNames.value, structsMemory.value, structsDeclarationsCount.value, structsDeclarations.value, outStructs.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
+#endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redStructsMemoryReset redStructsMemoryReset
 #define _0d734196_context(value) value
@@ -346,6 +349,7 @@ typedef struct _0d734196_optionalUserData { _0d734196_optionalUserData(void* val
 void np_redStructsMemoryReset(_0d734196_context & context, _0d734196_gpu & gpu, _0d734196_structsMemory & structsMemory, _0d734196_outStatuses & outStatuses, _0d734196_optionalFile & optionalFile, _0d734196_optionalLine & optionalLine, _0d734196_optionalUserData & optionalUserData) {
   redStructsMemoryReset(context.value, gpu.value, structsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
+#endif
 #endif
 
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
@@ -368,6 +372,7 @@ void np_redStructsMemoryFree(_7c3647ab_context & context, _7c3647ab_gpu & gpu, _
 }
 #endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redStructsSet redStructsSet
 #define _b55b2659_context(value) value
@@ -388,6 +393,7 @@ typedef struct _b55b2659_optionalUserData { _b55b2659_optionalUserData(void* val
 void np_redStructsSet(_b55b2659_context & context, _b55b2659_gpu & gpu, _b55b2659_structsMembersCount & structsMembersCount, _b55b2659_structsMembers & structsMembers, _b55b2659_optionalFile & optionalFile, _b55b2659_optionalLine & optionalLine, _b55b2659_optionalUserData & optionalUserData) {
   redStructsSet(context.value, gpu.value, structsMembersCount.value, structsMembers.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
+#endif
 #endif
 
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
@@ -1630,6 +1636,7 @@ void np_redCallSetProcedureParameters(_a823169a_address & address, _a823169a_cal
 }
 #endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCallSetProcedureOutput redCallSetProcedureOutput
 #define _be0adeb6_address(value) value
@@ -1665,7 +1672,9 @@ void np_redCallSetProcedureOutput(_be0adeb6_address & address, _be0adeb6_calls &
   redCallSetProcedureOutput(address.value, calls.value, outputDeclaration.value, output.value, inlineOutput.value, outputWidth.value, outputHeight.value, outputDepthStencilEnable.value, outputColorsCount.value, depthClearValue.value, stencilClearValue.value, colorsClearValuesFloat.value, colorsClearValuesSint.value, colorsClearValuesUint.value);
 }
 #endif
+#endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCallEndProcedureOutput redCallEndProcedureOutput
 #define _0e351483_address(value) value
@@ -1677,7 +1686,9 @@ void np_redCallEndProcedureOutput(_0e351483_address & address, _0e351483_calls &
   redCallEndProcedureOutput(address.value, calls.value);
 }
 #endif
+#endif
 
+#ifndef REDGPU_USE_REDGPU_X
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCallUsageAliasOrderBarrier redCallUsageAliasOrderBarrier
 #define _94990c3d_address(value) value
@@ -1708,6 +1719,7 @@ typedef struct _94990c3d_dependencyByRegion { _94990c3d_dependencyByRegion(RedBo
 void np_redCallUsageAliasOrderBarrier(_94990c3d_address & address, _94990c3d_calls & calls, _94990c3d_context & context, _94990c3d_arrayUsagesCount & arrayUsagesCount, _94990c3d_arrayUsages & arrayUsages, _94990c3d_imageUsagesCount & imageUsagesCount, _94990c3d_imageUsages & imageUsages, _94990c3d_aliasesCount & aliasesCount, _94990c3d_aliases & aliases, _94990c3d_ordersCount & ordersCount, _94990c3d_orders & orders, _94990c3d_dependencyByRegion & dependencyByRegion) {
   redCallUsageAliasOrderBarrier(address.value, calls.value, context.value, arrayUsagesCount.value, arrayUsages.value, imageUsagesCount.value, imageUsages.value, aliasesCount.value, aliases.value, ordersCount.value, orders.value, dependencyByRegion.value);
 }
+#endif
 #endif
 
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS

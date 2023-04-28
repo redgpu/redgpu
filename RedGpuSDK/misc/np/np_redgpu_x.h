@@ -513,6 +513,20 @@ void np_redXCallUsageAliasOrderBarrier(_c0b32403_calls & calls, _c0b32403_barrie
 #endif
 
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redXCallCopyImageRegion redXCallCopyImageRegion
+#define _a52b038b_calls(value) value
+#define _a52b038b_copiesCount(value) value
+#define _a52b038b_copies(value) value
+#else
+typedef struct _a52b038b_calls { _a52b038b_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _a52b038b_calls(const _a52b038b_calls &) = delete; } _a52b038b_calls;
+typedef struct _a52b038b_copiesCount { _a52b038b_copiesCount(unsigned value): value(value) {}; unsigned value; _a52b038b_copiesCount(const _a52b038b_copiesCount &) = delete; } _a52b038b_copiesCount;
+typedef struct _a52b038b_copies { _a52b038b_copies(void* value): value(value) {}; void* value; _a52b038b_copies(const _a52b038b_copies &) = delete; } _a52b038b_copies;
+void np_redXCallCopyImageRegion(_a52b038b_calls & calls, _a52b038b_copiesCount & copiesCount, _a52b038b_copies & copies) {
+  redXCallCopyImageRegion(calls.value, copiesCount.value, copies.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redXCreateSurfaceWinRT redXCreateSurfaceWinRT
 #define _07dfa0b7_context(value) value
 #define _07dfa0b7_gpu(value) value
