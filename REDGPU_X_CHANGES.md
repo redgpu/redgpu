@@ -1,3 +1,8 @@
+Apr 29, 2023:
+
+  * Fixed releasing present images on calling `redDestroyPresent`. As in the original REDGPU API, make sure to call redQueuePresent with `redQueuePresent::waitForAndUnsignalGpuSignalsCount` set to `0` and `redQueuePresent::presentsCount` set to `0` before calling `redDestroyPresent` to wait for the present queue to become idle.
+  * Update misc named parameters header files.
+
 Apr 28, 2023:
 
   * Update misc named parameters header files.

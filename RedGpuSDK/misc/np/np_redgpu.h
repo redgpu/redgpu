@@ -1561,6 +1561,384 @@ void np_redGetCallProceduresAndAddresses(_038a00b5_context & context, _038a00b5_
 #endif
 
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallGpuToCpuSignalSignal(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _87338edd_address(value) value
+#define _87338edd_calls(value) value
+#define _87338edd_signalGpuToCpuSignal(value) value
+#define _87338edd_setTo8192(value) value
+#else
+typedef struct _87338edd_address { _87338edd_address(RedTypeProcedureCallGpuToCpuSignalSignal value): value(value) {}; RedTypeProcedureCallGpuToCpuSignalSignal value; _87338edd_address(const _87338edd_address &) = delete; } _87338edd_address;
+typedef struct _87338edd_calls { _87338edd_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _87338edd_calls(const _87338edd_calls &) = delete; } _87338edd_calls;
+typedef struct _87338edd_signalGpuToCpuSignal { _87338edd_signalGpuToCpuSignal(RedHandleGpuToCpuSignal value): value(value) {}; RedHandleGpuToCpuSignal value; _87338edd_signalGpuToCpuSignal(const _87338edd_signalGpuToCpuSignal &) = delete; } _87338edd_signalGpuToCpuSignal;
+typedef struct _87338edd_setTo8192 { _87338edd_setTo8192(unsigned value): value(value) {}; unsigned value; _87338edd_setTo8192(const _87338edd_setTo8192 &) = delete; } _87338edd_setTo8192;
+void np_redCallGpuToCpuSignalSignal(_87338edd_address & address, _87338edd_calls & calls, _87338edd_signalGpuToCpuSignal & signalGpuToCpuSignal, _87338edd_setTo8192 & setTo8192) {
+  address.value(calls.value, signalGpuToCpuSignal.value, setTo8192.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallCopyArrayToArray(_0, _1, _2, _3, _4, _5) _0(_1, _2, _3, _4, _5)
+#define _60652b4b_address(value) value
+#define _60652b4b_calls(value) value
+#define _60652b4b_arrayR(value) value
+#define _60652b4b_arrayW(value) value
+#define _60652b4b_rangesCount(value) value
+#define _60652b4b_ranges(value) value
+#else
+typedef struct _60652b4b_address { _60652b4b_address(RedTypeProcedureCallCopyArrayToArray value): value(value) {}; RedTypeProcedureCallCopyArrayToArray value; _60652b4b_address(const _60652b4b_address &) = delete; } _60652b4b_address;
+typedef struct _60652b4b_calls { _60652b4b_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _60652b4b_calls(const _60652b4b_calls &) = delete; } _60652b4b_calls;
+typedef struct _60652b4b_arrayR { _60652b4b_arrayR(RedHandleArray value): value(value) {}; RedHandleArray value; _60652b4b_arrayR(const _60652b4b_arrayR &) = delete; } _60652b4b_arrayR;
+typedef struct _60652b4b_arrayW { _60652b4b_arrayW(RedHandleArray value): value(value) {}; RedHandleArray value; _60652b4b_arrayW(const _60652b4b_arrayW &) = delete; } _60652b4b_arrayW;
+typedef struct _60652b4b_rangesCount { _60652b4b_rangesCount(unsigned value): value(value) {}; unsigned value; _60652b4b_rangesCount(const _60652b4b_rangesCount &) = delete; } _60652b4b_rangesCount;
+typedef struct _60652b4b_ranges { _60652b4b_ranges(RedCopyArrayRange* value): value(value) {}; RedCopyArrayRange* value; _60652b4b_ranges(const _60652b4b_ranges &) = delete; } _60652b4b_ranges;
+void np_redCallCopyArrayToArray(_60652b4b_address & address, _60652b4b_calls & calls, _60652b4b_arrayR & arrayR, _60652b4b_arrayW & arrayW, _60652b4b_rangesCount & rangesCount, _60652b4b_ranges & ranges) {
+  address.value(calls.value, arrayR.value, arrayW.value, rangesCount.value, ranges.value);
+}
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallCopyImageToImage(_0, _1, _2, _3, _4, _5, _6, _7) _0(_1, _2, _3, _4, _5, _6, _7)
+#define _14b4d8f4_address(value) value
+#define _14b4d8f4_calls(value) value
+#define _14b4d8f4_imageR(value) value
+#define _14b4d8f4_setTo1(value) value
+#define _14b4d8f4_imageW(value) value
+#define _14b4d8f4_setTo01(value) value
+#define _14b4d8f4_rangesCount(value) value
+#define _14b4d8f4_ranges(value) value
+#else
+typedef struct _14b4d8f4_address { _14b4d8f4_address(RedTypeProcedureCallCopyImageToImage value): value(value) {}; RedTypeProcedureCallCopyImageToImage value; _14b4d8f4_address(const _14b4d8f4_address &) = delete; } _14b4d8f4_address;
+typedef struct _14b4d8f4_calls { _14b4d8f4_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _14b4d8f4_calls(const _14b4d8f4_calls &) = delete; } _14b4d8f4_calls;
+typedef struct _14b4d8f4_imageR { _14b4d8f4_imageR(RedHandleImage value): value(value) {}; RedHandleImage value; _14b4d8f4_imageR(const _14b4d8f4_imageR &) = delete; } _14b4d8f4_imageR;
+typedef struct _14b4d8f4_setTo1 { _14b4d8f4_setTo1(unsigned value): value(value) {}; unsigned value; _14b4d8f4_setTo1(const _14b4d8f4_setTo1 &) = delete; } _14b4d8f4_setTo1;
+typedef struct _14b4d8f4_imageW { _14b4d8f4_imageW(RedHandleImage value): value(value) {}; RedHandleImage value; _14b4d8f4_imageW(const _14b4d8f4_imageW &) = delete; } _14b4d8f4_imageW;
+typedef struct _14b4d8f4_setTo01 { _14b4d8f4_setTo01(unsigned value): value(value) {}; unsigned value; _14b4d8f4_setTo01(const _14b4d8f4_setTo01 &) = delete; } _14b4d8f4_setTo01;
+typedef struct _14b4d8f4_rangesCount { _14b4d8f4_rangesCount(unsigned value): value(value) {}; unsigned value; _14b4d8f4_rangesCount(const _14b4d8f4_rangesCount &) = delete; } _14b4d8f4_rangesCount;
+typedef struct _14b4d8f4_ranges { _14b4d8f4_ranges(RedCopyImageRange* value): value(value) {}; RedCopyImageRange* value; _14b4d8f4_ranges(const _14b4d8f4_ranges &) = delete; } _14b4d8f4_ranges;
+void np_redCallCopyImageToImage(_14b4d8f4_address & address, _14b4d8f4_calls & calls, _14b4d8f4_imageR & imageR, _14b4d8f4_setTo1 & setTo1, _14b4d8f4_imageW & imageW, _14b4d8f4_setTo01 & setTo01, _14b4d8f4_rangesCount & rangesCount, _14b4d8f4_ranges & ranges) {
+  address.value(calls.value, imageR.value, setTo1.value, imageW.value, setTo01.value, rangesCount.value, ranges.value);
+}
+#endif
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallCopyArrayToImage(_0, _1, _2, _3, _4, _5, _6) _0(_1, _2, _3, _4, _5, _6)
+#define _e68e8cba_address(value) value
+#define _e68e8cba_calls(value) value
+#define _e68e8cba_arrayR(value) value
+#define _e68e8cba_imageW(value) value
+#define _e68e8cba_setTo1(value) value
+#define _e68e8cba_rangesCount(value) value
+#define _e68e8cba_ranges(value) value
+#else
+typedef struct _e68e8cba_address { _e68e8cba_address(RedTypeProcedureCallCopyArrayToImage value): value(value) {}; RedTypeProcedureCallCopyArrayToImage value; _e68e8cba_address(const _e68e8cba_address &) = delete; } _e68e8cba_address;
+typedef struct _e68e8cba_calls { _e68e8cba_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _e68e8cba_calls(const _e68e8cba_calls &) = delete; } _e68e8cba_calls;
+typedef struct _e68e8cba_arrayR { _e68e8cba_arrayR(RedHandleArray value): value(value) {}; RedHandleArray value; _e68e8cba_arrayR(const _e68e8cba_arrayR &) = delete; } _e68e8cba_arrayR;
+typedef struct _e68e8cba_imageW { _e68e8cba_imageW(RedHandleImage value): value(value) {}; RedHandleImage value; _e68e8cba_imageW(const _e68e8cba_imageW &) = delete; } _e68e8cba_imageW;
+typedef struct _e68e8cba_setTo1 { _e68e8cba_setTo1(unsigned value): value(value) {}; unsigned value; _e68e8cba_setTo1(const _e68e8cba_setTo1 &) = delete; } _e68e8cba_setTo1;
+typedef struct _e68e8cba_rangesCount { _e68e8cba_rangesCount(unsigned value): value(value) {}; unsigned value; _e68e8cba_rangesCount(const _e68e8cba_rangesCount &) = delete; } _e68e8cba_rangesCount;
+typedef struct _e68e8cba_ranges { _e68e8cba_ranges(RedCopyArrayImageRange* value): value(value) {}; RedCopyArrayImageRange* value; _e68e8cba_ranges(const _e68e8cba_ranges &) = delete; } _e68e8cba_ranges;
+void np_redCallCopyArrayToImage(_e68e8cba_address & address, _e68e8cba_calls & calls, _e68e8cba_arrayR & arrayR, _e68e8cba_imageW & imageW, _e68e8cba_setTo1 & setTo1, _e68e8cba_rangesCount & rangesCount, _e68e8cba_ranges & ranges) {
+  address.value(calls.value, arrayR.value, imageW.value, setTo1.value, rangesCount.value, ranges.value);
+}
+#endif
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallCopyImageToArray(_0, _1, _2, _3, _4, _5, _6) _0(_1, _2, _3, _4, _5, _6)
+#define _4f794fd6_address(value) value
+#define _4f794fd6_calls(value) value
+#define _4f794fd6_imageR(value) value
+#define _4f794fd6_setTo1(value) value
+#define _4f794fd6_arrayW(value) value
+#define _4f794fd6_rangesCount(value) value
+#define _4f794fd6_ranges(value) value
+#else
+typedef struct _4f794fd6_address { _4f794fd6_address(RedTypeProcedureCallCopyImageToArray value): value(value) {}; RedTypeProcedureCallCopyImageToArray value; _4f794fd6_address(const _4f794fd6_address &) = delete; } _4f794fd6_address;
+typedef struct _4f794fd6_calls { _4f794fd6_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _4f794fd6_calls(const _4f794fd6_calls &) = delete; } _4f794fd6_calls;
+typedef struct _4f794fd6_imageR { _4f794fd6_imageR(RedHandleImage value): value(value) {}; RedHandleImage value; _4f794fd6_imageR(const _4f794fd6_imageR &) = delete; } _4f794fd6_imageR;
+typedef struct _4f794fd6_setTo1 { _4f794fd6_setTo1(unsigned value): value(value) {}; unsigned value; _4f794fd6_setTo1(const _4f794fd6_setTo1 &) = delete; } _4f794fd6_setTo1;
+typedef struct _4f794fd6_arrayW { _4f794fd6_arrayW(RedHandleArray value): value(value) {}; RedHandleArray value; _4f794fd6_arrayW(const _4f794fd6_arrayW &) = delete; } _4f794fd6_arrayW;
+typedef struct _4f794fd6_rangesCount { _4f794fd6_rangesCount(unsigned value): value(value) {}; unsigned value; _4f794fd6_rangesCount(const _4f794fd6_rangesCount &) = delete; } _4f794fd6_rangesCount;
+typedef struct _4f794fd6_ranges { _4f794fd6_ranges(RedCopyArrayImageRange* value): value(value) {}; RedCopyArrayImageRange* value; _4f794fd6_ranges(const _4f794fd6_ranges &) = delete; } _4f794fd6_ranges;
+void np_redCallCopyImageToArray(_4f794fd6_address & address, _4f794fd6_calls & calls, _4f794fd6_imageR & imageR, _4f794fd6_setTo1 & setTo1, _4f794fd6_arrayW & arrayW, _4f794fd6_rangesCount & rangesCount, _4f794fd6_ranges & ranges) {
+  address.value(calls.value, imageR.value, setTo1.value, arrayW.value, rangesCount.value, ranges.value);
+}
+#endif
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallProcedure(_0, _1, _2, _3, _4, _5) _0(_1, _2, _3, _4, _5)
+#define _1a3e7fa1_address(value) value
+#define _1a3e7fa1_calls(value) value
+#define _1a3e7fa1_vertexCount(value) value
+#define _1a3e7fa1_instanceCount(value) value
+#define _1a3e7fa1_vertexFirst(value) value
+#define _1a3e7fa1_instanceFirst(value) value
+#else
+typedef struct _1a3e7fa1_address { _1a3e7fa1_address(RedTypeProcedureCallProcedure value): value(value) {}; RedTypeProcedureCallProcedure value; _1a3e7fa1_address(const _1a3e7fa1_address &) = delete; } _1a3e7fa1_address;
+typedef struct _1a3e7fa1_calls { _1a3e7fa1_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _1a3e7fa1_calls(const _1a3e7fa1_calls &) = delete; } _1a3e7fa1_calls;
+typedef struct _1a3e7fa1_vertexCount { _1a3e7fa1_vertexCount(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_vertexCount(const _1a3e7fa1_vertexCount &) = delete; } _1a3e7fa1_vertexCount;
+typedef struct _1a3e7fa1_instanceCount { _1a3e7fa1_instanceCount(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_instanceCount(const _1a3e7fa1_instanceCount &) = delete; } _1a3e7fa1_instanceCount;
+typedef struct _1a3e7fa1_vertexFirst { _1a3e7fa1_vertexFirst(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_vertexFirst(const _1a3e7fa1_vertexFirst &) = delete; } _1a3e7fa1_vertexFirst;
+typedef struct _1a3e7fa1_instanceFirst { _1a3e7fa1_instanceFirst(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_instanceFirst(const _1a3e7fa1_instanceFirst &) = delete; } _1a3e7fa1_instanceFirst;
+void np_redCallProcedure(_1a3e7fa1_address & address, _1a3e7fa1_calls & calls, _1a3e7fa1_vertexCount & vertexCount, _1a3e7fa1_instanceCount & instanceCount, _1a3e7fa1_vertexFirst & vertexFirst, _1a3e7fa1_instanceFirst & instanceFirst) {
+  address.value(calls.value, vertexCount.value, instanceCount.value, vertexFirst.value, instanceFirst.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallProcedureIndexed(_0, _1, _2, _3, _4, _5, _6) _0(_1, _2, _3, _4, _5, _6)
+#define _46f9defa_address(value) value
+#define _46f9defa_calls(value) value
+#define _46f9defa_indexCount(value) value
+#define _46f9defa_instanceCount(value) value
+#define _46f9defa_indexFirst(value) value
+#define _46f9defa_vertexBase(value) value
+#define _46f9defa_instanceFirst(value) value
+#else
+typedef struct _46f9defa_address { _46f9defa_address(RedTypeProcedureCallProcedureIndexed value): value(value) {}; RedTypeProcedureCallProcedureIndexed value; _46f9defa_address(const _46f9defa_address &) = delete; } _46f9defa_address;
+typedef struct _46f9defa_calls { _46f9defa_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _46f9defa_calls(const _46f9defa_calls &) = delete; } _46f9defa_calls;
+typedef struct _46f9defa_indexCount { _46f9defa_indexCount(unsigned value): value(value) {}; unsigned value; _46f9defa_indexCount(const _46f9defa_indexCount &) = delete; } _46f9defa_indexCount;
+typedef struct _46f9defa_instanceCount { _46f9defa_instanceCount(unsigned value): value(value) {}; unsigned value; _46f9defa_instanceCount(const _46f9defa_instanceCount &) = delete; } _46f9defa_instanceCount;
+typedef struct _46f9defa_indexFirst { _46f9defa_indexFirst(unsigned value): value(value) {}; unsigned value; _46f9defa_indexFirst(const _46f9defa_indexFirst &) = delete; } _46f9defa_indexFirst;
+typedef struct _46f9defa_vertexBase { _46f9defa_vertexBase(int value): value(value) {}; int value; _46f9defa_vertexBase(const _46f9defa_vertexBase &) = delete; } _46f9defa_vertexBase;
+typedef struct _46f9defa_instanceFirst { _46f9defa_instanceFirst(unsigned value): value(value) {}; unsigned value; _46f9defa_instanceFirst(const _46f9defa_instanceFirst &) = delete; } _46f9defa_instanceFirst;
+void np_redCallProcedureIndexed(_46f9defa_address & address, _46f9defa_calls & calls, _46f9defa_indexCount & indexCount, _46f9defa_instanceCount & instanceCount, _46f9defa_indexFirst & indexFirst, _46f9defa_vertexBase & vertexBase, _46f9defa_instanceFirst & instanceFirst) {
+  address.value(calls.value, indexCount.value, instanceCount.value, indexFirst.value, vertexBase.value, instanceFirst.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallProcedureCompute(_0, _1, _2, _3, _4) _0(_1, _2, _3, _4)
+#define _17fa22b3_address(value) value
+#define _17fa22b3_calls(value) value
+#define _17fa22b3_workgroupsCountX(value) value
+#define _17fa22b3_workgroupsCountY(value) value
+#define _17fa22b3_workgroupsCountZ(value) value
+#else
+typedef struct _17fa22b3_address { _17fa22b3_address(RedTypeProcedureCallProcedureCompute value): value(value) {}; RedTypeProcedureCallProcedureCompute value; _17fa22b3_address(const _17fa22b3_address &) = delete; } _17fa22b3_address;
+typedef struct _17fa22b3_calls { _17fa22b3_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _17fa22b3_calls(const _17fa22b3_calls &) = delete; } _17fa22b3_calls;
+typedef struct _17fa22b3_workgroupsCountX { _17fa22b3_workgroupsCountX(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountX(const _17fa22b3_workgroupsCountX &) = delete; } _17fa22b3_workgroupsCountX;
+typedef struct _17fa22b3_workgroupsCountY { _17fa22b3_workgroupsCountY(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountY(const _17fa22b3_workgroupsCountY &) = delete; } _17fa22b3_workgroupsCountY;
+typedef struct _17fa22b3_workgroupsCountZ { _17fa22b3_workgroupsCountZ(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountZ(const _17fa22b3_workgroupsCountZ &) = delete; } _17fa22b3_workgroupsCountZ;
+void np_redCallProcedureCompute(_17fa22b3_address & address, _17fa22b3_calls & calls, _17fa22b3_workgroupsCountX & workgroupsCountX, _17fa22b3_workgroupsCountY & workgroupsCountY, _17fa22b3_workgroupsCountZ & workgroupsCountZ) {
+  address.value(calls.value, workgroupsCountX.value, workgroupsCountY.value, workgroupsCountZ.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetProcedure(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _16d79404_address(value) value
+#define _16d79404_calls(value) value
+#define _16d79404_procedureType(value) value
+#define _16d79404_procedure(value) value
+#else
+typedef struct _16d79404_address { _16d79404_address(RedTypeProcedureCallSetProcedure value): value(value) {}; RedTypeProcedureCallSetProcedure value; _16d79404_address(const _16d79404_address &) = delete; } _16d79404_address;
+typedef struct _16d79404_calls { _16d79404_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _16d79404_calls(const _16d79404_calls &) = delete; } _16d79404_calls;
+typedef struct _16d79404_procedureType { _16d79404_procedureType(RedProcedureType value): value(value) {}; RedProcedureType value; _16d79404_procedureType(const _16d79404_procedureType &) = delete; } _16d79404_procedureType;
+typedef struct _16d79404_procedure { _16d79404_procedure(RedHandleProcedure value): value(value) {}; RedHandleProcedure value; _16d79404_procedure(const _16d79404_procedure &) = delete; } _16d79404_procedure;
+void np_redCallSetProcedure(_16d79404_address & address, _16d79404_calls & calls, _16d79404_procedureType & procedureType, _16d79404_procedure & procedure) {
+  address.value(calls.value, procedureType.value, procedure.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetProcedureIndices(_0, _1, _2, _3, _4) _0(_1, _2, _3, _4)
+#define _fc588166_address(value) value
+#define _fc588166_calls(value) value
+#define _fc588166_array(value) value
+#define _fc588166_setTo0(value) value
+#define _fc588166_setTo1(value) value
+#else
+typedef struct _fc588166_address { _fc588166_address(RedTypeProcedureCallSetProcedureIndices value): value(value) {}; RedTypeProcedureCallSetProcedureIndices value; _fc588166_address(const _fc588166_address &) = delete; } _fc588166_address;
+typedef struct _fc588166_calls { _fc588166_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _fc588166_calls(const _fc588166_calls &) = delete; } _fc588166_calls;
+typedef struct _fc588166_array { _fc588166_array(RedHandleArray value): value(value) {}; RedHandleArray value; _fc588166_array(const _fc588166_array &) = delete; } _fc588166_array;
+typedef struct _fc588166_setTo0 { _fc588166_setTo0(uint64_t value): value(value) {}; uint64_t value; _fc588166_setTo0(const _fc588166_setTo0 &) = delete; } _fc588166_setTo0;
+typedef struct _fc588166_setTo1 { _fc588166_setTo1(unsigned value): value(value) {}; unsigned value; _fc588166_setTo1(const _fc588166_setTo1 &) = delete; } _fc588166_setTo1;
+void np_redCallSetProcedureIndices(_fc588166_address & address, _fc588166_calls & calls, _fc588166_array & array, _fc588166_setTo0 & setTo0, _fc588166_setTo1 & setTo1) {
+  address.value(calls.value, array.value, setTo0.value, setTo1.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetProcedureParametersVariables(_0, _1, _2, _3, _4, _5, _6) _0(_1, _2, _3, _4, _5, _6)
+#define _cba9ac89_address(value) value
+#define _cba9ac89_calls(value) value
+#define _cba9ac89_procedureParameters(value) value
+#define _cba9ac89_visibleToStages(value) value
+#define _cba9ac89_variablesBytesFirst(value) value
+#define _cba9ac89_dataBytesCount(value) value
+#define _cba9ac89_data(value) value
+#else
+typedef struct _cba9ac89_address { _cba9ac89_address(RedTypeProcedureCallSetProcedureParametersVariables value): value(value) {}; RedTypeProcedureCallSetProcedureParametersVariables value; _cba9ac89_address(const _cba9ac89_address &) = delete; } _cba9ac89_address;
+typedef struct _cba9ac89_calls { _cba9ac89_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _cba9ac89_calls(const _cba9ac89_calls &) = delete; } _cba9ac89_calls;
+typedef struct _cba9ac89_procedureParameters { _cba9ac89_procedureParameters(RedHandleProcedureParameters value): value(value) {}; RedHandleProcedureParameters value; _cba9ac89_procedureParameters(const _cba9ac89_procedureParameters &) = delete; } _cba9ac89_procedureParameters;
+typedef struct _cba9ac89_visibleToStages { _cba9ac89_visibleToStages(RedVisibleToStageBitflags value): value(value) {}; RedVisibleToStageBitflags value; _cba9ac89_visibleToStages(const _cba9ac89_visibleToStages &) = delete; } _cba9ac89_visibleToStages;
+typedef struct _cba9ac89_variablesBytesFirst { _cba9ac89_variablesBytesFirst(unsigned value): value(value) {}; unsigned value; _cba9ac89_variablesBytesFirst(const _cba9ac89_variablesBytesFirst &) = delete; } _cba9ac89_variablesBytesFirst;
+typedef struct _cba9ac89_dataBytesCount { _cba9ac89_dataBytesCount(unsigned value): value(value) {}; unsigned value; _cba9ac89_dataBytesCount(const _cba9ac89_dataBytesCount &) = delete; } _cba9ac89_dataBytesCount;
+typedef struct _cba9ac89_data { _cba9ac89_data(void* value): value(value) {}; void* value; _cba9ac89_data(const _cba9ac89_data &) = delete; } _cba9ac89_data;
+void np_redCallSetProcedureParametersVariables(_cba9ac89_address & address, _cba9ac89_calls & calls, _cba9ac89_procedureParameters & procedureParameters, _cba9ac89_visibleToStages & visibleToStages, _cba9ac89_variablesBytesFirst & variablesBytesFirst, _cba9ac89_dataBytesCount & dataBytesCount, _cba9ac89_data & data) {
+  address.value(calls.value, procedureParameters.value, visibleToStages.value, variablesBytesFirst.value, dataBytesCount.value, data.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetProcedureParametersStructs(_0, _1, _2, _3, _4, _5, _6, _7, _8) _0(_1, _2, _3, _4, _5, _6, _7, _8)
+#define _b6fcba5e_address(value) value
+#define _b6fcba5e_calls(value) value
+#define _b6fcba5e_procedureType(value) value
+#define _b6fcba5e_procedureParameters(value) value
+#define _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst(value) value
+#define _b6fcba5e_structsCount(value) value
+#define _b6fcba5e_structs(value) value
+#define _b6fcba5e_setTo0(value) value
+#define _b6fcba5e_setTo00(value) value
+#else
+typedef struct _b6fcba5e_address { _b6fcba5e_address(RedTypeProcedureCallSetProcedureParametersStructs value): value(value) {}; RedTypeProcedureCallSetProcedureParametersStructs value; _b6fcba5e_address(const _b6fcba5e_address &) = delete; } _b6fcba5e_address;
+typedef struct _b6fcba5e_calls { _b6fcba5e_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _b6fcba5e_calls(const _b6fcba5e_calls &) = delete; } _b6fcba5e_calls;
+typedef struct _b6fcba5e_procedureType { _b6fcba5e_procedureType(RedProcedureType value): value(value) {}; RedProcedureType value; _b6fcba5e_procedureType(const _b6fcba5e_procedureType &) = delete; } _b6fcba5e_procedureType;
+typedef struct _b6fcba5e_procedureParameters { _b6fcba5e_procedureParameters(RedHandleProcedureParameters value): value(value) {}; RedHandleProcedureParameters value; _b6fcba5e_procedureParameters(const _b6fcba5e_procedureParameters &) = delete; } _b6fcba5e_procedureParameters;
+typedef struct _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst { _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst(unsigned value): value(value) {}; unsigned value; _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst(const _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst &) = delete; } _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst;
+typedef struct _b6fcba5e_structsCount { _b6fcba5e_structsCount(unsigned value): value(value) {}; unsigned value; _b6fcba5e_structsCount(const _b6fcba5e_structsCount &) = delete; } _b6fcba5e_structsCount;
+typedef struct _b6fcba5e_structs { _b6fcba5e_structs(RedHandleStruct* value): value(value) {}; RedHandleStruct* value; _b6fcba5e_structs(const _b6fcba5e_structs &) = delete; } _b6fcba5e_structs;
+typedef struct _b6fcba5e_setTo0 { _b6fcba5e_setTo0(unsigned value): value(value) {}; unsigned value; _b6fcba5e_setTo0(const _b6fcba5e_setTo0 &) = delete; } _b6fcba5e_setTo0;
+typedef struct _b6fcba5e_setTo00 { _b6fcba5e_setTo00(size_t value): value(value) {}; size_t value; _b6fcba5e_setTo00(const _b6fcba5e_setTo00 &) = delete; } _b6fcba5e_setTo00;
+void np_redCallSetProcedureParametersStructs(_b6fcba5e_address & address, _b6fcba5e_calls & calls, _b6fcba5e_procedureType & procedureType, _b6fcba5e_procedureParameters & procedureParameters, _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst & procedureParametersDeclarationStructsDeclarationsFirst, _b6fcba5e_structsCount & structsCount, _b6fcba5e_structs & structs, _b6fcba5e_setTo0 & setTo0, _b6fcba5e_setTo00 & setTo00) {
+  address.value(calls.value, procedureType.value, procedureParameters.value, procedureParametersDeclarationStructsDeclarationsFirst.value, structsCount.value, structs.value, setTo0.value, setTo00.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetProcedureParametersHandles(_0, _1, _2, _3, _4, _5, _6) _0(_1, _2, _3, _4, _5, _6)
+#define _63e4f50e_address(value) value
+#define _63e4f50e_calls(value) value
+#define _63e4f50e_procedureType(value) value
+#define _63e4f50e_procedureParameters(value) value
+#define _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount(value) value
+#define _63e4f50e_handlesCount(value) value
+#define _63e4f50e_handles(value) value
+#else
+typedef struct _63e4f50e_address { _63e4f50e_address(RedTypeProcedureCallSetProcedureParametersHandles value): value(value) {}; RedTypeProcedureCallSetProcedureParametersHandles value; _63e4f50e_address(const _63e4f50e_address &) = delete; } _63e4f50e_address;
+typedef struct _63e4f50e_calls { _63e4f50e_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _63e4f50e_calls(const _63e4f50e_calls &) = delete; } _63e4f50e_calls;
+typedef struct _63e4f50e_procedureType { _63e4f50e_procedureType(RedProcedureType value): value(value) {}; RedProcedureType value; _63e4f50e_procedureType(const _63e4f50e_procedureType &) = delete; } _63e4f50e_procedureType;
+typedef struct _63e4f50e_procedureParameters { _63e4f50e_procedureParameters(RedHandleProcedureParameters value): value(value) {}; RedHandleProcedureParameters value; _63e4f50e_procedureParameters(const _63e4f50e_procedureParameters &) = delete; } _63e4f50e_procedureParameters;
+typedef struct _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount { _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount(unsigned value): value(value) {}; unsigned value; _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount(const _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount &) = delete; } _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount;
+typedef struct _63e4f50e_handlesCount { _63e4f50e_handlesCount(unsigned value): value(value) {}; unsigned value; _63e4f50e_handlesCount(const _63e4f50e_handlesCount &) = delete; } _63e4f50e_handlesCount;
+typedef struct _63e4f50e_handles { _63e4f50e_handles(RedProcedureParametersHandle* value): value(value) {}; RedProcedureParametersHandle* value; _63e4f50e_handles(const _63e4f50e_handles &) = delete; } _63e4f50e_handles;
+void np_redCallSetProcedureParametersHandles(_63e4f50e_address & address, _63e4f50e_calls & calls, _63e4f50e_procedureType & procedureType, _63e4f50e_procedureParameters & procedureParameters, _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount & procedureParametersDeclarationStructsDeclarationsCount, _63e4f50e_handlesCount & handlesCount, _63e4f50e_handles & handles) {
+  address.value(calls.value, procedureType.value, procedureParameters.value, procedureParametersDeclarationStructsDeclarationsCount.value, handlesCount.value, handles.value);
+}
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicDepthBias(_0, _1, _2, _3, _4) _0(_1, _2, _3, _4)
+#define _704bca01_address(value) value
+#define _704bca01_calls(value) value
+#define _704bca01_constantFactor(value) value
+#define _704bca01_clamp(value) value
+#define _704bca01_slopeFactor(value) value
+#else
+typedef struct _704bca01_address { _704bca01_address(RedTypeProcedureCallSetDynamicDepthBias value): value(value) {}; RedTypeProcedureCallSetDynamicDepthBias value; _704bca01_address(const _704bca01_address &) = delete; } _704bca01_address;
+typedef struct _704bca01_calls { _704bca01_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _704bca01_calls(const _704bca01_calls &) = delete; } _704bca01_calls;
+typedef struct _704bca01_constantFactor { _704bca01_constantFactor(float value): value(value) {}; float value; _704bca01_constantFactor(const _704bca01_constantFactor &) = delete; } _704bca01_constantFactor;
+typedef struct _704bca01_clamp { _704bca01_clamp(float value): value(value) {}; float value; _704bca01_clamp(const _704bca01_clamp &) = delete; } _704bca01_clamp;
+typedef struct _704bca01_slopeFactor { _704bca01_slopeFactor(float value): value(value) {}; float value; _704bca01_slopeFactor(const _704bca01_slopeFactor &) = delete; } _704bca01_slopeFactor;
+void np_redCallSetDynamicDepthBias(_704bca01_address & address, _704bca01_calls & calls, _704bca01_constantFactor & constantFactor, _704bca01_clamp & clamp, _704bca01_slopeFactor & slopeFactor) {
+  address.value(calls.value, constantFactor.value, clamp.value, slopeFactor.value);
+}
+#endif
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicDepthBounds(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _0b3dca08_address(value) value
+#define _0b3dca08_calls(value) value
+#define _0b3dca08_min(value) value
+#define _0b3dca08_max(value) value
+#else
+typedef struct _0b3dca08_address { _0b3dca08_address(RedTypeProcedureCallSetDynamicDepthBounds value): value(value) {}; RedTypeProcedureCallSetDynamicDepthBounds value; _0b3dca08_address(const _0b3dca08_address &) = delete; } _0b3dca08_address;
+typedef struct _0b3dca08_calls { _0b3dca08_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _0b3dca08_calls(const _0b3dca08_calls &) = delete; } _0b3dca08_calls;
+typedef struct _0b3dca08_min { _0b3dca08_min(float value): value(value) {}; float value; _0b3dca08_min(const _0b3dca08_min &) = delete; } _0b3dca08_min;
+typedef struct _0b3dca08_max { _0b3dca08_max(float value): value(value) {}; float value; _0b3dca08_max(const _0b3dca08_max &) = delete; } _0b3dca08_max;
+void np_redCallSetDynamicDepthBounds(_0b3dca08_address & address, _0b3dca08_calls & calls, _0b3dca08_min & min, _0b3dca08_max & max) {
+  address.value(calls.value, min.value, max.value);
+}
+#endif
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicStencilCompareMask(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _49fbcd04_address(value) value
+#define _49fbcd04_calls(value) value
+#define _49fbcd04_face(value) value
+#define _49fbcd04_compareMask(value) value
+#else
+typedef struct _49fbcd04_address { _49fbcd04_address(RedTypeProcedureCallSetDynamicStencilCompareMask value): value(value) {}; RedTypeProcedureCallSetDynamicStencilCompareMask value; _49fbcd04_address(const _49fbcd04_address &) = delete; } _49fbcd04_address;
+typedef struct _49fbcd04_calls { _49fbcd04_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _49fbcd04_calls(const _49fbcd04_calls &) = delete; } _49fbcd04_calls;
+typedef struct _49fbcd04_face { _49fbcd04_face(RedStencilFace value): value(value) {}; RedStencilFace value; _49fbcd04_face(const _49fbcd04_face &) = delete; } _49fbcd04_face;
+typedef struct _49fbcd04_compareMask { _49fbcd04_compareMask(unsigned value): value(value) {}; unsigned value; _49fbcd04_compareMask(const _49fbcd04_compareMask &) = delete; } _49fbcd04_compareMask;
+void np_redCallSetDynamicStencilCompareMask(_49fbcd04_address & address, _49fbcd04_calls & calls, _49fbcd04_face & face, _49fbcd04_compareMask & compareMask) {
+  address.value(calls.value, face.value, compareMask.value);
+}
+#endif
+#endif
+
+#ifndef REDGPU_USE_REDGPU_X
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicStencilWriteMask(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _b029fa3c_address(value) value
+#define _b029fa3c_calls(value) value
+#define _b029fa3c_face(value) value
+#define _b029fa3c_writeMask(value) value
+#else
+typedef struct _b029fa3c_address { _b029fa3c_address(RedTypeProcedureCallSetDynamicStencilWriteMask value): value(value) {}; RedTypeProcedureCallSetDynamicStencilWriteMask value; _b029fa3c_address(const _b029fa3c_address &) = delete; } _b029fa3c_address;
+typedef struct _b029fa3c_calls { _b029fa3c_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _b029fa3c_calls(const _b029fa3c_calls &) = delete; } _b029fa3c_calls;
+typedef struct _b029fa3c_face { _b029fa3c_face(RedStencilFace value): value(value) {}; RedStencilFace value; _b029fa3c_face(const _b029fa3c_face &) = delete; } _b029fa3c_face;
+typedef struct _b029fa3c_writeMask { _b029fa3c_writeMask(unsigned value): value(value) {}; unsigned value; _b029fa3c_writeMask(const _b029fa3c_writeMask &) = delete; } _b029fa3c_writeMask;
+void np_redCallSetDynamicStencilWriteMask(_b029fa3c_address & address, _b029fa3c_calls & calls, _b029fa3c_face & face, _b029fa3c_writeMask & writeMask) {
+  address.value(calls.value, face.value, writeMask.value);
+}
+#endif
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicStencilReference(_0, _1, _2, _3) _0(_1, _2, _3)
+#define _2d80c0fb_address(value) value
+#define _2d80c0fb_calls(value) value
+#define _2d80c0fb_face(value) value
+#define _2d80c0fb_reference(value) value
+#else
+typedef struct _2d80c0fb_address { _2d80c0fb_address(RedTypeProcedureCallSetDynamicStencilReference value): value(value) {}; RedTypeProcedureCallSetDynamicStencilReference value; _2d80c0fb_address(const _2d80c0fb_address &) = delete; } _2d80c0fb_address;
+typedef struct _2d80c0fb_calls { _2d80c0fb_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _2d80c0fb_calls(const _2d80c0fb_calls &) = delete; } _2d80c0fb_calls;
+typedef struct _2d80c0fb_face { _2d80c0fb_face(RedStencilFace value): value(value) {}; RedStencilFace value; _2d80c0fb_face(const _2d80c0fb_face &) = delete; } _2d80c0fb_face;
+typedef struct _2d80c0fb_reference { _2d80c0fb_reference(unsigned value): value(value) {}; unsigned value; _2d80c0fb_reference(const _2d80c0fb_reference &) = delete; } _2d80c0fb_reference;
+void np_redCallSetDynamicStencilReference(_2d80c0fb_address & address, _2d80c0fb_calls & calls, _2d80c0fb_face & face, _2d80c0fb_reference & reference) {
+  address.value(calls.value, face.value, reference.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redCallSetDynamicBlendConstants(_0, _1, _2) _0(_1, _2)
+#define _8f3db010_address(value) value
+#define _8f3db010_calls(value) value
+#define _8f3db010_blendConstants(value) value
+#else
+typedef struct _8f3db010_address { _8f3db010_address(RedTypeProcedureCallSetDynamicBlendConstants value): value(value) {}; RedTypeProcedureCallSetDynamicBlendConstants value; _8f3db010_address(const _8f3db010_address &) = delete; } _8f3db010_address;
+typedef struct _8f3db010_calls { _8f3db010_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _8f3db010_calls(const _8f3db010_calls &) = delete; } _8f3db010_calls;
+typedef struct _8f3db010_blendConstants { _8f3db010_blendConstants(float* value): value(value) {}; float* value; _8f3db010_blendConstants(const _8f3db010_blendConstants &) = delete; } _8f3db010_blendConstants;
+void np_redCallSetDynamicBlendConstants(_8f3db010_address & address, _8f3db010_calls & calls, _8f3db010_blendConstants & blendConstants) {
+  address.value(calls.value, blendConstants.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCallSetDynamicViewport redCallSetDynamicViewport
 #define _4f3a2630_address(value) value
 #define _4f3a2630_calls(value) value
