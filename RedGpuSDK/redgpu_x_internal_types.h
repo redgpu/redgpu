@@ -13,28 +13,28 @@ typedef enum RedXInternalTypeSurfaceType {
 } RedXInternalTypeSurfaceType;
 
 typedef struct RedXInternalTypeCpuDescriptorCBVSRVUAV {
-  X12DescriptorHeap           cpuDescriptorHeapCBVSRVUAV;
+  X12DescriptorHeap *         cpuDescriptorHeapCBVSRVUAV;
   D3D12_CPU_DESCRIPTOR_HANDLE cpuDescriptorCBVSRVUAV;
 } RedXInternalTypeCpuDescriptorCBVSRVUAV;
 
 typedef struct RedXInternalTypeCpuDescriptorSampler {
-  X12DescriptorHeap           cpuDescriptorHeapSampler;
+  X12DescriptorHeap *         cpuDescriptorHeapSampler;
   D3D12_CPU_DESCRIPTOR_HANDLE cpuDescriptorSampler;
 } RedXInternalTypeCpuDescriptorSampler;
 
 typedef struct RedXInternalTypeCpuDescriptorRTV {
-  X12DescriptorHeap           cpuDescriptorHeapRTV;
+  X12DescriptorHeap *         cpuDescriptorHeapRTV;
   D3D12_CPU_DESCRIPTOR_HANDLE cpuDescriptorRTV;
 } RedXInternalTypeCpuDescriptorRTV;
 
 typedef struct RedXInternalTypeCpuDescriptorDSV {
-  X12DescriptorHeap           cpuDescriptorHeapDSV;
+  X12DescriptorHeap *         cpuDescriptorHeapDSV;
   D3D12_CPU_DESCRIPTOR_HANDLE cpuDescriptorDSV;
 } RedXInternalTypeCpuDescriptorDSV;
 
 typedef struct RedXInternalTypeMemory {
-  X12Heap                    handle;
-  X12Resource                resource;
+  X12Heap *                  handle;
+  X12Resource *              resource;
   RedContext                 context;
   unsigned                   gpuIndex;
   uint64_t                   bytesCount;
@@ -52,22 +52,22 @@ typedef struct RedXInternalTypeMemory {
 } RedXInternalTypeMemory;
 
 typedef struct RedXInternalTypeStructsMemory {
-  X12DescriptorHeap handle;
-  RedContext        context;
-  unsigned          gpuIndex;
-  unsigned          maxStructsCount;
-  unsigned          maxStructsMembersOfTypeArrayROConstantCount;
-  unsigned          maxStructsMembersOfTypeArrayROOrArrayRWCount;
-  unsigned          maxStructsMembersOfTypeSamplerCount;
-  unsigned          maxStructsMembersOfTypeTextureROCount;
-  unsigned          maxStructsMembersOfTypeTextureRWCount;
+  X12DescriptorHeap * handle;
+  RedContext          context;
+  unsigned            gpuIndex;
+  unsigned            maxStructsCount;
+  unsigned            maxStructsMembersOfTypeArrayROConstantCount;
+  unsigned            maxStructsMembersOfTypeArrayROOrArrayRWCount;
+  unsigned            maxStructsMembersOfTypeSamplerCount;
+  unsigned            maxStructsMembersOfTypeTextureROCount;
+  unsigned            maxStructsMembersOfTypeTextureRWCount;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
-  std::string       handleName;
+  std::string         handleName;
 #endif
 } RedXInternalTypeStructsMemory;
 
 typedef struct RedXInternalTypeArray {
-  X12Resource                            handle;
+  X12Resource *                          handle;
   RedContext                             context;
   unsigned                               gpuIndex;
   RedArrayType                           type;
@@ -91,7 +91,7 @@ typedef struct RedXInternalTypeArray {
 } RedXInternalTypeArray;
 
 typedef struct RedXInternalTypeImage {
-  X12Resource                handle;
+  X12Resource *              handle;
   RedContext                 context;
   unsigned                   gpuIndex;
   RedImageDimensions         dimensions;
@@ -179,12 +179,12 @@ typedef struct RedXInternalTypeStructDeclaration {
 } RedXInternalTypeStructDeclaration;
 
 typedef struct RedXInternalTypeProcedureParameters {
-  X12RootSignature                  handle;
+  X12RootSignature *                handle;
   RedContext                        context;
   unsigned                          gpuIndex;
   RedProcedureParametersDeclaration procedureParametersDeclaration;
-  X12Blob                           blob;
-  X12Blob                           blobError;
+  X12Blob *                         blob;
+  X12Blob *                         blobError;
   unsigned                          rootParameterIndexStartVariables;
   unsigned                          rootParameterIndexStartHandles;
   unsigned                          rootParameterIndexStartStructs;
@@ -194,7 +194,7 @@ typedef struct RedXInternalTypeProcedureParameters {
 } RedXInternalTypeProcedureParameters;
 
 typedef struct RedXInternalTypeProcedure {
-  X12PipelineState             handle;
+  X12PipelineState *           handle;
   RedContext                   context;
   unsigned                     gpuIndex;
   RedBool32                    isCompute;
@@ -216,17 +216,17 @@ typedef struct RedXInternalTypeProcedure {
 } RedXInternalTypeProcedure;
 
 typedef struct RedXInternalTypeQueue {
-  X12CommandQueue handle;
-  RedContext      context;
-  unsigned        gpuIndex;
-  unsigned        queueFamilyIndex;
+  X12CommandQueue * handle;
+  RedContext        context;
+  unsigned          gpuIndex;
+  unsigned          queueFamilyIndex;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
-  std::string     handleName;
+  std::string       handleName;
 #endif
 } RedXInternalTypeQueue;
 
 typedef struct RedXInternalTypeSignal {
-  X12Fence    handle;
+  X12Fence *  handle;
   uint64_t    value;
   RedContext  context;
   unsigned    gpuIndex;
@@ -236,8 +236,8 @@ typedef struct RedXInternalTypeSignal {
 } RedXInternalTypeSignal;
 
 typedef struct RedXInternalTypeCalls {
-  X12CommandList                       handle;
-  X12CommandAllocator                  memory;
+  X12CommandList *                     handle;
+  X12CommandAllocator *                memory;
   RedContext                           context;
   unsigned                             gpuIndex;
   RedBool32                            reusable;
@@ -266,7 +266,7 @@ typedef struct RedXInternalTypeSurface {
 } RedXInternalTypeSurface;
 
 typedef struct RedXInternalTypePresent {
-  X12SwapChain3             handle;
+  X12SwapChain3 *           handle;
   RedContext                context;
   unsigned                  gpuIndex;
   RedXInternalTypeQueue *   queue;
