@@ -1,3 +1,8 @@
+May 02, 2023:
+
+  * Fixed procedure ids for `redXGetHandleStruct` and `redXPageableEvict` procedures.
+  * `redCreateOutput` now returns a dummy non-NULL value for `RedOutput::handle`.
+
 Apr 30, 2023:
 
   * Update `redgpu_x_internal_types.h`.
