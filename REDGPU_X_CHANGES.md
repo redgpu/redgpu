@@ -1,3 +1,8 @@
+May 03, 2023:
+
+  * Fixed validation errors when creating dedicated resources.
+  * The type of `redXCallEndProcedureOutput::resolveTargetColorsFormat` parameter is changed from `RedXFormat *` to `unsigned *`.
+
 May 02, 2023:
 
   * Fixed procedure ids for `redXGetHandleStruct` and `redXPageableEvict` procedures.

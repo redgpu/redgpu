@@ -221,7 +221,7 @@ REDGPU_X_DECLSPEC RedXHandleResource REDGPU_X_API redXGetHandleResourceImage    
 // Calls recording
 
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallSetProcedureOutput               (RedHandleCalls calls, RedHandleTexture depthStencil, unsigned colorsCount, RedHandleTexture * colors, RedSetProcedureOutputOp depthSetProcedureOutputOp, RedSetProcedureOutputOp stencilSetProcedureOutputOp, RedSetProcedureOutputOp * colorsSetProcedureOutputOp, float depthClearValue, unsigned stencilClearValue, const RedColorsClearValuesFloat * colorsClearValuesFloat);
-REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallEndProcedureOutput               (RedHandleCalls calls, RedHandleTexture * resolveTargetColors, RedXFormat * resolveTargetColorsFormat, RedEndProcedureOutputOp depthEndProcedureOutputOp, RedEndProcedureOutputOp stencilEndProcedureOutputOp, RedEndProcedureOutputOp * colorsEndProcedureOutputOp);
+REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallEndProcedureOutput               (RedHandleCalls calls, RedHandleTexture * resolveTargetColors, unsigned * resolveTargetColorsFormat, RedEndProcedureOutputOp depthEndProcedureOutputOp, RedEndProcedureOutputOp stencilEndProcedureOutputOp, RedEndProcedureOutputOp * colorsEndProcedureOutputOp);
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallUsageAliasOrderBarrier           (RedHandleCalls calls, unsigned barriersCount, const void * barriers);
 REDGPU_X_DECLSPEC void               REDGPU_X_API redXCallCopyImageRegion                  (RedHandleCalls calls, unsigned copiesCount, const void * copies);
 
@@ -256,7 +256,7 @@ REDGPU_X_DECLSPEC void               REDGPU_X_API redXCreateSurfaceWinRT        
 // redCreateTexture -> redXCreateTexture extra parameters: (RedXFormat xformat)
 //
 // * redXCreateImage:    for REDGPU, ::xformat is ignored, for REDGPU X, ::format is ignored, ::restrictToAccess is required to be set to a non-0 value.
-// * redCreateProcedure: ::outputDeclaration can accept an array of 9 RedXFormat values, 8 for output colors and 1 for output depth stencil, respectively.
+// * redCreateProcedure: ::outputDeclaration can accept an array of 9 RedFormat or RedXFormat values, 8 for output colors and 1 for output depth stencil, respectively.
 //
 // * Static procedure state values change dynamic procedure state values.
 // * Procedure parameters variables set within procedure output pass are applied to the following draw procedure calls, procedure parameters variables set outside procedure output pass are applied to the following compute procedure calls.
