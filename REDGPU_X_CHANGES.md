@@ -1,3 +1,9 @@
+May 06, 2023:
+
+  * Added new `RedXContextOptionalSettings` structs.
+  * Added new array type: `REDX_ARRAY_TYPE_RAYTRACING_ACCELERATION_STRUCTURE`.
+  * Added new access bitflag: `REDX_ACCESS_BITFLAG_RAYTRACING_ACCELERATION_STRUCTURE`.
+
 May 03, 2023:
 
   * Fixed validation errors when creating dedicated resources.

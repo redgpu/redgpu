@@ -89,6 +89,29 @@ typedef struct RedGpuInfoOptionalInfoImageXFormatsLimitsAndFeatures {
   const RedXImageFormatFeatures * imageXFormatsFeatures1;                                                      // Count: 14, indexable with RedXFormat values >= 12000 minus 12000
 } RedGpuInfoOptionalInfoImageXFormatsLimitsAndFeatures;
 
+typedef enum RedXContextOptionalSettings {
+  REDX_CONTEXT_OPTIONAL_SETTINGS_D3D_FEATURE_LEVEL          = 12000,
+  REDX_CONTEXT_OPTIONAL_SETTINGS_D3D_MEMORY_ALLOCATE_ZEROED = 12001,
+} RedXContextOptionalSettings;
+
+typedef struct RedXContextOptionalSettingsD3DFeatureLevel {
+  RedXContextOptionalSettings settings;
+  const void *                next;
+  unsigned                    d3dFeatureLevel;
+} RedXContextOptionalSettingsD3DFeatureLevel;
+
+typedef struct RedXContextOptionalSettingsD3DMemoryAllocateZeroed {
+  RedXContextOptionalSettings settings;
+  const void *                next;
+  RedBool32                   d3dMemoryAllocateZeroed;
+} RedXContextOptionalSettingsD3DMemoryAllocateZeroed;
+
+// redCreateArray
+
+#ifndef REDX_ARRAY_TYPE_RAYTRACING_ACCELERATION_STRUCTURE
+#define REDX_ARRAY_TYPE_RAYTRACING_ACCELERATION_STRUCTURE ((RedArrayType)12000)
+#endif
+
 // redXCreateImage
 
 typedef enum RedXFormat {
@@ -145,6 +168,7 @@ typedef enum RedXAccessBitflag {
   REDX_ACCESS_BITFLAG_RESOLVE_TARGET_W                     = REDGPU_B32(0000,0000,0000,0000,0001,0000,0000,0000),
   REDX_ACCESS_BITFLAG_RESOLVE_SOURCE_R                     = REDGPU_B32(0000,0000,0000,0000,0010,0000,0000,0000),
   REDX_ACCESS_BITFLAG_GENERIC_R                            = REDGPU_B32(0000,0000,0000,0000,0000,1010,1100,0011), // The initial access for mappable, coherent (upload) memory type resources
+  REDX_ACCESS_BITFLAG_RAYTRACING_ACCELERATION_STRUCTURE    = REDGPU_B32(0000,0000,0100,0000,0000,0000,0000,0000),
 } RedXAccessBitflag;
 
 typedef struct RedXUsage {
