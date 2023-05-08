@@ -68,6 +68,9 @@ REDGPU_X_RTE_DECLSPEC unsigned REDGPU_X_RTE_API redXRteShaderBindingTableGenerat
 REDGPU_X_RTE_DECLSPEC unsigned REDGPU_X_RTE_API redXRteShaderBindingTableGeneratorGetHitGroupSectionSize      (RedXRteHandleShaderBindingTableGenerator shaderBindingTableGenerator, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters);
 REDGPU_X_RTE_DECLSPEC unsigned REDGPU_X_RTE_API redXRteShaderBindingTableGeneratorGetHitGroupEntrySize        (RedXRteHandleShaderBindingTableGenerator shaderBindingTableGenerator, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters);
 
+REDGPU_X_RTE_DECLSPEC void     REDGPU_X_RTE_API redXRteCallSetStateObject                                     (RedHandleCalls calls, void * stateObject_ID3D12StateObject, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters);
+REDGPU_X_RTE_DECLSPEC void     REDGPU_X_RTE_API redXRteCallDispatchRays                                       (RedHandleCalls calls, void * dispatchRaysDescription_D3D12_DISPATCH_RAYS_DESC, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters);
+
 #ifdef __cplusplus
 }
 #endif

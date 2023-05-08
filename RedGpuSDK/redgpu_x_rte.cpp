@@ -2241,3 +2241,13 @@ unsigned redXRteShaderBindingTableGeneratorGetHitGroupEntrySize(RedXRteHandleSha
   nv_helpers_dx12::ShaderBindingTableGenerator * handle = (nv_helpers_dx12::ShaderBindingTableGenerator *)(void *)shaderBindingTableGenerator;
   return handle->GetHitGroupEntrySize();
 }
+
+void redXRteCallSetStateObject(RedHandleCalls calls, void * stateObject_ID3D12StateObject, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters) {
+  ID3D12GraphicsCommandList4 * commandList = ((ID3D12GraphicsCommandList4 **)calls)[0];
+  commandList->SetPipelineState1((ID3D12StateObject *)stateObject_ID3D12StateObject);
+}
+
+void redXRteCallDispatchRays(RedHandleCalls calls, void * dispatchRaysDescription_D3D12_DISPATCH_RAYS_DESC, const char * optionalFile, int optionalLine, void * optionalUserData, void * rteParameters) {
+  ID3D12GraphicsCommandList4 * commandList = ((ID3D12GraphicsCommandList4 **)calls)[0];
+  commandList->DispatchRays((const D3D12_DISPATCH_RAYS_DESC *)dispatchRaysDescription_D3D12_DISPATCH_RAYS_DESC);
+}

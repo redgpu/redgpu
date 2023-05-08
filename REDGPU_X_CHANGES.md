@@ -1,3 +1,7 @@
+May 08, 2023:
+
+  * Internal fixes for REDGPU X RTE acceleration structure array creation.
+
 May 06, 2023:
 
   * Added new `RedXContextOptionalSettings` structs.
