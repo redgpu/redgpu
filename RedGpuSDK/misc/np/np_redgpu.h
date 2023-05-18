@@ -2214,3 +2214,69 @@ void np_redMarkEnd(_62baadd3_optionalFile & optionalFile, _62baadd3_optionalLine
 }
 #endif
 
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redStructsMemoryAllocateWithInlineSamplers redStructsMemoryAllocateWithInlineSamplers
+#define _27d7343d_context(value) value
+#define _27d7343d_gpu(value) value
+#define _27d7343d_handleName(value) value
+#define _27d7343d_maxStructsCount(value) value
+#define _27d7343d_maxStructsMembersOfTypeArrayROConstantCount(value) value
+#define _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount(value) value
+#define _27d7343d_maxStructsMembersOfTypeTextureROCount(value) value
+#define _27d7343d_maxStructsMembersOfTypeTextureRWCount(value) value
+#define _27d7343d_maxStructsMembersOfTypeInlineSamplerCount(value) value
+#define _27d7343d_outStructsMemory(value) value
+#define _27d7343d_outStatuses(value) value
+#define _27d7343d_optionalFile(value) value
+#define _27d7343d_optionalLine(value) value
+#define _27d7343d_optionalUserData(value) value
+#else
+typedef struct _27d7343d_context { _27d7343d_context(RedContext value): value(value) {}; RedContext value; _27d7343d_context(const _27d7343d_context &) = delete; } _27d7343d_context;
+typedef struct _27d7343d_gpu { _27d7343d_gpu(RedHandleGpu value): value(value) {}; RedHandleGpu value; _27d7343d_gpu(const _27d7343d_gpu &) = delete; } _27d7343d_gpu;
+typedef struct _27d7343d_handleName { _27d7343d_handleName(char* value): value(value) {}; char* value; _27d7343d_handleName(const _27d7343d_handleName &) = delete; } _27d7343d_handleName;
+typedef struct _27d7343d_maxStructsCount { _27d7343d_maxStructsCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsCount(const _27d7343d_maxStructsCount &) = delete; } _27d7343d_maxStructsCount;
+typedef struct _27d7343d_maxStructsMembersOfTypeArrayROConstantCount { _27d7343d_maxStructsMembersOfTypeArrayROConstantCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsMembersOfTypeArrayROConstantCount(const _27d7343d_maxStructsMembersOfTypeArrayROConstantCount &) = delete; } _27d7343d_maxStructsMembersOfTypeArrayROConstantCount;
+typedef struct _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount { _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount(const _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount &) = delete; } _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount;
+typedef struct _27d7343d_maxStructsMembersOfTypeTextureROCount { _27d7343d_maxStructsMembersOfTypeTextureROCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsMembersOfTypeTextureROCount(const _27d7343d_maxStructsMembersOfTypeTextureROCount &) = delete; } _27d7343d_maxStructsMembersOfTypeTextureROCount;
+typedef struct _27d7343d_maxStructsMembersOfTypeTextureRWCount { _27d7343d_maxStructsMembersOfTypeTextureRWCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsMembersOfTypeTextureRWCount(const _27d7343d_maxStructsMembersOfTypeTextureRWCount &) = delete; } _27d7343d_maxStructsMembersOfTypeTextureRWCount;
+typedef struct _27d7343d_maxStructsMembersOfTypeInlineSamplerCount { _27d7343d_maxStructsMembersOfTypeInlineSamplerCount(unsigned value): value(value) {}; unsigned value; _27d7343d_maxStructsMembersOfTypeInlineSamplerCount(const _27d7343d_maxStructsMembersOfTypeInlineSamplerCount &) = delete; } _27d7343d_maxStructsMembersOfTypeInlineSamplerCount;
+typedef struct _27d7343d_outStructsMemory { _27d7343d_outStructsMemory(RedHandleStructsMemory* value): value(value) {}; RedHandleStructsMemory* value; _27d7343d_outStructsMemory(const _27d7343d_outStructsMemory &) = delete; } _27d7343d_outStructsMemory;
+typedef struct _27d7343d_outStatuses { _27d7343d_outStatuses(RedStatuses* value): value(value) {}; RedStatuses* value; _27d7343d_outStatuses(const _27d7343d_outStatuses &) = delete; } _27d7343d_outStatuses;
+typedef struct _27d7343d_optionalFile { _27d7343d_optionalFile(char* value): value(value) {}; char* value; _27d7343d_optionalFile(const _27d7343d_optionalFile &) = delete; } _27d7343d_optionalFile;
+typedef struct _27d7343d_optionalLine { _27d7343d_optionalLine(int value): value(value) {}; int value; _27d7343d_optionalLine(const _27d7343d_optionalLine &) = delete; } _27d7343d_optionalLine;
+typedef struct _27d7343d_optionalUserData { _27d7343d_optionalUserData(void* value): value(value) {}; void* value; _27d7343d_optionalUserData(const _27d7343d_optionalUserData &) = delete; } _27d7343d_optionalUserData;
+void np_redStructsMemoryAllocateWithInlineSamplers(_27d7343d_context & context, _27d7343d_gpu & gpu, _27d7343d_handleName & handleName, _27d7343d_maxStructsCount & maxStructsCount, _27d7343d_maxStructsMembersOfTypeArrayROConstantCount & maxStructsMembersOfTypeArrayROConstantCount, _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount & maxStructsMembersOfTypeArrayROOrArrayRWCount, _27d7343d_maxStructsMembersOfTypeTextureROCount & maxStructsMembersOfTypeTextureROCount, _27d7343d_maxStructsMembersOfTypeTextureRWCount & maxStructsMembersOfTypeTextureRWCount, _27d7343d_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _27d7343d_outStructsMemory & outStructsMemory, _27d7343d_outStatuses & outStatuses, _27d7343d_optionalFile & optionalFile, _27d7343d_optionalLine & optionalLine, _27d7343d_optionalUserData & optionalUserData) {
+  redStructsMemoryAllocateWithInlineSamplers(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeArrayROConstantCount.value, maxStructsMembersOfTypeArrayROOrArrayRWCount.value, maxStructsMembersOfTypeTextureROCount.value, maxStructsMembersOfTypeTextureRWCount.value, maxStructsMembersOfTypeInlineSamplerCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
+}
+#endif
+
+#ifdef REDGPU_DISABLE_NAMED_PARAMETERS
+#define np_redStructsMemoryAllocateSamplersWithInlineSamplers redStructsMemoryAllocateSamplersWithInlineSamplers
+#define _cba9611e_context(value) value
+#define _cba9611e_gpu(value) value
+#define _cba9611e_handleName(value) value
+#define _cba9611e_maxStructsCount(value) value
+#define _cba9611e_maxStructsMembersOfTypeSamplerCount(value) value
+#define _cba9611e_maxStructsMembersOfTypeInlineSamplerCount(value) value
+#define _cba9611e_outStructsMemory(value) value
+#define _cba9611e_outStatuses(value) value
+#define _cba9611e_optionalFile(value) value
+#define _cba9611e_optionalLine(value) value
+#define _cba9611e_optionalUserData(value) value
+#else
+typedef struct _cba9611e_context { _cba9611e_context(RedContext value): value(value) {}; RedContext value; _cba9611e_context(const _cba9611e_context &) = delete; } _cba9611e_context;
+typedef struct _cba9611e_gpu { _cba9611e_gpu(RedHandleGpu value): value(value) {}; RedHandleGpu value; _cba9611e_gpu(const _cba9611e_gpu &) = delete; } _cba9611e_gpu;
+typedef struct _cba9611e_handleName { _cba9611e_handleName(char* value): value(value) {}; char* value; _cba9611e_handleName(const _cba9611e_handleName &) = delete; } _cba9611e_handleName;
+typedef struct _cba9611e_maxStructsCount { _cba9611e_maxStructsCount(unsigned value): value(value) {}; unsigned value; _cba9611e_maxStructsCount(const _cba9611e_maxStructsCount &) = delete; } _cba9611e_maxStructsCount;
+typedef struct _cba9611e_maxStructsMembersOfTypeSamplerCount { _cba9611e_maxStructsMembersOfTypeSamplerCount(unsigned value): value(value) {}; unsigned value; _cba9611e_maxStructsMembersOfTypeSamplerCount(const _cba9611e_maxStructsMembersOfTypeSamplerCount &) = delete; } _cba9611e_maxStructsMembersOfTypeSamplerCount;
+typedef struct _cba9611e_maxStructsMembersOfTypeInlineSamplerCount { _cba9611e_maxStructsMembersOfTypeInlineSamplerCount(unsigned value): value(value) {}; unsigned value; _cba9611e_maxStructsMembersOfTypeInlineSamplerCount(const _cba9611e_maxStructsMembersOfTypeInlineSamplerCount &) = delete; } _cba9611e_maxStructsMembersOfTypeInlineSamplerCount;
+typedef struct _cba9611e_outStructsMemory { _cba9611e_outStructsMemory(RedHandleStructsMemory* value): value(value) {}; RedHandleStructsMemory* value; _cba9611e_outStructsMemory(const _cba9611e_outStructsMemory &) = delete; } _cba9611e_outStructsMemory;
+typedef struct _cba9611e_outStatuses { _cba9611e_outStatuses(RedStatuses* value): value(value) {}; RedStatuses* value; _cba9611e_outStatuses(const _cba9611e_outStatuses &) = delete; } _cba9611e_outStatuses;
+typedef struct _cba9611e_optionalFile { _cba9611e_optionalFile(char* value): value(value) {}; char* value; _cba9611e_optionalFile(const _cba9611e_optionalFile &) = delete; } _cba9611e_optionalFile;
+typedef struct _cba9611e_optionalLine { _cba9611e_optionalLine(int value): value(value) {}; int value; _cba9611e_optionalLine(const _cba9611e_optionalLine &) = delete; } _cba9611e_optionalLine;
+typedef struct _cba9611e_optionalUserData { _cba9611e_optionalUserData(void* value): value(value) {}; void* value; _cba9611e_optionalUserData(const _cba9611e_optionalUserData &) = delete; } _cba9611e_optionalUserData;
+void np_redStructsMemoryAllocateSamplersWithInlineSamplers(_cba9611e_context & context, _cba9611e_gpu & gpu, _cba9611e_handleName & handleName, _cba9611e_maxStructsCount & maxStructsCount, _cba9611e_maxStructsMembersOfTypeSamplerCount & maxStructsMembersOfTypeSamplerCount, _cba9611e_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _cba9611e_outStructsMemory & outStructsMemory, _cba9611e_outStatuses & outStatuses, _cba9611e_optionalFile & optionalFile, _cba9611e_optionalLine & optionalLine, _cba9611e_optionalUserData & optionalUserData) {
+  redStructsMemoryAllocateSamplersWithInlineSamplers(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeSamplerCount.value, maxStructsMembersOfTypeInlineSamplerCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
+}
+#endif
+

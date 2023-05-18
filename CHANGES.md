@@ -1,3 +1,9 @@
+May 18, 2023:
+
+  * **NEW**: redgpu_tracing libraries to generate `about:tracing` profiling data.
+  * **NEW**: `redStructsMemoryAllocateWithInlineSamplers` and `redStructsMemoryAllocateSamplersWithInlineSamplers` procedures are added. Some GPU vendors' drivers need to allocate extra structs memory space to hold inline samplers.
+  * **NEW**: `RedContextOptionalSettingsCreateContextPerformance` structure.
+
 Apr 10, 2023:
 
   * redgpu.h: RedArrayType::RED_ARRAY_TYPE_ARRAY_R0 name is corrected to RedArrayType::RED_ARRAY_TYPE_ARRAY_RO.

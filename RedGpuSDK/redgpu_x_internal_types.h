@@ -272,6 +272,7 @@ typedef struct RedXInternalTypePresent {
   RedXInternalTypeQueue *   queue;
   RedXInternalTypeSurface * surface;
   RedXInternalTypeImage *   images[2];
+  RedPresentVsyncMode       vsyncMode;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
   std::string               handleName;
 #endif

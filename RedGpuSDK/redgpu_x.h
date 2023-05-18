@@ -199,6 +199,48 @@ typedef union RedXBarrier {
   RedXOrder order;
 } RedXBarrier;
 
+// redXCallCopyImageRegion
+
+typedef struct RedXCopyImageRegionSubresourceFootprint {
+  unsigned xformat;
+  unsigned width;
+  unsigned height;
+  unsigned depth;
+  unsigned rowPitch;
+} RedXCopyImageRegionSubresourceFootprint;
+
+typedef struct RedXCopyImageRegionPlacedSubresourceFootprint {
+  uint64_t                                offset;
+  RedXCopyImageRegionSubresourceFootprint footprint;
+} RedXCopyImageRegionPlacedSubresourceFootprint;
+
+typedef struct RedXCopyImageRegionLocation {
+  void *   resource;
+  unsigned typeSubresourceIndexOrPlacedFootprint;
+  union {
+    RedXCopyImageRegionPlacedSubresourceFootprint placedFootprint;
+    unsigned                                      subresourceIndex;
+  };
+} RedXCopyImageRegionLocation;
+
+typedef struct RedXCopyImageRegionBox {
+  unsigned left;
+  unsigned top;
+  unsigned front;
+  unsigned right;
+  unsigned bottom;
+  unsigned back;
+} RedXCopyImageRegionBox;
+
+typedef struct RedXCopyImageRegion {
+  const RedXCopyImageRegionLocation * target;
+  unsigned                            targetX;
+  unsigned                            targetY;
+  unsigned                            targetZ;
+  const RedXCopyImageRegionLocation * source;
+  const RedXCopyImageRegionBox *      sourceBox;
+} RedXCopyImageRegion;
+
 #ifndef REDGPU_X_DECLSPEC
 #define REDGPU_X_DECLSPEC
 #endif

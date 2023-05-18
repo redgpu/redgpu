@@ -1,3 +1,10 @@
+May 18, 2023:
+
+  * **NEW**: redgpu_x_tracing.dll library to generate `about:tracing` profiling data.
+  * Added new structs for `redXCallCopyImageRegion` procedure.
+  * `redCreatePresent::vsyncMode` parameter set to `RED_PRESENT_VSYNC_MODE_OFF` is now supported.
+  * Update `redgpu_x_internal_types.h`.
+
 May 08, 2023:
 
   * Internal fixes for REDGPU X RTE acceleration structure array creation.

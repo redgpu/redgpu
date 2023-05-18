@@ -114,6 +114,8 @@
   (unsigned)(x) == RED_PROCEDURE_ID_redCreateArrayTimestamp                        ? "RED_PROCEDURE_ID_redCreateArrayTimestamp"                        :\
   (unsigned)(x) == RED_PROCEDURE_ID_redDestroyArrayTimestamp                       ? "RED_PROCEDURE_ID_redDestroyArrayTimestamp"                       :\
   (unsigned)(x) == RED_PROCEDURE_ID_redArrayTimestampRead                          ? "RED_PROCEDURE_ID_redArrayTimestampRead"                          :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryAllocateWithInlineSamplers         ? "RED_PROCEDURE_ID_redStructsMemoryAllocateWithInlineSamplers"         :\
+  (unsigned)(x) == RED_PROCEDURE_ID_redStructsMemoryAllocateSamplersWithInlineSamplers ? "RED_PROCEDURE_ID_redStructsMemoryAllocateSamplersWithInlineSamplers" :\
   "(unknown)"\
 )
 

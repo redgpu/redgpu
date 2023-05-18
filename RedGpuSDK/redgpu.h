@@ -232,6 +232,8 @@ typedef enum RedProcedureId {
   RED_PROCEDURE_ID_redQueuePresent                                = 73, // WSI specific
   RED_PROCEDURE_ID_redDebugArrayGetHandle                         = 74, // Debug specific
   RED_PROCEDURE_ID_redDebugArrayCallPrint                         = 75, // Debug specific
+  RED_PROCEDURE_ID_redStructsMemoryAllocateWithInlineSamplers         = 80,
+  RED_PROCEDURE_ID_redStructsMemoryAllocateSamplersWithInlineSamplers = 81,
 } RedProcedureId;
 
 typedef unsigned RedMultisampleCountBitflags;
@@ -690,6 +692,7 @@ typedef enum RedSdkVersion {
 typedef enum RedContextOptionalSettings {
   RED_CONTEXT_OPTIONAL_SETTINGS_0           = 0,
   RED_CONTEXT_OPTIONAL_SETTINGS_DEBUG_ARRAY = 1, // Debug specific
+  RED_CONTEXT_OPTIONAL_SETTINGS_CREATE_CONTEXT_PERFORMANCE = 2,
 } RedContextOptionalSettings;
 
 typedef struct RedContextOptionalSettingsIterator {
@@ -704,6 +707,12 @@ typedef struct RedContextOptionalSettings0 {
   RedBool32                  skipCheckingContextExtensions;
   RedBool32                  gpusExposeOnlyOneQueue;
 } RedContextOptionalSettings0;
+
+typedef struct RedContextOptionalSettingsCreateContextPerformance {
+  RedContextOptionalSettings settings;
+  void *                     next;
+  RedBool32                  exposeOnlyOneGpu;
+} RedContextOptionalSettingsCreateContextPerformance;
 
 typedef enum RedDebugCallbackSeverity {
   RED_DEBUG_CALLBACK_SEVERITY_WARNING = REDGPU_B32(0000,0000,0000,0000,0000,0001,0000,0000),
@@ -1589,6 +1598,11 @@ REDGPU_DECLSPEC void REDGPU_API redQueueSubmit                     (RedContext c
 REDGPU_DECLSPEC void REDGPU_API redMark                            (const char * mark, const char * optionalFile, int optionalLine, void * optionalUserData);
 REDGPU_DECLSPEC void REDGPU_API redMarkSet                         (const char * mark, const char * optionalFile, int optionalLine, void * optionalUserData);
 REDGPU_DECLSPEC void REDGPU_API redMarkEnd                         (const char * optionalFile, int optionalLine, void * optionalUserData);
+
+// Struct extended (18 May 2023)
+
+REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateWithInlineSamplers         (RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeArrayROConstantCount, unsigned maxStructsMembersOfTypeArrayROOrArrayRWCount, unsigned maxStructsMembersOfTypeTextureROCount, unsigned maxStructsMembersOfTypeTextureRWCount, unsigned maxStructsMembersOfTypeInlineSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplersWithInlineSamplers (RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeSamplerCount, unsigned maxStructsMembersOfTypeInlineSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
 
 #ifdef __cplusplus
 }
