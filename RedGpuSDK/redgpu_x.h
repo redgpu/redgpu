@@ -97,13 +97,13 @@ typedef enum RedXContextOptionalSettings {
 typedef struct RedXContextOptionalSettingsD3DFeatureLevel {
   RedXContextOptionalSettings settings;
   const void *                next;
-  unsigned                    d3dFeatureLevel;
+  unsigned                    d3dFeatureLevel; // Default value is D3D_FEATURE_LEVEL_12_0 (0xc000)
 } RedXContextOptionalSettingsD3DFeatureLevel;
 
 typedef struct RedXContextOptionalSettingsD3DMemoryAllocateZeroed {
   RedXContextOptionalSettings settings;
   const void *                next;
-  RedBool32                   d3dMemoryAllocateZeroed;
+  RedBool32                   d3dMemoryAllocateZeroed; // Default value is 0
 } RedXContextOptionalSettingsD3DMemoryAllocateZeroed;
 
 // redCreateArray

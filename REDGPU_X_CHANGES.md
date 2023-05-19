@@ -1,3 +1,8 @@
+May 19, 2023:
+
+  * `redSurfaceGetPresentFeatures::outSurfacePresentFeatures::supportsPresentVsyncModeOff` now returns `1`.
+  * Removed too frequent and insignificant marks in redgpu_x_tracing.dll library.
+
 May 18, 2023:
 
   * **NEW**: redgpu_x_tracing.dll library to generate `about:tracing` profiling data.
