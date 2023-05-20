@@ -692,7 +692,7 @@ typedef enum RedSdkVersion {
 typedef enum RedContextOptionalSettings {
   RED_CONTEXT_OPTIONAL_SETTINGS_0           = 0,
   RED_CONTEXT_OPTIONAL_SETTINGS_DEBUG_ARRAY = 1, // Debug specific
-  RED_CONTEXT_OPTIONAL_SETTINGS_CREATE_CONTEXT_PERFORMANCE = 2,
+  RED_CONTEXT_OPTIONAL_SETTINGS_CREATE_CONTEXT_PERFORMANCE = 4,
 } RedContextOptionalSettings;
 
 typedef struct RedContextOptionalSettingsIterator {

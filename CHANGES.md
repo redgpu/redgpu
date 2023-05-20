@@ -1,3 +1,7 @@
+May 20, 2023:
+
+  * `RED_CONTEXT_OPTIONAL_SETTINGS_CREATE_CONTEXT_PERFORMANCE` enum value is changed to `4`.
+
 May 18, 2023:
 
   * **NEW**: redgpu_tracing libraries to generate `about:tracing` profiling data.
