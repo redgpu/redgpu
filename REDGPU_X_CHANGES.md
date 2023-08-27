@@ -1,3 +1,9 @@
+Aug 27, 2023:
+
+  * Fixed a crash on `redCreateProcedureCompute` call.
+  * Fixed a warning on `redMemoryUnmap` call.
+  * Fixed an issue for `redCallCopyArrayToArray` for arrays set to mapped memorys at byte offsets different than 0.
+
 May 19, 2023:
 
   * `redSurfaceGetPresentFeatures::outSurfacePresentFeatures::supportsPresentVsyncModeOff` now returns `1`.
