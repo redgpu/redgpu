@@ -1,3 +1,7 @@
+Aug 29, 2023:
+
+  * Update `redgpu_x_internal_types.h`.
+
 Aug 27, 2023:
 
   * Fixed a crash on `redCreateProcedureCompute` call.

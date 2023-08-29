@@ -85,6 +85,7 @@ typedef struct RedXInternalTypeArray {
   D3D12_RESOURCE_DESC                    resourceDescription;
   RedXInternalTypeCpuDescriptorCBVSRVUAV cpuDescriptor;
   RedBool32                              destroyHandle;
+  uint64_t                               mappedMemoryBytesFirst;
 #ifndef REDGPU_X_INTERNAL_TYPES_EXCLUDE_STD_STRING
   std::string                            handleName;
 #endif
