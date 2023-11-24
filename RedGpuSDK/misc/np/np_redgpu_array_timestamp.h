@@ -1,5 +1,13 @@
 #pragma once
 
+#ifndef REDGPU_NP_DECLSPEC
+#define REDGPU_NP_DECLSPEC
+#endif
+
+#ifndef REDGPU_NP_API
+#define REDGPU_NP_API
+#endif
+
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCreateArrayTimestamp redCreateArrayTimestamp
 #define _ca446e21_context(value) value
@@ -21,7 +29,7 @@ typedef struct _ca446e21_outStatuses { _ca446e21_outStatuses(RedStatuses* value)
 typedef struct _ca446e21_optionalFile { _ca446e21_optionalFile(char* value): value(value) {}; char* value; _ca446e21_optionalFile(const _ca446e21_optionalFile &) = delete; } _ca446e21_optionalFile;
 typedef struct _ca446e21_optionalLine { _ca446e21_optionalLine(int value): value(value) {}; int value; _ca446e21_optionalLine(const _ca446e21_optionalLine &) = delete; } _ca446e21_optionalLine;
 typedef struct _ca446e21_optionalUserData { _ca446e21_optionalUserData(void* value): value(value) {}; void* value; _ca446e21_optionalUserData(const _ca446e21_optionalUserData &) = delete; } _ca446e21_optionalUserData;
-void np_redCreateArrayTimestamp(_ca446e21_context & context, _ca446e21_gpu & gpu, _ca446e21_handleName & handleName, _ca446e21_count & count, _ca446e21_outArrayTimestamp & outArrayTimestamp, _ca446e21_outStatuses & outStatuses, _ca446e21_optionalFile & optionalFile, _ca446e21_optionalLine & optionalLine, _ca446e21_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateArrayTimestamp(_ca446e21_context & context, _ca446e21_gpu & gpu, _ca446e21_handleName & handleName, _ca446e21_count & count, _ca446e21_outArrayTimestamp & outArrayTimestamp, _ca446e21_outStatuses & outStatuses, _ca446e21_optionalFile & optionalFile, _ca446e21_optionalLine & optionalLine, _ca446e21_optionalUserData & optionalUserData) {
   redCreateArrayTimestamp(context.value, gpu.value, handleName.value, count.value, outArrayTimestamp.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -41,7 +49,7 @@ typedef struct _3233be2d_arrayTimestamp { _3233be2d_arrayTimestamp(RedHandleArra
 typedef struct _3233be2d_optionalFile { _3233be2d_optionalFile(char* value): value(value) {}; char* value; _3233be2d_optionalFile(const _3233be2d_optionalFile &) = delete; } _3233be2d_optionalFile;
 typedef struct _3233be2d_optionalLine { _3233be2d_optionalLine(int value): value(value) {}; int value; _3233be2d_optionalLine(const _3233be2d_optionalLine &) = delete; } _3233be2d_optionalLine;
 typedef struct _3233be2d_optionalUserData { _3233be2d_optionalUserData(void* value): value(value) {}; void* value; _3233be2d_optionalUserData(const _3233be2d_optionalUserData &) = delete; } _3233be2d_optionalUserData;
-void np_redDestroyArrayTimestamp(_3233be2d_context & context, _3233be2d_gpu & gpu, _3233be2d_arrayTimestamp & arrayTimestamp, _3233be2d_optionalFile & optionalFile, _3233be2d_optionalLine & optionalLine, _3233be2d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyArrayTimestamp(_3233be2d_context & context, _3233be2d_gpu & gpu, _3233be2d_arrayTimestamp & arrayTimestamp, _3233be2d_optionalFile & optionalFile, _3233be2d_optionalLine & optionalLine, _3233be2d_optionalUserData & optionalUserData) {
   redDestroyArrayTimestamp(context.value, gpu.value, arrayTimestamp.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -57,7 +65,7 @@ typedef struct _69ac2ce9_calls { _69ac2ce9_calls(RedHandleCalls value): value(va
 typedef struct _69ac2ce9_context { _69ac2ce9_context(RedContext value): value(value) {}; RedContext value; _69ac2ce9_context(const _69ac2ce9_context &) = delete; } _69ac2ce9_context;
 typedef struct _69ac2ce9_arrayTimestamp { _69ac2ce9_arrayTimestamp(RedHandleArrayTimestamp value): value(value) {}; RedHandleArrayTimestamp value; _69ac2ce9_arrayTimestamp(const _69ac2ce9_arrayTimestamp &) = delete; } _69ac2ce9_arrayTimestamp;
 typedef struct _69ac2ce9_index { _69ac2ce9_index(unsigned value): value(value) {}; unsigned value; _69ac2ce9_index(const _69ac2ce9_index &) = delete; } _69ac2ce9_index;
-void np_redCallArrayTimestampWrite(_69ac2ce9_calls & calls, _69ac2ce9_context & context, _69ac2ce9_arrayTimestamp & arrayTimestamp, _69ac2ce9_index & index) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallArrayTimestampWrite(_69ac2ce9_calls & calls, _69ac2ce9_context & context, _69ac2ce9_arrayTimestamp & arrayTimestamp, _69ac2ce9_index & index) {
   redCallArrayTimestampWrite(calls.value, context.value, arrayTimestamp.value, index.value);
 }
 #endif
@@ -85,7 +93,7 @@ typedef struct _38bcaab7_outStatuses { _38bcaab7_outStatuses(RedStatuses* value)
 typedef struct _38bcaab7_optionalFile { _38bcaab7_optionalFile(char* value): value(value) {}; char* value; _38bcaab7_optionalFile(const _38bcaab7_optionalFile &) = delete; } _38bcaab7_optionalFile;
 typedef struct _38bcaab7_optionalLine { _38bcaab7_optionalLine(int value): value(value) {}; int value; _38bcaab7_optionalLine(const _38bcaab7_optionalLine &) = delete; } _38bcaab7_optionalLine;
 typedef struct _38bcaab7_optionalUserData { _38bcaab7_optionalUserData(void* value): value(value) {}; void* value; _38bcaab7_optionalUserData(const _38bcaab7_optionalUserData &) = delete; } _38bcaab7_optionalUserData;
-void np_redArrayTimestampRead(_38bcaab7_context & context, _38bcaab7_gpu & gpu, _38bcaab7_arrayTimestamp & arrayTimestamp, _38bcaab7_rangeFirst & rangeFirst, _38bcaab7_rangeCount & rangeCount, _38bcaab7_out64BitTicksCounts & out64BitTicksCounts, _38bcaab7_outStatuses & outStatuses, _38bcaab7_optionalFile & optionalFile, _38bcaab7_optionalLine & optionalLine, _38bcaab7_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redArrayTimestampRead(_38bcaab7_context & context, _38bcaab7_gpu & gpu, _38bcaab7_arrayTimestamp & arrayTimestamp, _38bcaab7_rangeFirst & rangeFirst, _38bcaab7_rangeCount & rangeCount, _38bcaab7_out64BitTicksCounts & out64BitTicksCounts, _38bcaab7_outStatuses & outStatuses, _38bcaab7_optionalFile & optionalFile, _38bcaab7_optionalLine & optionalLine, _38bcaab7_optionalUserData & optionalUserData) {
   redArrayTimestampRead(context.value, gpu.value, arrayTimestamp.value, rangeFirst.value, rangeCount.value, out64BitTicksCounts.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif

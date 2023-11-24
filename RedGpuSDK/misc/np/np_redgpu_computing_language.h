@@ -1,5 +1,13 @@
 #pragma once
 
+#ifndef REDGPU_NP_DECLSPEC
+#define REDGPU_NP_DECLSPEC
+#endif
+
+#ifndef REDGPU_NP_API
+#define REDGPU_NP_API
+#endif
+
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redCreateProcedureComputingLanguage redCreateProcedureComputingLanguage
 #define _3e8464a5_context(value) value
@@ -29,7 +37,7 @@ typedef struct _3e8464a5_outStatuses { _3e8464a5_outStatuses(RedStatuses* value)
 typedef struct _3e8464a5_optionalFile { _3e8464a5_optionalFile(char* value): value(value) {}; char* value; _3e8464a5_optionalFile(const _3e8464a5_optionalFile &) = delete; } _3e8464a5_optionalFile;
 typedef struct _3e8464a5_optionalLine { _3e8464a5_optionalLine(int value): value(value) {}; int value; _3e8464a5_optionalLine(const _3e8464a5_optionalLine &) = delete; } _3e8464a5_optionalLine;
 typedef struct _3e8464a5_optionalUserData { _3e8464a5_optionalUserData(void* value): value(value) {}; void* value; _3e8464a5_optionalUserData(const _3e8464a5_optionalUserData &) = delete; } _3e8464a5_optionalUserData;
-void np_redCreateProcedureComputingLanguage(_3e8464a5_context & context, _3e8464a5_gpu & gpu, _3e8464a5_handleName & handleName, _3e8464a5_procedureCache & procedureCache, _3e8464a5_procedureParameters & procedureParameters, _3e8464a5_gpuCodeMainProcedureName & gpuCodeMainProcedureName, _3e8464a5_gpuCode & gpuCode, _3e8464a5_stateExtension & stateExtension, _3e8464a5_outProcedure & outProcedure, _3e8464a5_outStatuses & outStatuses, _3e8464a5_optionalFile & optionalFile, _3e8464a5_optionalLine & optionalLine, _3e8464a5_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateProcedureComputingLanguage(_3e8464a5_context & context, _3e8464a5_gpu & gpu, _3e8464a5_handleName & handleName, _3e8464a5_procedureCache & procedureCache, _3e8464a5_procedureParameters & procedureParameters, _3e8464a5_gpuCodeMainProcedureName & gpuCodeMainProcedureName, _3e8464a5_gpuCode & gpuCode, _3e8464a5_stateExtension & stateExtension, _3e8464a5_outProcedure & outProcedure, _3e8464a5_outStatuses & outStatuses, _3e8464a5_optionalFile & optionalFile, _3e8464a5_optionalLine & optionalLine, _3e8464a5_optionalUserData & optionalUserData) {
   redCreateProcedureComputingLanguage(context.value, gpu.value, handleName.value, procedureCache.value, procedureParameters.value, gpuCodeMainProcedureName.value, gpuCode.value, stateExtension.value, outProcedure.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif

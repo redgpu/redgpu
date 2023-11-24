@@ -1,5 +1,13 @@
 #pragma once
 
+#ifndef REDGPU_NP_DECLSPEC
+#define REDGPU_NP_DECLSPEC
+#endif
+
+#ifndef REDGPU_NP_API
+#define REDGPU_NP_API
+#endif
+
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redRteCreateContext redRteCreateContext
 #define _a3c68208_mallocFn(value) value
@@ -41,7 +49,7 @@ typedef struct _a3c68208_optionalFile { _a3c68208_optionalFile(char* value): val
 typedef struct _a3c68208_optionalLine { _a3c68208_optionalLine(int value): value(value) {}; int value; _a3c68208_optionalLine(const _a3c68208_optionalLine &) = delete; } _a3c68208_optionalLine;
 typedef struct _a3c68208_optionalUserData { _a3c68208_optionalUserData(void* value): value(value) {}; void* value; _a3c68208_optionalUserData(const _a3c68208_optionalUserData &) = delete; } _a3c68208_optionalUserData;
 typedef struct _a3c68208_rteParameters { _a3c68208_rteParameters(RedRteCreateContextParameters* value): value(value) {}; RedRteCreateContextParameters* value; _a3c68208_rteParameters(const _a3c68208_rteParameters &) = delete; } _a3c68208_rteParameters;
-int64_t np_redRteCreateContext(_a3c68208_mallocFn & mallocFn, _a3c68208_freeFn & freeFn, _a3c68208_optionalMallocTagged & optionalMallocTagged, _a3c68208_optionalFreeTagged & optionalFreeTagged, _a3c68208_debugCallback & debugCallback, _a3c68208_sdkVersion & sdkVersion, _a3c68208_sdkExtensionsCount & sdkExtensionsCount, _a3c68208_sdkExtensions & sdkExtensions, _a3c68208_optionalProgramName & optionalProgramName, _a3c68208_optionalProgramVersion & optionalProgramVersion, _a3c68208_optionalEngineName & optionalEngineName, _a3c68208_optionalEngineVersion & optionalEngineVersion, _a3c68208_optionalSettings & optionalSettings, _a3c68208_outContext & outContext, _a3c68208_outStatuses & outStatuses, _a3c68208_optionalFile & optionalFile, _a3c68208_optionalLine & optionalLine, _a3c68208_optionalUserData & optionalUserData, _a3c68208_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateContext(_a3c68208_mallocFn & mallocFn, _a3c68208_freeFn & freeFn, _a3c68208_optionalMallocTagged & optionalMallocTagged, _a3c68208_optionalFreeTagged & optionalFreeTagged, _a3c68208_debugCallback & debugCallback, _a3c68208_sdkVersion & sdkVersion, _a3c68208_sdkExtensionsCount & sdkExtensionsCount, _a3c68208_sdkExtensions & sdkExtensions, _a3c68208_optionalProgramName & optionalProgramName, _a3c68208_optionalProgramVersion & optionalProgramVersion, _a3c68208_optionalEngineName & optionalEngineName, _a3c68208_optionalEngineVersion & optionalEngineVersion, _a3c68208_optionalSettings & optionalSettings, _a3c68208_outContext & outContext, _a3c68208_outStatuses & outStatuses, _a3c68208_optionalFile & optionalFile, _a3c68208_optionalLine & optionalLine, _a3c68208_optionalUserData & optionalUserData, _a3c68208_rteParameters & rteParameters) {
   return redRteCreateContext(mallocFn.value, freeFn.value, optionalMallocTagged.value, optionalFreeTagged.value, debugCallback.value, sdkVersion.value, sdkExtensionsCount.value, sdkExtensions.value, optionalProgramName.value, optionalProgramVersion.value, optionalEngineName.value, optionalEngineVersion.value, optionalSettings.value, outContext.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -59,7 +67,7 @@ typedef struct _cba668f6_optionalFile { _cba668f6_optionalFile(char* value): val
 typedef struct _cba668f6_optionalLine { _cba668f6_optionalLine(int value): value(value) {}; int value; _cba668f6_optionalLine(const _cba668f6_optionalLine &) = delete; } _cba668f6_optionalLine;
 typedef struct _cba668f6_optionalUserData { _cba668f6_optionalUserData(void* value): value(value) {}; void* value; _cba668f6_optionalUserData(const _cba668f6_optionalUserData &) = delete; } _cba668f6_optionalUserData;
 typedef struct _cba668f6_rteParameters { _cba668f6_rteParameters(RedRteDestroyContextParameters* value): value(value) {}; RedRteDestroyContextParameters* value; _cba668f6_rteParameters(const _cba668f6_rteParameters &) = delete; } _cba668f6_rteParameters;
-int64_t np_redRteDestroyContext(_cba668f6_context & context, _cba668f6_optionalFile & optionalFile, _cba668f6_optionalLine & optionalLine, _cba668f6_optionalUserData & optionalUserData, _cba668f6_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyContext(_cba668f6_context & context, _cba668f6_optionalFile & optionalFile, _cba668f6_optionalLine & optionalLine, _cba668f6_optionalUserData & optionalUserData, _cba668f6_rteParameters & rteParameters) {
   return redRteDestroyContext(context.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -87,7 +95,7 @@ typedef struct _b155f18d_optionalFile { _b155f18d_optionalFile(char* value): val
 typedef struct _b155f18d_optionalLine { _b155f18d_optionalLine(int value): value(value) {}; int value; _b155f18d_optionalLine(const _b155f18d_optionalLine &) = delete; } _b155f18d_optionalLine;
 typedef struct _b155f18d_optionalUserData { _b155f18d_optionalUserData(void* value): value(value) {}; void* value; _b155f18d_optionalUserData(const _b155f18d_optionalUserData &) = delete; } _b155f18d_optionalUserData;
 typedef struct _b155f18d_rteParameters { _b155f18d_rteParameters(void* value): value(value) {}; void* value; _b155f18d_rteParameters(const _b155f18d_rteParameters &) = delete; } _b155f18d_rteParameters;
-int64_t np_redRteCreateQueue(_b155f18d_rteContext & rteContext, _b155f18d_handleName & handleName, _b155f18d_queueFlags & queueFlags, _b155f18d_queuePriority & queuePriority, _b155f18d_outRteQueue & outRteQueue, _b155f18d_outStatuses & outStatuses, _b155f18d_optionalFile & optionalFile, _b155f18d_optionalLine & optionalLine, _b155f18d_optionalUserData & optionalUserData, _b155f18d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateQueue(_b155f18d_rteContext & rteContext, _b155f18d_handleName & handleName, _b155f18d_queueFlags & queueFlags, _b155f18d_queuePriority & queuePriority, _b155f18d_outRteQueue & outRteQueue, _b155f18d_outStatuses & outStatuses, _b155f18d_optionalFile & optionalFile, _b155f18d_optionalLine & optionalLine, _b155f18d_optionalUserData & optionalUserData, _b155f18d_rteParameters & rteParameters) {
   return redRteCreateQueue(rteContext.value, handleName.value, queueFlags.value, queuePriority.value, outRteQueue.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -109,7 +117,7 @@ typedef struct _3dec13d3_optionalFile { _3dec13d3_optionalFile(char* value): val
 typedef struct _3dec13d3_optionalLine { _3dec13d3_optionalLine(int value): value(value) {}; int value; _3dec13d3_optionalLine(const _3dec13d3_optionalLine &) = delete; } _3dec13d3_optionalLine;
 typedef struct _3dec13d3_optionalUserData { _3dec13d3_optionalUserData(void* value): value(value) {}; void* value; _3dec13d3_optionalUserData(const _3dec13d3_optionalUserData &) = delete; } _3dec13d3_optionalUserData;
 typedef struct _3dec13d3_rteParameters { _3dec13d3_rteParameters(void* value): value(value) {}; void* value; _3dec13d3_rteParameters(const _3dec13d3_rteParameters &) = delete; } _3dec13d3_rteParameters;
-uint64_t np_redRteArrayGetGpuAddress(_3dec13d3_rteContext & rteContext, _3dec13d3_gpu & gpu, _3dec13d3_array & array, _3dec13d3_optionalFile & optionalFile, _3dec13d3_optionalLine & optionalLine, _3dec13d3_optionalUserData & optionalUserData, _3dec13d3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC uint64_t REDGPU_NP_API np_redRteArrayGetGpuAddress(_3dec13d3_rteContext & rteContext, _3dec13d3_gpu & gpu, _3dec13d3_array & array, _3dec13d3_optionalFile & optionalFile, _3dec13d3_optionalLine & optionalLine, _3dec13d3_optionalUserData & optionalUserData, _3dec13d3_rteParameters & rteParameters) {
   return redRteArrayGetGpuAddress(rteContext.value, gpu.value, array.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -131,7 +139,7 @@ typedef struct _5fbcf46f_optionalFile { _5fbcf46f_optionalFile(char* value): val
 typedef struct _5fbcf46f_optionalLine { _5fbcf46f_optionalLine(int value): value(value) {}; int value; _5fbcf46f_optionalLine(const _5fbcf46f_optionalLine &) = delete; } _5fbcf46f_optionalLine;
 typedef struct _5fbcf46f_optionalUserData { _5fbcf46f_optionalUserData(void* value): value(value) {}; void* value; _5fbcf46f_optionalUserData(const _5fbcf46f_optionalUserData &) = delete; } _5fbcf46f_optionalUserData;
 typedef struct _5fbcf46f_rteParameters { _5fbcf46f_rteParameters(void* value): value(value) {}; void* value; _5fbcf46f_rteParameters(const _5fbcf46f_rteParameters &) = delete; } _5fbcf46f_rteParameters;
-int64_t np_redRteCreateHelperAllocatorDma(_5fbcf46f_rteContext & rteContext, _5fbcf46f_outHelperAllocatorDma & outHelperAllocatorDma, _5fbcf46f_outStatuses & outStatuses, _5fbcf46f_optionalFile & optionalFile, _5fbcf46f_optionalLine & optionalLine, _5fbcf46f_optionalUserData & optionalUserData, _5fbcf46f_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperAllocatorDma(_5fbcf46f_rteContext & rteContext, _5fbcf46f_outHelperAllocatorDma & outHelperAllocatorDma, _5fbcf46f_outStatuses & outStatuses, _5fbcf46f_optionalFile & optionalFile, _5fbcf46f_optionalLine & optionalLine, _5fbcf46f_optionalUserData & optionalUserData, _5fbcf46f_rteParameters & rteParameters) {
   return redRteCreateHelperAllocatorDma(rteContext.value, outHelperAllocatorDma.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -149,7 +157,7 @@ typedef struct _7966010f_optionalFile { _7966010f_optionalFile(char* value): val
 typedef struct _7966010f_optionalLine { _7966010f_optionalLine(int value): value(value) {}; int value; _7966010f_optionalLine(const _7966010f_optionalLine &) = delete; } _7966010f_optionalLine;
 typedef struct _7966010f_optionalUserData { _7966010f_optionalUserData(void* value): value(value) {}; void* value; _7966010f_optionalUserData(const _7966010f_optionalUserData &) = delete; } _7966010f_optionalUserData;
 typedef struct _7966010f_rteParameters { _7966010f_rteParameters(void* value): value(value) {}; void* value; _7966010f_rteParameters(const _7966010f_rteParameters &) = delete; } _7966010f_rteParameters;
-int64_t np_redRteDestroyHelperAllocatorDma(_7966010f_helperAllocatorDma & helperAllocatorDma, _7966010f_optionalFile & optionalFile, _7966010f_optionalLine & optionalLine, _7966010f_optionalUserData & optionalUserData, _7966010f_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperAllocatorDma(_7966010f_helperAllocatorDma & helperAllocatorDma, _7966010f_optionalFile & optionalFile, _7966010f_optionalLine & optionalLine, _7966010f_optionalUserData & optionalUserData, _7966010f_rteParameters & rteParameters) {
   return redRteDestroyHelperAllocatorDma(helperAllocatorDma.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -175,7 +183,7 @@ typedef struct _00c3eb95_optionalFile { _00c3eb95_optionalFile(char* value): val
 typedef struct _00c3eb95_optionalLine { _00c3eb95_optionalLine(int value): value(value) {}; int value; _00c3eb95_optionalLine(const _00c3eb95_optionalLine &) = delete; } _00c3eb95_optionalLine;
 typedef struct _00c3eb95_optionalUserData { _00c3eb95_optionalUserData(void* value): value(value) {}; void* value; _00c3eb95_optionalUserData(const _00c3eb95_optionalUserData &) = delete; } _00c3eb95_optionalUserData;
 typedef struct _00c3eb95_rteParameters { _00c3eb95_rteParameters(void* value): value(value) {}; void* value; _00c3eb95_rteParameters(const _00c3eb95_rteParameters &) = delete; } _00c3eb95_rteParameters;
-int64_t np_redRteHelperAllocatorDmaCreateArray(_00c3eb95_helperAllocatorDma & helperAllocatorDma, _00c3eb95_arrayInfo & arrayInfo, _00c3eb95_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _00c3eb95_outRteHelperArray & outRteHelperArray, _00c3eb95_outStatuses & outStatuses, _00c3eb95_optionalFile & optionalFile, _00c3eb95_optionalLine & optionalLine, _00c3eb95_optionalUserData & optionalUserData, _00c3eb95_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaCreateArray(_00c3eb95_helperAllocatorDma & helperAllocatorDma, _00c3eb95_arrayInfo & arrayInfo, _00c3eb95_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _00c3eb95_outRteHelperArray & outRteHelperArray, _00c3eb95_outStatuses & outStatuses, _00c3eb95_optionalFile & optionalFile, _00c3eb95_optionalLine & optionalLine, _00c3eb95_optionalUserData & optionalUserData, _00c3eb95_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaCreateArray(helperAllocatorDma.value, arrayInfo.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -201,7 +209,7 @@ typedef struct _dffd8455_optionalFile { _dffd8455_optionalFile(char* value): val
 typedef struct _dffd8455_optionalLine { _dffd8455_optionalLine(int value): value(value) {}; int value; _dffd8455_optionalLine(const _dffd8455_optionalLine &) = delete; } _dffd8455_optionalLine;
 typedef struct _dffd8455_optionalUserData { _dffd8455_optionalUserData(void* value): value(value) {}; void* value; _dffd8455_optionalUserData(const _dffd8455_optionalUserData &) = delete; } _dffd8455_optionalUserData;
 typedef struct _dffd8455_rteParameters { _dffd8455_rteParameters(void* value): value(value) {}; void* value; _dffd8455_rteParameters(const _dffd8455_rteParameters &) = delete; } _dffd8455_rteParameters;
-int64_t np_redRteHelperAllocatorDmaCreateImage(_dffd8455_helperAllocatorDma & helperAllocatorDma, _dffd8455_imageInfo & imageInfo, _dffd8455_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _dffd8455_outRteHelperImage & outRteHelperImage, _dffd8455_outStatuses & outStatuses, _dffd8455_optionalFile & optionalFile, _dffd8455_optionalLine & optionalLine, _dffd8455_optionalUserData & optionalUserData, _dffd8455_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaCreateImage(_dffd8455_helperAllocatorDma & helperAllocatorDma, _dffd8455_imageInfo & imageInfo, _dffd8455_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _dffd8455_outRteHelperImage & outRteHelperImage, _dffd8455_outStatuses & outStatuses, _dffd8455_optionalFile & optionalFile, _dffd8455_optionalLine & optionalLine, _dffd8455_optionalUserData & optionalUserData, _dffd8455_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaCreateImage(helperAllocatorDma.value, imageInfo.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperImage.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -229,7 +237,7 @@ typedef struct _e34316c9_optionalFile { _e34316c9_optionalFile(char* value): val
 typedef struct _e34316c9_optionalLine { _e34316c9_optionalLine(int value): value(value) {}; int value; _e34316c9_optionalLine(const _e34316c9_optionalLine &) = delete; } _e34316c9_optionalLine;
 typedef struct _e34316c9_optionalUserData { _e34316c9_optionalUserData(void* value): value(value) {}; void* value; _e34316c9_optionalUserData(const _e34316c9_optionalUserData &) = delete; } _e34316c9_optionalUserData;
 typedef struct _e34316c9_rteParameters { _e34316c9_rteParameters(void* value): value(value) {}; void* value; _e34316c9_rteParameters(const _e34316c9_rteParameters &) = delete; } _e34316c9_rteParameters;
-int64_t np_redRteHelperAllocatorDmaCreateArraySimple(_e34316c9_helperAllocatorDma & helperAllocatorDma, _e34316c9_arrayBytesCount & arrayBytesCount, _e34316c9_arrayUsageFlags & arrayUsageFlags, _e34316c9_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _e34316c9_outRteHelperArray & outRteHelperArray, _e34316c9_outStatuses & outStatuses, _e34316c9_optionalFile & optionalFile, _e34316c9_optionalLine & optionalLine, _e34316c9_optionalUserData & optionalUserData, _e34316c9_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaCreateArraySimple(_e34316c9_helperAllocatorDma & helperAllocatorDma, _e34316c9_arrayBytesCount & arrayBytesCount, _e34316c9_arrayUsageFlags & arrayUsageFlags, _e34316c9_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _e34316c9_outRteHelperArray & outRteHelperArray, _e34316c9_outStatuses & outStatuses, _e34316c9_optionalFile & optionalFile, _e34316c9_optionalLine & optionalLine, _e34316c9_optionalUserData & optionalUserData, _e34316c9_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaCreateArraySimple(helperAllocatorDma.value, arrayBytesCount.value, arrayUsageFlags.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -261,7 +269,7 @@ typedef struct _9059ed9d_optionalFile { _9059ed9d_optionalFile(char* value): val
 typedef struct _9059ed9d_optionalLine { _9059ed9d_optionalLine(int value): value(value) {}; int value; _9059ed9d_optionalLine(const _9059ed9d_optionalLine &) = delete; } _9059ed9d_optionalLine;
 typedef struct _9059ed9d_optionalUserData { _9059ed9d_optionalUserData(void* value): value(value) {}; void* value; _9059ed9d_optionalUserData(const _9059ed9d_optionalUserData &) = delete; } _9059ed9d_optionalUserData;
 typedef struct _9059ed9d_rteParameters { _9059ed9d_rteParameters(void* value): value(value) {}; void* value; _9059ed9d_rteParameters(const _9059ed9d_rteParameters &) = delete; } _9059ed9d_rteParameters;
-int64_t np_redRteHelperAllocatorDmaCreateArraySimpleWithData(_9059ed9d_helperAllocatorDma & helperAllocatorDma, _9059ed9d_callsSetToUploadArrayData & callsSetToUploadArrayData, _9059ed9d_arrayDataBytesCount & arrayDataBytesCount, _9059ed9d_arrayData & arrayData, _9059ed9d_arrayUsageFlags & arrayUsageFlags, _9059ed9d_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _9059ed9d_outRteHelperArray & outRteHelperArray, _9059ed9d_outStatuses & outStatuses, _9059ed9d_optionalFile & optionalFile, _9059ed9d_optionalLine & optionalLine, _9059ed9d_optionalUserData & optionalUserData, _9059ed9d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaCreateArraySimpleWithData(_9059ed9d_helperAllocatorDma & helperAllocatorDma, _9059ed9d_callsSetToUploadArrayData & callsSetToUploadArrayData, _9059ed9d_arrayDataBytesCount & arrayDataBytesCount, _9059ed9d_arrayData & arrayData, _9059ed9d_arrayUsageFlags & arrayUsageFlags, _9059ed9d_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _9059ed9d_outRteHelperArray & outRteHelperArray, _9059ed9d_outStatuses & outStatuses, _9059ed9d_optionalFile & optionalFile, _9059ed9d_optionalLine & optionalLine, _9059ed9d_optionalUserData & optionalUserData, _9059ed9d_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaCreateArraySimpleWithData(helperAllocatorDma.value, callsSetToUploadArrayData.value, arrayDataBytesCount.value, arrayData.value, arrayUsageFlags.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -293,7 +301,7 @@ typedef struct _6a16c8d3_optionalFile { _6a16c8d3_optionalFile(char* value): val
 typedef struct _6a16c8d3_optionalLine { _6a16c8d3_optionalLine(int value): value(value) {}; int value; _6a16c8d3_optionalLine(const _6a16c8d3_optionalLine &) = delete; } _6a16c8d3_optionalLine;
 typedef struct _6a16c8d3_optionalUserData { _6a16c8d3_optionalUserData(void* value): value(value) {}; void* value; _6a16c8d3_optionalUserData(const _6a16c8d3_optionalUserData &) = delete; } _6a16c8d3_optionalUserData;
 typedef struct _6a16c8d3_rteParameters { _6a16c8d3_rteParameters(void* value): value(value) {}; void* value; _6a16c8d3_rteParameters(const _6a16c8d3_rteParameters &) = delete; } _6a16c8d3_rteParameters;
-int64_t np_redRteHelperAllocatorDmaCreateImageSimpleWithData(_6a16c8d3_helperAllocatorDma & helperAllocatorDma, _6a16c8d3_callsSetToUploadImageData & callsSetToUploadImageData, _6a16c8d3_imageDataBytesCount & imageDataBytesCount, _6a16c8d3_imageData & imageData, _6a16c8d3_imageInfo & imageInfo, _6a16c8d3_imageLayoutSuggestedDefaultValueIsImageLayoutGeneral & imageLayoutSuggestedDefaultValueIsImageLayoutGeneral, _6a16c8d3_outRteHelperImage & outRteHelperImage, _6a16c8d3_outStatuses & outStatuses, _6a16c8d3_optionalFile & optionalFile, _6a16c8d3_optionalLine & optionalLine, _6a16c8d3_optionalUserData & optionalUserData, _6a16c8d3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaCreateImageSimpleWithData(_6a16c8d3_helperAllocatorDma & helperAllocatorDma, _6a16c8d3_callsSetToUploadImageData & callsSetToUploadImageData, _6a16c8d3_imageDataBytesCount & imageDataBytesCount, _6a16c8d3_imageData & imageData, _6a16c8d3_imageInfo & imageInfo, _6a16c8d3_imageLayoutSuggestedDefaultValueIsImageLayoutGeneral & imageLayoutSuggestedDefaultValueIsImageLayoutGeneral, _6a16c8d3_outRteHelperImage & outRteHelperImage, _6a16c8d3_outStatuses & outStatuses, _6a16c8d3_optionalFile & optionalFile, _6a16c8d3_optionalLine & optionalLine, _6a16c8d3_optionalUserData & optionalUserData, _6a16c8d3_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaCreateImageSimpleWithData(helperAllocatorDma.value, callsSetToUploadImageData.value, imageDataBytesCount.value, imageData.value, imageInfo.value, imageLayoutSuggestedDefaultValueIsImageLayoutGeneral.value, outRteHelperImage.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -317,7 +325,7 @@ typedef struct _2d758ca1_optionalFile { _2d758ca1_optionalFile(char* value): val
 typedef struct _2d758ca1_optionalLine { _2d758ca1_optionalLine(int value): value(value) {}; int value; _2d758ca1_optionalLine(const _2d758ca1_optionalLine &) = delete; } _2d758ca1_optionalLine;
 typedef struct _2d758ca1_optionalUserData { _2d758ca1_optionalUserData(void* value): value(value) {}; void* value; _2d758ca1_optionalUserData(const _2d758ca1_optionalUserData &) = delete; } _2d758ca1_optionalUserData;
 typedef struct _2d758ca1_rteParameters { _2d758ca1_rteParameters(void* value): value(value) {}; void* value; _2d758ca1_rteParameters(const _2d758ca1_rteParameters &) = delete; } _2d758ca1_rteParameters;
-int64_t np_redRteHelperAllocatorDmaDestroyArray(_2d758ca1_helperAllocatorDma & helperAllocatorDma, _2d758ca1_rteHelperArray & rteHelperArray, _2d758ca1_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _2d758ca1_outStatuses & outStatuses, _2d758ca1_optionalFile & optionalFile, _2d758ca1_optionalLine & optionalLine, _2d758ca1_optionalUserData & optionalUserData, _2d758ca1_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaDestroyArray(_2d758ca1_helperAllocatorDma & helperAllocatorDma, _2d758ca1_rteHelperArray & rteHelperArray, _2d758ca1_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _2d758ca1_outStatuses & outStatuses, _2d758ca1_optionalFile & optionalFile, _2d758ca1_optionalLine & optionalLine, _2d758ca1_optionalUserData & optionalUserData, _2d758ca1_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaDestroyArray(helperAllocatorDma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -341,7 +349,7 @@ typedef struct _d6f5518e_optionalFile { _d6f5518e_optionalFile(char* value): val
 typedef struct _d6f5518e_optionalLine { _d6f5518e_optionalLine(int value): value(value) {}; int value; _d6f5518e_optionalLine(const _d6f5518e_optionalLine &) = delete; } _d6f5518e_optionalLine;
 typedef struct _d6f5518e_optionalUserData { _d6f5518e_optionalUserData(void* value): value(value) {}; void* value; _d6f5518e_optionalUserData(const _d6f5518e_optionalUserData &) = delete; } _d6f5518e_optionalUserData;
 typedef struct _d6f5518e_rteParameters { _d6f5518e_rteParameters(void* value): value(value) {}; void* value; _d6f5518e_rteParameters(const _d6f5518e_rteParameters &) = delete; } _d6f5518e_rteParameters;
-int64_t np_redRteHelperAllocatorDmaDestroyImage(_d6f5518e_helperAllocatorDma & helperAllocatorDma, _d6f5518e_rteHelperImage & rteHelperImage, _d6f5518e_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _d6f5518e_outStatuses & outStatuses, _d6f5518e_optionalFile & optionalFile, _d6f5518e_optionalLine & optionalLine, _d6f5518e_optionalUserData & optionalUserData, _d6f5518e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaDestroyImage(_d6f5518e_helperAllocatorDma & helperAllocatorDma, _d6f5518e_rteHelperImage & rteHelperImage, _d6f5518e_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _d6f5518e_outStatuses & outStatuses, _d6f5518e_optionalFile & optionalFile, _d6f5518e_optionalLine & optionalLine, _d6f5518e_optionalUserData & optionalUserData, _d6f5518e_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaDestroyImage(helperAllocatorDma.value, rteHelperImage.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -363,7 +371,7 @@ typedef struct _b8199348_optionalFile { _b8199348_optionalFile(char* value): val
 typedef struct _b8199348_optionalLine { _b8199348_optionalLine(int value): value(value) {}; int value; _b8199348_optionalLine(const _b8199348_optionalLine &) = delete; } _b8199348_optionalLine;
 typedef struct _b8199348_optionalUserData { _b8199348_optionalUserData(void* value): value(value) {}; void* value; _b8199348_optionalUserData(const _b8199348_optionalUserData &) = delete; } _b8199348_optionalUserData;
 typedef struct _b8199348_rteParameters { _b8199348_rteParameters(void* value): value(value) {}; void* value; _b8199348_rteParameters(const _b8199348_rteParameters &) = delete; } _b8199348_rteParameters;
-int64_t np_redRteHelperAllocatorDmaFinalizeAndReleaseStagingMemory(_b8199348_helperAllocatorDma & helperAllocatorDma, _b8199348_optionalCpuSignal & optionalCpuSignal, _b8199348_outStatuses & outStatuses, _b8199348_optionalFile & optionalFile, _b8199348_optionalLine & optionalLine, _b8199348_optionalUserData & optionalUserData, _b8199348_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaFinalizeAndReleaseStagingMemory(_b8199348_helperAllocatorDma & helperAllocatorDma, _b8199348_optionalCpuSignal & optionalCpuSignal, _b8199348_outStatuses & outStatuses, _b8199348_optionalFile & optionalFile, _b8199348_optionalLine & optionalLine, _b8199348_optionalUserData & optionalUserData, _b8199348_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaFinalizeAndReleaseStagingMemory(helperAllocatorDma.value, optionalCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -385,7 +393,7 @@ typedef struct _78c802c1_optionalFile { _78c802c1_optionalFile(char* value): val
 typedef struct _78c802c1_optionalLine { _78c802c1_optionalLine(int value): value(value) {}; int value; _78c802c1_optionalLine(const _78c802c1_optionalLine &) = delete; } _78c802c1_optionalLine;
 typedef struct _78c802c1_optionalUserData { _78c802c1_optionalUserData(void* value): value(value) {}; void* value; _78c802c1_optionalUserData(const _78c802c1_optionalUserData &) = delete; } _78c802c1_optionalUserData;
 typedef struct _78c802c1_rteParameters { _78c802c1_rteParameters(void* value): value(value) {}; void* value; _78c802c1_rteParameters(const _78c802c1_rteParameters &) = delete; } _78c802c1_rteParameters;
-int64_t np_redRteHelperAllocatorDmaFinalizeStagingMemory(_78c802c1_helperAllocatorDma & helperAllocatorDma, _78c802c1_optionalCpuSignal & optionalCpuSignal, _78c802c1_outStatuses & outStatuses, _78c802c1_optionalFile & optionalFile, _78c802c1_optionalLine & optionalLine, _78c802c1_optionalUserData & optionalUserData, _78c802c1_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaFinalizeStagingMemory(_78c802c1_helperAllocatorDma & helperAllocatorDma, _78c802c1_optionalCpuSignal & optionalCpuSignal, _78c802c1_outStatuses & outStatuses, _78c802c1_optionalFile & optionalFile, _78c802c1_optionalLine & optionalLine, _78c802c1_optionalUserData & optionalUserData, _78c802c1_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaFinalizeStagingMemory(helperAllocatorDma.value, optionalCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -405,7 +413,7 @@ typedef struct _b10d824d_optionalFile { _b10d824d_optionalFile(char* value): val
 typedef struct _b10d824d_optionalLine { _b10d824d_optionalLine(int value): value(value) {}; int value; _b10d824d_optionalLine(const _b10d824d_optionalLine &) = delete; } _b10d824d_optionalLine;
 typedef struct _b10d824d_optionalUserData { _b10d824d_optionalUserData(void* value): value(value) {}; void* value; _b10d824d_optionalUserData(const _b10d824d_optionalUserData &) = delete; } _b10d824d_optionalUserData;
 typedef struct _b10d824d_rteParameters { _b10d824d_rteParameters(void* value): value(value) {}; void* value; _b10d824d_rteParameters(const _b10d824d_rteParameters &) = delete; } _b10d824d_rteParameters;
-int64_t np_redRteHelperAllocatorDmaReleaseStagingMemory(_b10d824d_helperAllocatorDma & helperAllocatorDma, _b10d824d_outStatuses & outStatuses, _b10d824d_optionalFile & optionalFile, _b10d824d_optionalLine & optionalLine, _b10d824d_optionalUserData & optionalUserData, _b10d824d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaReleaseStagingMemory(_b10d824d_helperAllocatorDma & helperAllocatorDma, _b10d824d_outStatuses & outStatuses, _b10d824d_optionalFile & optionalFile, _b10d824d_optionalLine & optionalLine, _b10d824d_optionalUserData & optionalUserData, _b10d824d_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaReleaseStagingMemory(helperAllocatorDma.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -431,7 +439,7 @@ typedef struct _91483c45_optionalFile { _91483c45_optionalFile(char* value): val
 typedef struct _91483c45_optionalLine { _91483c45_optionalLine(int value): value(value) {}; int value; _91483c45_optionalLine(const _91483c45_optionalLine &) = delete; } _91483c45_optionalLine;
 typedef struct _91483c45_optionalUserData { _91483c45_optionalUserData(void* value): value(value) {}; void* value; _91483c45_optionalUserData(const _91483c45_optionalUserData &) = delete; } _91483c45_optionalUserData;
 typedef struct _91483c45_rteParameters { _91483c45_rteParameters(void* value): value(value) {}; void* value; _91483c45_rteParameters(const _91483c45_rteParameters &) = delete; } _91483c45_rteParameters;
-int64_t np_redRteHelperAllocatorDmaMapArray(_91483c45_helperAllocatorDma & helperAllocatorDma, _91483c45_rteHelperArray & rteHelperArray, _91483c45_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _91483c45_outVolatilePointer & outVolatilePointer, _91483c45_outStatuses & outStatuses, _91483c45_optionalFile & optionalFile, _91483c45_optionalLine & optionalLine, _91483c45_optionalUserData & optionalUserData, _91483c45_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaMapArray(_91483c45_helperAllocatorDma & helperAllocatorDma, _91483c45_rteHelperArray & rteHelperArray, _91483c45_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _91483c45_outVolatilePointer & outVolatilePointer, _91483c45_outStatuses & outStatuses, _91483c45_optionalFile & optionalFile, _91483c45_optionalLine & optionalLine, _91483c45_optionalUserData & optionalUserData, _91483c45_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaMapArray(helperAllocatorDma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outVolatilePointer.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -455,7 +463,7 @@ typedef struct _5a1c9b78_optionalFile { _5a1c9b78_optionalFile(char* value): val
 typedef struct _5a1c9b78_optionalLine { _5a1c9b78_optionalLine(int value): value(value) {}; int value; _5a1c9b78_optionalLine(const _5a1c9b78_optionalLine &) = delete; } _5a1c9b78_optionalLine;
 typedef struct _5a1c9b78_optionalUserData { _5a1c9b78_optionalUserData(void* value): value(value) {}; void* value; _5a1c9b78_optionalUserData(const _5a1c9b78_optionalUserData &) = delete; } _5a1c9b78_optionalUserData;
 typedef struct _5a1c9b78_rteParameters { _5a1c9b78_rteParameters(void* value): value(value) {}; void* value; _5a1c9b78_rteParameters(const _5a1c9b78_rteParameters &) = delete; } _5a1c9b78_rteParameters;
-int64_t np_redRteHelperAllocatorDmaUnmapArray(_5a1c9b78_helperAllocatorDma & helperAllocatorDma, _5a1c9b78_rteHelperArray & rteHelperArray, _5a1c9b78_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _5a1c9b78_outStatuses & outStatuses, _5a1c9b78_optionalFile & optionalFile, _5a1c9b78_optionalLine & optionalLine, _5a1c9b78_optionalUserData & optionalUserData, _5a1c9b78_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorDmaUnmapArray(_5a1c9b78_helperAllocatorDma & helperAllocatorDma, _5a1c9b78_rteHelperArray & rteHelperArray, _5a1c9b78_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _5a1c9b78_outStatuses & outStatuses, _5a1c9b78_optionalFile & optionalFile, _5a1c9b78_optionalLine & optionalLine, _5a1c9b78_optionalUserData & optionalUserData, _5a1c9b78_rteParameters & rteParameters) {
   return redRteHelperAllocatorDmaUnmapArray(helperAllocatorDma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -477,7 +485,7 @@ typedef struct _815f30e5_optionalFile { _815f30e5_optionalFile(char* value): val
 typedef struct _815f30e5_optionalLine { _815f30e5_optionalLine(int value): value(value) {}; int value; _815f30e5_optionalLine(const _815f30e5_optionalLine &) = delete; } _815f30e5_optionalLine;
 typedef struct _815f30e5_optionalUserData { _815f30e5_optionalUserData(void* value): value(value) {}; void* value; _815f30e5_optionalUserData(const _815f30e5_optionalUserData &) = delete; } _815f30e5_optionalUserData;
 typedef struct _815f30e5_rteParameters { _815f30e5_rteParameters(void* value): value(value) {}; void* value; _815f30e5_rteParameters(const _815f30e5_rteParameters &) = delete; } _815f30e5_rteParameters;
-int64_t np_redRteCreateHelperAllocatorVma(_815f30e5_rteContext & rteContext, _815f30e5_outHelperAllocatorVma & outHelperAllocatorVma, _815f30e5_outStatuses & outStatuses, _815f30e5_optionalFile & optionalFile, _815f30e5_optionalLine & optionalLine, _815f30e5_optionalUserData & optionalUserData, _815f30e5_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperAllocatorVma(_815f30e5_rteContext & rteContext, _815f30e5_outHelperAllocatorVma & outHelperAllocatorVma, _815f30e5_outStatuses & outStatuses, _815f30e5_optionalFile & optionalFile, _815f30e5_optionalLine & optionalLine, _815f30e5_optionalUserData & optionalUserData, _815f30e5_rteParameters & rteParameters) {
   return redRteCreateHelperAllocatorVma(rteContext.value, outHelperAllocatorVma.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -495,7 +503,7 @@ typedef struct _f21d1fb2_optionalFile { _f21d1fb2_optionalFile(char* value): val
 typedef struct _f21d1fb2_optionalLine { _f21d1fb2_optionalLine(int value): value(value) {}; int value; _f21d1fb2_optionalLine(const _f21d1fb2_optionalLine &) = delete; } _f21d1fb2_optionalLine;
 typedef struct _f21d1fb2_optionalUserData { _f21d1fb2_optionalUserData(void* value): value(value) {}; void* value; _f21d1fb2_optionalUserData(const _f21d1fb2_optionalUserData &) = delete; } _f21d1fb2_optionalUserData;
 typedef struct _f21d1fb2_rteParameters { _f21d1fb2_rteParameters(void* value): value(value) {}; void* value; _f21d1fb2_rteParameters(const _f21d1fb2_rteParameters &) = delete; } _f21d1fb2_rteParameters;
-int64_t np_redRteDestroyHelperAllocatorVma(_f21d1fb2_helperAllocatorVma & helperAllocatorVma, _f21d1fb2_optionalFile & optionalFile, _f21d1fb2_optionalLine & optionalLine, _f21d1fb2_optionalUserData & optionalUserData, _f21d1fb2_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperAllocatorVma(_f21d1fb2_helperAllocatorVma & helperAllocatorVma, _f21d1fb2_optionalFile & optionalFile, _f21d1fb2_optionalLine & optionalLine, _f21d1fb2_optionalUserData & optionalUserData, _f21d1fb2_rteParameters & rteParameters) {
   return redRteDestroyHelperAllocatorVma(helperAllocatorVma.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -521,7 +529,7 @@ typedef struct _abb54f78_optionalFile { _abb54f78_optionalFile(char* value): val
 typedef struct _abb54f78_optionalLine { _abb54f78_optionalLine(int value): value(value) {}; int value; _abb54f78_optionalLine(const _abb54f78_optionalLine &) = delete; } _abb54f78_optionalLine;
 typedef struct _abb54f78_optionalUserData { _abb54f78_optionalUserData(void* value): value(value) {}; void* value; _abb54f78_optionalUserData(const _abb54f78_optionalUserData &) = delete; } _abb54f78_optionalUserData;
 typedef struct _abb54f78_rteParameters { _abb54f78_rteParameters(void* value): value(value) {}; void* value; _abb54f78_rteParameters(const _abb54f78_rteParameters &) = delete; } _abb54f78_rteParameters;
-int64_t np_redRteHelperAllocatorVmaCreateArray(_abb54f78_helperAllocatorVma & helperAllocatorVma, _abb54f78_arrayInfo & arrayInfo, _abb54f78_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _abb54f78_outRteHelperArray & outRteHelperArray, _abb54f78_outStatuses & outStatuses, _abb54f78_optionalFile & optionalFile, _abb54f78_optionalLine & optionalLine, _abb54f78_optionalUserData & optionalUserData, _abb54f78_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaCreateArray(_abb54f78_helperAllocatorVma & helperAllocatorVma, _abb54f78_arrayInfo & arrayInfo, _abb54f78_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _abb54f78_outRteHelperArray & outRteHelperArray, _abb54f78_outStatuses & outStatuses, _abb54f78_optionalFile & optionalFile, _abb54f78_optionalLine & optionalLine, _abb54f78_optionalUserData & optionalUserData, _abb54f78_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaCreateArray(helperAllocatorVma.value, arrayInfo.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -547,7 +555,7 @@ typedef struct _ecda5ec4_optionalFile { _ecda5ec4_optionalFile(char* value): val
 typedef struct _ecda5ec4_optionalLine { _ecda5ec4_optionalLine(int value): value(value) {}; int value; _ecda5ec4_optionalLine(const _ecda5ec4_optionalLine &) = delete; } _ecda5ec4_optionalLine;
 typedef struct _ecda5ec4_optionalUserData { _ecda5ec4_optionalUserData(void* value): value(value) {}; void* value; _ecda5ec4_optionalUserData(const _ecda5ec4_optionalUserData &) = delete; } _ecda5ec4_optionalUserData;
 typedef struct _ecda5ec4_rteParameters { _ecda5ec4_rteParameters(void* value): value(value) {}; void* value; _ecda5ec4_rteParameters(const _ecda5ec4_rteParameters &) = delete; } _ecda5ec4_rteParameters;
-int64_t np_redRteHelperAllocatorVmaCreateImage(_ecda5ec4_helperAllocatorVma & helperAllocatorVma, _ecda5ec4_imageInfo & imageInfo, _ecda5ec4_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _ecda5ec4_outRteHelperImage & outRteHelperImage, _ecda5ec4_outStatuses & outStatuses, _ecda5ec4_optionalFile & optionalFile, _ecda5ec4_optionalLine & optionalLine, _ecda5ec4_optionalUserData & optionalUserData, _ecda5ec4_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaCreateImage(_ecda5ec4_helperAllocatorVma & helperAllocatorVma, _ecda5ec4_imageInfo & imageInfo, _ecda5ec4_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _ecda5ec4_outRteHelperImage & outRteHelperImage, _ecda5ec4_outStatuses & outStatuses, _ecda5ec4_optionalFile & optionalFile, _ecda5ec4_optionalLine & optionalLine, _ecda5ec4_optionalUserData & optionalUserData, _ecda5ec4_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaCreateImage(helperAllocatorVma.value, imageInfo.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperImage.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -575,7 +583,7 @@ typedef struct _4e44cab7_optionalFile { _4e44cab7_optionalFile(char* value): val
 typedef struct _4e44cab7_optionalLine { _4e44cab7_optionalLine(int value): value(value) {}; int value; _4e44cab7_optionalLine(const _4e44cab7_optionalLine &) = delete; } _4e44cab7_optionalLine;
 typedef struct _4e44cab7_optionalUserData { _4e44cab7_optionalUserData(void* value): value(value) {}; void* value; _4e44cab7_optionalUserData(const _4e44cab7_optionalUserData &) = delete; } _4e44cab7_optionalUserData;
 typedef struct _4e44cab7_rteParameters { _4e44cab7_rteParameters(void* value): value(value) {}; void* value; _4e44cab7_rteParameters(const _4e44cab7_rteParameters &) = delete; } _4e44cab7_rteParameters;
-int64_t np_redRteHelperAllocatorVmaCreateArraySimple(_4e44cab7_helperAllocatorVma & helperAllocatorVma, _4e44cab7_arrayBytesCount & arrayBytesCount, _4e44cab7_arrayUsageFlags & arrayUsageFlags, _4e44cab7_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _4e44cab7_outRteHelperArray & outRteHelperArray, _4e44cab7_outStatuses & outStatuses, _4e44cab7_optionalFile & optionalFile, _4e44cab7_optionalLine & optionalLine, _4e44cab7_optionalUserData & optionalUserData, _4e44cab7_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaCreateArraySimple(_4e44cab7_helperAllocatorVma & helperAllocatorVma, _4e44cab7_arrayBytesCount & arrayBytesCount, _4e44cab7_arrayUsageFlags & arrayUsageFlags, _4e44cab7_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _4e44cab7_outRteHelperArray & outRteHelperArray, _4e44cab7_outStatuses & outStatuses, _4e44cab7_optionalFile & optionalFile, _4e44cab7_optionalLine & optionalLine, _4e44cab7_optionalUserData & optionalUserData, _4e44cab7_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaCreateArraySimple(helperAllocatorVma.value, arrayBytesCount.value, arrayUsageFlags.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -607,7 +615,7 @@ typedef struct _792da977_optionalFile { _792da977_optionalFile(char* value): val
 typedef struct _792da977_optionalLine { _792da977_optionalLine(int value): value(value) {}; int value; _792da977_optionalLine(const _792da977_optionalLine &) = delete; } _792da977_optionalLine;
 typedef struct _792da977_optionalUserData { _792da977_optionalUserData(void* value): value(value) {}; void* value; _792da977_optionalUserData(const _792da977_optionalUserData &) = delete; } _792da977_optionalUserData;
 typedef struct _792da977_rteParameters { _792da977_rteParameters(void* value): value(value) {}; void* value; _792da977_rteParameters(const _792da977_rteParameters &) = delete; } _792da977_rteParameters;
-int64_t np_redRteHelperAllocatorVmaCreateArraySimpleWithData(_792da977_helperAllocatorVma & helperAllocatorVma, _792da977_callsSetToUploadArrayData & callsSetToUploadArrayData, _792da977_arrayDataBytesCount & arrayDataBytesCount, _792da977_arrayData & arrayData, _792da977_arrayUsageFlags & arrayUsageFlags, _792da977_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _792da977_outRteHelperArray & outRteHelperArray, _792da977_outStatuses & outStatuses, _792da977_optionalFile & optionalFile, _792da977_optionalLine & optionalLine, _792da977_optionalUserData & optionalUserData, _792da977_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaCreateArraySimpleWithData(_792da977_helperAllocatorVma & helperAllocatorVma, _792da977_callsSetToUploadArrayData & callsSetToUploadArrayData, _792da977_arrayDataBytesCount & arrayDataBytesCount, _792da977_arrayData & arrayData, _792da977_arrayUsageFlags & arrayUsageFlags, _792da977_memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit & memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit, _792da977_outRteHelperArray & outRteHelperArray, _792da977_outStatuses & outStatuses, _792da977_optionalFile & optionalFile, _792da977_optionalLine & optionalLine, _792da977_optionalUserData & optionalUserData, _792da977_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaCreateArraySimpleWithData(helperAllocatorVma.value, callsSetToUploadArrayData.value, arrayDataBytesCount.value, arrayData.value, arrayUsageFlags.value, memoryPropertyFlagsSuggestedDefaultValueIsMemoryPropertyDeviceLocalBit.value, outRteHelperArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -639,7 +647,7 @@ typedef struct _9cc4038d_optionalFile { _9cc4038d_optionalFile(char* value): val
 typedef struct _9cc4038d_optionalLine { _9cc4038d_optionalLine(int value): value(value) {}; int value; _9cc4038d_optionalLine(const _9cc4038d_optionalLine &) = delete; } _9cc4038d_optionalLine;
 typedef struct _9cc4038d_optionalUserData { _9cc4038d_optionalUserData(void* value): value(value) {}; void* value; _9cc4038d_optionalUserData(const _9cc4038d_optionalUserData &) = delete; } _9cc4038d_optionalUserData;
 typedef struct _9cc4038d_rteParameters { _9cc4038d_rteParameters(void* value): value(value) {}; void* value; _9cc4038d_rteParameters(const _9cc4038d_rteParameters &) = delete; } _9cc4038d_rteParameters;
-int64_t np_redRteHelperAllocatorVmaCreateImageSimpleWithData(_9cc4038d_helperAllocatorVma & helperAllocatorVma, _9cc4038d_callsSetToUploadImageData & callsSetToUploadImageData, _9cc4038d_imageDataBytesCount & imageDataBytesCount, _9cc4038d_imageData & imageData, _9cc4038d_imageInfo & imageInfo, _9cc4038d_imageLayoutSuggestedDefaultValueIsImageLayoutGeneral & imageLayoutSuggestedDefaultValueIsImageLayoutGeneral, _9cc4038d_outRteHelperImage & outRteHelperImage, _9cc4038d_outStatuses & outStatuses, _9cc4038d_optionalFile & optionalFile, _9cc4038d_optionalLine & optionalLine, _9cc4038d_optionalUserData & optionalUserData, _9cc4038d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaCreateImageSimpleWithData(_9cc4038d_helperAllocatorVma & helperAllocatorVma, _9cc4038d_callsSetToUploadImageData & callsSetToUploadImageData, _9cc4038d_imageDataBytesCount & imageDataBytesCount, _9cc4038d_imageData & imageData, _9cc4038d_imageInfo & imageInfo, _9cc4038d_imageLayoutSuggestedDefaultValueIsImageLayoutGeneral & imageLayoutSuggestedDefaultValueIsImageLayoutGeneral, _9cc4038d_outRteHelperImage & outRteHelperImage, _9cc4038d_outStatuses & outStatuses, _9cc4038d_optionalFile & optionalFile, _9cc4038d_optionalLine & optionalLine, _9cc4038d_optionalUserData & optionalUserData, _9cc4038d_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaCreateImageSimpleWithData(helperAllocatorVma.value, callsSetToUploadImageData.value, imageDataBytesCount.value, imageData.value, imageInfo.value, imageLayoutSuggestedDefaultValueIsImageLayoutGeneral.value, outRteHelperImage.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -663,7 +671,7 @@ typedef struct _f9dd53a5_optionalFile { _f9dd53a5_optionalFile(char* value): val
 typedef struct _f9dd53a5_optionalLine { _f9dd53a5_optionalLine(int value): value(value) {}; int value; _f9dd53a5_optionalLine(const _f9dd53a5_optionalLine &) = delete; } _f9dd53a5_optionalLine;
 typedef struct _f9dd53a5_optionalUserData { _f9dd53a5_optionalUserData(void* value): value(value) {}; void* value; _f9dd53a5_optionalUserData(const _f9dd53a5_optionalUserData &) = delete; } _f9dd53a5_optionalUserData;
 typedef struct _f9dd53a5_rteParameters { _f9dd53a5_rteParameters(void* value): value(value) {}; void* value; _f9dd53a5_rteParameters(const _f9dd53a5_rteParameters &) = delete; } _f9dd53a5_rteParameters;
-int64_t np_redRteHelperAllocatorVmaDestroyArray(_f9dd53a5_helperAllocatorVma & helperAllocatorVma, _f9dd53a5_rteHelperArray & rteHelperArray, _f9dd53a5_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _f9dd53a5_outStatuses & outStatuses, _f9dd53a5_optionalFile & optionalFile, _f9dd53a5_optionalLine & optionalLine, _f9dd53a5_optionalUserData & optionalUserData, _f9dd53a5_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaDestroyArray(_f9dd53a5_helperAllocatorVma & helperAllocatorVma, _f9dd53a5_rteHelperArray & rteHelperArray, _f9dd53a5_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _f9dd53a5_outStatuses & outStatuses, _f9dd53a5_optionalFile & optionalFile, _f9dd53a5_optionalLine & optionalLine, _f9dd53a5_optionalUserData & optionalUserData, _f9dd53a5_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaDestroyArray(helperAllocatorVma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -687,7 +695,7 @@ typedef struct _161f49b1_optionalFile { _161f49b1_optionalFile(char* value): val
 typedef struct _161f49b1_optionalLine { _161f49b1_optionalLine(int value): value(value) {}; int value; _161f49b1_optionalLine(const _161f49b1_optionalLine &) = delete; } _161f49b1_optionalLine;
 typedef struct _161f49b1_optionalUserData { _161f49b1_optionalUserData(void* value): value(value) {}; void* value; _161f49b1_optionalUserData(const _161f49b1_optionalUserData &) = delete; } _161f49b1_optionalUserData;
 typedef struct _161f49b1_rteParameters { _161f49b1_rteParameters(void* value): value(value) {}; void* value; _161f49b1_rteParameters(const _161f49b1_rteParameters &) = delete; } _161f49b1_rteParameters;
-int64_t np_redRteHelperAllocatorVmaDestroyImage(_161f49b1_helperAllocatorVma & helperAllocatorVma, _161f49b1_rteHelperImage & rteHelperImage, _161f49b1_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _161f49b1_outStatuses & outStatuses, _161f49b1_optionalFile & optionalFile, _161f49b1_optionalLine & optionalLine, _161f49b1_optionalUserData & optionalUserData, _161f49b1_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaDestroyImage(_161f49b1_helperAllocatorVma & helperAllocatorVma, _161f49b1_rteHelperImage & rteHelperImage, _161f49b1_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _161f49b1_outStatuses & outStatuses, _161f49b1_optionalFile & optionalFile, _161f49b1_optionalLine & optionalLine, _161f49b1_optionalUserData & optionalUserData, _161f49b1_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaDestroyImage(helperAllocatorVma.value, rteHelperImage.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -709,7 +717,7 @@ typedef struct _bdb4ca16_optionalFile { _bdb4ca16_optionalFile(char* value): val
 typedef struct _bdb4ca16_optionalLine { _bdb4ca16_optionalLine(int value): value(value) {}; int value; _bdb4ca16_optionalLine(const _bdb4ca16_optionalLine &) = delete; } _bdb4ca16_optionalLine;
 typedef struct _bdb4ca16_optionalUserData { _bdb4ca16_optionalUserData(void* value): value(value) {}; void* value; _bdb4ca16_optionalUserData(const _bdb4ca16_optionalUserData &) = delete; } _bdb4ca16_optionalUserData;
 typedef struct _bdb4ca16_rteParameters { _bdb4ca16_rteParameters(void* value): value(value) {}; void* value; _bdb4ca16_rteParameters(const _bdb4ca16_rteParameters &) = delete; } _bdb4ca16_rteParameters;
-int64_t np_redRteHelperAllocatorVmaFinalizeAndReleaseStagingMemory(_bdb4ca16_helperAllocatorVma & helperAllocatorVma, _bdb4ca16_optionalCpuSignal & optionalCpuSignal, _bdb4ca16_outStatuses & outStatuses, _bdb4ca16_optionalFile & optionalFile, _bdb4ca16_optionalLine & optionalLine, _bdb4ca16_optionalUserData & optionalUserData, _bdb4ca16_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaFinalizeAndReleaseStagingMemory(_bdb4ca16_helperAllocatorVma & helperAllocatorVma, _bdb4ca16_optionalCpuSignal & optionalCpuSignal, _bdb4ca16_outStatuses & outStatuses, _bdb4ca16_optionalFile & optionalFile, _bdb4ca16_optionalLine & optionalLine, _bdb4ca16_optionalUserData & optionalUserData, _bdb4ca16_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaFinalizeAndReleaseStagingMemory(helperAllocatorVma.value, optionalCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -731,7 +739,7 @@ typedef struct _ec0def1d_optionalFile { _ec0def1d_optionalFile(char* value): val
 typedef struct _ec0def1d_optionalLine { _ec0def1d_optionalLine(int value): value(value) {}; int value; _ec0def1d_optionalLine(const _ec0def1d_optionalLine &) = delete; } _ec0def1d_optionalLine;
 typedef struct _ec0def1d_optionalUserData { _ec0def1d_optionalUserData(void* value): value(value) {}; void* value; _ec0def1d_optionalUserData(const _ec0def1d_optionalUserData &) = delete; } _ec0def1d_optionalUserData;
 typedef struct _ec0def1d_rteParameters { _ec0def1d_rteParameters(void* value): value(value) {}; void* value; _ec0def1d_rteParameters(const _ec0def1d_rteParameters &) = delete; } _ec0def1d_rteParameters;
-int64_t np_redRteHelperAllocatorVmaFinalizeStagingMemory(_ec0def1d_helperAllocatorVma & helperAllocatorVma, _ec0def1d_optionalCpuSignal & optionalCpuSignal, _ec0def1d_outStatuses & outStatuses, _ec0def1d_optionalFile & optionalFile, _ec0def1d_optionalLine & optionalLine, _ec0def1d_optionalUserData & optionalUserData, _ec0def1d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaFinalizeStagingMemory(_ec0def1d_helperAllocatorVma & helperAllocatorVma, _ec0def1d_optionalCpuSignal & optionalCpuSignal, _ec0def1d_outStatuses & outStatuses, _ec0def1d_optionalFile & optionalFile, _ec0def1d_optionalLine & optionalLine, _ec0def1d_optionalUserData & optionalUserData, _ec0def1d_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaFinalizeStagingMemory(helperAllocatorVma.value, optionalCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -751,7 +759,7 @@ typedef struct _f69c2293_optionalFile { _f69c2293_optionalFile(char* value): val
 typedef struct _f69c2293_optionalLine { _f69c2293_optionalLine(int value): value(value) {}; int value; _f69c2293_optionalLine(const _f69c2293_optionalLine &) = delete; } _f69c2293_optionalLine;
 typedef struct _f69c2293_optionalUserData { _f69c2293_optionalUserData(void* value): value(value) {}; void* value; _f69c2293_optionalUserData(const _f69c2293_optionalUserData &) = delete; } _f69c2293_optionalUserData;
 typedef struct _f69c2293_rteParameters { _f69c2293_rteParameters(void* value): value(value) {}; void* value; _f69c2293_rteParameters(const _f69c2293_rteParameters &) = delete; } _f69c2293_rteParameters;
-int64_t np_redRteHelperAllocatorVmaReleaseStagingMemory(_f69c2293_helperAllocatorVma & helperAllocatorVma, _f69c2293_outStatuses & outStatuses, _f69c2293_optionalFile & optionalFile, _f69c2293_optionalLine & optionalLine, _f69c2293_optionalUserData & optionalUserData, _f69c2293_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaReleaseStagingMemory(_f69c2293_helperAllocatorVma & helperAllocatorVma, _f69c2293_outStatuses & outStatuses, _f69c2293_optionalFile & optionalFile, _f69c2293_optionalLine & optionalLine, _f69c2293_optionalUserData & optionalUserData, _f69c2293_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaReleaseStagingMemory(helperAllocatorVma.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -777,7 +785,7 @@ typedef struct _7147347a_optionalFile { _7147347a_optionalFile(char* value): val
 typedef struct _7147347a_optionalLine { _7147347a_optionalLine(int value): value(value) {}; int value; _7147347a_optionalLine(const _7147347a_optionalLine &) = delete; } _7147347a_optionalLine;
 typedef struct _7147347a_optionalUserData { _7147347a_optionalUserData(void* value): value(value) {}; void* value; _7147347a_optionalUserData(const _7147347a_optionalUserData &) = delete; } _7147347a_optionalUserData;
 typedef struct _7147347a_rteParameters { _7147347a_rteParameters(void* value): value(value) {}; void* value; _7147347a_rteParameters(const _7147347a_rteParameters &) = delete; } _7147347a_rteParameters;
-int64_t np_redRteHelperAllocatorVmaMapArray(_7147347a_helperAllocatorVma & helperAllocatorVma, _7147347a_rteHelperArray & rteHelperArray, _7147347a_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _7147347a_outVolatilePointer & outVolatilePointer, _7147347a_outStatuses & outStatuses, _7147347a_optionalFile & optionalFile, _7147347a_optionalLine & optionalLine, _7147347a_optionalUserData & optionalUserData, _7147347a_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaMapArray(_7147347a_helperAllocatorVma & helperAllocatorVma, _7147347a_rteHelperArray & rteHelperArray, _7147347a_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _7147347a_outVolatilePointer & outVolatilePointer, _7147347a_outStatuses & outStatuses, _7147347a_optionalFile & optionalFile, _7147347a_optionalLine & optionalLine, _7147347a_optionalUserData & optionalUserData, _7147347a_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaMapArray(helperAllocatorVma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outVolatilePointer.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -801,7 +809,7 @@ typedef struct _264ceaf5_optionalFile { _264ceaf5_optionalFile(char* value): val
 typedef struct _264ceaf5_optionalLine { _264ceaf5_optionalLine(int value): value(value) {}; int value; _264ceaf5_optionalLine(const _264ceaf5_optionalLine &) = delete; } _264ceaf5_optionalLine;
 typedef struct _264ceaf5_optionalUserData { _264ceaf5_optionalUserData(void* value): value(value) {}; void* value; _264ceaf5_optionalUserData(const _264ceaf5_optionalUserData &) = delete; } _264ceaf5_optionalUserData;
 typedef struct _264ceaf5_rteParameters { _264ceaf5_rteParameters(void* value): value(value) {}; void* value; _264ceaf5_rteParameters(const _264ceaf5_rteParameters &) = delete; } _264ceaf5_rteParameters;
-int64_t np_redRteHelperAllocatorVmaUnmapArray(_264ceaf5_helperAllocatorVma & helperAllocatorVma, _264ceaf5_rteHelperArray & rteHelperArray, _264ceaf5_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _264ceaf5_outStatuses & outStatuses, _264ceaf5_optionalFile & optionalFile, _264ceaf5_optionalLine & optionalLine, _264ceaf5_optionalUserData & optionalUserData, _264ceaf5_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAllocatorVmaUnmapArray(_264ceaf5_helperAllocatorVma & helperAllocatorVma, _264ceaf5_rteHelperArray & rteHelperArray, _264ceaf5_rteHelperAllocatorResourceMemory & rteHelperAllocatorResourceMemory, _264ceaf5_outStatuses & outStatuses, _264ceaf5_optionalFile & optionalFile, _264ceaf5_optionalLine & optionalLine, _264ceaf5_optionalUserData & optionalUserData, _264ceaf5_rteParameters & rteParameters) {
   return redRteHelperAllocatorVmaUnmapArray(helperAllocatorVma.value, rteHelperArray.value, rteHelperAllocatorResourceMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -823,7 +831,7 @@ typedef struct _04d87b90_optionalFile { _04d87b90_optionalFile(char* value): val
 typedef struct _04d87b90_optionalLine { _04d87b90_optionalLine(int value): value(value) {}; int value; _04d87b90_optionalLine(const _04d87b90_optionalLine &) = delete; } _04d87b90_optionalLine;
 typedef struct _04d87b90_optionalUserData { _04d87b90_optionalUserData(void* value): value(value) {}; void* value; _04d87b90_optionalUserData(const _04d87b90_optionalUserData &) = delete; } _04d87b90_optionalUserData;
 typedef struct _04d87b90_rteParameters { _04d87b90_rteParameters(void* value): value(value) {}; void* value; _04d87b90_rteParameters(const _04d87b90_rteParameters &) = delete; } _04d87b90_rteParameters;
-int64_t np_redRteCreateHelperStructs(_04d87b90_rteContext & rteContext, _04d87b90_outHelperStructs & outHelperStructs, _04d87b90_outStatuses & outStatuses, _04d87b90_optionalFile & optionalFile, _04d87b90_optionalLine & optionalLine, _04d87b90_optionalUserData & optionalUserData, _04d87b90_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperStructs(_04d87b90_rteContext & rteContext, _04d87b90_outHelperStructs & outHelperStructs, _04d87b90_outStatuses & outStatuses, _04d87b90_optionalFile & optionalFile, _04d87b90_optionalLine & optionalLine, _04d87b90_optionalUserData & optionalUserData, _04d87b90_rteParameters & rteParameters) {
   return redRteCreateHelperStructs(rteContext.value, outHelperStructs.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -841,7 +849,7 @@ typedef struct _7d9e4306_optionalFile { _7d9e4306_optionalFile(char* value): val
 typedef struct _7d9e4306_optionalLine { _7d9e4306_optionalLine(int value): value(value) {}; int value; _7d9e4306_optionalLine(const _7d9e4306_optionalLine &) = delete; } _7d9e4306_optionalLine;
 typedef struct _7d9e4306_optionalUserData { _7d9e4306_optionalUserData(void* value): value(value) {}; void* value; _7d9e4306_optionalUserData(const _7d9e4306_optionalUserData &) = delete; } _7d9e4306_optionalUserData;
 typedef struct _7d9e4306_rteParameters { _7d9e4306_rteParameters(void* value): value(value) {}; void* value; _7d9e4306_rteParameters(const _7d9e4306_rteParameters &) = delete; } _7d9e4306_rteParameters;
-int64_t np_redRteDestroyHelperStructs(_7d9e4306_helperStructs & helperStructs, _7d9e4306_optionalFile & optionalFile, _7d9e4306_optionalLine & optionalLine, _7d9e4306_optionalUserData & optionalUserData, _7d9e4306_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperStructs(_7d9e4306_helperStructs & helperStructs, _7d9e4306_optionalFile & optionalFile, _7d9e4306_optionalLine & optionalLine, _7d9e4306_optionalUserData & optionalUserData, _7d9e4306_rteParameters & rteParameters) {
   return redRteDestroyHelperStructs(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -867,7 +875,7 @@ typedef struct _f7660459_optionalFile { _f7660459_optionalFile(char* value): val
 typedef struct _f7660459_optionalLine { _f7660459_optionalLine(int value): value(value) {}; int value; _f7660459_optionalLine(const _f7660459_optionalLine &) = delete; } _f7660459_optionalLine;
 typedef struct _f7660459_optionalUserData { _f7660459_optionalUserData(void* value): value(value) {}; void* value; _f7660459_optionalUserData(const _f7660459_optionalUserData &) = delete; } _f7660459_optionalUserData;
 typedef struct _f7660459_rteParameters { _f7660459_rteParameters(void* value): value(value) {}; void* value; _f7660459_rteParameters(const _f7660459_rteParameters &) = delete; } _f7660459_rteParameters;
-int64_t np_redRteHelperStructsSetStructDeclarationMembers(_f7660459_helperStructs & helperStructs, _f7660459_structDeclarationMembersCount & structDeclarationMembersCount, _f7660459_structDeclarationMembers & structDeclarationMembers, _f7660459_structDeclarationMembersArrayROCount & structDeclarationMembersArrayROCount, _f7660459_structDeclarationMembersArrayRO & structDeclarationMembersArrayRO, _f7660459_optionalFile & optionalFile, _f7660459_optionalLine & optionalLine, _f7660459_optionalUserData & optionalUserData, _f7660459_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsSetStructDeclarationMembers(_f7660459_helperStructs & helperStructs, _f7660459_structDeclarationMembersCount & structDeclarationMembersCount, _f7660459_structDeclarationMembers & structDeclarationMembers, _f7660459_structDeclarationMembersArrayROCount & structDeclarationMembersArrayROCount, _f7660459_structDeclarationMembersArrayRO & structDeclarationMembersArrayRO, _f7660459_optionalFile & optionalFile, _f7660459_optionalLine & optionalLine, _f7660459_optionalUserData & optionalUserData, _f7660459_rteParameters & rteParameters) {
   return redRteHelperStructsSetStructDeclarationMembers(helperStructs.value, structDeclarationMembersCount.value, structDeclarationMembers.value, structDeclarationMembersArrayROCount.value, structDeclarationMembersArrayRO.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -897,7 +905,7 @@ typedef struct _5c5b90ae_optionalFile { _5c5b90ae_optionalFile(char* value): val
 typedef struct _5c5b90ae_optionalLine { _5c5b90ae_optionalLine(int value): value(value) {}; int value; _5c5b90ae_optionalLine(const _5c5b90ae_optionalLine &) = delete; } _5c5b90ae_optionalLine;
 typedef struct _5c5b90ae_optionalUserData { _5c5b90ae_optionalUserData(void* value): value(value) {}; void* value; _5c5b90ae_optionalUserData(const _5c5b90ae_optionalUserData &) = delete; } _5c5b90ae_optionalUserData;
 typedef struct _5c5b90ae_rteParameters { _5c5b90ae_rteParameters(void* value): value(value) {}; void* value; _5c5b90ae_rteParameters(const _5c5b90ae_rteParameters &) = delete; } _5c5b90ae_rteParameters;
-int64_t np_redRteHelperStructsAddStructDeclarationMember(_5c5b90ae_helperStructs & helperStructs, _5c5b90ae_slot & slot, _5c5b90ae_type & type, _5c5b90ae_count & count, _5c5b90ae_visibleToStages & visibleToStages, _5c5b90ae_inlineSampler & inlineSampler, _5c5b90ae_slotTypeIsArrayRO & slotTypeIsArrayRO, _5c5b90ae_optionalFile & optionalFile, _5c5b90ae_optionalLine & optionalLine, _5c5b90ae_optionalUserData & optionalUserData, _5c5b90ae_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsAddStructDeclarationMember(_5c5b90ae_helperStructs & helperStructs, _5c5b90ae_slot & slot, _5c5b90ae_type & type, _5c5b90ae_count & count, _5c5b90ae_visibleToStages & visibleToStages, _5c5b90ae_inlineSampler & inlineSampler, _5c5b90ae_slotTypeIsArrayRO & slotTypeIsArrayRO, _5c5b90ae_optionalFile & optionalFile, _5c5b90ae_optionalLine & optionalLine, _5c5b90ae_optionalUserData & optionalUserData, _5c5b90ae_rteParameters & rteParameters) {
   return redRteHelperStructsAddStructDeclarationMember(helperStructs.value, slot.value, type.value, count.value, visibleToStages.value, inlineSampler.value, slotTypeIsArrayRO.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -919,7 +927,7 @@ typedef struct _8bcc2f8e_optionalFile { _8bcc2f8e_optionalFile(char* value): val
 typedef struct _8bcc2f8e_optionalLine { _8bcc2f8e_optionalLine(int value): value(value) {}; int value; _8bcc2f8e_optionalLine(const _8bcc2f8e_optionalLine &) = delete; } _8bcc2f8e_optionalLine;
 typedef struct _8bcc2f8e_optionalUserData { _8bcc2f8e_optionalUserData(void* value): value(value) {}; void* value; _8bcc2f8e_optionalUserData(const _8bcc2f8e_optionalUserData &) = delete; } _8bcc2f8e_optionalUserData;
 typedef struct _8bcc2f8e_rteParameters { _8bcc2f8e_rteParameters(void* value): value(value) {}; void* value; _8bcc2f8e_rteParameters(const _8bcc2f8e_rteParameters &) = delete; } _8bcc2f8e_rteParameters;
-int64_t np_redRteHelperStructsSetStructDeclarationMemberFlags(_8bcc2f8e_helperStructs & helperStructs, _8bcc2f8e_slot & slot, _8bcc2f8e_descriptorBindingFlags_RequiresApiSupportGreaterThanVkVersion10 & descriptorBindingFlags_RequiresApiSupportGreaterThanVkVersion10, _8bcc2f8e_optionalFile & optionalFile, _8bcc2f8e_optionalLine & optionalLine, _8bcc2f8e_optionalUserData & optionalUserData, _8bcc2f8e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsSetStructDeclarationMemberFlags(_8bcc2f8e_helperStructs & helperStructs, _8bcc2f8e_slot & slot, _8bcc2f8e_descriptorBindingFlags_RequiresApiSupportGreaterThanVkVersion10 & descriptorBindingFlags_RequiresApiSupportGreaterThanVkVersion10, _8bcc2f8e_optionalFile & optionalFile, _8bcc2f8e_optionalLine & optionalLine, _8bcc2f8e_optionalUserData & optionalUserData, _8bcc2f8e_rteParameters & rteParameters) {
   return redRteHelperStructsSetStructDeclarationMemberFlags(helperStructs.value, slot.value, descriptorBindingFlags_RequiresApiSupportGreaterThanVkVersion10.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -945,7 +953,7 @@ typedef struct _f55c2f96_optionalFile { _f55c2f96_optionalFile(char* value): val
 typedef struct _f55c2f96_optionalLine { _f55c2f96_optionalLine(int value): value(value) {}; int value; _f55c2f96_optionalLine(const _f55c2f96_optionalLine &) = delete; } _f55c2f96_optionalLine;
 typedef struct _f55c2f96_optionalUserData { _f55c2f96_optionalUserData(void* value): value(value) {}; void* value; _f55c2f96_optionalUserData(const _f55c2f96_optionalUserData &) = delete; } _f55c2f96_optionalUserData;
 typedef struct _f55c2f96_rteParameters { _f55c2f96_rteParameters(void* value): value(value) {}; void* value; _f55c2f96_rteParameters(const _f55c2f96_rteParameters &) = delete; } _f55c2f96_rteParameters;
-int64_t np_redRteHelperStructsCreateStructDeclaration(_f55c2f96_helperStructs & helperStructs, _f55c2f96_descriptorSetLayoutCreateFlags & descriptorSetLayoutCreateFlags, _f55c2f96_apiSupport & apiSupport, _f55c2f96_outStructDeclaration & outStructDeclaration, _f55c2f96_outStatuses & outStatuses, _f55c2f96_optionalFile & optionalFile, _f55c2f96_optionalLine & optionalLine, _f55c2f96_optionalUserData & optionalUserData, _f55c2f96_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsCreateStructDeclaration(_f55c2f96_helperStructs & helperStructs, _f55c2f96_descriptorSetLayoutCreateFlags & descriptorSetLayoutCreateFlags, _f55c2f96_apiSupport & apiSupport, _f55c2f96_outStructDeclaration & outStructDeclaration, _f55c2f96_outStatuses & outStatuses, _f55c2f96_optionalFile & optionalFile, _f55c2f96_optionalLine & optionalLine, _f55c2f96_optionalUserData & optionalUserData, _f55c2f96_rteParameters & rteParameters) {
   return redRteHelperStructsCreateStructDeclaration(helperStructs.value, descriptorSetLayoutCreateFlags.value, apiSupport.value, outStructDeclaration.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -969,7 +977,7 @@ typedef struct _11d23ff7_optionalFile { _11d23ff7_optionalFile(char* value): val
 typedef struct _11d23ff7_optionalLine { _11d23ff7_optionalLine(int value): value(value) {}; int value; _11d23ff7_optionalLine(const _11d23ff7_optionalLine &) = delete; } _11d23ff7_optionalLine;
 typedef struct _11d23ff7_optionalUserData { _11d23ff7_optionalUserData(void* value): value(value) {}; void* value; _11d23ff7_optionalUserData(const _11d23ff7_optionalUserData &) = delete; } _11d23ff7_optionalUserData;
 typedef struct _11d23ff7_rteParameters { _11d23ff7_rteParameters(void* value): value(value) {}; void* value; _11d23ff7_rteParameters(const _11d23ff7_rteParameters &) = delete; } _11d23ff7_rteParameters;
-int64_t np_redRteHelperStructsCreateStructsMemory(_11d23ff7_helperStructs & helperStructs, _11d23ff7_allocateStructsCount & allocateStructsCount, _11d23ff7_outStructsMemory & outStructsMemory, _11d23ff7_outStatuses & outStatuses, _11d23ff7_optionalFile & optionalFile, _11d23ff7_optionalLine & optionalLine, _11d23ff7_optionalUserData & optionalUserData, _11d23ff7_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsCreateStructsMemory(_11d23ff7_helperStructs & helperStructs, _11d23ff7_allocateStructsCount & allocateStructsCount, _11d23ff7_outStructsMemory & outStructsMemory, _11d23ff7_outStatuses & outStatuses, _11d23ff7_optionalFile & optionalFile, _11d23ff7_optionalLine & optionalLine, _11d23ff7_optionalUserData & optionalUserData, _11d23ff7_rteParameters & rteParameters) {
   return redRteHelperStructsCreateStructsMemory(helperStructs.value, allocateStructsCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -989,7 +997,7 @@ typedef struct _b86a44b7_optionalFile { _b86a44b7_optionalFile(char* value): val
 typedef struct _b86a44b7_optionalLine { _b86a44b7_optionalLine(int value): value(value) {}; int value; _b86a44b7_optionalLine(const _b86a44b7_optionalLine &) = delete; } _b86a44b7_optionalLine;
 typedef struct _b86a44b7_optionalUserData { _b86a44b7_optionalUserData(void* value): value(value) {}; void* value; _b86a44b7_optionalUserData(const _b86a44b7_optionalUserData &) = delete; } _b86a44b7_optionalUserData;
 typedef struct _b86a44b7_rteParameters { _b86a44b7_rteParameters(void* value): value(value) {}; void* value; _b86a44b7_rteParameters(const _b86a44b7_rteParameters &) = delete; } _b86a44b7_rteParameters;
-RedHandleStruct np_redRteHelperStructsGetStruct(_b86a44b7_helperStructs & helperStructs, _b86a44b7_structIndex & structIndex, _b86a44b7_optionalFile & optionalFile, _b86a44b7_optionalLine & optionalLine, _b86a44b7_optionalUserData & optionalUserData, _b86a44b7_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleStruct REDGPU_NP_API np_redRteHelperStructsGetStruct(_b86a44b7_helperStructs & helperStructs, _b86a44b7_structIndex & structIndex, _b86a44b7_optionalFile & optionalFile, _b86a44b7_optionalLine & optionalLine, _b86a44b7_optionalUserData & optionalUserData, _b86a44b7_rteParameters & rteParameters) {
   return redRteHelperStructsGetStruct(helperStructs.value, structIndex.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1007,7 +1015,7 @@ typedef struct _e962846e_optionalFile { _e962846e_optionalFile(char* value): val
 typedef struct _e962846e_optionalLine { _e962846e_optionalLine(int value): value(value) {}; int value; _e962846e_optionalLine(const _e962846e_optionalLine &) = delete; } _e962846e_optionalLine;
 typedef struct _e962846e_optionalUserData { _e962846e_optionalUserData(void* value): value(value) {}; void* value; _e962846e_optionalUserData(const _e962846e_optionalUserData &) = delete; } _e962846e_optionalUserData;
 typedef struct _e962846e_rteParameters { _e962846e_rteParameters(void* value): value(value) {}; void* value; _e962846e_rteParameters(const _e962846e_rteParameters &) = delete; } _e962846e_rteParameters;
-unsigned np_redRteHelperStructsGetStructsCount(_e962846e_helperStructs & helperStructs, _e962846e_optionalFile & optionalFile, _e962846e_optionalLine & optionalLine, _e962846e_optionalUserData & optionalUserData, _e962846e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC unsigned REDGPU_NP_API np_redRteHelperStructsGetStructsCount(_e962846e_helperStructs & helperStructs, _e962846e_optionalFile & optionalFile, _e962846e_optionalLine & optionalLine, _e962846e_optionalUserData & optionalUserData, _e962846e_rteParameters & rteParameters) {
   return redRteHelperStructsGetStructsCount(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1025,7 +1033,7 @@ typedef struct _e65e5dba_optionalFile { _e65e5dba_optionalFile(char* value): val
 typedef struct _e65e5dba_optionalLine { _e65e5dba_optionalLine(int value): value(value) {}; int value; _e65e5dba_optionalLine(const _e65e5dba_optionalLine &) = delete; } _e65e5dba_optionalLine;
 typedef struct _e65e5dba_optionalUserData { _e65e5dba_optionalUserData(void* value): value(value) {}; void* value; _e65e5dba_optionalUserData(const _e65e5dba_optionalUserData &) = delete; } _e65e5dba_optionalUserData;
 typedef struct _e65e5dba_rteParameters { _e65e5dba_rteParameters(void* value): value(value) {}; void* value; _e65e5dba_rteParameters(const _e65e5dba_rteParameters &) = delete; } _e65e5dba_rteParameters;
-RedHandleStruct* np_redRteHelperStructsGetStructs(_e65e5dba_helperStructs & helperStructs, _e65e5dba_optionalFile & optionalFile, _e65e5dba_optionalLine & optionalLine, _e65e5dba_optionalUserData & optionalUserData, _e65e5dba_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleStruct* REDGPU_NP_API np_redRteHelperStructsGetStructs(_e65e5dba_helperStructs & helperStructs, _e65e5dba_optionalFile & optionalFile, _e65e5dba_optionalLine & optionalLine, _e65e5dba_optionalUserData & optionalUserData, _e65e5dba_rteParameters & rteParameters) {
   return redRteHelperStructsGetStructs(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1043,7 +1051,7 @@ typedef struct _46345fbc_optionalFile { _46345fbc_optionalFile(char* value): val
 typedef struct _46345fbc_optionalLine { _46345fbc_optionalLine(int value): value(value) {}; int value; _46345fbc_optionalLine(const _46345fbc_optionalLine &) = delete; } _46345fbc_optionalLine;
 typedef struct _46345fbc_optionalUserData { _46345fbc_optionalUserData(void* value): value(value) {}; void* value; _46345fbc_optionalUserData(const _46345fbc_optionalUserData &) = delete; } _46345fbc_optionalUserData;
 typedef struct _46345fbc_rteParameters { _46345fbc_rteParameters(void* value): value(value) {}; void* value; _46345fbc_rteParameters(const _46345fbc_rteParameters &) = delete; } _46345fbc_rteParameters;
-unsigned np_redRteHelperStructsGetStructDeclarationMembersCount(_46345fbc_helperStructs & helperStructs, _46345fbc_optionalFile & optionalFile, _46345fbc_optionalLine & optionalLine, _46345fbc_optionalUserData & optionalUserData, _46345fbc_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC unsigned REDGPU_NP_API np_redRteHelperStructsGetStructDeclarationMembersCount(_46345fbc_helperStructs & helperStructs, _46345fbc_optionalFile & optionalFile, _46345fbc_optionalLine & optionalLine, _46345fbc_optionalUserData & optionalUserData, _46345fbc_rteParameters & rteParameters) {
   return redRteHelperStructsGetStructDeclarationMembersCount(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1061,7 +1069,7 @@ typedef struct _d1f18e89_optionalFile { _d1f18e89_optionalFile(char* value): val
 typedef struct _d1f18e89_optionalLine { _d1f18e89_optionalLine(int value): value(value) {}; int value; _d1f18e89_optionalLine(const _d1f18e89_optionalLine &) = delete; } _d1f18e89_optionalLine;
 typedef struct _d1f18e89_optionalUserData { _d1f18e89_optionalUserData(void* value): value(value) {}; void* value; _d1f18e89_optionalUserData(const _d1f18e89_optionalUserData &) = delete; } _d1f18e89_optionalUserData;
 typedef struct _d1f18e89_rteParameters { _d1f18e89_rteParameters(void* value): value(value) {}; void* value; _d1f18e89_rteParameters(const _d1f18e89_rteParameters &) = delete; } _d1f18e89_rteParameters;
-RedStructDeclarationMember* np_redRteHelperStructsGetStructDeclarationMembers(_d1f18e89_helperStructs & helperStructs, _d1f18e89_optionalFile & optionalFile, _d1f18e89_optionalLine & optionalLine, _d1f18e89_optionalUserData & optionalUserData, _d1f18e89_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedStructDeclarationMember* REDGPU_NP_API np_redRteHelperStructsGetStructDeclarationMembers(_d1f18e89_helperStructs & helperStructs, _d1f18e89_optionalFile & optionalFile, _d1f18e89_optionalLine & optionalLine, _d1f18e89_optionalUserData & optionalUserData, _d1f18e89_rteParameters & rteParameters) {
   return redRteHelperStructsGetStructDeclarationMembers(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1079,7 +1087,7 @@ typedef struct _971201b9_optionalFile { _971201b9_optionalFile(char* value): val
 typedef struct _971201b9_optionalLine { _971201b9_optionalLine(int value): value(value) {}; int value; _971201b9_optionalLine(const _971201b9_optionalLine &) = delete; } _971201b9_optionalLine;
 typedef struct _971201b9_optionalUserData { _971201b9_optionalUserData(void* value): value(value) {}; void* value; _971201b9_optionalUserData(const _971201b9_optionalUserData &) = delete; } _971201b9_optionalUserData;
 typedef struct _971201b9_rteParameters { _971201b9_rteParameters(void* value): value(value) {}; void* value; _971201b9_rteParameters(const _971201b9_rteParameters &) = delete; } _971201b9_rteParameters;
-int64_t np_redRteHelperStructsDestroyStructDeclaration(_971201b9_helperStructs & helperStructs, _971201b9_optionalFile & optionalFile, _971201b9_optionalLine & optionalLine, _971201b9_optionalUserData & optionalUserData, _971201b9_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsDestroyStructDeclaration(_971201b9_helperStructs & helperStructs, _971201b9_optionalFile & optionalFile, _971201b9_optionalLine & optionalLine, _971201b9_optionalUserData & optionalUserData, _971201b9_rteParameters & rteParameters) {
   return redRteHelperStructsDestroyStructDeclaration(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1097,7 +1105,7 @@ typedef struct _c92c46fb_optionalFile { _c92c46fb_optionalFile(char* value): val
 typedef struct _c92c46fb_optionalLine { _c92c46fb_optionalLine(int value): value(value) {}; int value; _c92c46fb_optionalLine(const _c92c46fb_optionalLine &) = delete; } _c92c46fb_optionalLine;
 typedef struct _c92c46fb_optionalUserData { _c92c46fb_optionalUserData(void* value): value(value) {}; void* value; _c92c46fb_optionalUserData(const _c92c46fb_optionalUserData &) = delete; } _c92c46fb_optionalUserData;
 typedef struct _c92c46fb_rteParameters { _c92c46fb_rteParameters(void* value): value(value) {}; void* value; _c92c46fb_rteParameters(const _c92c46fb_rteParameters &) = delete; } _c92c46fb_rteParameters;
-int64_t np_redRteHelperStructsDestroyStructsMemory(_c92c46fb_helperStructs & helperStructs, _c92c46fb_optionalFile & optionalFile, _c92c46fb_optionalLine & optionalLine, _c92c46fb_optionalUserData & optionalUserData, _c92c46fb_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsDestroyStructsMemory(_c92c46fb_helperStructs & helperStructs, _c92c46fb_optionalFile & optionalFile, _c92c46fb_optionalLine & optionalLine, _c92c46fb_optionalUserData & optionalUserData, _c92c46fb_rteParameters & rteParameters) {
   return redRteHelperStructsDestroyStructsMemory(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1115,7 +1123,7 @@ typedef struct _1ee4ec30_optionalFile { _1ee4ec30_optionalFile(char* value): val
 typedef struct _1ee4ec30_optionalLine { _1ee4ec30_optionalLine(int value): value(value) {}; int value; _1ee4ec30_optionalLine(const _1ee4ec30_optionalLine &) = delete; } _1ee4ec30_optionalLine;
 typedef struct _1ee4ec30_optionalUserData { _1ee4ec30_optionalUserData(void* value): value(value) {}; void* value; _1ee4ec30_optionalUserData(const _1ee4ec30_optionalUserData &) = delete; } _1ee4ec30_optionalUserData;
 typedef struct _1ee4ec30_rteParameters { _1ee4ec30_rteParameters(void* value): value(value) {}; void* value; _1ee4ec30_rteParameters(const _1ee4ec30_rteParameters &) = delete; } _1ee4ec30_rteParameters;
-int64_t np_redRteHelperStructsClear(_1ee4ec30_helperStructs & helperStructs, _1ee4ec30_optionalFile & optionalFile, _1ee4ec30_optionalLine & optionalLine, _1ee4ec30_optionalUserData & optionalUserData, _1ee4ec30_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperStructsClear(_1ee4ec30_helperStructs & helperStructs, _1ee4ec30_optionalFile & optionalFile, _1ee4ec30_optionalLine & optionalLine, _1ee4ec30_optionalUserData & optionalUserData, _1ee4ec30_rteParameters & rteParameters) {
   return redRteHelperStructsClear(helperStructs.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1141,7 +1149,7 @@ typedef struct _2097d6bb_optionalFile { _2097d6bb_optionalFile(char* value): val
 typedef struct _2097d6bb_optionalLine { _2097d6bb_optionalLine(int value): value(value) {}; int value; _2097d6bb_optionalLine(const _2097d6bb_optionalLine &) = delete; } _2097d6bb_optionalLine;
 typedef struct _2097d6bb_optionalUserData { _2097d6bb_optionalUserData(void* value): value(value) {}; void* value; _2097d6bb_optionalUserData(const _2097d6bb_optionalUserData &) = delete; } _2097d6bb_optionalUserData;
 typedef struct _2097d6bb_rteParameters { _2097d6bb_rteParameters(void* value): value(value) {}; void* value; _2097d6bb_rteParameters(const _2097d6bb_rteParameters &) = delete; } _2097d6bb_rteParameters;
-int64_t np_redRteCreateRayTracingBuilder(_2097d6bb_rteContext & rteContext, _2097d6bb_rteHandleHelperAllocator & rteHandleHelperAllocator, _2097d6bb_queueFamilyIndex & queueFamilyIndex, _2097d6bb_outRayTracingBuilder & outRayTracingBuilder, _2097d6bb_outStatuses & outStatuses, _2097d6bb_optionalFile & optionalFile, _2097d6bb_optionalLine & optionalLine, _2097d6bb_optionalUserData & optionalUserData, _2097d6bb_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateRayTracingBuilder(_2097d6bb_rteContext & rteContext, _2097d6bb_rteHandleHelperAllocator & rteHandleHelperAllocator, _2097d6bb_queueFamilyIndex & queueFamilyIndex, _2097d6bb_outRayTracingBuilder & outRayTracingBuilder, _2097d6bb_outStatuses & outStatuses, _2097d6bb_optionalFile & optionalFile, _2097d6bb_optionalLine & optionalLine, _2097d6bb_optionalUserData & optionalUserData, _2097d6bb_rteParameters & rteParameters) {
   return redRteCreateRayTracingBuilder(rteContext.value, rteHandleHelperAllocator.value, queueFamilyIndex.value, outRayTracingBuilder.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1159,7 +1167,7 @@ typedef struct _1c743ff7_optionalFile { _1c743ff7_optionalFile(char* value): val
 typedef struct _1c743ff7_optionalLine { _1c743ff7_optionalLine(int value): value(value) {}; int value; _1c743ff7_optionalLine(const _1c743ff7_optionalLine &) = delete; } _1c743ff7_optionalLine;
 typedef struct _1c743ff7_optionalUserData { _1c743ff7_optionalUserData(void* value): value(value) {}; void* value; _1c743ff7_optionalUserData(const _1c743ff7_optionalUserData &) = delete; } _1c743ff7_optionalUserData;
 typedef struct _1c743ff7_rteParameters { _1c743ff7_rteParameters(void* value): value(value) {}; void* value; _1c743ff7_rteParameters(const _1c743ff7_rteParameters &) = delete; } _1c743ff7_rteParameters;
-int64_t np_redRteDestroyRayTracingBuilder(_1c743ff7_rayTracingBuilder & rayTracingBuilder, _1c743ff7_optionalFile & optionalFile, _1c743ff7_optionalLine & optionalLine, _1c743ff7_optionalUserData & optionalUserData, _1c743ff7_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyRayTracingBuilder(_1c743ff7_rayTracingBuilder & rayTracingBuilder, _1c743ff7_optionalFile & optionalFile, _1c743ff7_optionalLine & optionalLine, _1c743ff7_optionalUserData & optionalUserData, _1c743ff7_rteParameters & rteParameters) {
   return redRteDestroyRayTracingBuilder(rayTracingBuilder.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1185,7 +1193,7 @@ typedef struct _252d81b1_optionalFile { _252d81b1_optionalFile(char* value): val
 typedef struct _252d81b1_optionalLine { _252d81b1_optionalLine(int value): value(value) {}; int value; _252d81b1_optionalLine(const _252d81b1_optionalLine &) = delete; } _252d81b1_optionalLine;
 typedef struct _252d81b1_optionalUserData { _252d81b1_optionalUserData(void* value): value(value) {}; void* value; _252d81b1_optionalUserData(const _252d81b1_optionalUserData &) = delete; } _252d81b1_optionalUserData;
 typedef struct _252d81b1_rteParameters { _252d81b1_rteParameters(void* value): value(value) {}; void* value; _252d81b1_rteParameters(const _252d81b1_rteParameters &) = delete; } _252d81b1_rteParameters;
-int64_t np_redRteRayTracingBuilderBuildBlas(_252d81b1_rayTracingBuilder & rayTracingBuilder, _252d81b1_blasInputsCount & blasInputsCount, _252d81b1_blasInputs & blasInputs, _252d81b1_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _252d81b1_outStatuses & outStatuses, _252d81b1_optionalFile & optionalFile, _252d81b1_optionalLine & optionalLine, _252d81b1_optionalUserData & optionalUserData, _252d81b1_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteRayTracingBuilderBuildBlas(_252d81b1_rayTracingBuilder & rayTracingBuilder, _252d81b1_blasInputsCount & blasInputsCount, _252d81b1_blasInputs & blasInputs, _252d81b1_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _252d81b1_outStatuses & outStatuses, _252d81b1_optionalFile & optionalFile, _252d81b1_optionalLine & optionalLine, _252d81b1_optionalUserData & optionalUserData, _252d81b1_rteParameters & rteParameters) {
   return redRteRayTracingBuilderBuildBlas(rayTracingBuilder.value, blasInputsCount.value, blasInputs.value, buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1205,7 +1213,7 @@ typedef struct _f28a5cda_optionalFile { _f28a5cda_optionalFile(char* value): val
 typedef struct _f28a5cda_optionalLine { _f28a5cda_optionalLine(int value): value(value) {}; int value; _f28a5cda_optionalLine(const _f28a5cda_optionalLine &) = delete; } _f28a5cda_optionalLine;
 typedef struct _f28a5cda_optionalUserData { _f28a5cda_optionalUserData(void* value): value(value) {}; void* value; _f28a5cda_optionalUserData(const _f28a5cda_optionalUserData &) = delete; } _f28a5cda_optionalUserData;
 typedef struct _f28a5cda_rteParameters { _f28a5cda_rteParameters(void* value): value(value) {}; void* value; _f28a5cda_rteParameters(const _f28a5cda_rteParameters &) = delete; } _f28a5cda_rteParameters;
-uint64_t np_redRteRayTracingBuilderGetBlasGpuAddress(_f28a5cda_rayTracingBuilder & rayTracingBuilder, _f28a5cda_blasIndex & blasIndex, _f28a5cda_optionalFile & optionalFile, _f28a5cda_optionalLine & optionalLine, _f28a5cda_optionalUserData & optionalUserData, _f28a5cda_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC uint64_t REDGPU_NP_API np_redRteRayTracingBuilderGetBlasGpuAddress(_f28a5cda_rayTracingBuilder & rayTracingBuilder, _f28a5cda_blasIndex & blasIndex, _f28a5cda_optionalFile & optionalFile, _f28a5cda_optionalLine & optionalLine, _f28a5cda_optionalUserData & optionalUserData, _f28a5cda_rteParameters & rteParameters) {
   return redRteRayTracingBuilderGetBlasGpuAddress(rayTracingBuilder.value, blasIndex.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1233,7 +1241,7 @@ typedef struct _3ba6a5b7_optionalFile { _3ba6a5b7_optionalFile(char* value): val
 typedef struct _3ba6a5b7_optionalLine { _3ba6a5b7_optionalLine(int value): value(value) {}; int value; _3ba6a5b7_optionalLine(const _3ba6a5b7_optionalLine &) = delete; } _3ba6a5b7_optionalLine;
 typedef struct _3ba6a5b7_optionalUserData { _3ba6a5b7_optionalUserData(void* value): value(value) {}; void* value; _3ba6a5b7_optionalUserData(const _3ba6a5b7_optionalUserData &) = delete; } _3ba6a5b7_optionalUserData;
 typedef struct _3ba6a5b7_rteParameters { _3ba6a5b7_rteParameters(void* value): value(value) {}; void* value; _3ba6a5b7_rteParameters(const _3ba6a5b7_rteParameters &) = delete; } _3ba6a5b7_rteParameters;
-int64_t np_redRteRayTracingBuilderBuildTlas(_3ba6a5b7_rayTracingBuilder & rayTracingBuilder, _3ba6a5b7_instancesCount & instancesCount, _3ba6a5b7_instances & instances, _3ba6a5b7_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _3ba6a5b7_update & update, _3ba6a5b7_outStatuses & outStatuses, _3ba6a5b7_optionalFile & optionalFile, _3ba6a5b7_optionalLine & optionalLine, _3ba6a5b7_optionalUserData & optionalUserData, _3ba6a5b7_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteRayTracingBuilderBuildTlas(_3ba6a5b7_rayTracingBuilder & rayTracingBuilder, _3ba6a5b7_instancesCount & instancesCount, _3ba6a5b7_instances & instances, _3ba6a5b7_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _3ba6a5b7_update & update, _3ba6a5b7_outStatuses & outStatuses, _3ba6a5b7_optionalFile & optionalFile, _3ba6a5b7_optionalLine & optionalLine, _3ba6a5b7_optionalUserData & optionalUserData, _3ba6a5b7_rteParameters & rteParameters) {
   return redRteRayTracingBuilderBuildTlas(rayTracingBuilder.value, instancesCount.value, instances.value, buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit.value, update.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1251,7 +1259,7 @@ typedef struct _f0e095a0_optionalFile { _f0e095a0_optionalFile(char* value): val
 typedef struct _f0e095a0_optionalLine { _f0e095a0_optionalLine(int value): value(value) {}; int value; _f0e095a0_optionalLine(const _f0e095a0_optionalLine &) = delete; } _f0e095a0_optionalLine;
 typedef struct _f0e095a0_optionalUserData { _f0e095a0_optionalUserData(void* value): value(value) {}; void* value; _f0e095a0_optionalUserData(const _f0e095a0_optionalUserData &) = delete; } _f0e095a0_optionalUserData;
 typedef struct _f0e095a0_rteParameters { _f0e095a0_rteParameters(void* value): value(value) {}; void* value; _f0e095a0_rteParameters(const _f0e095a0_rteParameters &) = delete; } _f0e095a0_rteParameters;
-RedRteHandleRayTracingAccelerationStructure np_redRteRayTracingBuilderGetTlas(_f0e095a0_rayTracingBuilder & rayTracingBuilder, _f0e095a0_optionalFile & optionalFile, _f0e095a0_optionalLine & optionalLine, _f0e095a0_optionalUserData & optionalUserData, _f0e095a0_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedRteHandleRayTracingAccelerationStructure REDGPU_NP_API np_redRteRayTracingBuilderGetTlas(_f0e095a0_rayTracingBuilder & rayTracingBuilder, _f0e095a0_optionalFile & optionalFile, _f0e095a0_optionalLine & optionalLine, _f0e095a0_optionalUserData & optionalUserData, _f0e095a0_rteParameters & rteParameters) {
   return redRteRayTracingBuilderGetTlas(rayTracingBuilder.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1277,7 +1285,7 @@ typedef struct _83ea9684_optionalFile { _83ea9684_optionalFile(char* value): val
 typedef struct _83ea9684_optionalLine { _83ea9684_optionalLine(int value): value(value) {}; int value; _83ea9684_optionalLine(const _83ea9684_optionalLine &) = delete; } _83ea9684_optionalLine;
 typedef struct _83ea9684_optionalUserData { _83ea9684_optionalUserData(void* value): value(value) {}; void* value; _83ea9684_optionalUserData(const _83ea9684_optionalUserData &) = delete; } _83ea9684_optionalUserData;
 typedef struct _83ea9684_rteParameters { _83ea9684_rteParameters(void* value): value(value) {}; void* value; _83ea9684_rteParameters(const _83ea9684_rteParameters &) = delete; } _83ea9684_rteParameters;
-int64_t np_redRteRayTracingBuilderUpdateBlas(_83ea9684_rayTracingBuilder & rayTracingBuilder, _83ea9684_blasIndex & blasIndex, _83ea9684_blasInput & blasInput, _83ea9684_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _83ea9684_outStatuses & outStatuses, _83ea9684_optionalFile & optionalFile, _83ea9684_optionalLine & optionalLine, _83ea9684_optionalUserData & optionalUserData, _83ea9684_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteRayTracingBuilderUpdateBlas(_83ea9684_rayTracingBuilder & rayTracingBuilder, _83ea9684_blasIndex & blasIndex, _83ea9684_blasInput & blasInput, _83ea9684_buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit & buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit, _83ea9684_outStatuses & outStatuses, _83ea9684_optionalFile & optionalFile, _83ea9684_optionalLine & optionalLine, _83ea9684_optionalUserData & optionalUserData, _83ea9684_rteParameters & rteParameters) {
   return redRteRayTracingBuilderUpdateBlas(rayTracingBuilder.value, blasIndex.value, blasInput.value, buildAccelerationStructureFlagsSuggestedDefaultValueIsBuildAccelerationStructurePreferFastTraceBit.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1299,7 +1307,7 @@ typedef struct _797e3933_optionalFile { _797e3933_optionalFile(char* value): val
 typedef struct _797e3933_optionalLine { _797e3933_optionalLine(int value): value(value) {}; int value; _797e3933_optionalLine(const _797e3933_optionalLine &) = delete; } _797e3933_optionalLine;
 typedef struct _797e3933_optionalUserData { _797e3933_optionalUserData(void* value): value(value) {}; void* value; _797e3933_optionalUserData(const _797e3933_optionalUserData &) = delete; } _797e3933_optionalUserData;
 typedef struct _797e3933_rteParameters { _797e3933_rteParameters(void* value): value(value) {}; void* value; _797e3933_rteParameters(const _797e3933_rteParameters &) = delete; } _797e3933_rteParameters;
-int64_t np_redRteCreateDeferredOperation(_797e3933_rteContext & rteContext, _797e3933_outDeferredOperation & outDeferredOperation, _797e3933_outStatuses & outStatuses, _797e3933_optionalFile & optionalFile, _797e3933_optionalLine & optionalLine, _797e3933_optionalUserData & optionalUserData, _797e3933_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateDeferredOperation(_797e3933_rteContext & rteContext, _797e3933_outDeferredOperation & outDeferredOperation, _797e3933_outStatuses & outStatuses, _797e3933_optionalFile & optionalFile, _797e3933_optionalLine & optionalLine, _797e3933_optionalUserData & optionalUserData, _797e3933_rteParameters & rteParameters) {
   return redRteCreateDeferredOperation(rteContext.value, outDeferredOperation.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1319,7 +1327,7 @@ typedef struct _7cb483f3_optionalFile { _7cb483f3_optionalFile(char* value): val
 typedef struct _7cb483f3_optionalLine { _7cb483f3_optionalLine(int value): value(value) {}; int value; _7cb483f3_optionalLine(const _7cb483f3_optionalLine &) = delete; } _7cb483f3_optionalLine;
 typedef struct _7cb483f3_optionalUserData { _7cb483f3_optionalUserData(void* value): value(value) {}; void* value; _7cb483f3_optionalUserData(const _7cb483f3_optionalUserData &) = delete; } _7cb483f3_optionalUserData;
 typedef struct _7cb483f3_rteParameters { _7cb483f3_rteParameters(void* value): value(value) {}; void* value; _7cb483f3_rteParameters(const _7cb483f3_rteParameters &) = delete; } _7cb483f3_rteParameters;
-int64_t np_redRteDestroyDeferredOperation(_7cb483f3_rteContext & rteContext, _7cb483f3_deferredOperation & deferredOperation, _7cb483f3_optionalFile & optionalFile, _7cb483f3_optionalLine & optionalLine, _7cb483f3_optionalUserData & optionalUserData, _7cb483f3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyDeferredOperation(_7cb483f3_rteContext & rteContext, _7cb483f3_deferredOperation & deferredOperation, _7cb483f3_optionalFile & optionalFile, _7cb483f3_optionalLine & optionalLine, _7cb483f3_optionalUserData & optionalUserData, _7cb483f3_rteParameters & rteParameters) {
   return redRteDestroyDeferredOperation(rteContext.value, deferredOperation.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1339,7 +1347,7 @@ typedef struct _bc0d9b5c_optionalFile { _bc0d9b5c_optionalFile(char* value): val
 typedef struct _bc0d9b5c_optionalLine { _bc0d9b5c_optionalLine(int value): value(value) {}; int value; _bc0d9b5c_optionalLine(const _bc0d9b5c_optionalLine &) = delete; } _bc0d9b5c_optionalLine;
 typedef struct _bc0d9b5c_optionalUserData { _bc0d9b5c_optionalUserData(void* value): value(value) {}; void* value; _bc0d9b5c_optionalUserData(const _bc0d9b5c_optionalUserData &) = delete; } _bc0d9b5c_optionalUserData;
 typedef struct _bc0d9b5c_rteParameters { _bc0d9b5c_rteParameters(void* value): value(value) {}; void* value; _bc0d9b5c_rteParameters(const _bc0d9b5c_rteParameters &) = delete; } _bc0d9b5c_rteParameters;
-int64_t np_redRteDeferredOperationGetMaxConcurrency(_bc0d9b5c_rteContext & rteContext, _bc0d9b5c_deferredOperation & deferredOperation, _bc0d9b5c_optionalFile & optionalFile, _bc0d9b5c_optionalLine & optionalLine, _bc0d9b5c_optionalUserData & optionalUserData, _bc0d9b5c_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDeferredOperationGetMaxConcurrency(_bc0d9b5c_rteContext & rteContext, _bc0d9b5c_deferredOperation & deferredOperation, _bc0d9b5c_optionalFile & optionalFile, _bc0d9b5c_optionalLine & optionalLine, _bc0d9b5c_optionalUserData & optionalUserData, _bc0d9b5c_rteParameters & rteParameters) {
   return redRteDeferredOperationGetMaxConcurrency(rteContext.value, deferredOperation.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1359,7 +1367,7 @@ typedef struct _59fcedec_optionalFile { _59fcedec_optionalFile(char* value): val
 typedef struct _59fcedec_optionalLine { _59fcedec_optionalLine(int value): value(value) {}; int value; _59fcedec_optionalLine(const _59fcedec_optionalLine &) = delete; } _59fcedec_optionalLine;
 typedef struct _59fcedec_optionalUserData { _59fcedec_optionalUserData(void* value): value(value) {}; void* value; _59fcedec_optionalUserData(const _59fcedec_optionalUserData &) = delete; } _59fcedec_optionalUserData;
 typedef struct _59fcedec_rteParameters { _59fcedec_rteParameters(void* value): value(value) {}; void* value; _59fcedec_rteParameters(const _59fcedec_rteParameters &) = delete; } _59fcedec_rteParameters;
-int64_t np_redRteDeferredOperationGetStatus(_59fcedec_rteContext & rteContext, _59fcedec_deferredOperation & deferredOperation, _59fcedec_optionalFile & optionalFile, _59fcedec_optionalLine & optionalLine, _59fcedec_optionalUserData & optionalUserData, _59fcedec_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDeferredOperationGetStatus(_59fcedec_rteContext & rteContext, _59fcedec_deferredOperation & deferredOperation, _59fcedec_optionalFile & optionalFile, _59fcedec_optionalLine & optionalLine, _59fcedec_optionalUserData & optionalUserData, _59fcedec_rteParameters & rteParameters) {
   return redRteDeferredOperationGetStatus(rteContext.value, deferredOperation.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1379,7 +1387,7 @@ typedef struct _0b570ac4_optionalFile { _0b570ac4_optionalFile(char* value): val
 typedef struct _0b570ac4_optionalLine { _0b570ac4_optionalLine(int value): value(value) {}; int value; _0b570ac4_optionalLine(const _0b570ac4_optionalLine &) = delete; } _0b570ac4_optionalLine;
 typedef struct _0b570ac4_optionalUserData { _0b570ac4_optionalUserData(void* value): value(value) {}; void* value; _0b570ac4_optionalUserData(const _0b570ac4_optionalUserData &) = delete; } _0b570ac4_optionalUserData;
 typedef struct _0b570ac4_rteParameters { _0b570ac4_rteParameters(void* value): value(value) {}; void* value; _0b570ac4_rteParameters(const _0b570ac4_rteParameters &) = delete; } _0b570ac4_rteParameters;
-int64_t np_redRteDeferredOperationJoin(_0b570ac4_rteContext & rteContext, _0b570ac4_deferredOperation & deferredOperation, _0b570ac4_optionalFile & optionalFile, _0b570ac4_optionalLine & optionalLine, _0b570ac4_optionalUserData & optionalUserData, _0b570ac4_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDeferredOperationJoin(_0b570ac4_rteContext & rteContext, _0b570ac4_deferredOperation & deferredOperation, _0b570ac4_optionalFile & optionalFile, _0b570ac4_optionalLine & optionalLine, _0b570ac4_optionalUserData & optionalUserData, _0b570ac4_rteParameters & rteParameters) {
   return redRteDeferredOperationJoin(rteContext.value, deferredOperation.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1407,7 +1415,7 @@ typedef struct _7b5ae618_optionalFile { _7b5ae618_optionalFile(char* value): val
 typedef struct _7b5ae618_optionalLine { _7b5ae618_optionalLine(int value): value(value) {}; int value; _7b5ae618_optionalLine(const _7b5ae618_optionalLine &) = delete; } _7b5ae618_optionalLine;
 typedef struct _7b5ae618_optionalUserData { _7b5ae618_optionalUserData(void* value): value(value) {}; void* value; _7b5ae618_optionalUserData(const _7b5ae618_optionalUserData &) = delete; } _7b5ae618_optionalUserData;
 typedef struct _7b5ae618_rteParameters { _7b5ae618_rteParameters(void* value): value(value) {}; void* value; _7b5ae618_rteParameters(const _7b5ae618_rteParameters &) = delete; } _7b5ae618_rteParameters;
-int64_t np_redRteCreateProcedureRayTracing(_7b5ae618_rteContext & rteContext, _7b5ae618_deferredOperation & deferredOperation, _7b5ae618_procedureCache & procedureCache, _7b5ae618_state & state, _7b5ae618_outProcedure & outProcedure, _7b5ae618_outStatuses & outStatuses, _7b5ae618_optionalFile & optionalFile, _7b5ae618_optionalLine & optionalLine, _7b5ae618_optionalUserData & optionalUserData, _7b5ae618_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateProcedureRayTracing(_7b5ae618_rteContext & rteContext, _7b5ae618_deferredOperation & deferredOperation, _7b5ae618_procedureCache & procedureCache, _7b5ae618_state & state, _7b5ae618_outProcedure & outProcedure, _7b5ae618_outStatuses & outStatuses, _7b5ae618_optionalFile & optionalFile, _7b5ae618_optionalLine & optionalLine, _7b5ae618_optionalUserData & optionalUserData, _7b5ae618_rteParameters & rteParameters) {
   return redRteCreateProcedureRayTracing(rteContext.value, deferredOperation.value, procedureCache.value, state.value, outProcedure.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1435,7 +1443,7 @@ typedef struct _c744c963_optionalFile { _c744c963_optionalFile(char* value): val
 typedef struct _c744c963_optionalLine { _c744c963_optionalLine(int value): value(value) {}; int value; _c744c963_optionalLine(const _c744c963_optionalLine &) = delete; } _c744c963_optionalLine;
 typedef struct _c744c963_optionalUserData { _c744c963_optionalUserData(void* value): value(value) {}; void* value; _c744c963_optionalUserData(const _c744c963_optionalUserData &) = delete; } _c744c963_optionalUserData;
 typedef struct _c744c963_rteParameters { _c744c963_rteParameters(void* value): value(value) {}; void* value; _c744c963_rteParameters(const _c744c963_rteParameters &) = delete; } _c744c963_rteParameters;
-int64_t np_redRteProcedureRayTracingGetGroupCaptureReplayHandles(_c744c963_rteContext & rteContext, _c744c963_procedureRayTracing & procedureRayTracing, _c744c963_groupIndexFirst & groupIndexFirst, _c744c963_groupIndexCount & groupIndexCount, _c744c963_dataBytesCount & dataBytesCount, _c744c963_data & data, _c744c963_optionalFile & optionalFile, _c744c963_optionalLine & optionalLine, _c744c963_optionalUserData & optionalUserData, _c744c963_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteProcedureRayTracingGetGroupCaptureReplayHandles(_c744c963_rteContext & rteContext, _c744c963_procedureRayTracing & procedureRayTracing, _c744c963_groupIndexFirst & groupIndexFirst, _c744c963_groupIndexCount & groupIndexCount, _c744c963_dataBytesCount & dataBytesCount, _c744c963_data & data, _c744c963_optionalFile & optionalFile, _c744c963_optionalLine & optionalLine, _c744c963_optionalUserData & optionalUserData, _c744c963_rteParameters & rteParameters) {
   return redRteProcedureRayTracingGetGroupCaptureReplayHandles(rteContext.value, procedureRayTracing.value, groupIndexFirst.value, groupIndexCount.value, dataBytesCount.value, data.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1459,7 +1467,7 @@ typedef struct _21b9ff50_optionalFile { _21b9ff50_optionalFile(char* value): val
 typedef struct _21b9ff50_optionalLine { _21b9ff50_optionalLine(int value): value(value) {}; int value; _21b9ff50_optionalLine(const _21b9ff50_optionalLine &) = delete; } _21b9ff50_optionalLine;
 typedef struct _21b9ff50_optionalUserData { _21b9ff50_optionalUserData(void* value): value(value) {}; void* value; _21b9ff50_optionalUserData(const _21b9ff50_optionalUserData &) = delete; } _21b9ff50_optionalUserData;
 typedef struct _21b9ff50_rteParameters { _21b9ff50_rteParameters(void* value): value(value) {}; void* value; _21b9ff50_rteParameters(const _21b9ff50_rteParameters &) = delete; } _21b9ff50_rteParameters;
-uint64_t np_redRteProcedureRayTracingGetGroupStackBytesCount(_21b9ff50_rteContext & rteContext, _21b9ff50_procedureRayTracing & procedureRayTracing, _21b9ff50_groupIndex & groupIndex, _21b9ff50_groupStage & groupStage, _21b9ff50_optionalFile & optionalFile, _21b9ff50_optionalLine & optionalLine, _21b9ff50_optionalUserData & optionalUserData, _21b9ff50_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC uint64_t REDGPU_NP_API np_redRteProcedureRayTracingGetGroupStackBytesCount(_21b9ff50_rteContext & rteContext, _21b9ff50_procedureRayTracing & procedureRayTracing, _21b9ff50_groupIndex & groupIndex, _21b9ff50_groupStage & groupStage, _21b9ff50_optionalFile & optionalFile, _21b9ff50_optionalLine & optionalLine, _21b9ff50_optionalUserData & optionalUserData, _21b9ff50_rteParameters & rteParameters) {
   return redRteProcedureRayTracingGetGroupStackBytesCount(rteContext.value, procedureRayTracing.value, groupIndex.value, groupStage.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1493,7 +1501,7 @@ typedef struct _309e3803_optionalFile { _309e3803_optionalFile(char* value): val
 typedef struct _309e3803_optionalLine { _309e3803_optionalLine(int value): value(value) {}; int value; _309e3803_optionalLine(const _309e3803_optionalLine &) = delete; } _309e3803_optionalLine;
 typedef struct _309e3803_optionalUserData { _309e3803_optionalUserData(void* value): value(value) {}; void* value; _309e3803_optionalUserData(const _309e3803_optionalUserData &) = delete; } _309e3803_optionalUserData;
 typedef struct _309e3803_rteParameters { _309e3803_rteParameters(void* value): value(value) {}; void* value; _309e3803_rteParameters(const _309e3803_rteParameters &) = delete; } _309e3803_rteParameters;
-int64_t np_redRteCallProcedureRayTracing(_309e3803_calls & calls, _309e3803_rteContext & rteContext, _309e3803_shaderBindingTableRayGeneration & shaderBindingTableRayGeneration, _309e3803_shaderBindingTableMiss & shaderBindingTableMiss, _309e3803_shaderBindingTableHit & shaderBindingTableHit, _309e3803_shaderBindingTableCallable & shaderBindingTableCallable, _309e3803_threadsCountX & threadsCountX, _309e3803_threadsCountY & threadsCountY, _309e3803_threadsCountZ & threadsCountZ, _309e3803_optionalFile & optionalFile, _309e3803_optionalLine & optionalLine, _309e3803_optionalUserData & optionalUserData, _309e3803_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallProcedureRayTracing(_309e3803_calls & calls, _309e3803_rteContext & rteContext, _309e3803_shaderBindingTableRayGeneration & shaderBindingTableRayGeneration, _309e3803_shaderBindingTableMiss & shaderBindingTableMiss, _309e3803_shaderBindingTableHit & shaderBindingTableHit, _309e3803_shaderBindingTableCallable & shaderBindingTableCallable, _309e3803_threadsCountX & threadsCountX, _309e3803_threadsCountY & threadsCountY, _309e3803_threadsCountZ & threadsCountZ, _309e3803_optionalFile & optionalFile, _309e3803_optionalLine & optionalLine, _309e3803_optionalUserData & optionalUserData, _309e3803_rteParameters & rteParameters) {
   return redRteCallProcedureRayTracing(calls.value, rteContext.value, shaderBindingTableRayGeneration.value, shaderBindingTableMiss.value, shaderBindingTableHit.value, shaderBindingTableCallable.value, threadsCountX.value, threadsCountY.value, threadsCountZ.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1521,7 +1529,7 @@ typedef struct _bee0588e_optionalFile { _bee0588e_optionalFile(char* value): val
 typedef struct _bee0588e_optionalLine { _bee0588e_optionalLine(int value): value(value) {}; int value; _bee0588e_optionalLine(const _bee0588e_optionalLine &) = delete; } _bee0588e_optionalLine;
 typedef struct _bee0588e_optionalUserData { _bee0588e_optionalUserData(void* value): value(value) {}; void* value; _bee0588e_optionalUserData(const _bee0588e_optionalUserData &) = delete; } _bee0588e_optionalUserData;
 typedef struct _bee0588e_rteParameters { _bee0588e_rteParameters(void* value): value(value) {}; void* value; _bee0588e_rteParameters(const _bee0588e_rteParameters &) = delete; } _bee0588e_rteParameters;
-int64_t np_redRteCallProcedureIndirect(_bee0588e_calls & calls, _bee0588e_rteContext & rteContext, _bee0588e_array & array, _bee0588e_arrayBytesFirst & arrayBytesFirst, _bee0588e_count & count, _bee0588e_bytesStride & bytesStride, _bee0588e_optionalFile & optionalFile, _bee0588e_optionalLine & optionalLine, _bee0588e_optionalUserData & optionalUserData, _bee0588e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallProcedureIndirect(_bee0588e_calls & calls, _bee0588e_rteContext & rteContext, _bee0588e_array & array, _bee0588e_arrayBytesFirst & arrayBytesFirst, _bee0588e_count & count, _bee0588e_bytesStride & bytesStride, _bee0588e_optionalFile & optionalFile, _bee0588e_optionalLine & optionalLine, _bee0588e_optionalUserData & optionalUserData, _bee0588e_rteParameters & rteParameters) {
   return redRteCallProcedureIndirect(calls.value, rteContext.value, array.value, arrayBytesFirst.value, count.value, bytesStride.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1549,7 +1557,7 @@ typedef struct _b92d986c_optionalFile { _b92d986c_optionalFile(char* value): val
 typedef struct _b92d986c_optionalLine { _b92d986c_optionalLine(int value): value(value) {}; int value; _b92d986c_optionalLine(const _b92d986c_optionalLine &) = delete; } _b92d986c_optionalLine;
 typedef struct _b92d986c_optionalUserData { _b92d986c_optionalUserData(void* value): value(value) {}; void* value; _b92d986c_optionalUserData(const _b92d986c_optionalUserData &) = delete; } _b92d986c_optionalUserData;
 typedef struct _b92d986c_rteParameters { _b92d986c_rteParameters(void* value): value(value) {}; void* value; _b92d986c_rteParameters(const _b92d986c_rteParameters &) = delete; } _b92d986c_rteParameters;
-int64_t np_redRteCallProcedureIndexedIndirect(_b92d986c_calls & calls, _b92d986c_rteContext & rteContext, _b92d986c_array & array, _b92d986c_arrayBytesFirst & arrayBytesFirst, _b92d986c_count & count, _b92d986c_bytesStride & bytesStride, _b92d986c_optionalFile & optionalFile, _b92d986c_optionalLine & optionalLine, _b92d986c_optionalUserData & optionalUserData, _b92d986c_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallProcedureIndexedIndirect(_b92d986c_calls & calls, _b92d986c_rteContext & rteContext, _b92d986c_array & array, _b92d986c_arrayBytesFirst & arrayBytesFirst, _b92d986c_count & count, _b92d986c_bytesStride & bytesStride, _b92d986c_optionalFile & optionalFile, _b92d986c_optionalLine & optionalLine, _b92d986c_optionalUserData & optionalUserData, _b92d986c_rteParameters & rteParameters) {
   return redRteCallProcedureIndexedIndirect(calls.value, rteContext.value, array.value, arrayBytesFirst.value, count.value, bytesStride.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1573,7 +1581,7 @@ typedef struct _73c9536a_optionalFile { _73c9536a_optionalFile(char* value): val
 typedef struct _73c9536a_optionalLine { _73c9536a_optionalLine(int value): value(value) {}; int value; _73c9536a_optionalLine(const _73c9536a_optionalLine &) = delete; } _73c9536a_optionalLine;
 typedef struct _73c9536a_optionalUserData { _73c9536a_optionalUserData(void* value): value(value) {}; void* value; _73c9536a_optionalUserData(const _73c9536a_optionalUserData &) = delete; } _73c9536a_optionalUserData;
 typedef struct _73c9536a_rteParameters { _73c9536a_rteParameters(void* value): value(value) {}; void* value; _73c9536a_rteParameters(const _73c9536a_rteParameters &) = delete; } _73c9536a_rteParameters;
-int64_t np_redRteCallProcedureComputeIndirect(_73c9536a_calls & calls, _73c9536a_rteContext & rteContext, _73c9536a_array & array, _73c9536a_arrayBytesFirst & arrayBytesFirst, _73c9536a_optionalFile & optionalFile, _73c9536a_optionalLine & optionalLine, _73c9536a_optionalUserData & optionalUserData, _73c9536a_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallProcedureComputeIndirect(_73c9536a_calls & calls, _73c9536a_rteContext & rteContext, _73c9536a_array & array, _73c9536a_arrayBytesFirst & arrayBytesFirst, _73c9536a_optionalFile & optionalFile, _73c9536a_optionalLine & optionalLine, _73c9536a_optionalUserData & optionalUserData, _73c9536a_rteParameters & rteParameters) {
   return redRteCallProcedureComputeIndirect(calls.value, rteContext.value, array.value, arrayBytesFirst.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1603,7 +1611,7 @@ typedef struct _81bb4a78_optionalFile { _81bb4a78_optionalFile(char* value): val
 typedef struct _81bb4a78_optionalLine { _81bb4a78_optionalLine(int value): value(value) {}; int value; _81bb4a78_optionalLine(const _81bb4a78_optionalLine &) = delete; } _81bb4a78_optionalLine;
 typedef struct _81bb4a78_optionalUserData { _81bb4a78_optionalUserData(void* value): value(value) {}; void* value; _81bb4a78_optionalUserData(const _81bb4a78_optionalUserData &) = delete; } _81bb4a78_optionalUserData;
 typedef struct _81bb4a78_rteParameters { _81bb4a78_rteParameters(void* value): value(value) {}; void* value; _81bb4a78_rteParameters(const _81bb4a78_rteParameters &) = delete; } _81bb4a78_rteParameters;
-int64_t np_redRteCallProcedureRayTracingIndirect(_81bb4a78_calls & calls, _81bb4a78_rteContext & rteContext, _81bb4a78_shaderBindingTableRayGeneration & shaderBindingTableRayGeneration, _81bb4a78_shaderBindingTableMiss & shaderBindingTableMiss, _81bb4a78_shaderBindingTableHit & shaderBindingTableHit, _81bb4a78_shaderBindingTableCallable & shaderBindingTableCallable, _81bb4a78_gpuAddress & gpuAddress, _81bb4a78_optionalFile & optionalFile, _81bb4a78_optionalLine & optionalLine, _81bb4a78_optionalUserData & optionalUserData, _81bb4a78_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallProcedureRayTracingIndirect(_81bb4a78_calls & calls, _81bb4a78_rteContext & rteContext, _81bb4a78_shaderBindingTableRayGeneration & shaderBindingTableRayGeneration, _81bb4a78_shaderBindingTableMiss & shaderBindingTableMiss, _81bb4a78_shaderBindingTableHit & shaderBindingTableHit, _81bb4a78_shaderBindingTableCallable & shaderBindingTableCallable, _81bb4a78_gpuAddress & gpuAddress, _81bb4a78_optionalFile & optionalFile, _81bb4a78_optionalLine & optionalLine, _81bb4a78_optionalUserData & optionalUserData, _81bb4a78_rteParameters & rteParameters) {
   return redRteCallProcedureRayTracingIndirect(calls.value, rteContext.value, shaderBindingTableRayGeneration.value, shaderBindingTableMiss.value, shaderBindingTableHit.value, shaderBindingTableCallable.value, gpuAddress.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1625,7 +1633,7 @@ typedef struct _af0e50cd_optionalFile { _af0e50cd_optionalFile(char* value): val
 typedef struct _af0e50cd_optionalLine { _af0e50cd_optionalLine(int value): value(value) {}; int value; _af0e50cd_optionalLine(const _af0e50cd_optionalLine &) = delete; } _af0e50cd_optionalLine;
 typedef struct _af0e50cd_optionalUserData { _af0e50cd_optionalUserData(void* value): value(value) {}; void* value; _af0e50cd_optionalUserData(const _af0e50cd_optionalUserData &) = delete; } _af0e50cd_optionalUserData;
 typedef struct _af0e50cd_rteParameters { _af0e50cd_rteParameters(void* value): value(value) {}; void* value; _af0e50cd_rteParameters(const _af0e50cd_rteParameters &) = delete; } _af0e50cd_rteParameters;
-int64_t np_redRteCallSetProcedureRayTracingStackBytesCount(_af0e50cd_calls & calls, _af0e50cd_rteContext & rteContext, _af0e50cd_stackBytesCount & stackBytesCount, _af0e50cd_optionalFile & optionalFile, _af0e50cd_optionalLine & optionalLine, _af0e50cd_optionalUserData & optionalUserData, _af0e50cd_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallSetProcedureRayTracingStackBytesCount(_af0e50cd_calls & calls, _af0e50cd_rteContext & rteContext, _af0e50cd_stackBytesCount & stackBytesCount, _af0e50cd_optionalFile & optionalFile, _af0e50cd_optionalLine & optionalLine, _af0e50cd_optionalUserData & optionalUserData, _af0e50cd_rteParameters & rteParameters) {
   return redRteCallSetProcedureRayTracingStackBytesCount(calls.value, rteContext.value, stackBytesCount.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1651,7 +1659,7 @@ typedef struct _fb109fe0_optionalFile { _fb109fe0_optionalFile(char* value): val
 typedef struct _fb109fe0_optionalLine { _fb109fe0_optionalLine(int value): value(value) {}; int value; _fb109fe0_optionalLine(const _fb109fe0_optionalLine &) = delete; } _fb109fe0_optionalLine;
 typedef struct _fb109fe0_optionalUserData { _fb109fe0_optionalUserData(void* value): value(value) {}; void* value; _fb109fe0_optionalUserData(const _fb109fe0_optionalUserData &) = delete; } _fb109fe0_optionalUserData;
 typedef struct _fb109fe0_rteParameters { _fb109fe0_rteParameters(void* value): value(value) {}; void* value; _fb109fe0_rteParameters(const _fb109fe0_rteParameters &) = delete; } _fb109fe0_rteParameters;
-int64_t np_redRteCreateHelperShaderBindingTable(_fb109fe0_rteContext & rteContext, _fb109fe0_rteHandleHelperAllocator & rteHandleHelperAllocator, _fb109fe0_queueFamilyIndex & queueFamilyIndex, _fb109fe0_outHelperShaderBindingTable & outHelperShaderBindingTable, _fb109fe0_outStatuses & outStatuses, _fb109fe0_optionalFile & optionalFile, _fb109fe0_optionalLine & optionalLine, _fb109fe0_optionalUserData & optionalUserData, _fb109fe0_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperShaderBindingTable(_fb109fe0_rteContext & rteContext, _fb109fe0_rteHandleHelperAllocator & rteHandleHelperAllocator, _fb109fe0_queueFamilyIndex & queueFamilyIndex, _fb109fe0_outHelperShaderBindingTable & outHelperShaderBindingTable, _fb109fe0_outStatuses & outStatuses, _fb109fe0_optionalFile & optionalFile, _fb109fe0_optionalLine & optionalLine, _fb109fe0_optionalUserData & optionalUserData, _fb109fe0_rteParameters & rteParameters) {
   return redRteCreateHelperShaderBindingTable(rteContext.value, rteHandleHelperAllocator.value, queueFamilyIndex.value, outHelperShaderBindingTable.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1669,7 +1677,7 @@ typedef struct _b5868170_optionalFile { _b5868170_optionalFile(char* value): val
 typedef struct _b5868170_optionalLine { _b5868170_optionalLine(int value): value(value) {}; int value; _b5868170_optionalLine(const _b5868170_optionalLine &) = delete; } _b5868170_optionalLine;
 typedef struct _b5868170_optionalUserData { _b5868170_optionalUserData(void* value): value(value) {}; void* value; _b5868170_optionalUserData(const _b5868170_optionalUserData &) = delete; } _b5868170_optionalUserData;
 typedef struct _b5868170_rteParameters { _b5868170_rteParameters(void* value): value(value) {}; void* value; _b5868170_rteParameters(const _b5868170_rteParameters &) = delete; } _b5868170_rteParameters;
-int64_t np_redRteDestroyHelperShaderBindingTable(_b5868170_helperShaderBindingTable & helperShaderBindingTable, _b5868170_optionalFile & optionalFile, _b5868170_optionalLine & optionalLine, _b5868170_optionalUserData & optionalUserData, _b5868170_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperShaderBindingTable(_b5868170_helperShaderBindingTable & helperShaderBindingTable, _b5868170_optionalFile & optionalFile, _b5868170_optionalLine & optionalLine, _b5868170_optionalUserData & optionalUserData, _b5868170_rteParameters & rteParameters) {
   return redRteDestroyHelperShaderBindingTable(helperShaderBindingTable.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1691,7 +1699,7 @@ typedef struct _6636c89d_optionalFile { _6636c89d_optionalFile(char* value): val
 typedef struct _6636c89d_optionalLine { _6636c89d_optionalLine(int value): value(value) {}; int value; _6636c89d_optionalLine(const _6636c89d_optionalLine &) = delete; } _6636c89d_optionalLine;
 typedef struct _6636c89d_optionalUserData { _6636c89d_optionalUserData(void* value): value(value) {}; void* value; _6636c89d_optionalUserData(const _6636c89d_optionalUserData &) = delete; } _6636c89d_optionalUserData;
 typedef struct _6636c89d_rteParameters { _6636c89d_rteParameters(void* value): value(value) {}; void* value; _6636c89d_rteParameters(const _6636c89d_rteParameters &) = delete; } _6636c89d_rteParameters;
-int64_t np_redRteHelperShaderBindingTableCreate(_6636c89d_helperShaderBindingTable & helperShaderBindingTable, _6636c89d_procedureRayTracing & procedureRayTracing, _6636c89d_procedureRayTracingState & procedureRayTracingState, _6636c89d_optionalFile & optionalFile, _6636c89d_optionalLine & optionalLine, _6636c89d_optionalUserData & optionalUserData, _6636c89d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperShaderBindingTableCreate(_6636c89d_helperShaderBindingTable & helperShaderBindingTable, _6636c89d_procedureRayTracing & procedureRayTracing, _6636c89d_procedureRayTracingState & procedureRayTracingState, _6636c89d_optionalFile & optionalFile, _6636c89d_optionalLine & optionalLine, _6636c89d_optionalUserData & optionalUserData, _6636c89d_rteParameters & rteParameters) {
   return redRteHelperShaderBindingTableCreate(helperShaderBindingTable.value, procedureRayTracing.value, procedureRayTracingState.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1717,7 +1725,7 @@ typedef struct _d62b575c_optionalFile { _d62b575c_optionalFile(char* value): val
 typedef struct _d62b575c_optionalLine { _d62b575c_optionalLine(int value): value(value) {}; int value; _d62b575c_optionalLine(const _d62b575c_optionalLine &) = delete; } _d62b575c_optionalLine;
 typedef struct _d62b575c_optionalUserData { _d62b575c_optionalUserData(void* value): value(value) {}; void* value; _d62b575c_optionalUserData(const _d62b575c_optionalUserData &) = delete; } _d62b575c_optionalUserData;
 typedef struct _d62b575c_rteParameters { _d62b575c_rteParameters(void* value): value(value) {}; void* value; _d62b575c_rteParameters(const _d62b575c_rteParameters &) = delete; } _d62b575c_rteParameters;
-int64_t np_redRteHelperShaderBindingTableGetGpuAddressStrideAndRange(_d62b575c_helperShaderBindingTable & helperShaderBindingTable, _d62b575c_outShaderBindingTableRayGeneration & outShaderBindingTableRayGeneration, _d62b575c_outShaderBindingTableMiss & outShaderBindingTableMiss, _d62b575c_outShaderBindingTableHit & outShaderBindingTableHit, _d62b575c_outShaderBindingTableCallable & outShaderBindingTableCallable, _d62b575c_optionalFile & optionalFile, _d62b575c_optionalLine & optionalLine, _d62b575c_optionalUserData & optionalUserData, _d62b575c_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperShaderBindingTableGetGpuAddressStrideAndRange(_d62b575c_helperShaderBindingTable & helperShaderBindingTable, _d62b575c_outShaderBindingTableRayGeneration & outShaderBindingTableRayGeneration, _d62b575c_outShaderBindingTableMiss & outShaderBindingTableMiss, _d62b575c_outShaderBindingTableHit & outShaderBindingTableHit, _d62b575c_outShaderBindingTableCallable & outShaderBindingTableCallable, _d62b575c_optionalFile & optionalFile, _d62b575c_optionalLine & optionalLine, _d62b575c_optionalUserData & optionalUserData, _d62b575c_rteParameters & rteParameters) {
   return redRteHelperShaderBindingTableGetGpuAddressStrideAndRange(helperShaderBindingTable.value, outShaderBindingTableRayGeneration.value, outShaderBindingTableMiss.value, outShaderBindingTableHit.value, outShaderBindingTableCallable.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1733,7 +1741,7 @@ typedef struct _13b53647_optionalFile { _13b53647_optionalFile(char* value): val
 typedef struct _13b53647_optionalLine { _13b53647_optionalLine(int value): value(value) {}; int value; _13b53647_optionalLine(const _13b53647_optionalLine &) = delete; } _13b53647_optionalLine;
 typedef struct _13b53647_optionalUserData { _13b53647_optionalUserData(void* value): value(value) {}; void* value; _13b53647_optionalUserData(const _13b53647_optionalUserData &) = delete; } _13b53647_optionalUserData;
 typedef struct _13b53647_rteParameters { _13b53647_rteParameters(void* value): value(value) {}; void* value; _13b53647_rteParameters(const _13b53647_rteParameters &) = delete; } _13b53647_rteParameters;
-void* np_redRteGetInstanceProcAddr(_13b53647_optionalFile & optionalFile, _13b53647_optionalLine & optionalLine, _13b53647_optionalUserData & optionalUserData, _13b53647_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC void* REDGPU_NP_API np_redRteGetInstanceProcAddr(_13b53647_optionalFile & optionalFile, _13b53647_optionalLine & optionalLine, _13b53647_optionalUserData & optionalUserData, _13b53647_rteParameters & rteParameters) {
   return redRteGetInstanceProcAddr(optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1781,7 +1789,7 @@ typedef struct _6196f22b_optionalFile { _6196f22b_optionalFile(char* value): val
 typedef struct _6196f22b_optionalLine { _6196f22b_optionalLine(int value): value(value) {}; int value; _6196f22b_optionalLine(const _6196f22b_optionalLine &) = delete; } _6196f22b_optionalLine;
 typedef struct _6196f22b_optionalUserData { _6196f22b_optionalUserData(void* value): value(value) {}; void* value; _6196f22b_optionalUserData(const _6196f22b_optionalUserData &) = delete; } _6196f22b_optionalUserData;
 typedef struct _6196f22b_rteParameters { _6196f22b_rteParameters(void* value): value(value) {}; void* value; _6196f22b_rteParameters(const _6196f22b_rteParameters &) = delete; } _6196f22b_rteParameters;
-int64_t np_redRteCreateContextFromRteContext(_6196f22b_rteContext & rteContext, _6196f22b_malloc & malloc, _6196f22b_free & free, _6196f22b_optionalMallocTagged & optionalMallocTagged, _6196f22b_optionalFreeTagged & optionalFreeTagged, _6196f22b_debugCallback & debugCallback, _6196f22b_sdkVersion & sdkVersion, _6196f22b_sdkExtensionsCount & sdkExtensionsCount, _6196f22b_sdkExtensions & sdkExtensions, _6196f22b_optionalProgramName & optionalProgramName, _6196f22b_optionalProgramVersion & optionalProgramVersion, _6196f22b_optionalEngineName & optionalEngineName, _6196f22b_optionalEngineVersion & optionalEngineVersion, _6196f22b_optionalSettings & optionalSettings, _6196f22b_outContext & outContext, _6196f22b_outStatuses & outStatuses, _6196f22b_optionalFile & optionalFile, _6196f22b_optionalLine & optionalLine, _6196f22b_optionalUserData & optionalUserData, _6196f22b_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateContextFromRteContext(_6196f22b_rteContext & rteContext, _6196f22b_malloc & malloc, _6196f22b_free & free, _6196f22b_optionalMallocTagged & optionalMallocTagged, _6196f22b_optionalFreeTagged & optionalFreeTagged, _6196f22b_debugCallback & debugCallback, _6196f22b_sdkVersion & sdkVersion, _6196f22b_sdkExtensionsCount & sdkExtensionsCount, _6196f22b_sdkExtensions & sdkExtensions, _6196f22b_optionalProgramName & optionalProgramName, _6196f22b_optionalProgramVersion & optionalProgramVersion, _6196f22b_optionalEngineName & optionalEngineName, _6196f22b_optionalEngineVersion & optionalEngineVersion, _6196f22b_optionalSettings & optionalSettings, _6196f22b_outContext & outContext, _6196f22b_outStatuses & outStatuses, _6196f22b_optionalFile & optionalFile, _6196f22b_optionalLine & optionalLine, _6196f22b_optionalUserData & optionalUserData, _6196f22b_rteParameters & rteParameters) {
   return redRteCreateContextFromRteContext(rteContext.value, malloc.value, free.value, optionalMallocTagged.value, optionalFreeTagged.value, debugCallback.value, sdkVersion.value, sdkExtensionsCount.value, sdkExtensions.value, optionalProgramName.value, optionalProgramVersion.value, optionalEngineName.value, optionalEngineVersion.value, optionalSettings.value, outContext.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1823,7 +1831,7 @@ typedef struct _55973ae8_optionalFile { _55973ae8_optionalFile(char* value): val
 typedef struct _55973ae8_optionalLine { _55973ae8_optionalLine(int value): value(value) {}; int value; _55973ae8_optionalLine(const _55973ae8_optionalLine &) = delete; } _55973ae8_optionalLine;
 typedef struct _55973ae8_optionalUserData { _55973ae8_optionalUserData(void* value): value(value) {}; void* value; _55973ae8_optionalUserData(const _55973ae8_optionalUserData &) = delete; } _55973ae8_optionalUserData;
 typedef struct _55973ae8_rteParameters { _55973ae8_rteParameters(void* value): value(value) {}; void* value; _55973ae8_rteParameters(const _55973ae8_rteParameters &) = delete; } _55973ae8_rteParameters;
-int64_t np_redRteCreateHelperAppWindow(_55973ae8_callbacks & callbacks, _55973ae8_initialWindowWidth & initialWindowWidth, _55973ae8_initialWindowHeight & initialWindowHeight, _55973ae8_initialIsVsyncEnabled & initialIsVsyncEnabled, _55973ae8_initialViewportClearColorR & initialViewportClearColorR, _55973ae8_initialViewportClearColorG & initialViewportClearColorG, _55973ae8_initialViewportClearColorB & initialViewportClearColorB, _55973ae8_initialViewportClearColorA & initialViewportClearColorA, _55973ae8_optionalProgramName & optionalProgramName, _55973ae8_optionalEngineName & optionalEngineName, _55973ae8_rteCreateContextParameters & rteCreateContextParameters, _55973ae8_outHelperAppWindow & outHelperAppWindow, _55973ae8_outStatuses & outStatuses, _55973ae8_optionalFile & optionalFile, _55973ae8_optionalLine & optionalLine, _55973ae8_optionalUserData & optionalUserData, _55973ae8_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperAppWindow(_55973ae8_callbacks & callbacks, _55973ae8_initialWindowWidth & initialWindowWidth, _55973ae8_initialWindowHeight & initialWindowHeight, _55973ae8_initialIsVsyncEnabled & initialIsVsyncEnabled, _55973ae8_initialViewportClearColorR & initialViewportClearColorR, _55973ae8_initialViewportClearColorG & initialViewportClearColorG, _55973ae8_initialViewportClearColorB & initialViewportClearColorB, _55973ae8_initialViewportClearColorA & initialViewportClearColorA, _55973ae8_optionalProgramName & optionalProgramName, _55973ae8_optionalEngineName & optionalEngineName, _55973ae8_rteCreateContextParameters & rteCreateContextParameters, _55973ae8_outHelperAppWindow & outHelperAppWindow, _55973ae8_outStatuses & outStatuses, _55973ae8_optionalFile & optionalFile, _55973ae8_optionalLine & optionalLine, _55973ae8_optionalUserData & optionalUserData, _55973ae8_rteParameters & rteParameters) {
   return redRteCreateHelperAppWindow(callbacks.value, initialWindowWidth.value, initialWindowHeight.value, initialIsVsyncEnabled.value, initialViewportClearColorR.value, initialViewportClearColorG.value, initialViewportClearColorB.value, initialViewportClearColorA.value, optionalProgramName.value, optionalEngineName.value, rteCreateContextParameters.value, outHelperAppWindow.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1841,7 +1849,7 @@ typedef struct _b9b1d4b5_optionalFile { _b9b1d4b5_optionalFile(char* value): val
 typedef struct _b9b1d4b5_optionalLine { _b9b1d4b5_optionalLine(int value): value(value) {}; int value; _b9b1d4b5_optionalLine(const _b9b1d4b5_optionalLine &) = delete; } _b9b1d4b5_optionalLine;
 typedef struct _b9b1d4b5_optionalUserData { _b9b1d4b5_optionalUserData(void* value): value(value) {}; void* value; _b9b1d4b5_optionalUserData(const _b9b1d4b5_optionalUserData &) = delete; } _b9b1d4b5_optionalUserData;
 typedef struct _b9b1d4b5_rteParameters { _b9b1d4b5_rteParameters(void* value): value(value) {}; void* value; _b9b1d4b5_rteParameters(const _b9b1d4b5_rteParameters &) = delete; } _b9b1d4b5_rteParameters;
-int64_t np_redRteDestroyHelperAppWindow(_b9b1d4b5_helperAppWindow & helperAppWindow, _b9b1d4b5_optionalFile & optionalFile, _b9b1d4b5_optionalLine & optionalLine, _b9b1d4b5_optionalUserData & optionalUserData, _b9b1d4b5_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperAppWindow(_b9b1d4b5_helperAppWindow & helperAppWindow, _b9b1d4b5_optionalFile & optionalFile, _b9b1d4b5_optionalLine & optionalLine, _b9b1d4b5_optionalUserData & optionalUserData, _b9b1d4b5_rteParameters & rteParameters) {
   return redRteDestroyHelperAppWindow(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1859,7 +1867,7 @@ typedef struct _8c740629_optionalFile { _8c740629_optionalFile(char* value): val
 typedef struct _8c740629_optionalLine { _8c740629_optionalLine(int value): value(value) {}; int value; _8c740629_optionalLine(const _8c740629_optionalLine &) = delete; } _8c740629_optionalLine;
 typedef struct _8c740629_optionalUserData { _8c740629_optionalUserData(void* value): value(value) {}; void* value; _8c740629_optionalUserData(const _8c740629_optionalUserData &) = delete; } _8c740629_optionalUserData;
 typedef struct _8c740629_rteParameters { _8c740629_rteParameters(void* value): value(value) {}; void* value; _8c740629_rteParameters(const _8c740629_rteParameters &) = delete; } _8c740629_rteParameters;
-int64_t np_redRteHelperAppWindowRun(_8c740629_helperAppWindow & helperAppWindow, _8c740629_optionalFile & optionalFile, _8c740629_optionalLine & optionalLine, _8c740629_optionalUserData & optionalUserData, _8c740629_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowRun(_8c740629_helperAppWindow & helperAppWindow, _8c740629_optionalFile & optionalFile, _8c740629_optionalLine & optionalLine, _8c740629_optionalUserData & optionalUserData, _8c740629_rteParameters & rteParameters) {
   return redRteHelperAppWindowRun(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1877,7 +1885,7 @@ typedef struct _1e633dd3_optionalFile { _1e633dd3_optionalFile(char* value): val
 typedef struct _1e633dd3_optionalLine { _1e633dd3_optionalLine(int value): value(value) {}; int value; _1e633dd3_optionalLine(const _1e633dd3_optionalLine &) = delete; } _1e633dd3_optionalLine;
 typedef struct _1e633dd3_optionalUserData { _1e633dd3_optionalUserData(void* value): value(value) {}; void* value; _1e633dd3_optionalUserData(const _1e633dd3_optionalUserData &) = delete; } _1e633dd3_optionalUserData;
 typedef struct _1e633dd3_rteParameters { _1e633dd3_rteParameters(void* value): value(value) {}; void* value; _1e633dd3_rteParameters(const _1e633dd3_rteParameters &) = delete; } _1e633dd3_rteParameters;
-int64_t np_redRteHelperAppWindowClose(_1e633dd3_helperAppWindow & helperAppWindow, _1e633dd3_optionalFile & optionalFile, _1e633dd3_optionalLine & optionalLine, _1e633dd3_optionalUserData & optionalUserData, _1e633dd3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowClose(_1e633dd3_helperAppWindow & helperAppWindow, _1e633dd3_optionalFile & optionalFile, _1e633dd3_optionalLine & optionalLine, _1e633dd3_optionalUserData & optionalUserData, _1e633dd3_rteParameters & rteParameters) {
   return redRteHelperAppWindowClose(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1897,7 +1905,7 @@ typedef struct _f85509e3_optionalFile { _f85509e3_optionalFile(char* value): val
 typedef struct _f85509e3_optionalLine { _f85509e3_optionalLine(int value): value(value) {}; int value; _f85509e3_optionalLine(const _f85509e3_optionalLine &) = delete; } _f85509e3_optionalLine;
 typedef struct _f85509e3_optionalUserData { _f85509e3_optionalUserData(void* value): value(value) {}; void* value; _f85509e3_optionalUserData(const _f85509e3_optionalUserData &) = delete; } _f85509e3_optionalUserData;
 typedef struct _f85509e3_rteParameters { _f85509e3_rteParameters(void* value): value(value) {}; void* value; _f85509e3_rteParameters(const _f85509e3_rteParameters &) = delete; } _f85509e3_rteParameters;
-int64_t np_redRteHelperAppWindowSetViewport(_f85509e3_helperAppWindow & helperAppWindow, _f85509e3_calls & calls, _f85509e3_optionalFile & optionalFile, _f85509e3_optionalLine & optionalLine, _f85509e3_optionalUserData & optionalUserData, _f85509e3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowSetViewport(_f85509e3_helperAppWindow & helperAppWindow, _f85509e3_calls & calls, _f85509e3_optionalFile & optionalFile, _f85509e3_optionalLine & optionalLine, _f85509e3_optionalUserData & optionalUserData, _f85509e3_rteParameters & rteParameters) {
   return redRteHelperAppWindowSetViewport(helperAppWindow.value, calls.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1915,7 +1923,7 @@ typedef struct _d2566f6e_optionalFile { _d2566f6e_optionalFile(char* value): val
 typedef struct _d2566f6e_optionalLine { _d2566f6e_optionalLine(int value): value(value) {}; int value; _d2566f6e_optionalLine(const _d2566f6e_optionalLine &) = delete; } _d2566f6e_optionalLine;
 typedef struct _d2566f6e_optionalUserData { _d2566f6e_optionalUserData(void* value): value(value) {}; void* value; _d2566f6e_optionalUserData(const _d2566f6e_optionalUserData &) = delete; } _d2566f6e_optionalUserData;
 typedef struct _d2566f6e_rteParameters { _d2566f6e_rteParameters(void* value): value(value) {}; void* value; _d2566f6e_rteParameters(const _d2566f6e_rteParameters &) = delete; } _d2566f6e_rteParameters;
-RedBool32 np_redRteHelperAppWindowIsVsyncEnabled(_d2566f6e_helperAppWindow & helperAppWindow, _d2566f6e_optionalFile & optionalFile, _d2566f6e_optionalLine & optionalLine, _d2566f6e_optionalUserData & optionalUserData, _d2566f6e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedBool32 REDGPU_NP_API np_redRteHelperAppWindowIsVsyncEnabled(_d2566f6e_helperAppWindow & helperAppWindow, _d2566f6e_optionalFile & optionalFile, _d2566f6e_optionalLine & optionalLine, _d2566f6e_optionalUserData & optionalUserData, _d2566f6e_rteParameters & rteParameters) {
   return redRteHelperAppWindowIsVsyncEnabled(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1935,7 +1943,7 @@ typedef struct _dbd486ee_optionalFile { _dbd486ee_optionalFile(char* value): val
 typedef struct _dbd486ee_optionalLine { _dbd486ee_optionalLine(int value): value(value) {}; int value; _dbd486ee_optionalLine(const _dbd486ee_optionalLine &) = delete; } _dbd486ee_optionalLine;
 typedef struct _dbd486ee_optionalUserData { _dbd486ee_optionalUserData(void* value): value(value) {}; void* value; _dbd486ee_optionalUserData(const _dbd486ee_optionalUserData &) = delete; } _dbd486ee_optionalUserData;
 typedef struct _dbd486ee_rteParameters { _dbd486ee_rteParameters(void* value): value(value) {}; void* value; _dbd486ee_rteParameters(const _dbd486ee_rteParameters &) = delete; } _dbd486ee_rteParameters;
-int64_t np_redRteHelperAppWindowSetVsyncEnabled(_dbd486ee_helperAppWindow & helperAppWindow, _dbd486ee_enableVsync & enableVsync, _dbd486ee_optionalFile & optionalFile, _dbd486ee_optionalLine & optionalLine, _dbd486ee_optionalUserData & optionalUserData, _dbd486ee_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowSetVsyncEnabled(_dbd486ee_helperAppWindow & helperAppWindow, _dbd486ee_enableVsync & enableVsync, _dbd486ee_optionalFile & optionalFile, _dbd486ee_optionalLine & optionalLine, _dbd486ee_optionalUserData & optionalUserData, _dbd486ee_rteParameters & rteParameters) {
   return redRteHelperAppWindowSetVsyncEnabled(helperAppWindow.value, enableVsync.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1961,7 +1969,7 @@ typedef struct _4573ca2f_optionalFile { _4573ca2f_optionalFile(char* value): val
 typedef struct _4573ca2f_optionalLine { _4573ca2f_optionalLine(int value): value(value) {}; int value; _4573ca2f_optionalLine(const _4573ca2f_optionalLine &) = delete; } _4573ca2f_optionalLine;
 typedef struct _4573ca2f_optionalUserData { _4573ca2f_optionalUserData(void* value): value(value) {}; void* value; _4573ca2f_optionalUserData(const _4573ca2f_optionalUserData &) = delete; } _4573ca2f_optionalUserData;
 typedef struct _4573ca2f_rteParameters { _4573ca2f_rteParameters(void* value): value(value) {}; void* value; _4573ca2f_rteParameters(const _4573ca2f_rteParameters &) = delete; } _4573ca2f_rteParameters;
-int64_t np_redRteHelperAppWindowSetViewportClearColor(_4573ca2f_helperAppWindow & helperAppWindow, _4573ca2f_viewportClearColorR & viewportClearColorR, _4573ca2f_viewportClearColorG & viewportClearColorG, _4573ca2f_viewportClearColorB & viewportClearColorB, _4573ca2f_viewportClearColorA & viewportClearColorA, _4573ca2f_optionalFile & optionalFile, _4573ca2f_optionalLine & optionalLine, _4573ca2f_optionalUserData & optionalUserData, _4573ca2f_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowSetViewportClearColor(_4573ca2f_helperAppWindow & helperAppWindow, _4573ca2f_viewportClearColorR & viewportClearColorR, _4573ca2f_viewportClearColorG & viewportClearColorG, _4573ca2f_viewportClearColorB & viewportClearColorB, _4573ca2f_viewportClearColorA & viewportClearColorA, _4573ca2f_optionalFile & optionalFile, _4573ca2f_optionalLine & optionalLine, _4573ca2f_optionalUserData & optionalUserData, _4573ca2f_rteParameters & rteParameters) {
   return redRteHelperAppWindowSetViewportClearColor(helperAppWindow.value, viewportClearColorR.value, viewportClearColorG.value, viewportClearColorB.value, viewportClearColorA.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1981,7 +1989,7 @@ typedef struct _96f9cc14_optionalFile { _96f9cc14_optionalFile(char* value): val
 typedef struct _96f9cc14_optionalLine { _96f9cc14_optionalLine(int value): value(value) {}; int value; _96f9cc14_optionalLine(const _96f9cc14_optionalLine &) = delete; } _96f9cc14_optionalLine;
 typedef struct _96f9cc14_optionalUserData { _96f9cc14_optionalUserData(void* value): value(value) {}; void* value; _96f9cc14_optionalUserData(const _96f9cc14_optionalUserData &) = delete; } _96f9cc14_optionalUserData;
 typedef struct _96f9cc14_rteParameters { _96f9cc14_rteParameters(void* value): value(value) {}; void* value; _96f9cc14_rteParameters(const _96f9cc14_rteParameters &) = delete; } _96f9cc14_rteParameters;
-int64_t np_redRteHelperAppWindowAddWaitSemaphore(_96f9cc14_helperAppWindow & helperAppWindow, _96f9cc14_vkSemaphoreSubmitInfoKHR & vkSemaphoreSubmitInfoKHR, _96f9cc14_optionalFile & optionalFile, _96f9cc14_optionalLine & optionalLine, _96f9cc14_optionalUserData & optionalUserData, _96f9cc14_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowAddWaitSemaphore(_96f9cc14_helperAppWindow & helperAppWindow, _96f9cc14_vkSemaphoreSubmitInfoKHR & vkSemaphoreSubmitInfoKHR, _96f9cc14_optionalFile & optionalFile, _96f9cc14_optionalLine & optionalLine, _96f9cc14_optionalUserData & optionalUserData, _96f9cc14_rteParameters & rteParameters) {
   return redRteHelperAppWindowAddWaitSemaphore(helperAppWindow.value, vkSemaphoreSubmitInfoKHR.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -1999,7 +2007,7 @@ typedef struct _b87380e0_optionalFile { _b87380e0_optionalFile(char* value): val
 typedef struct _b87380e0_optionalLine { _b87380e0_optionalLine(int value): value(value) {}; int value; _b87380e0_optionalLine(const _b87380e0_optionalLine &) = delete; } _b87380e0_optionalLine;
 typedef struct _b87380e0_optionalUserData { _b87380e0_optionalUserData(void* value): value(value) {}; void* value; _b87380e0_optionalUserData(const _b87380e0_optionalUserData &) = delete; } _b87380e0_optionalUserData;
 typedef struct _b87380e0_rteParameters { _b87380e0_rteParameters(void* value): value(value) {}; void* value; _b87380e0_rteParameters(const _b87380e0_rteParameters &) = delete; } _b87380e0_rteParameters;
-RedHandleCalls np_redRteHelperAppWindowTempCallsCreateAndSet(_b87380e0_helperAppWindow & helperAppWindow, _b87380e0_optionalFile & optionalFile, _b87380e0_optionalLine & optionalLine, _b87380e0_optionalUserData & optionalUserData, _b87380e0_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleCalls REDGPU_NP_API np_redRteHelperAppWindowTempCallsCreateAndSet(_b87380e0_helperAppWindow & helperAppWindow, _b87380e0_optionalFile & optionalFile, _b87380e0_optionalLine & optionalLine, _b87380e0_optionalUserData & optionalUserData, _b87380e0_rteParameters & rteParameters) {
   return redRteHelperAppWindowTempCallsCreateAndSet(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2019,7 +2027,7 @@ typedef struct _8a6e2e2d_optionalFile { _8a6e2e2d_optionalFile(char* value): val
 typedef struct _8a6e2e2d_optionalLine { _8a6e2e2d_optionalLine(int value): value(value) {}; int value; _8a6e2e2d_optionalLine(const _8a6e2e2d_optionalLine &) = delete; } _8a6e2e2d_optionalLine;
 typedef struct _8a6e2e2d_optionalUserData { _8a6e2e2d_optionalUserData(void* value): value(value) {}; void* value; _8a6e2e2d_optionalUserData(const _8a6e2e2d_optionalUserData &) = delete; } _8a6e2e2d_optionalUserData;
 typedef struct _8a6e2e2d_rteParameters { _8a6e2e2d_rteParameters(void* value): value(value) {}; void* value; _8a6e2e2d_rteParameters(const _8a6e2e2d_rteParameters &) = delete; } _8a6e2e2d_rteParameters;
-int64_t np_redRteHelperAppWindowTempCallsEndSubmitWaitAndDestroy(_8a6e2e2d_helperAppWindow & helperAppWindow, _8a6e2e2d_tempCalls & tempCalls, _8a6e2e2d_optionalFile & optionalFile, _8a6e2e2d_optionalLine & optionalLine, _8a6e2e2d_optionalUserData & optionalUserData, _8a6e2e2d_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowTempCallsEndSubmitWaitAndDestroy(_8a6e2e2d_helperAppWindow & helperAppWindow, _8a6e2e2d_tempCalls & tempCalls, _8a6e2e2d_optionalFile & optionalFile, _8a6e2e2d_optionalLine & optionalLine, _8a6e2e2d_optionalUserData & optionalUserData, _8a6e2e2d_rteParameters & rteParameters) {
   return redRteHelperAppWindowTempCallsEndSubmitWaitAndDestroy(helperAppWindow.value, tempCalls.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2039,7 +2047,7 @@ typedef struct _6d4e1289_optionalFile { _6d4e1289_optionalFile(char* value): val
 typedef struct _6d4e1289_optionalLine { _6d4e1289_optionalLine(int value): value(value) {}; int value; _6d4e1289_optionalLine(const _6d4e1289_optionalLine &) = delete; } _6d4e1289_optionalLine;
 typedef struct _6d4e1289_optionalUserData { _6d4e1289_optionalUserData(void* value): value(value) {}; void* value; _6d4e1289_optionalUserData(const _6d4e1289_optionalUserData &) = delete; } _6d4e1289_optionalUserData;
 typedef struct _6d4e1289_rteParameters { _6d4e1289_rteParameters(void* value): value(value) {}; void* value; _6d4e1289_rteParameters(const _6d4e1289_rteParameters &) = delete; } _6d4e1289_rteParameters;
-int64_t np_redRteHelperAppWindowOnFileDrop(_6d4e1289_helperAppWindow & helperAppWindow, _6d4e1289_filename & filename, _6d4e1289_optionalFile & optionalFile, _6d4e1289_optionalLine & optionalLine, _6d4e1289_optionalUserData & optionalUserData, _6d4e1289_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowOnFileDrop(_6d4e1289_helperAppWindow & helperAppWindow, _6d4e1289_filename & filename, _6d4e1289_optionalFile & optionalFile, _6d4e1289_optionalLine & optionalLine, _6d4e1289_optionalUserData & optionalUserData, _6d4e1289_rteParameters & rteParameters) {
   return redRteHelperAppWindowOnFileDrop(helperAppWindow.value, filename.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2057,7 +2065,7 @@ typedef struct _e7fbecf3_optionalFile { _e7fbecf3_optionalFile(char* value): val
 typedef struct _e7fbecf3_optionalLine { _e7fbecf3_optionalLine(int value): value(value) {}; int value; _e7fbecf3_optionalLine(const _e7fbecf3_optionalLine &) = delete; } _e7fbecf3_optionalLine;
 typedef struct _e7fbecf3_optionalUserData { _e7fbecf3_optionalUserData(void* value): value(value) {}; void* value; _e7fbecf3_optionalUserData(const _e7fbecf3_optionalUserData &) = delete; } _e7fbecf3_optionalUserData;
 typedef struct _e7fbecf3_rteParameters { _e7fbecf3_rteParameters(void* value): value(value) {}; void* value; _e7fbecf3_rteParameters(const _e7fbecf3_rteParameters &) = delete; } _e7fbecf3_rteParameters;
-RedRteHandleContext np_redRteHelperAppWindowGetRteContext(_e7fbecf3_helperAppWindow & helperAppWindow, _e7fbecf3_optionalFile & optionalFile, _e7fbecf3_optionalLine & optionalLine, _e7fbecf3_optionalUserData & optionalUserData, _e7fbecf3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedRteHandleContext REDGPU_NP_API np_redRteHelperAppWindowGetRteContext(_e7fbecf3_helperAppWindow & helperAppWindow, _e7fbecf3_optionalFile & optionalFile, _e7fbecf3_optionalLine & optionalLine, _e7fbecf3_optionalUserData & optionalUserData, _e7fbecf3_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetRteContext(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2075,7 +2083,7 @@ typedef struct _c49fa0c3_optionalFile { _c49fa0c3_optionalFile(char* value): val
 typedef struct _c49fa0c3_optionalLine { _c49fa0c3_optionalLine(int value): value(value) {}; int value; _c49fa0c3_optionalLine(const _c49fa0c3_optionalLine &) = delete; } _c49fa0c3_optionalLine;
 typedef struct _c49fa0c3_optionalUserData { _c49fa0c3_optionalUserData(void* value): value(value) {}; void* value; _c49fa0c3_optionalUserData(const _c49fa0c3_optionalUserData &) = delete; } _c49fa0c3_optionalUserData;
 typedef struct _c49fa0c3_rteParameters { _c49fa0c3_rteParameters(void* value): value(value) {}; void* value; _c49fa0c3_rteParameters(const _c49fa0c3_rteParameters &) = delete; } _c49fa0c3_rteParameters;
-void* np_redRteHelperAppWindowGetGlfwWindow(_c49fa0c3_helperAppWindow & helperAppWindow, _c49fa0c3_optionalFile & optionalFile, _c49fa0c3_optionalLine & optionalLine, _c49fa0c3_optionalUserData & optionalUserData, _c49fa0c3_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC void* REDGPU_NP_API np_redRteHelperAppWindowGetGlfwWindow(_c49fa0c3_helperAppWindow & helperAppWindow, _c49fa0c3_optionalFile & optionalFile, _c49fa0c3_optionalLine & optionalLine, _c49fa0c3_optionalUserData & optionalUserData, _c49fa0c3_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetGlfwWindow(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2093,7 +2101,7 @@ typedef struct _008a775f_optionalFile { _008a775f_optionalFile(char* value): val
 typedef struct _008a775f_optionalLine { _008a775f_optionalLine(int value): value(value) {}; int value; _008a775f_optionalLine(const _008a775f_optionalLine &) = delete; } _008a775f_optionalLine;
 typedef struct _008a775f_optionalUserData { _008a775f_optionalUserData(void* value): value(value) {}; void* value; _008a775f_optionalUserData(const _008a775f_optionalUserData &) = delete; } _008a775f_optionalUserData;
 typedef struct _008a775f_rteParameters { _008a775f_rteParameters(void* value): value(value) {}; void* value; _008a775f_rteParameters(const _008a775f_rteParameters &) = delete; } _008a775f_rteParameters;
-int64_t np_redRteHelperAppWindowGetViewportWidth(_008a775f_helperAppWindow & helperAppWindow, _008a775f_optionalFile & optionalFile, _008a775f_optionalLine & optionalLine, _008a775f_optionalUserData & optionalUserData, _008a775f_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowGetViewportWidth(_008a775f_helperAppWindow & helperAppWindow, _008a775f_optionalFile & optionalFile, _008a775f_optionalLine & optionalLine, _008a775f_optionalUserData & optionalUserData, _008a775f_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetViewportWidth(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2111,7 +2119,7 @@ typedef struct _0e4eac77_optionalFile { _0e4eac77_optionalFile(char* value): val
 typedef struct _0e4eac77_optionalLine { _0e4eac77_optionalLine(int value): value(value) {}; int value; _0e4eac77_optionalLine(const _0e4eac77_optionalLine &) = delete; } _0e4eac77_optionalLine;
 typedef struct _0e4eac77_optionalUserData { _0e4eac77_optionalUserData(void* value): value(value) {}; void* value; _0e4eac77_optionalUserData(const _0e4eac77_optionalUserData &) = delete; } _0e4eac77_optionalUserData;
 typedef struct _0e4eac77_rteParameters { _0e4eac77_rteParameters(void* value): value(value) {}; void* value; _0e4eac77_rteParameters(const _0e4eac77_rteParameters &) = delete; } _0e4eac77_rteParameters;
-int64_t np_redRteHelperAppWindowGetViewportHeight(_0e4eac77_helperAppWindow & helperAppWindow, _0e4eac77_optionalFile & optionalFile, _0e4eac77_optionalLine & optionalLine, _0e4eac77_optionalUserData & optionalUserData, _0e4eac77_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowGetViewportHeight(_0e4eac77_helperAppWindow & helperAppWindow, _0e4eac77_optionalFile & optionalFile, _0e4eac77_optionalLine & optionalLine, _0e4eac77_optionalUserData & optionalUserData, _0e4eac77_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetViewportHeight(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2129,7 +2137,7 @@ typedef struct _44d3ff0a_optionalFile { _44d3ff0a_optionalFile(char* value): val
 typedef struct _44d3ff0a_optionalLine { _44d3ff0a_optionalLine(int value): value(value) {}; int value; _44d3ff0a_optionalLine(const _44d3ff0a_optionalLine &) = delete; } _44d3ff0a_optionalLine;
 typedef struct _44d3ff0a_optionalUserData { _44d3ff0a_optionalUserData(void* value): value(value) {}; void* value; _44d3ff0a_optionalUserData(const _44d3ff0a_optionalUserData &) = delete; } _44d3ff0a_optionalUserData;
 typedef struct _44d3ff0a_rteParameters { _44d3ff0a_rteParameters(void* value): value(value) {}; void* value; _44d3ff0a_rteParameters(const _44d3ff0a_rteParameters &) = delete; } _44d3ff0a_rteParameters;
-int64_t np_redRteHelperAppWindowGetWindowWidth(_44d3ff0a_helperAppWindow & helperAppWindow, _44d3ff0a_optionalFile & optionalFile, _44d3ff0a_optionalLine & optionalLine, _44d3ff0a_optionalUserData & optionalUserData, _44d3ff0a_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowGetWindowWidth(_44d3ff0a_helperAppWindow & helperAppWindow, _44d3ff0a_optionalFile & optionalFile, _44d3ff0a_optionalLine & optionalLine, _44d3ff0a_optionalUserData & optionalUserData, _44d3ff0a_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetWindowWidth(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2147,7 +2155,7 @@ typedef struct _8d34566e_optionalFile { _8d34566e_optionalFile(char* value): val
 typedef struct _8d34566e_optionalLine { _8d34566e_optionalLine(int value): value(value) {}; int value; _8d34566e_optionalLine(const _8d34566e_optionalLine &) = delete; } _8d34566e_optionalLine;
 typedef struct _8d34566e_optionalUserData { _8d34566e_optionalUserData(void* value): value(value) {}; void* value; _8d34566e_optionalUserData(const _8d34566e_optionalUserData &) = delete; } _8d34566e_optionalUserData;
 typedef struct _8d34566e_rteParameters { _8d34566e_rteParameters(void* value): value(value) {}; void* value; _8d34566e_rteParameters(const _8d34566e_rteParameters &) = delete; } _8d34566e_rteParameters;
-int64_t np_redRteHelperAppWindowGetWindowHeight(_8d34566e_helperAppWindow & helperAppWindow, _8d34566e_optionalFile & optionalFile, _8d34566e_optionalLine & optionalLine, _8d34566e_optionalUserData & optionalUserData, _8d34566e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperAppWindowGetWindowHeight(_8d34566e_helperAppWindow & helperAppWindow, _8d34566e_optionalFile & optionalFile, _8d34566e_optionalLine & optionalLine, _8d34566e_optionalUserData & optionalUserData, _8d34566e_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetWindowHeight(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2165,7 +2173,7 @@ typedef struct _e5c0e7fc_optionalFile { _e5c0e7fc_optionalFile(char* value): val
 typedef struct _e5c0e7fc_optionalLine { _e5c0e7fc_optionalLine(int value): value(value) {}; int value; _e5c0e7fc_optionalLine(const _e5c0e7fc_optionalLine &) = delete; } _e5c0e7fc_optionalLine;
 typedef struct _e5c0e7fc_optionalUserData { _e5c0e7fc_optionalUserData(void* value): value(value) {}; void* value; _e5c0e7fc_optionalUserData(const _e5c0e7fc_optionalUserData &) = delete; } _e5c0e7fc_optionalUserData;
 typedef struct _e5c0e7fc_rteParameters { _e5c0e7fc_rteParameters(void* value): value(value) {}; void* value; _e5c0e7fc_rteParameters(const _e5c0e7fc_rteParameters &) = delete; } _e5c0e7fc_rteParameters;
-void* np_redRteHelperAppWindowGetImGuiImplVulkanHWindowData(_e5c0e7fc_helperAppWindow & helperAppWindow, _e5c0e7fc_optionalFile & optionalFile, _e5c0e7fc_optionalLine & optionalLine, _e5c0e7fc_optionalUserData & optionalUserData, _e5c0e7fc_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC void* REDGPU_NP_API np_redRteHelperAppWindowGetImGuiImplVulkanHWindowData(_e5c0e7fc_helperAppWindow & helperAppWindow, _e5c0e7fc_optionalFile & optionalFile, _e5c0e7fc_optionalLine & optionalLine, _e5c0e7fc_optionalUserData & optionalUserData, _e5c0e7fc_rteParameters & rteParameters) {
   return redRteHelperAppWindowGetImGuiImplVulkanHWindowData(helperAppWindow.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2199,7 +2207,7 @@ typedef struct _912a0062_optionalFile { _912a0062_optionalFile(char* value): val
 typedef struct _912a0062_optionalLine { _912a0062_optionalLine(int value): value(value) {}; int value; _912a0062_optionalLine(const _912a0062_optionalLine &) = delete; } _912a0062_optionalLine;
 typedef struct _912a0062_optionalUserData { _912a0062_optionalUserData(void* value): value(value) {}; void* value; _912a0062_optionalUserData(const _912a0062_optionalUserData &) = delete; } _912a0062_optionalUserData;
 typedef struct _912a0062_rteParameters { _912a0062_rteParameters(void* value): value(value) {}; void* value; _912a0062_rteParameters(const _912a0062_rteParameters &) = delete; } _912a0062_rteParameters;
-int64_t np_redRteCreateHelperGBuffer(_912a0062_rteContext & rteContext, _912a0062_rteHandleHelperAllocator & rteHandleHelperAllocator, _912a0062_width & width, _912a0062_height & height, _912a0062_colorFormatsCount & colorFormatsCount, _912a0062_colorFormats & colorFormats, _912a0062_depthFormat & depthFormat, _912a0062_outHelperGBuffer & outHelperGBuffer, _912a0062_outStatuses & outStatuses, _912a0062_optionalFile & optionalFile, _912a0062_optionalLine & optionalLine, _912a0062_optionalUserData & optionalUserData, _912a0062_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCreateHelperGBuffer(_912a0062_rteContext & rteContext, _912a0062_rteHandleHelperAllocator & rteHandleHelperAllocator, _912a0062_width & width, _912a0062_height & height, _912a0062_colorFormatsCount & colorFormatsCount, _912a0062_colorFormats & colorFormats, _912a0062_depthFormat & depthFormat, _912a0062_outHelperGBuffer & outHelperGBuffer, _912a0062_outStatuses & outStatuses, _912a0062_optionalFile & optionalFile, _912a0062_optionalLine & optionalLine, _912a0062_optionalUserData & optionalUserData, _912a0062_rteParameters & rteParameters) {
   return redRteCreateHelperGBuffer(rteContext.value, rteHandleHelperAllocator.value, width.value, height.value, colorFormatsCount.value, colorFormats.value, depthFormat.value, outHelperGBuffer.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2217,7 +2225,7 @@ typedef struct _341970df_optionalFile { _341970df_optionalFile(char* value): val
 typedef struct _341970df_optionalLine { _341970df_optionalLine(int value): value(value) {}; int value; _341970df_optionalLine(const _341970df_optionalLine &) = delete; } _341970df_optionalLine;
 typedef struct _341970df_optionalUserData { _341970df_optionalUserData(void* value): value(value) {}; void* value; _341970df_optionalUserData(const _341970df_optionalUserData &) = delete; } _341970df_optionalUserData;
 typedef struct _341970df_rteParameters { _341970df_rteParameters(void* value): value(value) {}; void* value; _341970df_rteParameters(const _341970df_rteParameters &) = delete; } _341970df_rteParameters;
-int64_t np_redRteDestroyHelperGBuffer(_341970df_helperGBuffer & helperGBuffer, _341970df_optionalFile & optionalFile, _341970df_optionalLine & optionalLine, _341970df_optionalUserData & optionalUserData, _341970df_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteDestroyHelperGBuffer(_341970df_helperGBuffer & helperGBuffer, _341970df_optionalFile & optionalFile, _341970df_optionalLine & optionalLine, _341970df_optionalUserData & optionalUserData, _341970df_rteParameters & rteParameters) {
   return redRteDestroyHelperGBuffer(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2237,7 +2245,7 @@ typedef struct _8bd80a5b_optionalFile { _8bd80a5b_optionalFile(char* value): val
 typedef struct _8bd80a5b_optionalLine { _8bd80a5b_optionalLine(int value): value(value) {}; int value; _8bd80a5b_optionalLine(const _8bd80a5b_optionalLine &) = delete; } _8bd80a5b_optionalLine;
 typedef struct _8bd80a5b_optionalUserData { _8bd80a5b_optionalUserData(void* value): value(value) {}; void* value; _8bd80a5b_optionalUserData(const _8bd80a5b_optionalUserData &) = delete; } _8bd80a5b_optionalUserData;
 typedef struct _8bd80a5b_rteParameters { _8bd80a5b_rteParameters(void* value): value(value) {}; void* value; _8bd80a5b_rteParameters(const _8bd80a5b_rteParameters &) = delete; } _8bd80a5b_rteParameters;
-RedHandleStruct np_redRteHelperGBufferGetStruct(_8bd80a5b_helperGBuffer & helperGBuffer, _8bd80a5b_index & index, _8bd80a5b_optionalFile & optionalFile, _8bd80a5b_optionalLine & optionalLine, _8bd80a5b_optionalUserData & optionalUserData, _8bd80a5b_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleStruct REDGPU_NP_API np_redRteHelperGBufferGetStruct(_8bd80a5b_helperGBuffer & helperGBuffer, _8bd80a5b_index & index, _8bd80a5b_optionalFile & optionalFile, _8bd80a5b_optionalLine & optionalLine, _8bd80a5b_optionalUserData & optionalUserData, _8bd80a5b_rteParameters & rteParameters) {
   return redRteHelperGBufferGetStruct(helperGBuffer.value, index.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2255,7 +2263,7 @@ typedef struct _92a7098c_optionalFile { _92a7098c_optionalFile(char* value): val
 typedef struct _92a7098c_optionalLine { _92a7098c_optionalLine(int value): value(value) {}; int value; _92a7098c_optionalLine(const _92a7098c_optionalLine &) = delete; } _92a7098c_optionalLine;
 typedef struct _92a7098c_optionalUserData { _92a7098c_optionalUserData(void* value): value(value) {}; void* value; _92a7098c_optionalUserData(const _92a7098c_optionalUserData &) = delete; } _92a7098c_optionalUserData;
 typedef struct _92a7098c_rteParameters { _92a7098c_rteParameters(void* value): value(value) {}; void* value; _92a7098c_rteParameters(const _92a7098c_rteParameters &) = delete; } _92a7098c_rteParameters;
-int64_t np_redRteHelperGBufferGetWidth(_92a7098c_helperGBuffer & helperGBuffer, _92a7098c_optionalFile & optionalFile, _92a7098c_optionalLine & optionalLine, _92a7098c_optionalUserData & optionalUserData, _92a7098c_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperGBufferGetWidth(_92a7098c_helperGBuffer & helperGBuffer, _92a7098c_optionalFile & optionalFile, _92a7098c_optionalLine & optionalLine, _92a7098c_optionalUserData & optionalUserData, _92a7098c_rteParameters & rteParameters) {
   return redRteHelperGBufferGetWidth(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2273,7 +2281,7 @@ typedef struct _ac39b6f2_optionalFile { _ac39b6f2_optionalFile(char* value): val
 typedef struct _ac39b6f2_optionalLine { _ac39b6f2_optionalLine(int value): value(value) {}; int value; _ac39b6f2_optionalLine(const _ac39b6f2_optionalLine &) = delete; } _ac39b6f2_optionalLine;
 typedef struct _ac39b6f2_optionalUserData { _ac39b6f2_optionalUserData(void* value): value(value) {}; void* value; _ac39b6f2_optionalUserData(const _ac39b6f2_optionalUserData &) = delete; } _ac39b6f2_optionalUserData;
 typedef struct _ac39b6f2_rteParameters { _ac39b6f2_rteParameters(void* value): value(value) {}; void* value; _ac39b6f2_rteParameters(const _ac39b6f2_rteParameters &) = delete; } _ac39b6f2_rteParameters;
-int64_t np_redRteHelperGBufferGetHeight(_ac39b6f2_helperGBuffer & helperGBuffer, _ac39b6f2_optionalFile & optionalFile, _ac39b6f2_optionalLine & optionalLine, _ac39b6f2_optionalUserData & optionalUserData, _ac39b6f2_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperGBufferGetHeight(_ac39b6f2_helperGBuffer & helperGBuffer, _ac39b6f2_optionalFile & optionalFile, _ac39b6f2_optionalLine & optionalLine, _ac39b6f2_optionalUserData & optionalUserData, _ac39b6f2_rteParameters & rteParameters) {
   return redRteHelperGBufferGetHeight(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2293,7 +2301,7 @@ typedef struct _4044d4cc_optionalFile { _4044d4cc_optionalFile(char* value): val
 typedef struct _4044d4cc_optionalLine { _4044d4cc_optionalLine(int value): value(value) {}; int value; _4044d4cc_optionalLine(const _4044d4cc_optionalLine &) = delete; } _4044d4cc_optionalLine;
 typedef struct _4044d4cc_optionalUserData { _4044d4cc_optionalUserData(void* value): value(value) {}; void* value; _4044d4cc_optionalUserData(const _4044d4cc_optionalUserData &) = delete; } _4044d4cc_optionalUserData;
 typedef struct _4044d4cc_rteParameters { _4044d4cc_rteParameters(void* value): value(value) {}; void* value; _4044d4cc_rteParameters(const _4044d4cc_rteParameters &) = delete; } _4044d4cc_rteParameters;
-RedHandleImage np_redRteHelperGBufferGetColorImage(_4044d4cc_helperGBuffer & helperGBuffer, _4044d4cc_index & index, _4044d4cc_optionalFile & optionalFile, _4044d4cc_optionalLine & optionalLine, _4044d4cc_optionalUserData & optionalUserData, _4044d4cc_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleImage REDGPU_NP_API np_redRteHelperGBufferGetColorImage(_4044d4cc_helperGBuffer & helperGBuffer, _4044d4cc_index & index, _4044d4cc_optionalFile & optionalFile, _4044d4cc_optionalLine & optionalLine, _4044d4cc_optionalUserData & optionalUserData, _4044d4cc_rteParameters & rteParameters) {
   return redRteHelperGBufferGetColorImage(helperGBuffer.value, index.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2311,7 +2319,7 @@ typedef struct _46f44520_optionalFile { _46f44520_optionalFile(char* value): val
 typedef struct _46f44520_optionalLine { _46f44520_optionalLine(int value): value(value) {}; int value; _46f44520_optionalLine(const _46f44520_optionalLine &) = delete; } _46f44520_optionalLine;
 typedef struct _46f44520_optionalUserData { _46f44520_optionalUserData(void* value): value(value) {}; void* value; _46f44520_optionalUserData(const _46f44520_optionalUserData &) = delete; } _46f44520_optionalUserData;
 typedef struct _46f44520_rteParameters { _46f44520_rteParameters(void* value): value(value) {}; void* value; _46f44520_rteParameters(const _46f44520_rteParameters &) = delete; } _46f44520_rteParameters;
-RedHandleImage np_redRteHelperGBufferGetDepthImage(_46f44520_helperGBuffer & helperGBuffer, _46f44520_optionalFile & optionalFile, _46f44520_optionalLine & optionalLine, _46f44520_optionalUserData & optionalUserData, _46f44520_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleImage REDGPU_NP_API np_redRteHelperGBufferGetDepthImage(_46f44520_helperGBuffer & helperGBuffer, _46f44520_optionalFile & optionalFile, _46f44520_optionalLine & optionalLine, _46f44520_optionalUserData & optionalUserData, _46f44520_rteParameters & rteParameters) {
   return redRteHelperGBufferGetDepthImage(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2333,7 +2341,7 @@ typedef struct _aeb94277_optionalFile { _aeb94277_optionalFile(char* value): val
 typedef struct _aeb94277_optionalLine { _aeb94277_optionalLine(int value): value(value) {}; int value; _aeb94277_optionalLine(const _aeb94277_optionalLine &) = delete; } _aeb94277_optionalLine;
 typedef struct _aeb94277_optionalUserData { _aeb94277_optionalUserData(void* value): value(value) {}; void* value; _aeb94277_optionalUserData(const _aeb94277_optionalUserData &) = delete; } _aeb94277_optionalUserData;
 typedef struct _aeb94277_rteParameters { _aeb94277_rteParameters(void* value): value(value) {}; void* value; _aeb94277_rteParameters(const _aeb94277_rteParameters &) = delete; } _aeb94277_rteParameters;
-int64_t np_redRteHelperGBufferGetStructMemberTexture(_aeb94277_helperGBuffer & helperGBuffer, _aeb94277_index & index, _aeb94277_outStructMemberTexture & outStructMemberTexture, _aeb94277_optionalFile & optionalFile, _aeb94277_optionalLine & optionalLine, _aeb94277_optionalUserData & optionalUserData, _aeb94277_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteHelperGBufferGetStructMemberTexture(_aeb94277_helperGBuffer & helperGBuffer, _aeb94277_index & index, _aeb94277_outStructMemberTexture & outStructMemberTexture, _aeb94277_optionalFile & optionalFile, _aeb94277_optionalLine & optionalLine, _aeb94277_optionalUserData & optionalUserData, _aeb94277_rteParameters & rteParameters) {
   return redRteHelperGBufferGetStructMemberTexture(helperGBuffer.value, index.value, outStructMemberTexture.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2353,7 +2361,7 @@ typedef struct _b904279e_optionalFile { _b904279e_optionalFile(char* value): val
 typedef struct _b904279e_optionalLine { _b904279e_optionalLine(int value): value(value) {}; int value; _b904279e_optionalLine(const _b904279e_optionalLine &) = delete; } _b904279e_optionalLine;
 typedef struct _b904279e_optionalUserData { _b904279e_optionalUserData(void* value): value(value) {}; void* value; _b904279e_optionalUserData(const _b904279e_optionalUserData &) = delete; } _b904279e_optionalUserData;
 typedef struct _b904279e_rteParameters { _b904279e_rteParameters(void* value): value(value) {}; void* value; _b904279e_rteParameters(const _b904279e_rteParameters &) = delete; } _b904279e_rteParameters;
-RedHandleTexture np_redRteHelperGBufferGetColorTexture(_b904279e_helperGBuffer & helperGBuffer, _b904279e_index & index, _b904279e_optionalFile & optionalFile, _b904279e_optionalLine & optionalLine, _b904279e_optionalUserData & optionalUserData, _b904279e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleTexture REDGPU_NP_API np_redRteHelperGBufferGetColorTexture(_b904279e_helperGBuffer & helperGBuffer, _b904279e_index & index, _b904279e_optionalFile & optionalFile, _b904279e_optionalLine & optionalLine, _b904279e_optionalUserData & optionalUserData, _b904279e_rteParameters & rteParameters) {
   return redRteHelperGBufferGetColorTexture(helperGBuffer.value, index.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2371,7 +2379,7 @@ typedef struct _fece9577_optionalFile { _fece9577_optionalFile(char* value): val
 typedef struct _fece9577_optionalLine { _fece9577_optionalLine(int value): value(value) {}; int value; _fece9577_optionalLine(const _fece9577_optionalLine &) = delete; } _fece9577_optionalLine;
 typedef struct _fece9577_optionalUserData { _fece9577_optionalUserData(void* value): value(value) {}; void* value; _fece9577_optionalUserData(const _fece9577_optionalUserData &) = delete; } _fece9577_optionalUserData;
 typedef struct _fece9577_rteParameters { _fece9577_rteParameters(void* value): value(value) {}; void* value; _fece9577_rteParameters(const _fece9577_rteParameters &) = delete; } _fece9577_rteParameters;
-RedHandleTexture np_redRteHelperGBufferGetDepthTexture(_fece9577_helperGBuffer & helperGBuffer, _fece9577_optionalFile & optionalFile, _fece9577_optionalLine & optionalLine, _fece9577_optionalUserData & optionalUserData, _fece9577_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC RedHandleTexture REDGPU_NP_API np_redRteHelperGBufferGetDepthTexture(_fece9577_helperGBuffer & helperGBuffer, _fece9577_optionalFile & optionalFile, _fece9577_optionalLine & optionalLine, _fece9577_optionalUserData & optionalUserData, _fece9577_rteParameters & rteParameters) {
   return redRteHelperGBufferGetDepthTexture(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2391,7 +2399,7 @@ typedef struct _37109e36_optionalFile { _37109e36_optionalFile(char* value): val
 typedef struct _37109e36_optionalLine { _37109e36_optionalLine(int value): value(value) {}; int value; _37109e36_optionalLine(const _37109e36_optionalLine &) = delete; } _37109e36_optionalLine;
 typedef struct _37109e36_optionalUserData { _37109e36_optionalUserData(void* value): value(value) {}; void* value; _37109e36_optionalUserData(const _37109e36_optionalUserData &) = delete; } _37109e36_optionalUserData;
 typedef struct _37109e36_rteParameters { _37109e36_rteParameters(void* value): value(value) {}; void* value; _37109e36_rteParameters(const _37109e36_rteParameters &) = delete; } _37109e36_rteParameters;
-unsigned np_redRteHelperGBufferGetColorFormat(_37109e36_helperGBuffer & helperGBuffer, _37109e36_index & index, _37109e36_optionalFile & optionalFile, _37109e36_optionalLine & optionalLine, _37109e36_optionalUserData & optionalUserData, _37109e36_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC unsigned REDGPU_NP_API np_redRteHelperGBufferGetColorFormat(_37109e36_helperGBuffer & helperGBuffer, _37109e36_index & index, _37109e36_optionalFile & optionalFile, _37109e36_optionalLine & optionalLine, _37109e36_optionalUserData & optionalUserData, _37109e36_rteParameters & rteParameters) {
   return redRteHelperGBufferGetColorFormat(helperGBuffer.value, index.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2409,7 +2417,7 @@ typedef struct _815c3c64_optionalFile { _815c3c64_optionalFile(char* value): val
 typedef struct _815c3c64_optionalLine { _815c3c64_optionalLine(int value): value(value) {}; int value; _815c3c64_optionalLine(const _815c3c64_optionalLine &) = delete; } _815c3c64_optionalLine;
 typedef struct _815c3c64_optionalUserData { _815c3c64_optionalUserData(void* value): value(value) {}; void* value; _815c3c64_optionalUserData(const _815c3c64_optionalUserData &) = delete; } _815c3c64_optionalUserData;
 typedef struct _815c3c64_rteParameters { _815c3c64_rteParameters(void* value): value(value) {}; void* value; _815c3c64_rteParameters(const _815c3c64_rteParameters &) = delete; } _815c3c64_rteParameters;
-unsigned np_redRteHelperGBufferGetDepthFormat(_815c3c64_helperGBuffer & helperGBuffer, _815c3c64_optionalFile & optionalFile, _815c3c64_optionalLine & optionalLine, _815c3c64_optionalUserData & optionalUserData, _815c3c64_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC unsigned REDGPU_NP_API np_redRteHelperGBufferGetDepthFormat(_815c3c64_helperGBuffer & helperGBuffer, _815c3c64_optionalFile & optionalFile, _815c3c64_optionalLine & optionalLine, _815c3c64_optionalUserData & optionalUserData, _815c3c64_rteParameters & rteParameters) {
   return redRteHelperGBufferGetDepthFormat(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2427,7 +2435,7 @@ typedef struct _3013eac0_optionalFile { _3013eac0_optionalFile(char* value): val
 typedef struct _3013eac0_optionalLine { _3013eac0_optionalLine(int value): value(value) {}; int value; _3013eac0_optionalLine(const _3013eac0_optionalLine &) = delete; } _3013eac0_optionalLine;
 typedef struct _3013eac0_optionalUserData { _3013eac0_optionalUserData(void* value): value(value) {}; void* value; _3013eac0_optionalUserData(const _3013eac0_optionalUserData &) = delete; } _3013eac0_optionalUserData;
 typedef struct _3013eac0_rteParameters { _3013eac0_rteParameters(void* value): value(value) {}; void* value; _3013eac0_rteParameters(const _3013eac0_rteParameters &) = delete; } _3013eac0_rteParameters;
-float np_redRteHelperGBufferGetAspectRatio(_3013eac0_helperGBuffer & helperGBuffer, _3013eac0_optionalFile & optionalFile, _3013eac0_optionalLine & optionalLine, _3013eac0_optionalUserData & optionalUserData, _3013eac0_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC float REDGPU_NP_API np_redRteHelperGBufferGetAspectRatio(_3013eac0_helperGBuffer & helperGBuffer, _3013eac0_optionalFile & optionalFile, _3013eac0_optionalLine & optionalLine, _3013eac0_optionalUserData & optionalUserData, _3013eac0_rteParameters & rteParameters) {
   return redRteHelperGBufferGetAspectRatio(helperGBuffer.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2445,7 +2453,7 @@ typedef struct _b83d5a49_optionalFile { _b83d5a49_optionalFile(char* value): val
 typedef struct _b83d5a49_optionalLine { _b83d5a49_optionalLine(int value): value(value) {}; int value; _b83d5a49_optionalLine(const _b83d5a49_optionalLine &) = delete; } _b83d5a49_optionalLine;
 typedef struct _b83d5a49_optionalUserData { _b83d5a49_optionalUserData(void* value): value(value) {}; void* value; _b83d5a49_optionalUserData(const _b83d5a49_optionalUserData &) = delete; } _b83d5a49_optionalUserData;
 typedef struct _b83d5a49_rteParameters { _b83d5a49_rteParameters(void* value): value(value) {}; void* value; _b83d5a49_rteParameters(const _b83d5a49_rteParameters &) = delete; } _b83d5a49_rteParameters;
-int64_t np_redRteGpuWaitIdle(_b83d5a49_rteContext & rteContext, _b83d5a49_optionalFile & optionalFile, _b83d5a49_optionalLine & optionalLine, _b83d5a49_optionalUserData & optionalUserData, _b83d5a49_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteGpuWaitIdle(_b83d5a49_rteContext & rteContext, _b83d5a49_optionalFile & optionalFile, _b83d5a49_optionalLine & optionalLine, _b83d5a49_optionalUserData & optionalUserData, _b83d5a49_rteParameters & rteParameters) {
   return redRteGpuWaitIdle(rteContext.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2465,7 +2473,7 @@ typedef struct _e5c46d25_optionalFile { _e5c46d25_optionalFile(char* value): val
 typedef struct _e5c46d25_optionalLine { _e5c46d25_optionalLine(int value): value(value) {}; int value; _e5c46d25_optionalLine(const _e5c46d25_optionalLine &) = delete; } _e5c46d25_optionalLine;
 typedef struct _e5c46d25_optionalUserData { _e5c46d25_optionalUserData(void* value): value(value) {}; void* value; _e5c46d25_optionalUserData(const _e5c46d25_optionalUserData &) = delete; } _e5c46d25_optionalUserData;
 typedef struct _e5c46d25_rteParameters { _e5c46d25_rteParameters(void* value): value(value) {}; void* value; _e5c46d25_rteParameters(const _e5c46d25_rteParameters &) = delete; } _e5c46d25_rteParameters;
-int64_t np_redRteQueueWaitIdle(_e5c46d25_rteContext & rteContext, _e5c46d25_queue & queue, _e5c46d25_optionalFile & optionalFile, _e5c46d25_optionalLine & optionalLine, _e5c46d25_optionalUserData & optionalUserData, _e5c46d25_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteQueueWaitIdle(_e5c46d25_rteContext & rteContext, _e5c46d25_queue & queue, _e5c46d25_optionalFile & optionalFile, _e5c46d25_optionalLine & optionalLine, _e5c46d25_optionalUserData & optionalUserData, _e5c46d25_rteParameters & rteParameters) {
   return redRteQueueWaitIdle(rteContext.value, queue.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2485,7 +2493,7 @@ typedef struct _c4294edd_optionalFile { _c4294edd_optionalFile(char* value): val
 typedef struct _c4294edd_optionalLine { _c4294edd_optionalLine(int value): value(value) {}; int value; _c4294edd_optionalLine(const _c4294edd_optionalLine &) = delete; } _c4294edd_optionalLine;
 typedef struct _c4294edd_optionalUserData { _c4294edd_optionalUserData(void* value): value(value) {}; void* value; _c4294edd_optionalUserData(const _c4294edd_optionalUserData &) = delete; } _c4294edd_optionalUserData;
 typedef struct _c4294edd_rteParameters { _c4294edd_rteParameters(void* value): value(value) {}; void* value; _c4294edd_rteParameters(const _c4294edd_rteParameters &) = delete; } _c4294edd_rteParameters;
-int64_t np_redRteArrayGetMemoryRequirements(_c4294edd_rteContext & rteContext, _c4294edd_inoutArray & inoutArray, _c4294edd_optionalFile & optionalFile, _c4294edd_optionalLine & optionalLine, _c4294edd_optionalUserData & optionalUserData, _c4294edd_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteArrayGetMemoryRequirements(_c4294edd_rteContext & rteContext, _c4294edd_inoutArray & inoutArray, _c4294edd_optionalFile & optionalFile, _c4294edd_optionalLine & optionalLine, _c4294edd_optionalUserData & optionalUserData, _c4294edd_rteParameters & rteParameters) {
   return redRteArrayGetMemoryRequirements(rteContext.value, inoutArray.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2505,7 +2513,7 @@ typedef struct _a8ee680e_optionalFile { _a8ee680e_optionalFile(char* value): val
 typedef struct _a8ee680e_optionalLine { _a8ee680e_optionalLine(int value): value(value) {}; int value; _a8ee680e_optionalLine(const _a8ee680e_optionalLine &) = delete; } _a8ee680e_optionalLine;
 typedef struct _a8ee680e_optionalUserData { _a8ee680e_optionalUserData(void* value): value(value) {}; void* value; _a8ee680e_optionalUserData(const _a8ee680e_optionalUserData &) = delete; } _a8ee680e_optionalUserData;
 typedef struct _a8ee680e_rteParameters { _a8ee680e_rteParameters(void* value): value(value) {}; void* value; _a8ee680e_rteParameters(const _a8ee680e_rteParameters &) = delete; } _a8ee680e_rteParameters;
-int64_t np_redRteImageGetMemoryRequirements(_a8ee680e_rteContext & rteContext, _a8ee680e_inoutImage & inoutImage, _a8ee680e_optionalFile & optionalFile, _a8ee680e_optionalLine & optionalLine, _a8ee680e_optionalUserData & optionalUserData, _a8ee680e_rteParameters & rteParameters) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteImageGetMemoryRequirements(_a8ee680e_rteContext & rteContext, _a8ee680e_inoutImage & inoutImage, _a8ee680e_optionalFile & optionalFile, _a8ee680e_optionalLine & optionalLine, _a8ee680e_optionalUserData & optionalUserData, _a8ee680e_rteParameters & rteParameters) {
   return redRteImageGetMemoryRequirements(rteContext.value, inoutImage.value, optionalFile.value, optionalLine.value, optionalUserData.value, rteParameters.value);
 }
 #endif
@@ -2535,7 +2543,7 @@ typedef struct _16fa6bd9_aliases { _16fa6bd9_aliases(RedAlias* value): value(val
 typedef struct _16fa6bd9_ordersCount { _16fa6bd9_ordersCount(unsigned value): value(value) {}; unsigned value; _16fa6bd9_ordersCount(const _16fa6bd9_ordersCount &) = delete; } _16fa6bd9_ordersCount;
 typedef struct _16fa6bd9_orders { _16fa6bd9_orders(RedOrder* value): value(value) {}; RedOrder* value; _16fa6bd9_orders(const _16fa6bd9_orders &) = delete; } _16fa6bd9_orders;
 typedef struct _16fa6bd9_dependencyFlags { _16fa6bd9_dependencyFlags(unsigned value): value(value) {}; unsigned value; _16fa6bd9_dependencyFlags(const _16fa6bd9_dependencyFlags &) = delete; } _16fa6bd9_dependencyFlags;
-int64_t np_redRteCallUsageAliasOrderBarrier(_16fa6bd9_calls & calls, _16fa6bd9_rteContext & rteContext, _16fa6bd9_arrayUsagesCount & arrayUsagesCount, _16fa6bd9_arrayUsages & arrayUsages, _16fa6bd9_imageUsagesCount & imageUsagesCount, _16fa6bd9_imageUsages & imageUsages, _16fa6bd9_aliasesCount & aliasesCount, _16fa6bd9_aliases & aliases, _16fa6bd9_ordersCount & ordersCount, _16fa6bd9_orders & orders, _16fa6bd9_dependencyFlags & dependencyFlags) {
+REDGPU_NP_DECLSPEC int64_t REDGPU_NP_API np_redRteCallUsageAliasOrderBarrier(_16fa6bd9_calls & calls, _16fa6bd9_rteContext & rteContext, _16fa6bd9_arrayUsagesCount & arrayUsagesCount, _16fa6bd9_arrayUsages & arrayUsages, _16fa6bd9_imageUsagesCount & imageUsagesCount, _16fa6bd9_imageUsages & imageUsages, _16fa6bd9_aliasesCount & aliasesCount, _16fa6bd9_aliases & aliases, _16fa6bd9_ordersCount & ordersCount, _16fa6bd9_orders & orders, _16fa6bd9_dependencyFlags & dependencyFlags) {
   return redRteCallUsageAliasOrderBarrier(calls.value, rteContext.value, arrayUsagesCount.value, arrayUsages.value, imageUsagesCount.value, imageUsages.value, aliasesCount.value, aliases.value, ordersCount.value, orders.value, dependencyFlags.value);
 }
 #endif

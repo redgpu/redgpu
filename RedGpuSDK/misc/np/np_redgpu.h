@@ -1,5 +1,13 @@
 #pragma once
 
+#ifndef REDGPU_NP_DECLSPEC
+#define REDGPU_NP_DECLSPEC
+#endif
+
+#ifndef REDGPU_NP_API
+#define REDGPU_NP_API
+#endif
+
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_redMemoryGetBudget redMemoryGetBudget
 #define _9b481c8c_context(value) value
@@ -17,7 +25,7 @@ typedef struct _9b481c8c_outStatuses { _9b481c8c_outStatuses(RedStatuses* value)
 typedef struct _9b481c8c_optionalFile { _9b481c8c_optionalFile(char* value): value(value) {}; char* value; _9b481c8c_optionalFile(const _9b481c8c_optionalFile &) = delete; } _9b481c8c_optionalFile;
 typedef struct _9b481c8c_optionalLine { _9b481c8c_optionalLine(int value): value(value) {}; int value; _9b481c8c_optionalLine(const _9b481c8c_optionalLine &) = delete; } _9b481c8c_optionalLine;
 typedef struct _9b481c8c_optionalUserData { _9b481c8c_optionalUserData(void* value): value(value) {}; void* value; _9b481c8c_optionalUserData(const _9b481c8c_optionalUserData &) = delete; } _9b481c8c_optionalUserData;
-void np_redMemoryGetBudget(_9b481c8c_context & context, _9b481c8c_gpu & gpu, _9b481c8c_outMemoryBudget & outMemoryBudget, _9b481c8c_outStatuses & outStatuses, _9b481c8c_optionalFile & optionalFile, _9b481c8c_optionalLine & optionalLine, _9b481c8c_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryGetBudget(_9b481c8c_context & context, _9b481c8c_gpu & gpu, _9b481c8c_outMemoryBudget & outMemoryBudget, _9b481c8c_outStatuses & outStatuses, _9b481c8c_optionalFile & optionalFile, _9b481c8c_optionalLine & optionalLine, _9b481c8c_optionalUserData & optionalUserData) {
   redMemoryGetBudget(context.value, gpu.value, outMemoryBudget.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -51,7 +59,7 @@ typedef struct _66d6050d_outStatuses { _66d6050d_outStatuses(RedStatuses* value)
 typedef struct _66d6050d_optionalFile { _66d6050d_optionalFile(char* value): value(value) {}; char* value; _66d6050d_optionalFile(const _66d6050d_optionalFile &) = delete; } _66d6050d_optionalFile;
 typedef struct _66d6050d_optionalLine { _66d6050d_optionalLine(int value): value(value) {}; int value; _66d6050d_optionalLine(const _66d6050d_optionalLine &) = delete; } _66d6050d_optionalLine;
 typedef struct _66d6050d_optionalUserData { _66d6050d_optionalUserData(void* value): value(value) {}; void* value; _66d6050d_optionalUserData(const _66d6050d_optionalUserData &) = delete; } _66d6050d_optionalUserData;
-void np_redMemoryAllocate(_66d6050d_context & context, _66d6050d_gpu & gpu, _66d6050d_handleName & handleName, _66d6050d_bytesCount & bytesCount, _66d6050d_memoryTypeIndex & memoryTypeIndex, _66d6050d_dedicateToArray & dedicateToArray, _66d6050d_dedicateToImage & dedicateToImage, _66d6050d_memoryBitflags & memoryBitflags, _66d6050d_outMemory & outMemory, _66d6050d_outStatuses & outStatuses, _66d6050d_optionalFile & optionalFile, _66d6050d_optionalLine & optionalLine, _66d6050d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryAllocate(_66d6050d_context & context, _66d6050d_gpu & gpu, _66d6050d_handleName & handleName, _66d6050d_bytesCount & bytesCount, _66d6050d_memoryTypeIndex & memoryTypeIndex, _66d6050d_dedicateToArray & dedicateToArray, _66d6050d_dedicateToImage & dedicateToImage, _66d6050d_memoryBitflags & memoryBitflags, _66d6050d_outMemory & outMemory, _66d6050d_outStatuses & outStatuses, _66d6050d_optionalFile & optionalFile, _66d6050d_optionalLine & optionalLine, _66d6050d_optionalUserData & optionalUserData) {
   redMemoryAllocate(context.value, gpu.value, handleName.value, bytesCount.value, memoryTypeIndex.value, dedicateToArray.value, dedicateToImage.value, memoryBitflags.value, outMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -85,7 +93,7 @@ typedef struct _6d4c9126_outStatuses { _6d4c9126_outStatuses(RedStatuses* value)
 typedef struct _6d4c9126_optionalFile { _6d4c9126_optionalFile(char* value): value(value) {}; char* value; _6d4c9126_optionalFile(const _6d4c9126_optionalFile &) = delete; } _6d4c9126_optionalFile;
 typedef struct _6d4c9126_optionalLine { _6d4c9126_optionalLine(int value): value(value) {}; int value; _6d4c9126_optionalLine(const _6d4c9126_optionalLine &) = delete; } _6d4c9126_optionalLine;
 typedef struct _6d4c9126_optionalUserData { _6d4c9126_optionalUserData(void* value): value(value) {}; void* value; _6d4c9126_optionalUserData(const _6d4c9126_optionalUserData &) = delete; } _6d4c9126_optionalUserData;
-void np_redMemoryAllocateMappable(_6d4c9126_context & context, _6d4c9126_gpu & gpu, _6d4c9126_handleName & handleName, _6d4c9126_dedicate & dedicate, _6d4c9126_array & array, _6d4c9126_arrayMemoryBytesCount & arrayMemoryBytesCount, _6d4c9126_memoryTypeIndex & memoryTypeIndex, _6d4c9126_memoryBitflags & memoryBitflags, _6d4c9126_outMemory & outMemory, _6d4c9126_outStatuses & outStatuses, _6d4c9126_optionalFile & optionalFile, _6d4c9126_optionalLine & optionalLine, _6d4c9126_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryAllocateMappable(_6d4c9126_context & context, _6d4c9126_gpu & gpu, _6d4c9126_handleName & handleName, _6d4c9126_dedicate & dedicate, _6d4c9126_array & array, _6d4c9126_arrayMemoryBytesCount & arrayMemoryBytesCount, _6d4c9126_memoryTypeIndex & memoryTypeIndex, _6d4c9126_memoryBitflags & memoryBitflags, _6d4c9126_outMemory & outMemory, _6d4c9126_outStatuses & outStatuses, _6d4c9126_optionalFile & optionalFile, _6d4c9126_optionalLine & optionalLine, _6d4c9126_optionalUserData & optionalUserData) {
   redMemoryAllocateMappable(context.value, gpu.value, handleName.value, dedicate.value, array.value, arrayMemoryBytesCount.value, memoryTypeIndex.value, memoryBitflags.value, outMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -105,7 +113,7 @@ typedef struct _23089e5d_memory { _23089e5d_memory(RedHandleMemory value): value
 typedef struct _23089e5d_optionalFile { _23089e5d_optionalFile(char* value): value(value) {}; char* value; _23089e5d_optionalFile(const _23089e5d_optionalFile &) = delete; } _23089e5d_optionalFile;
 typedef struct _23089e5d_optionalLine { _23089e5d_optionalLine(int value): value(value) {}; int value; _23089e5d_optionalLine(const _23089e5d_optionalLine &) = delete; } _23089e5d_optionalLine;
 typedef struct _23089e5d_optionalUserData { _23089e5d_optionalUserData(void* value): value(value) {}; void* value; _23089e5d_optionalUserData(const _23089e5d_optionalUserData &) = delete; } _23089e5d_optionalUserData;
-void np_redMemoryFree(_23089e5d_context & context, _23089e5d_gpu & gpu, _23089e5d_memory & memory, _23089e5d_optionalFile & optionalFile, _23089e5d_optionalLine & optionalLine, _23089e5d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryFree(_23089e5d_context & context, _23089e5d_gpu & gpu, _23089e5d_memory & memory, _23089e5d_optionalFile & optionalFile, _23089e5d_optionalLine & optionalLine, _23089e5d_optionalUserData & optionalUserData) {
   redMemoryFree(context.value, gpu.value, memory.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -133,7 +141,7 @@ typedef struct _81c7fc7d_outStatuses { _81c7fc7d_outStatuses(RedStatuses* value)
 typedef struct _81c7fc7d_optionalFile { _81c7fc7d_optionalFile(char* value): value(value) {}; char* value; _81c7fc7d_optionalFile(const _81c7fc7d_optionalFile &) = delete; } _81c7fc7d_optionalFile;
 typedef struct _81c7fc7d_optionalLine { _81c7fc7d_optionalLine(int value): value(value) {}; int value; _81c7fc7d_optionalLine(const _81c7fc7d_optionalLine &) = delete; } _81c7fc7d_optionalLine;
 typedef struct _81c7fc7d_optionalUserData { _81c7fc7d_optionalUserData(void* value): value(value) {}; void* value; _81c7fc7d_optionalUserData(const _81c7fc7d_optionalUserData &) = delete; } _81c7fc7d_optionalUserData;
-void np_redMemorySet(_81c7fc7d_context & context, _81c7fc7d_gpu & gpu, _81c7fc7d_memoryArraysCount & memoryArraysCount, _81c7fc7d_memoryArrays & memoryArrays, _81c7fc7d_memoryImagesCount & memoryImagesCount, _81c7fc7d_memoryImages & memoryImages, _81c7fc7d_outStatuses & outStatuses, _81c7fc7d_optionalFile & optionalFile, _81c7fc7d_optionalLine & optionalLine, _81c7fc7d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemorySet(_81c7fc7d_context & context, _81c7fc7d_gpu & gpu, _81c7fc7d_memoryArraysCount & memoryArraysCount, _81c7fc7d_memoryArrays & memoryArrays, _81c7fc7d_memoryImagesCount & memoryImagesCount, _81c7fc7d_memoryImages & memoryImages, _81c7fc7d_outStatuses & outStatuses, _81c7fc7d_optionalFile & optionalFile, _81c7fc7d_optionalLine & optionalLine, _81c7fc7d_optionalUserData & optionalUserData) {
   redMemorySet(context.value, gpu.value, memoryArraysCount.value, memoryArrays.value, memoryImagesCount.value, memoryImages.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -161,7 +169,7 @@ typedef struct _9060f292_outStatuses { _9060f292_outStatuses(RedStatuses* value)
 typedef struct _9060f292_optionalFile { _9060f292_optionalFile(char* value): value(value) {}; char* value; _9060f292_optionalFile(const _9060f292_optionalFile &) = delete; } _9060f292_optionalFile;
 typedef struct _9060f292_optionalLine { _9060f292_optionalLine(int value): value(value) {}; int value; _9060f292_optionalLine(const _9060f292_optionalLine &) = delete; } _9060f292_optionalLine;
 typedef struct _9060f292_optionalUserData { _9060f292_optionalUserData(void* value): value(value) {}; void* value; _9060f292_optionalUserData(const _9060f292_optionalUserData &) = delete; } _9060f292_optionalUserData;
-void np_redMemoryMap(_9060f292_context & context, _9060f292_gpu & gpu, _9060f292_mappableMemory & mappableMemory, _9060f292_mappableMemoryBytesFirst & mappableMemoryBytesFirst, _9060f292_mappableMemoryBytesCount & mappableMemoryBytesCount, _9060f292_outVolatilePointer & outVolatilePointer, _9060f292_outStatuses & outStatuses, _9060f292_optionalFile & optionalFile, _9060f292_optionalLine & optionalLine, _9060f292_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryMap(_9060f292_context & context, _9060f292_gpu & gpu, _9060f292_mappableMemory & mappableMemory, _9060f292_mappableMemoryBytesFirst & mappableMemoryBytesFirst, _9060f292_mappableMemoryBytesCount & mappableMemoryBytesCount, _9060f292_outVolatilePointer & outVolatilePointer, _9060f292_outStatuses & outStatuses, _9060f292_optionalFile & optionalFile, _9060f292_optionalLine & optionalLine, _9060f292_optionalUserData & optionalUserData) {
   redMemoryMap(context.value, gpu.value, mappableMemory.value, mappableMemoryBytesFirst.value, mappableMemoryBytesCount.value, outVolatilePointer.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -181,7 +189,7 @@ typedef struct _b02908e0_mappableMemory { _b02908e0_mappableMemory(RedHandleMemo
 typedef struct _b02908e0_optionalFile { _b02908e0_optionalFile(char* value): value(value) {}; char* value; _b02908e0_optionalFile(const _b02908e0_optionalFile &) = delete; } _b02908e0_optionalFile;
 typedef struct _b02908e0_optionalLine { _b02908e0_optionalLine(int value): value(value) {}; int value; _b02908e0_optionalLine(const _b02908e0_optionalLine &) = delete; } _b02908e0_optionalLine;
 typedef struct _b02908e0_optionalUserData { _b02908e0_optionalUserData(void* value): value(value) {}; void* value; _b02908e0_optionalUserData(const _b02908e0_optionalUserData &) = delete; } _b02908e0_optionalUserData;
-void np_redMemoryUnmap(_b02908e0_context & context, _b02908e0_gpu & gpu, _b02908e0_mappableMemory & mappableMemory, _b02908e0_optionalFile & optionalFile, _b02908e0_optionalLine & optionalLine, _b02908e0_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryUnmap(_b02908e0_context & context, _b02908e0_gpu & gpu, _b02908e0_mappableMemory & mappableMemory, _b02908e0_optionalFile & optionalFile, _b02908e0_optionalLine & optionalLine, _b02908e0_optionalUserData & optionalUserData) {
   redMemoryUnmap(context.value, gpu.value, mappableMemory.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -205,7 +213,7 @@ typedef struct _8550ea0d_outStatuses { _8550ea0d_outStatuses(RedStatuses* value)
 typedef struct _8550ea0d_optionalFile { _8550ea0d_optionalFile(char* value): value(value) {}; char* value; _8550ea0d_optionalFile(const _8550ea0d_optionalFile &) = delete; } _8550ea0d_optionalFile;
 typedef struct _8550ea0d_optionalLine { _8550ea0d_optionalLine(int value): value(value) {}; int value; _8550ea0d_optionalLine(const _8550ea0d_optionalLine &) = delete; } _8550ea0d_optionalLine;
 typedef struct _8550ea0d_optionalUserData { _8550ea0d_optionalUserData(void* value): value(value) {}; void* value; _8550ea0d_optionalUserData(const _8550ea0d_optionalUserData &) = delete; } _8550ea0d_optionalUserData;
-void np_redMemoryNonCoherentFlush(_8550ea0d_context & context, _8550ea0d_gpu & gpu, _8550ea0d_mappableMemoryRangesCount & mappableMemoryRangesCount, _8550ea0d_mappableMemoryRanges & mappableMemoryRanges, _8550ea0d_outStatuses & outStatuses, _8550ea0d_optionalFile & optionalFile, _8550ea0d_optionalLine & optionalLine, _8550ea0d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryNonCoherentFlush(_8550ea0d_context & context, _8550ea0d_gpu & gpu, _8550ea0d_mappableMemoryRangesCount & mappableMemoryRangesCount, _8550ea0d_mappableMemoryRanges & mappableMemoryRanges, _8550ea0d_outStatuses & outStatuses, _8550ea0d_optionalFile & optionalFile, _8550ea0d_optionalLine & optionalLine, _8550ea0d_optionalUserData & optionalUserData) {
   redMemoryNonCoherentFlush(context.value, gpu.value, mappableMemoryRangesCount.value, mappableMemoryRanges.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -229,7 +237,7 @@ typedef struct _d4a38ba3_outStatuses { _d4a38ba3_outStatuses(RedStatuses* value)
 typedef struct _d4a38ba3_optionalFile { _d4a38ba3_optionalFile(char* value): value(value) {}; char* value; _d4a38ba3_optionalFile(const _d4a38ba3_optionalFile &) = delete; } _d4a38ba3_optionalFile;
 typedef struct _d4a38ba3_optionalLine { _d4a38ba3_optionalLine(int value): value(value) {}; int value; _d4a38ba3_optionalLine(const _d4a38ba3_optionalLine &) = delete; } _d4a38ba3_optionalLine;
 typedef struct _d4a38ba3_optionalUserData { _d4a38ba3_optionalUserData(void* value): value(value) {}; void* value; _d4a38ba3_optionalUserData(const _d4a38ba3_optionalUserData &) = delete; } _d4a38ba3_optionalUserData;
-void np_redMemoryNonCoherentInvalidate(_d4a38ba3_context & context, _d4a38ba3_gpu & gpu, _d4a38ba3_mappableMemoryRangesCount & mappableMemoryRangesCount, _d4a38ba3_mappableMemoryRanges & mappableMemoryRanges, _d4a38ba3_outStatuses & outStatuses, _d4a38ba3_optionalFile & optionalFile, _d4a38ba3_optionalLine & optionalLine, _d4a38ba3_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMemoryNonCoherentInvalidate(_d4a38ba3_context & context, _d4a38ba3_gpu & gpu, _d4a38ba3_mappableMemoryRangesCount & mappableMemoryRangesCount, _d4a38ba3_mappableMemoryRanges & mappableMemoryRanges, _d4a38ba3_outStatuses & outStatuses, _d4a38ba3_optionalFile & optionalFile, _d4a38ba3_optionalLine & optionalLine, _d4a38ba3_optionalUserData & optionalUserData) {
   redMemoryNonCoherentInvalidate(context.value, gpu.value, mappableMemoryRangesCount.value, mappableMemoryRanges.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -263,7 +271,7 @@ typedef struct _ca1830ff_outStatuses { _ca1830ff_outStatuses(RedStatuses* value)
 typedef struct _ca1830ff_optionalFile { _ca1830ff_optionalFile(char* value): value(value) {}; char* value; _ca1830ff_optionalFile(const _ca1830ff_optionalFile &) = delete; } _ca1830ff_optionalFile;
 typedef struct _ca1830ff_optionalLine { _ca1830ff_optionalLine(int value): value(value) {}; int value; _ca1830ff_optionalLine(const _ca1830ff_optionalLine &) = delete; } _ca1830ff_optionalLine;
 typedef struct _ca1830ff_optionalUserData { _ca1830ff_optionalUserData(void* value): value(value) {}; void* value; _ca1830ff_optionalUserData(const _ca1830ff_optionalUserData &) = delete; } _ca1830ff_optionalUserData;
-void np_redStructsMemoryAllocate(_ca1830ff_context & context, _ca1830ff_gpu & gpu, _ca1830ff_handleName & handleName, _ca1830ff_maxStructsCount & maxStructsCount, _ca1830ff_maxStructsMembersOfTypeArrayROConstantCount & maxStructsMembersOfTypeArrayROConstantCount, _ca1830ff_maxStructsMembersOfTypeArrayROOrArrayRWCount & maxStructsMembersOfTypeArrayROOrArrayRWCount, _ca1830ff_maxStructsMembersOfTypeTextureROCount & maxStructsMembersOfTypeTextureROCount, _ca1830ff_maxStructsMembersOfTypeTextureRWCount & maxStructsMembersOfTypeTextureRWCount, _ca1830ff_outStructsMemory & outStructsMemory, _ca1830ff_outStatuses & outStatuses, _ca1830ff_optionalFile & optionalFile, _ca1830ff_optionalLine & optionalLine, _ca1830ff_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryAllocate(_ca1830ff_context & context, _ca1830ff_gpu & gpu, _ca1830ff_handleName & handleName, _ca1830ff_maxStructsCount & maxStructsCount, _ca1830ff_maxStructsMembersOfTypeArrayROConstantCount & maxStructsMembersOfTypeArrayROConstantCount, _ca1830ff_maxStructsMembersOfTypeArrayROOrArrayRWCount & maxStructsMembersOfTypeArrayROOrArrayRWCount, _ca1830ff_maxStructsMembersOfTypeTextureROCount & maxStructsMembersOfTypeTextureROCount, _ca1830ff_maxStructsMembersOfTypeTextureRWCount & maxStructsMembersOfTypeTextureRWCount, _ca1830ff_outStructsMemory & outStructsMemory, _ca1830ff_outStatuses & outStatuses, _ca1830ff_optionalFile & optionalFile, _ca1830ff_optionalLine & optionalLine, _ca1830ff_optionalUserData & optionalUserData) {
   redStructsMemoryAllocate(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeArrayROConstantCount.value, maxStructsMembersOfTypeArrayROOrArrayRWCount.value, maxStructsMembersOfTypeTextureROCount.value, maxStructsMembersOfTypeTextureRWCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -291,7 +299,7 @@ typedef struct _a6a65124_outStatuses { _a6a65124_outStatuses(RedStatuses* value)
 typedef struct _a6a65124_optionalFile { _a6a65124_optionalFile(char* value): value(value) {}; char* value; _a6a65124_optionalFile(const _a6a65124_optionalFile &) = delete; } _a6a65124_optionalFile;
 typedef struct _a6a65124_optionalLine { _a6a65124_optionalLine(int value): value(value) {}; int value; _a6a65124_optionalLine(const _a6a65124_optionalLine &) = delete; } _a6a65124_optionalLine;
 typedef struct _a6a65124_optionalUserData { _a6a65124_optionalUserData(void* value): value(value) {}; void* value; _a6a65124_optionalUserData(const _a6a65124_optionalUserData &) = delete; } _a6a65124_optionalUserData;
-void np_redStructsMemoryAllocateSamplers(_a6a65124_context & context, _a6a65124_gpu & gpu, _a6a65124_handleName & handleName, _a6a65124_maxStructsCount & maxStructsCount, _a6a65124_maxStructsMembersOfTypeSamplerCount & maxStructsMembersOfTypeSamplerCount, _a6a65124_outStructsMemory & outStructsMemory, _a6a65124_outStatuses & outStatuses, _a6a65124_optionalFile & optionalFile, _a6a65124_optionalLine & optionalLine, _a6a65124_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryAllocateSamplers(_a6a65124_context & context, _a6a65124_gpu & gpu, _a6a65124_handleName & handleName, _a6a65124_maxStructsCount & maxStructsCount, _a6a65124_maxStructsMembersOfTypeSamplerCount & maxStructsMembersOfTypeSamplerCount, _a6a65124_outStructsMemory & outStructsMemory, _a6a65124_outStatuses & outStatuses, _a6a65124_optionalFile & optionalFile, _a6a65124_optionalLine & optionalLine, _a6a65124_optionalUserData & optionalUserData) {
   redStructsMemoryAllocateSamplers(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeSamplerCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -322,7 +330,7 @@ typedef struct _2aeabcb8_outStatuses { _2aeabcb8_outStatuses(RedStatuses* value)
 typedef struct _2aeabcb8_optionalFile { _2aeabcb8_optionalFile(char* value): value(value) {}; char* value; _2aeabcb8_optionalFile(const _2aeabcb8_optionalFile &) = delete; } _2aeabcb8_optionalFile;
 typedef struct _2aeabcb8_optionalLine { _2aeabcb8_optionalLine(int value): value(value) {}; int value; _2aeabcb8_optionalLine(const _2aeabcb8_optionalLine &) = delete; } _2aeabcb8_optionalLine;
 typedef struct _2aeabcb8_optionalUserData { _2aeabcb8_optionalUserData(void* value): value(value) {}; void* value; _2aeabcb8_optionalUserData(const _2aeabcb8_optionalUserData &) = delete; } _2aeabcb8_optionalUserData;
-void np_redStructsMemorySuballocateStructs(_2aeabcb8_context & context, _2aeabcb8_gpu & gpu, _2aeabcb8_handleNames & handleNames, _2aeabcb8_structsMemory & structsMemory, _2aeabcb8_structsDeclarationsCount & structsDeclarationsCount, _2aeabcb8_structsDeclarations & structsDeclarations, _2aeabcb8_outStructs & outStructs, _2aeabcb8_outStatuses & outStatuses, _2aeabcb8_optionalFile & optionalFile, _2aeabcb8_optionalLine & optionalLine, _2aeabcb8_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemorySuballocateStructs(_2aeabcb8_context & context, _2aeabcb8_gpu & gpu, _2aeabcb8_handleNames & handleNames, _2aeabcb8_structsMemory & structsMemory, _2aeabcb8_structsDeclarationsCount & structsDeclarationsCount, _2aeabcb8_structsDeclarations & structsDeclarations, _2aeabcb8_outStructs & outStructs, _2aeabcb8_outStatuses & outStatuses, _2aeabcb8_optionalFile & optionalFile, _2aeabcb8_optionalLine & optionalLine, _2aeabcb8_optionalUserData & optionalUserData) {
   redStructsMemorySuballocateStructs(context.value, gpu.value, handleNames.value, structsMemory.value, structsDeclarationsCount.value, structsDeclarations.value, outStructs.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -346,7 +354,7 @@ typedef struct _0d734196_outStatuses { _0d734196_outStatuses(RedStatuses* value)
 typedef struct _0d734196_optionalFile { _0d734196_optionalFile(char* value): value(value) {}; char* value; _0d734196_optionalFile(const _0d734196_optionalFile &) = delete; } _0d734196_optionalFile;
 typedef struct _0d734196_optionalLine { _0d734196_optionalLine(int value): value(value) {}; int value; _0d734196_optionalLine(const _0d734196_optionalLine &) = delete; } _0d734196_optionalLine;
 typedef struct _0d734196_optionalUserData { _0d734196_optionalUserData(void* value): value(value) {}; void* value; _0d734196_optionalUserData(const _0d734196_optionalUserData &) = delete; } _0d734196_optionalUserData;
-void np_redStructsMemoryReset(_0d734196_context & context, _0d734196_gpu & gpu, _0d734196_structsMemory & structsMemory, _0d734196_outStatuses & outStatuses, _0d734196_optionalFile & optionalFile, _0d734196_optionalLine & optionalLine, _0d734196_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryReset(_0d734196_context & context, _0d734196_gpu & gpu, _0d734196_structsMemory & structsMemory, _0d734196_outStatuses & outStatuses, _0d734196_optionalFile & optionalFile, _0d734196_optionalLine & optionalLine, _0d734196_optionalUserData & optionalUserData) {
   redStructsMemoryReset(context.value, gpu.value, structsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -367,7 +375,7 @@ typedef struct _7c3647ab_structsMemory { _7c3647ab_structsMemory(RedHandleStruct
 typedef struct _7c3647ab_optionalFile { _7c3647ab_optionalFile(char* value): value(value) {}; char* value; _7c3647ab_optionalFile(const _7c3647ab_optionalFile &) = delete; } _7c3647ab_optionalFile;
 typedef struct _7c3647ab_optionalLine { _7c3647ab_optionalLine(int value): value(value) {}; int value; _7c3647ab_optionalLine(const _7c3647ab_optionalLine &) = delete; } _7c3647ab_optionalLine;
 typedef struct _7c3647ab_optionalUserData { _7c3647ab_optionalUserData(void* value): value(value) {}; void* value; _7c3647ab_optionalUserData(const _7c3647ab_optionalUserData &) = delete; } _7c3647ab_optionalUserData;
-void np_redStructsMemoryFree(_7c3647ab_context & context, _7c3647ab_gpu & gpu, _7c3647ab_structsMemory & structsMemory, _7c3647ab_optionalFile & optionalFile, _7c3647ab_optionalLine & optionalLine, _7c3647ab_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryFree(_7c3647ab_context & context, _7c3647ab_gpu & gpu, _7c3647ab_structsMemory & structsMemory, _7c3647ab_optionalFile & optionalFile, _7c3647ab_optionalLine & optionalLine, _7c3647ab_optionalUserData & optionalUserData) {
   redStructsMemoryFree(context.value, gpu.value, structsMemory.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -390,7 +398,7 @@ typedef struct _b55b2659_structsMembers { _b55b2659_structsMembers(RedStructMemb
 typedef struct _b55b2659_optionalFile { _b55b2659_optionalFile(char* value): value(value) {}; char* value; _b55b2659_optionalFile(const _b55b2659_optionalFile &) = delete; } _b55b2659_optionalFile;
 typedef struct _b55b2659_optionalLine { _b55b2659_optionalLine(int value): value(value) {}; int value; _b55b2659_optionalLine(const _b55b2659_optionalLine &) = delete; } _b55b2659_optionalLine;
 typedef struct _b55b2659_optionalUserData { _b55b2659_optionalUserData(void* value): value(value) {}; void* value; _b55b2659_optionalUserData(const _b55b2659_optionalUserData &) = delete; } _b55b2659_optionalUserData;
-void np_redStructsSet(_b55b2659_context & context, _b55b2659_gpu & gpu, _b55b2659_structsMembersCount & structsMembersCount, _b55b2659_structsMembers & structsMembers, _b55b2659_optionalFile & optionalFile, _b55b2659_optionalLine & optionalLine, _b55b2659_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsSet(_b55b2659_context & context, _b55b2659_gpu & gpu, _b55b2659_structsMembersCount & structsMembersCount, _b55b2659_structsMembers & structsMembers, _b55b2659_optionalFile & optionalFile, _b55b2659_optionalLine & optionalLine, _b55b2659_optionalUserData & optionalUserData) {
   redStructsSet(context.value, gpu.value, structsMembersCount.value, structsMembers.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -435,7 +443,7 @@ typedef struct _8b4eaa17_outStatuses { _8b4eaa17_outStatuses(RedStatuses* value)
 typedef struct _8b4eaa17_optionalFile { _8b4eaa17_optionalFile(char* value): value(value) {}; char* value; _8b4eaa17_optionalFile(const _8b4eaa17_optionalFile &) = delete; } _8b4eaa17_optionalFile;
 typedef struct _8b4eaa17_optionalLine { _8b4eaa17_optionalLine(int value): value(value) {}; int value; _8b4eaa17_optionalLine(const _8b4eaa17_optionalLine &) = delete; } _8b4eaa17_optionalLine;
 typedef struct _8b4eaa17_optionalUserData { _8b4eaa17_optionalUserData(void* value): value(value) {}; void* value; _8b4eaa17_optionalUserData(const _8b4eaa17_optionalUserData &) = delete; } _8b4eaa17_optionalUserData;
-void np_redCreateContext(_8b4eaa17_malloc & malloc, _8b4eaa17_free & free, _8b4eaa17_optionalMallocTagged & optionalMallocTagged, _8b4eaa17_optionalFreeTagged & optionalFreeTagged, _8b4eaa17_debugCallback & debugCallback, _8b4eaa17_sdkVersion & sdkVersion, _8b4eaa17_sdkExtensionsCount & sdkExtensionsCount, _8b4eaa17_sdkExtensions & sdkExtensions, _8b4eaa17_optionalProgramName & optionalProgramName, _8b4eaa17_optionalProgramVersion & optionalProgramVersion, _8b4eaa17_optionalEngineName & optionalEngineName, _8b4eaa17_optionalEngineVersion & optionalEngineVersion, _8b4eaa17_optionalSettings & optionalSettings, _8b4eaa17_outContext & outContext, _8b4eaa17_outStatuses & outStatuses, _8b4eaa17_optionalFile & optionalFile, _8b4eaa17_optionalLine & optionalLine, _8b4eaa17_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateContext(_8b4eaa17_malloc & malloc, _8b4eaa17_free & free, _8b4eaa17_optionalMallocTagged & optionalMallocTagged, _8b4eaa17_optionalFreeTagged & optionalFreeTagged, _8b4eaa17_debugCallback & debugCallback, _8b4eaa17_sdkVersion & sdkVersion, _8b4eaa17_sdkExtensionsCount & sdkExtensionsCount, _8b4eaa17_sdkExtensions & sdkExtensions, _8b4eaa17_optionalProgramName & optionalProgramName, _8b4eaa17_optionalProgramVersion & optionalProgramVersion, _8b4eaa17_optionalEngineName & optionalEngineName, _8b4eaa17_optionalEngineVersion & optionalEngineVersion, _8b4eaa17_optionalSettings & optionalSettings, _8b4eaa17_outContext & outContext, _8b4eaa17_outStatuses & outStatuses, _8b4eaa17_optionalFile & optionalFile, _8b4eaa17_optionalLine & optionalLine, _8b4eaa17_optionalUserData & optionalUserData) {
   redCreateContext(malloc.value, free.value, optionalMallocTagged.value, optionalFreeTagged.value, debugCallback.value, sdkVersion.value, sdkExtensionsCount.value, sdkExtensions.value, optionalProgramName.value, optionalProgramVersion.value, optionalEngineName.value, optionalEngineVersion.value, optionalSettings.value, outContext.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -471,7 +479,7 @@ typedef struct _95a0b6be_outStatuses { _95a0b6be_outStatuses(RedStatuses* value)
 typedef struct _95a0b6be_optionalFile { _95a0b6be_optionalFile(char* value): value(value) {}; char* value; _95a0b6be_optionalFile(const _95a0b6be_optionalFile &) = delete; } _95a0b6be_optionalFile;
 typedef struct _95a0b6be_optionalLine { _95a0b6be_optionalLine(int value): value(value) {}; int value; _95a0b6be_optionalLine(const _95a0b6be_optionalLine &) = delete; } _95a0b6be_optionalLine;
 typedef struct _95a0b6be_optionalUserData { _95a0b6be_optionalUserData(void* value): value(value) {}; void* value; _95a0b6be_optionalUserData(const _95a0b6be_optionalUserData &) = delete; } _95a0b6be_optionalUserData;
-void np_redCreateArray(_95a0b6be_context & context, _95a0b6be_gpu & gpu, _95a0b6be_handleName & handleName, _95a0b6be_type & type, _95a0b6be_bytesCount & bytesCount, _95a0b6be_structuredBufferElementBytesCount & structuredBufferElementBytesCount, _95a0b6be_initialAccess & initialAccess, _95a0b6be_initialQueueFamilyIndex & initialQueueFamilyIndex, _95a0b6be_dedicate & dedicate, _95a0b6be_outArray & outArray, _95a0b6be_outStatuses & outStatuses, _95a0b6be_optionalFile & optionalFile, _95a0b6be_optionalLine & optionalLine, _95a0b6be_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateArray(_95a0b6be_context & context, _95a0b6be_gpu & gpu, _95a0b6be_handleName & handleName, _95a0b6be_type & type, _95a0b6be_bytesCount & bytesCount, _95a0b6be_structuredBufferElementBytesCount & structuredBufferElementBytesCount, _95a0b6be_initialAccess & initialAccess, _95a0b6be_initialQueueFamilyIndex & initialQueueFamilyIndex, _95a0b6be_dedicate & dedicate, _95a0b6be_outArray & outArray, _95a0b6be_outStatuses & outStatuses, _95a0b6be_optionalFile & optionalFile, _95a0b6be_optionalLine & optionalLine, _95a0b6be_optionalUserData & optionalUserData) {
   redCreateArray(context.value, gpu.value, handleName.value, type.value, bytesCount.value, structuredBufferElementBytesCount.value, initialAccess.value, initialQueueFamilyIndex.value, dedicate.value, outArray.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -519,7 +527,7 @@ typedef struct _1e73af3e_outStatuses { _1e73af3e_outStatuses(RedStatuses* value)
 typedef struct _1e73af3e_optionalFile { _1e73af3e_optionalFile(char* value): value(value) {}; char* value; _1e73af3e_optionalFile(const _1e73af3e_optionalFile &) = delete; } _1e73af3e_optionalFile;
 typedef struct _1e73af3e_optionalLine { _1e73af3e_optionalLine(int value): value(value) {}; int value; _1e73af3e_optionalLine(const _1e73af3e_optionalLine &) = delete; } _1e73af3e_optionalLine;
 typedef struct _1e73af3e_optionalUserData { _1e73af3e_optionalUserData(void* value): value(value) {}; void* value; _1e73af3e_optionalUserData(const _1e73af3e_optionalUserData &) = delete; } _1e73af3e_optionalUserData;
-void np_redCreateImage(_1e73af3e_context & context, _1e73af3e_gpu & gpu, _1e73af3e_handleName & handleName, _1e73af3e_dimensions & dimensions, _1e73af3e_format & format, _1e73af3e_width & width, _1e73af3e_height & height, _1e73af3e_depth & depth, _1e73af3e_levelsCount & levelsCount, _1e73af3e_layersCount & layersCount, _1e73af3e_multisampleCount & multisampleCount, _1e73af3e_restrictToAccess & restrictToAccess, _1e73af3e_initialAccess & initialAccess, _1e73af3e_initialQueueFamilyIndex & initialQueueFamilyIndex, _1e73af3e_dedicate & dedicate, _1e73af3e_outImage & outImage, _1e73af3e_outStatuses & outStatuses, _1e73af3e_optionalFile & optionalFile, _1e73af3e_optionalLine & optionalLine, _1e73af3e_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateImage(_1e73af3e_context & context, _1e73af3e_gpu & gpu, _1e73af3e_handleName & handleName, _1e73af3e_dimensions & dimensions, _1e73af3e_format & format, _1e73af3e_width & width, _1e73af3e_height & height, _1e73af3e_depth & depth, _1e73af3e_levelsCount & levelsCount, _1e73af3e_layersCount & layersCount, _1e73af3e_multisampleCount & multisampleCount, _1e73af3e_restrictToAccess & restrictToAccess, _1e73af3e_initialAccess & initialAccess, _1e73af3e_initialQueueFamilyIndex & initialQueueFamilyIndex, _1e73af3e_dedicate & dedicate, _1e73af3e_outImage & outImage, _1e73af3e_outStatuses & outStatuses, _1e73af3e_optionalFile & optionalFile, _1e73af3e_optionalLine & optionalLine, _1e73af3e_optionalUserData & optionalUserData) {
   redCreateImage(context.value, gpu.value, handleName.value, dimensions.value, format.value, width.value, height.value, depth.value, levelsCount.value, layersCount.value, multisampleCount.value, restrictToAccess.value, initialAccess.value, initialQueueFamilyIndex.value, dedicate.value, outImage.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -569,7 +577,7 @@ typedef struct _66b1ed07_outStatuses { _66b1ed07_outStatuses(RedStatuses* value)
 typedef struct _66b1ed07_optionalFile { _66b1ed07_optionalFile(char* value): value(value) {}; char* value; _66b1ed07_optionalFile(const _66b1ed07_optionalFile &) = delete; } _66b1ed07_optionalFile;
 typedef struct _66b1ed07_optionalLine { _66b1ed07_optionalLine(int value): value(value) {}; int value; _66b1ed07_optionalLine(const _66b1ed07_optionalLine &) = delete; } _66b1ed07_optionalLine;
 typedef struct _66b1ed07_optionalUserData { _66b1ed07_optionalUserData(void* value): value(value) {}; void* value; _66b1ed07_optionalUserData(const _66b1ed07_optionalUserData &) = delete; } _66b1ed07_optionalUserData;
-void np_redCreateSampler(_66b1ed07_context & context, _66b1ed07_gpu & gpu, _66b1ed07_handleName & handleName, _66b1ed07_filteringMag & filteringMag, _66b1ed07_filteringMin & filteringMin, _66b1ed07_filteringMip & filteringMip, _66b1ed07_behaviorOutsideTextureCoordinateU & behaviorOutsideTextureCoordinateU, _66b1ed07_behaviorOutsideTextureCoordinateV & behaviorOutsideTextureCoordinateV, _66b1ed07_behaviorOutsideTextureCoordinateW & behaviorOutsideTextureCoordinateW, _66b1ed07_mipLodBias & mipLodBias, _66b1ed07_enableAnisotropy & enableAnisotropy, _66b1ed07_maxAnisotropy & maxAnisotropy, _66b1ed07_enableCompare & enableCompare, _66b1ed07_compareOp & compareOp, _66b1ed07_minLod & minLod, _66b1ed07_maxLod & maxLod, _66b1ed07_outSampler & outSampler, _66b1ed07_outStatuses & outStatuses, _66b1ed07_optionalFile & optionalFile, _66b1ed07_optionalLine & optionalLine, _66b1ed07_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateSampler(_66b1ed07_context & context, _66b1ed07_gpu & gpu, _66b1ed07_handleName & handleName, _66b1ed07_filteringMag & filteringMag, _66b1ed07_filteringMin & filteringMin, _66b1ed07_filteringMip & filteringMip, _66b1ed07_behaviorOutsideTextureCoordinateU & behaviorOutsideTextureCoordinateU, _66b1ed07_behaviorOutsideTextureCoordinateV & behaviorOutsideTextureCoordinateV, _66b1ed07_behaviorOutsideTextureCoordinateW & behaviorOutsideTextureCoordinateW, _66b1ed07_mipLodBias & mipLodBias, _66b1ed07_enableAnisotropy & enableAnisotropy, _66b1ed07_maxAnisotropy & maxAnisotropy, _66b1ed07_enableCompare & enableCompare, _66b1ed07_compareOp & compareOp, _66b1ed07_minLod & minLod, _66b1ed07_maxLod & maxLod, _66b1ed07_outSampler & outSampler, _66b1ed07_outStatuses & outStatuses, _66b1ed07_optionalFile & optionalFile, _66b1ed07_optionalLine & optionalLine, _66b1ed07_optionalUserData & optionalUserData) {
   redCreateSampler(context.value, gpu.value, handleName.value, filteringMag.value, filteringMin.value, filteringMip.value, behaviorOutsideTextureCoordinateU.value, behaviorOutsideTextureCoordinateV.value, behaviorOutsideTextureCoordinateW.value, mipLodBias.value, enableAnisotropy.value, maxAnisotropy.value, enableCompare.value, compareOp.value, minLod.value, maxLod.value, outSampler.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -611,7 +619,7 @@ typedef struct _1ff52d80_outStatuses { _1ff52d80_outStatuses(RedStatuses* value)
 typedef struct _1ff52d80_optionalFile { _1ff52d80_optionalFile(char* value): value(value) {}; char* value; _1ff52d80_optionalFile(const _1ff52d80_optionalFile &) = delete; } _1ff52d80_optionalFile;
 typedef struct _1ff52d80_optionalLine { _1ff52d80_optionalLine(int value): value(value) {}; int value; _1ff52d80_optionalLine(const _1ff52d80_optionalLine &) = delete; } _1ff52d80_optionalLine;
 typedef struct _1ff52d80_optionalUserData { _1ff52d80_optionalUserData(void* value): value(value) {}; void* value; _1ff52d80_optionalUserData(const _1ff52d80_optionalUserData &) = delete; } _1ff52d80_optionalUserData;
-void np_redCreateTexture(_1ff52d80_context & context, _1ff52d80_gpu & gpu, _1ff52d80_handleName & handleName, _1ff52d80_image & image, _1ff52d80_parts & parts, _1ff52d80_dimensions & dimensions, _1ff52d80_format & format, _1ff52d80_levelsFirst & levelsFirst, _1ff52d80_levelsCount & levelsCount, _1ff52d80_layersFirst & layersFirst, _1ff52d80_layersCount & layersCount, _1ff52d80_restrictToAccess & restrictToAccess, _1ff52d80_outTexture & outTexture, _1ff52d80_outStatuses & outStatuses, _1ff52d80_optionalFile & optionalFile, _1ff52d80_optionalLine & optionalLine, _1ff52d80_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateTexture(_1ff52d80_context & context, _1ff52d80_gpu & gpu, _1ff52d80_handleName & handleName, _1ff52d80_image & image, _1ff52d80_parts & parts, _1ff52d80_dimensions & dimensions, _1ff52d80_format & format, _1ff52d80_levelsFirst & levelsFirst, _1ff52d80_levelsCount & levelsCount, _1ff52d80_layersFirst & layersFirst, _1ff52d80_layersCount & layersCount, _1ff52d80_restrictToAccess & restrictToAccess, _1ff52d80_outTexture & outTexture, _1ff52d80_outStatuses & outStatuses, _1ff52d80_optionalFile & optionalFile, _1ff52d80_optionalLine & optionalLine, _1ff52d80_optionalUserData & optionalUserData) {
   redCreateTexture(context.value, gpu.value, handleName.value, image.value, parts.value, dimensions.value, format.value, levelsFirst.value, levelsCount.value, layersFirst.value, layersCount.value, restrictToAccess.value, outTexture.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -639,7 +647,7 @@ typedef struct _01c06284_outStatuses { _01c06284_outStatuses(RedStatuses* value)
 typedef struct _01c06284_optionalFile { _01c06284_optionalFile(char* value): value(value) {}; char* value; _01c06284_optionalFile(const _01c06284_optionalFile &) = delete; } _01c06284_optionalFile;
 typedef struct _01c06284_optionalLine { _01c06284_optionalLine(int value): value(value) {}; int value; _01c06284_optionalLine(const _01c06284_optionalLine &) = delete; } _01c06284_optionalLine;
 typedef struct _01c06284_optionalUserData { _01c06284_optionalUserData(void* value): value(value) {}; void* value; _01c06284_optionalUserData(const _01c06284_optionalUserData &) = delete; } _01c06284_optionalUserData;
-void np_redCreateGpuCode(_01c06284_context & context, _01c06284_gpu & gpu, _01c06284_handleName & handleName, _01c06284_irBytesCount & irBytesCount, _01c06284_ir & ir, _01c06284_outGpuCode & outGpuCode, _01c06284_outStatuses & outStatuses, _01c06284_optionalFile & optionalFile, _01c06284_optionalLine & optionalLine, _01c06284_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateGpuCode(_01c06284_context & context, _01c06284_gpu & gpu, _01c06284_handleName & handleName, _01c06284_irBytesCount & irBytesCount, _01c06284_ir & ir, _01c06284_outGpuCode & outGpuCode, _01c06284_outStatuses & outStatuses, _01c06284_optionalFile & optionalFile, _01c06284_optionalLine & optionalLine, _01c06284_optionalUserData & optionalUserData) {
   redCreateGpuCode(context.value, gpu.value, handleName.value, irBytesCount.value, ir.value, outGpuCode.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -671,7 +679,7 @@ typedef struct _4726df20_outStatuses { _4726df20_outStatuses(RedStatuses* value)
 typedef struct _4726df20_optionalFile { _4726df20_optionalFile(char* value): value(value) {}; char* value; _4726df20_optionalFile(const _4726df20_optionalFile &) = delete; } _4726df20_optionalFile;
 typedef struct _4726df20_optionalLine { _4726df20_optionalLine(int value): value(value) {}; int value; _4726df20_optionalLine(const _4726df20_optionalLine &) = delete; } _4726df20_optionalLine;
 typedef struct _4726df20_optionalUserData { _4726df20_optionalUserData(void* value): value(value) {}; void* value; _4726df20_optionalUserData(const _4726df20_optionalUserData &) = delete; } _4726df20_optionalUserData;
-void np_redCreateOutputDeclaration(_4726df20_context & context, _4726df20_gpu & gpu, _4726df20_handleName & handleName, _4726df20_outputDeclarationMembers & outputDeclarationMembers, _4726df20_outputDeclarationMembersResolveSources & outputDeclarationMembersResolveSources, _4726df20_dependencyByRegion & dependencyByRegion, _4726df20_dependencyByRegionAllowUsageAliasOrderBarriers & dependencyByRegionAllowUsageAliasOrderBarriers, _4726df20_outOutputDeclaration & outOutputDeclaration, _4726df20_outStatuses & outStatuses, _4726df20_optionalFile & optionalFile, _4726df20_optionalLine & optionalLine, _4726df20_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateOutputDeclaration(_4726df20_context & context, _4726df20_gpu & gpu, _4726df20_handleName & handleName, _4726df20_outputDeclarationMembers & outputDeclarationMembers, _4726df20_outputDeclarationMembersResolveSources & outputDeclarationMembersResolveSources, _4726df20_dependencyByRegion & dependencyByRegion, _4726df20_dependencyByRegionAllowUsageAliasOrderBarriers & dependencyByRegionAllowUsageAliasOrderBarriers, _4726df20_outOutputDeclaration & outOutputDeclaration, _4726df20_outStatuses & outStatuses, _4726df20_optionalFile & optionalFile, _4726df20_optionalLine & optionalLine, _4726df20_optionalUserData & optionalUserData) {
   redCreateOutputDeclaration(context.value, gpu.value, handleName.value, outputDeclarationMembers.value, outputDeclarationMembersResolveSources.value, dependencyByRegion.value, dependencyByRegionAllowUsageAliasOrderBarriers.value, outOutputDeclaration.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -705,7 +713,7 @@ typedef struct _413f0fa7_outStatuses { _413f0fa7_outStatuses(RedStatuses* value)
 typedef struct _413f0fa7_optionalFile { _413f0fa7_optionalFile(char* value): value(value) {}; char* value; _413f0fa7_optionalFile(const _413f0fa7_optionalFile &) = delete; } _413f0fa7_optionalFile;
 typedef struct _413f0fa7_optionalLine { _413f0fa7_optionalLine(int value): value(value) {}; int value; _413f0fa7_optionalLine(const _413f0fa7_optionalLine &) = delete; } _413f0fa7_optionalLine;
 typedef struct _413f0fa7_optionalUserData { _413f0fa7_optionalUserData(void* value): value(value) {}; void* value; _413f0fa7_optionalUserData(const _413f0fa7_optionalUserData &) = delete; } _413f0fa7_optionalUserData;
-void np_redCreateStructDeclaration(_413f0fa7_context & context, _413f0fa7_gpu & gpu, _413f0fa7_handleName & handleName, _413f0fa7_structDeclarationMembersCount & structDeclarationMembersCount, _413f0fa7_structDeclarationMembers & structDeclarationMembers, _413f0fa7_structDeclarationMembersArrayROCount & structDeclarationMembersArrayROCount, _413f0fa7_structDeclarationMembersArrayRO & structDeclarationMembersArrayRO, _413f0fa7_procedureParametersHandlesDeclaration & procedureParametersHandlesDeclaration, _413f0fa7_outStructDeclaration & outStructDeclaration, _413f0fa7_outStatuses & outStatuses, _413f0fa7_optionalFile & optionalFile, _413f0fa7_optionalLine & optionalLine, _413f0fa7_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateStructDeclaration(_413f0fa7_context & context, _413f0fa7_gpu & gpu, _413f0fa7_handleName & handleName, _413f0fa7_structDeclarationMembersCount & structDeclarationMembersCount, _413f0fa7_structDeclarationMembers & structDeclarationMembers, _413f0fa7_structDeclarationMembersArrayROCount & structDeclarationMembersArrayROCount, _413f0fa7_structDeclarationMembersArrayRO & structDeclarationMembersArrayRO, _413f0fa7_procedureParametersHandlesDeclaration & procedureParametersHandlesDeclaration, _413f0fa7_outStructDeclaration & outStructDeclaration, _413f0fa7_outStatuses & outStatuses, _413f0fa7_optionalFile & optionalFile, _413f0fa7_optionalLine & optionalLine, _413f0fa7_optionalUserData & optionalUserData) {
   redCreateStructDeclaration(context.value, gpu.value, handleName.value, structDeclarationMembersCount.value, structDeclarationMembers.value, structDeclarationMembersArrayROCount.value, structDeclarationMembersArrayRO.value, procedureParametersHandlesDeclaration.value, outStructDeclaration.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -731,7 +739,7 @@ typedef struct _7067ad8e_outStatuses { _7067ad8e_outStatuses(RedStatuses* value)
 typedef struct _7067ad8e_optionalFile { _7067ad8e_optionalFile(char* value): value(value) {}; char* value; _7067ad8e_optionalFile(const _7067ad8e_optionalFile &) = delete; } _7067ad8e_optionalFile;
 typedef struct _7067ad8e_optionalLine { _7067ad8e_optionalLine(int value): value(value) {}; int value; _7067ad8e_optionalLine(const _7067ad8e_optionalLine &) = delete; } _7067ad8e_optionalLine;
 typedef struct _7067ad8e_optionalUserData { _7067ad8e_optionalUserData(void* value): value(value) {}; void* value; _7067ad8e_optionalUserData(const _7067ad8e_optionalUserData &) = delete; } _7067ad8e_optionalUserData;
-void np_redCreateProcedureParameters(_7067ad8e_context & context, _7067ad8e_gpu & gpu, _7067ad8e_handleName & handleName, _7067ad8e_procedureParametersDeclaration & procedureParametersDeclaration, _7067ad8e_outProcedureParameters & outProcedureParameters, _7067ad8e_outStatuses & outStatuses, _7067ad8e_optionalFile & optionalFile, _7067ad8e_optionalLine & optionalLine, _7067ad8e_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateProcedureParameters(_7067ad8e_context & context, _7067ad8e_gpu & gpu, _7067ad8e_handleName & handleName, _7067ad8e_procedureParametersDeclaration & procedureParametersDeclaration, _7067ad8e_outProcedureParameters & outProcedureParameters, _7067ad8e_outStatuses & outStatuses, _7067ad8e_optionalFile & optionalFile, _7067ad8e_optionalLine & optionalLine, _7067ad8e_optionalUserData & optionalUserData) {
   redCreateProcedureParameters(context.value, gpu.value, handleName.value, procedureParametersDeclaration.value, outProcedureParameters.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -759,7 +767,7 @@ typedef struct _ec5dbc9f_outStatuses { _ec5dbc9f_outStatuses(RedStatuses* value)
 typedef struct _ec5dbc9f_optionalFile { _ec5dbc9f_optionalFile(char* value): value(value) {}; char* value; _ec5dbc9f_optionalFile(const _ec5dbc9f_optionalFile &) = delete; } _ec5dbc9f_optionalFile;
 typedef struct _ec5dbc9f_optionalLine { _ec5dbc9f_optionalLine(int value): value(value) {}; int value; _ec5dbc9f_optionalLine(const _ec5dbc9f_optionalLine &) = delete; } _ec5dbc9f_optionalLine;
 typedef struct _ec5dbc9f_optionalUserData { _ec5dbc9f_optionalUserData(void* value): value(value) {}; void* value; _ec5dbc9f_optionalUserData(const _ec5dbc9f_optionalUserData &) = delete; } _ec5dbc9f_optionalUserData;
-void np_redCreateProcedureCache(_ec5dbc9f_context & context, _ec5dbc9f_gpu & gpu, _ec5dbc9f_handleName & handleName, _ec5dbc9f_fromBlobBytesCount & fromBlobBytesCount, _ec5dbc9f_fromBlob & fromBlob, _ec5dbc9f_outProcedureCache & outProcedureCache, _ec5dbc9f_outStatuses & outStatuses, _ec5dbc9f_optionalFile & optionalFile, _ec5dbc9f_optionalLine & optionalLine, _ec5dbc9f_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateProcedureCache(_ec5dbc9f_context & context, _ec5dbc9f_gpu & gpu, _ec5dbc9f_handleName & handleName, _ec5dbc9f_fromBlobBytesCount & fromBlobBytesCount, _ec5dbc9f_fromBlob & fromBlob, _ec5dbc9f_outProcedureCache & outProcedureCache, _ec5dbc9f_outStatuses & outStatuses, _ec5dbc9f_optionalFile & optionalFile, _ec5dbc9f_optionalLine & optionalLine, _ec5dbc9f_optionalUserData & optionalUserData) {
   redCreateProcedureCache(context.value, gpu.value, handleName.value, fromBlobBytesCount.value, fromBlob.value, outProcedureCache.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -805,7 +813,7 @@ typedef struct _81f861ea_outStatuses { _81f861ea_outStatuses(RedStatuses* value)
 typedef struct _81f861ea_optionalFile { _81f861ea_optionalFile(char* value): value(value) {}; char* value; _81f861ea_optionalFile(const _81f861ea_optionalFile &) = delete; } _81f861ea_optionalFile;
 typedef struct _81f861ea_optionalLine { _81f861ea_optionalLine(int value): value(value) {}; int value; _81f861ea_optionalLine(const _81f861ea_optionalLine &) = delete; } _81f861ea_optionalLine;
 typedef struct _81f861ea_optionalUserData { _81f861ea_optionalUserData(void* value): value(value) {}; void* value; _81f861ea_optionalUserData(const _81f861ea_optionalUserData &) = delete; } _81f861ea_optionalUserData;
-void np_redCreateProcedure(_81f861ea_context & context, _81f861ea_gpu & gpu, _81f861ea_handleName & handleName, _81f861ea_procedureCache & procedureCache, _81f861ea_outputDeclaration & outputDeclaration, _81f861ea_procedureParameters & procedureParameters, _81f861ea_gpuCodeVertexMainProcedureName & gpuCodeVertexMainProcedureName, _81f861ea_gpuCodeVertex & gpuCodeVertex, _81f861ea_gpuCodeFragmentMainProcedureName & gpuCodeFragmentMainProcedureName, _81f861ea_gpuCodeFragment & gpuCodeFragment, _81f861ea_state & state, _81f861ea_stateExtension & stateExtension, _81f861ea_deriveBase & deriveBase, _81f861ea_deriveFrom & deriveFrom, _81f861ea_outProcedure & outProcedure, _81f861ea_outStatuses & outStatuses, _81f861ea_optionalFile & optionalFile, _81f861ea_optionalLine & optionalLine, _81f861ea_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateProcedure(_81f861ea_context & context, _81f861ea_gpu & gpu, _81f861ea_handleName & handleName, _81f861ea_procedureCache & procedureCache, _81f861ea_outputDeclaration & outputDeclaration, _81f861ea_procedureParameters & procedureParameters, _81f861ea_gpuCodeVertexMainProcedureName & gpuCodeVertexMainProcedureName, _81f861ea_gpuCodeVertex & gpuCodeVertex, _81f861ea_gpuCodeFragmentMainProcedureName & gpuCodeFragmentMainProcedureName, _81f861ea_gpuCodeFragment & gpuCodeFragment, _81f861ea_state & state, _81f861ea_stateExtension & stateExtension, _81f861ea_deriveBase & deriveBase, _81f861ea_deriveFrom & deriveFrom, _81f861ea_outProcedure & outProcedure, _81f861ea_outStatuses & outStatuses, _81f861ea_optionalFile & optionalFile, _81f861ea_optionalLine & optionalLine, _81f861ea_optionalUserData & optionalUserData) {
   redCreateProcedure(context.value, gpu.value, handleName.value, procedureCache.value, outputDeclaration.value, procedureParameters.value, gpuCodeVertexMainProcedureName.value, gpuCodeVertex.value, gpuCodeFragmentMainProcedureName.value, gpuCodeFragment.value, state.value, stateExtension.value, deriveBase.value, deriveFrom.value, outProcedure.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -837,7 +845,7 @@ typedef struct _bd6d24cf_outStatuses { _bd6d24cf_outStatuses(RedStatuses* value)
 typedef struct _bd6d24cf_optionalFile { _bd6d24cf_optionalFile(char* value): value(value) {}; char* value; _bd6d24cf_optionalFile(const _bd6d24cf_optionalFile &) = delete; } _bd6d24cf_optionalFile;
 typedef struct _bd6d24cf_optionalLine { _bd6d24cf_optionalLine(int value): value(value) {}; int value; _bd6d24cf_optionalLine(const _bd6d24cf_optionalLine &) = delete; } _bd6d24cf_optionalLine;
 typedef struct _bd6d24cf_optionalUserData { _bd6d24cf_optionalUserData(void* value): value(value) {}; void* value; _bd6d24cf_optionalUserData(const _bd6d24cf_optionalUserData &) = delete; } _bd6d24cf_optionalUserData;
-void np_redCreateProcedureCompute(_bd6d24cf_context & context, _bd6d24cf_gpu & gpu, _bd6d24cf_handleName & handleName, _bd6d24cf_procedureCache & procedureCache, _bd6d24cf_procedureParameters & procedureParameters, _bd6d24cf_gpuCodeMainProcedureName & gpuCodeMainProcedureName, _bd6d24cf_gpuCode & gpuCode, _bd6d24cf_outProcedure & outProcedure, _bd6d24cf_outStatuses & outStatuses, _bd6d24cf_optionalFile & optionalFile, _bd6d24cf_optionalLine & optionalLine, _bd6d24cf_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateProcedureCompute(_bd6d24cf_context & context, _bd6d24cf_gpu & gpu, _bd6d24cf_handleName & handleName, _bd6d24cf_procedureCache & procedureCache, _bd6d24cf_procedureParameters & procedureParameters, _bd6d24cf_gpuCodeMainProcedureName & gpuCodeMainProcedureName, _bd6d24cf_gpuCode & gpuCode, _bd6d24cf_outProcedure & outProcedure, _bd6d24cf_outStatuses & outStatuses, _bd6d24cf_optionalFile & optionalFile, _bd6d24cf_optionalLine & optionalLine, _bd6d24cf_optionalUserData & optionalUserData) {
   redCreateProcedureCompute(context.value, gpu.value, handleName.value, procedureCache.value, procedureParameters.value, gpuCodeMainProcedureName.value, gpuCode.value, outProcedure.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -871,7 +879,7 @@ typedef struct _242ac2a6_outStatuses { _242ac2a6_outStatuses(RedStatuses* value)
 typedef struct _242ac2a6_optionalFile { _242ac2a6_optionalFile(char* value): value(value) {}; char* value; _242ac2a6_optionalFile(const _242ac2a6_optionalFile &) = delete; } _242ac2a6_optionalFile;
 typedef struct _242ac2a6_optionalLine { _242ac2a6_optionalLine(int value): value(value) {}; int value; _242ac2a6_optionalLine(const _242ac2a6_optionalLine &) = delete; } _242ac2a6_optionalLine;
 typedef struct _242ac2a6_optionalUserData { _242ac2a6_optionalUserData(void* value): value(value) {}; void* value; _242ac2a6_optionalUserData(const _242ac2a6_optionalUserData &) = delete; } _242ac2a6_optionalUserData;
-void np_redCreateOutput(_242ac2a6_context & context, _242ac2a6_gpu & gpu, _242ac2a6_handleName & handleName, _242ac2a6_outputDeclaration & outputDeclaration, _242ac2a6_outputMembers & outputMembers, _242ac2a6_outputMembersResolveTargets & outputMembersResolveTargets, _242ac2a6_width & width, _242ac2a6_height & height, _242ac2a6_outOutput & outOutput, _242ac2a6_outStatuses & outStatuses, _242ac2a6_optionalFile & optionalFile, _242ac2a6_optionalLine & optionalLine, _242ac2a6_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateOutput(_242ac2a6_context & context, _242ac2a6_gpu & gpu, _242ac2a6_handleName & handleName, _242ac2a6_outputDeclaration & outputDeclaration, _242ac2a6_outputMembers & outputMembers, _242ac2a6_outputMembersResolveTargets & outputMembersResolveTargets, _242ac2a6_width & width, _242ac2a6_height & height, _242ac2a6_outOutput & outOutput, _242ac2a6_outStatuses & outStatuses, _242ac2a6_optionalFile & optionalFile, _242ac2a6_optionalLine & optionalLine, _242ac2a6_optionalUserData & optionalUserData) {
   redCreateOutput(context.value, gpu.value, handleName.value, outputDeclaration.value, outputMembers.value, outputMembersResolveTargets.value, width.value, height.value, outOutput.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -897,7 +905,7 @@ typedef struct _9dcf3e68_outStatuses { _9dcf3e68_outStatuses(RedStatuses* value)
 typedef struct _9dcf3e68_optionalFile { _9dcf3e68_optionalFile(char* value): value(value) {}; char* value; _9dcf3e68_optionalFile(const _9dcf3e68_optionalFile &) = delete; } _9dcf3e68_optionalFile;
 typedef struct _9dcf3e68_optionalLine { _9dcf3e68_optionalLine(int value): value(value) {}; int value; _9dcf3e68_optionalLine(const _9dcf3e68_optionalLine &) = delete; } _9dcf3e68_optionalLine;
 typedef struct _9dcf3e68_optionalUserData { _9dcf3e68_optionalUserData(void* value): value(value) {}; void* value; _9dcf3e68_optionalUserData(const _9dcf3e68_optionalUserData &) = delete; } _9dcf3e68_optionalUserData;
-void np_redCreateCpuSignal(_9dcf3e68_context & context, _9dcf3e68_gpu & gpu, _9dcf3e68_handleName & handleName, _9dcf3e68_createSignaled & createSignaled, _9dcf3e68_outCpuSignal & outCpuSignal, _9dcf3e68_outStatuses & outStatuses, _9dcf3e68_optionalFile & optionalFile, _9dcf3e68_optionalLine & optionalLine, _9dcf3e68_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateCpuSignal(_9dcf3e68_context & context, _9dcf3e68_gpu & gpu, _9dcf3e68_handleName & handleName, _9dcf3e68_createSignaled & createSignaled, _9dcf3e68_outCpuSignal & outCpuSignal, _9dcf3e68_outStatuses & outStatuses, _9dcf3e68_optionalFile & optionalFile, _9dcf3e68_optionalLine & optionalLine, _9dcf3e68_optionalUserData & optionalUserData) {
   redCreateCpuSignal(context.value, gpu.value, handleName.value, createSignaled.value, outCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -921,7 +929,7 @@ typedef struct _324fbb03_outStatuses { _324fbb03_outStatuses(RedStatuses* value)
 typedef struct _324fbb03_optionalFile { _324fbb03_optionalFile(char* value): value(value) {}; char* value; _324fbb03_optionalFile(const _324fbb03_optionalFile &) = delete; } _324fbb03_optionalFile;
 typedef struct _324fbb03_optionalLine { _324fbb03_optionalLine(int value): value(value) {}; int value; _324fbb03_optionalLine(const _324fbb03_optionalLine &) = delete; } _324fbb03_optionalLine;
 typedef struct _324fbb03_optionalUserData { _324fbb03_optionalUserData(void* value): value(value) {}; void* value; _324fbb03_optionalUserData(const _324fbb03_optionalUserData &) = delete; } _324fbb03_optionalUserData;
-void np_redCreateGpuSignal(_324fbb03_context & context, _324fbb03_gpu & gpu, _324fbb03_handleName & handleName, _324fbb03_outGpuSignal & outGpuSignal, _324fbb03_outStatuses & outStatuses, _324fbb03_optionalFile & optionalFile, _324fbb03_optionalLine & optionalLine, _324fbb03_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateGpuSignal(_324fbb03_context & context, _324fbb03_gpu & gpu, _324fbb03_handleName & handleName, _324fbb03_outGpuSignal & outGpuSignal, _324fbb03_outStatuses & outStatuses, _324fbb03_optionalFile & optionalFile, _324fbb03_optionalLine & optionalLine, _324fbb03_optionalUserData & optionalUserData) {
   redCreateGpuSignal(context.value, gpu.value, handleName.value, outGpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -945,7 +953,7 @@ typedef struct _43b4b3d9_outStatuses { _43b4b3d9_outStatuses(RedStatuses* value)
 typedef struct _43b4b3d9_optionalFile { _43b4b3d9_optionalFile(char* value): value(value) {}; char* value; _43b4b3d9_optionalFile(const _43b4b3d9_optionalFile &) = delete; } _43b4b3d9_optionalFile;
 typedef struct _43b4b3d9_optionalLine { _43b4b3d9_optionalLine(int value): value(value) {}; int value; _43b4b3d9_optionalLine(const _43b4b3d9_optionalLine &) = delete; } _43b4b3d9_optionalLine;
 typedef struct _43b4b3d9_optionalUserData { _43b4b3d9_optionalUserData(void* value): value(value) {}; void* value; _43b4b3d9_optionalUserData(const _43b4b3d9_optionalUserData &) = delete; } _43b4b3d9_optionalUserData;
-void np_redCreateGpuToCpuSignal(_43b4b3d9_context & context, _43b4b3d9_gpu & gpu, _43b4b3d9_handleName & handleName, _43b4b3d9_outGpuToCpuSignal & outGpuToCpuSignal, _43b4b3d9_outStatuses & outStatuses, _43b4b3d9_optionalFile & optionalFile, _43b4b3d9_optionalLine & optionalLine, _43b4b3d9_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateGpuToCpuSignal(_43b4b3d9_context & context, _43b4b3d9_gpu & gpu, _43b4b3d9_handleName & handleName, _43b4b3d9_outGpuToCpuSignal & outGpuToCpuSignal, _43b4b3d9_outStatuses & outStatuses, _43b4b3d9_optionalFile & optionalFile, _43b4b3d9_optionalLine & optionalLine, _43b4b3d9_optionalUserData & optionalUserData) {
   redCreateGpuToCpuSignal(context.value, gpu.value, handleName.value, outGpuToCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -971,7 +979,7 @@ typedef struct _84a8f462_outStatuses { _84a8f462_outStatuses(RedStatuses* value)
 typedef struct _84a8f462_optionalFile { _84a8f462_optionalFile(char* value): value(value) {}; char* value; _84a8f462_optionalFile(const _84a8f462_optionalFile &) = delete; } _84a8f462_optionalFile;
 typedef struct _84a8f462_optionalLine { _84a8f462_optionalLine(int value): value(value) {}; int value; _84a8f462_optionalLine(const _84a8f462_optionalLine &) = delete; } _84a8f462_optionalLine;
 typedef struct _84a8f462_optionalUserData { _84a8f462_optionalUserData(void* value): value(value) {}; void* value; _84a8f462_optionalUserData(const _84a8f462_optionalUserData &) = delete; } _84a8f462_optionalUserData;
-void np_redCreateCalls(_84a8f462_context & context, _84a8f462_gpu & gpu, _84a8f462_handleName & handleName, _84a8f462_queueFamilyIndex & queueFamilyIndex, _84a8f462_outCalls & outCalls, _84a8f462_outStatuses & outStatuses, _84a8f462_optionalFile & optionalFile, _84a8f462_optionalLine & optionalLine, _84a8f462_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateCalls(_84a8f462_context & context, _84a8f462_gpu & gpu, _84a8f462_handleName & handleName, _84a8f462_queueFamilyIndex & queueFamilyIndex, _84a8f462_outCalls & outCalls, _84a8f462_outStatuses & outStatuses, _84a8f462_optionalFile & optionalFile, _84a8f462_optionalLine & optionalLine, _84a8f462_optionalUserData & optionalUserData) {
   redCreateCalls(context.value, gpu.value, handleName.value, queueFamilyIndex.value, outCalls.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -997,7 +1005,7 @@ typedef struct _abac7e66_outStatuses { _abac7e66_outStatuses(RedStatuses* value)
 typedef struct _abac7e66_optionalFile { _abac7e66_optionalFile(char* value): value(value) {}; char* value; _abac7e66_optionalFile(const _abac7e66_optionalFile &) = delete; } _abac7e66_optionalFile;
 typedef struct _abac7e66_optionalLine { _abac7e66_optionalLine(int value): value(value) {}; int value; _abac7e66_optionalLine(const _abac7e66_optionalLine &) = delete; } _abac7e66_optionalLine;
 typedef struct _abac7e66_optionalUserData { _abac7e66_optionalUserData(void* value): value(value) {}; void* value; _abac7e66_optionalUserData(const _abac7e66_optionalUserData &) = delete; } _abac7e66_optionalUserData;
-void np_redCreateCallsReusable(_abac7e66_context & context, _abac7e66_gpu & gpu, _abac7e66_handleName & handleName, _abac7e66_queueFamilyIndex & queueFamilyIndex, _abac7e66_outCalls & outCalls, _abac7e66_outStatuses & outStatuses, _abac7e66_optionalFile & optionalFile, _abac7e66_optionalLine & optionalLine, _abac7e66_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCreateCallsReusable(_abac7e66_context & context, _abac7e66_gpu & gpu, _abac7e66_handleName & handleName, _abac7e66_queueFamilyIndex & queueFamilyIndex, _abac7e66_outCalls & outCalls, _abac7e66_outStatuses & outStatuses, _abac7e66_optionalFile & optionalFile, _abac7e66_optionalLine & optionalLine, _abac7e66_optionalUserData & optionalUserData) {
   redCreateCallsReusable(context.value, gpu.value, handleName.value, queueFamilyIndex.value, outCalls.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1013,7 +1021,7 @@ typedef struct _e3956603_context { _e3956603_context(RedContext value): value(va
 typedef struct _e3956603_optionalFile { _e3956603_optionalFile(char* value): value(value) {}; char* value; _e3956603_optionalFile(const _e3956603_optionalFile &) = delete; } _e3956603_optionalFile;
 typedef struct _e3956603_optionalLine { _e3956603_optionalLine(int value): value(value) {}; int value; _e3956603_optionalLine(const _e3956603_optionalLine &) = delete; } _e3956603_optionalLine;
 typedef struct _e3956603_optionalUserData { _e3956603_optionalUserData(void* value): value(value) {}; void* value; _e3956603_optionalUserData(const _e3956603_optionalUserData &) = delete; } _e3956603_optionalUserData;
-void np_redDestroyContext(_e3956603_context & context, _e3956603_optionalFile & optionalFile, _e3956603_optionalLine & optionalLine, _e3956603_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyContext(_e3956603_context & context, _e3956603_optionalFile & optionalFile, _e3956603_optionalLine & optionalLine, _e3956603_optionalUserData & optionalUserData) {
   redDestroyContext(context.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1033,7 +1041,7 @@ typedef struct _8cba366d_array { _8cba366d_array(RedHandleArray value): value(va
 typedef struct _8cba366d_optionalFile { _8cba366d_optionalFile(char* value): value(value) {}; char* value; _8cba366d_optionalFile(const _8cba366d_optionalFile &) = delete; } _8cba366d_optionalFile;
 typedef struct _8cba366d_optionalLine { _8cba366d_optionalLine(int value): value(value) {}; int value; _8cba366d_optionalLine(const _8cba366d_optionalLine &) = delete; } _8cba366d_optionalLine;
 typedef struct _8cba366d_optionalUserData { _8cba366d_optionalUserData(void* value): value(value) {}; void* value; _8cba366d_optionalUserData(const _8cba366d_optionalUserData &) = delete; } _8cba366d_optionalUserData;
-void np_redDestroyArray(_8cba366d_context & context, _8cba366d_gpu & gpu, _8cba366d_array & array, _8cba366d_optionalFile & optionalFile, _8cba366d_optionalLine & optionalLine, _8cba366d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyArray(_8cba366d_context & context, _8cba366d_gpu & gpu, _8cba366d_array & array, _8cba366d_optionalFile & optionalFile, _8cba366d_optionalLine & optionalLine, _8cba366d_optionalUserData & optionalUserData) {
   redDestroyArray(context.value, gpu.value, array.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1053,7 +1061,7 @@ typedef struct _2878ba39_image { _2878ba39_image(RedHandleImage value): value(va
 typedef struct _2878ba39_optionalFile { _2878ba39_optionalFile(char* value): value(value) {}; char* value; _2878ba39_optionalFile(const _2878ba39_optionalFile &) = delete; } _2878ba39_optionalFile;
 typedef struct _2878ba39_optionalLine { _2878ba39_optionalLine(int value): value(value) {}; int value; _2878ba39_optionalLine(const _2878ba39_optionalLine &) = delete; } _2878ba39_optionalLine;
 typedef struct _2878ba39_optionalUserData { _2878ba39_optionalUserData(void* value): value(value) {}; void* value; _2878ba39_optionalUserData(const _2878ba39_optionalUserData &) = delete; } _2878ba39_optionalUserData;
-void np_redDestroyImage(_2878ba39_context & context, _2878ba39_gpu & gpu, _2878ba39_image & image, _2878ba39_optionalFile & optionalFile, _2878ba39_optionalLine & optionalLine, _2878ba39_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyImage(_2878ba39_context & context, _2878ba39_gpu & gpu, _2878ba39_image & image, _2878ba39_optionalFile & optionalFile, _2878ba39_optionalLine & optionalLine, _2878ba39_optionalUserData & optionalUserData) {
   redDestroyImage(context.value, gpu.value, image.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1073,7 +1081,7 @@ typedef struct _af6ed521_sampler { _af6ed521_sampler(RedHandleSampler value): va
 typedef struct _af6ed521_optionalFile { _af6ed521_optionalFile(char* value): value(value) {}; char* value; _af6ed521_optionalFile(const _af6ed521_optionalFile &) = delete; } _af6ed521_optionalFile;
 typedef struct _af6ed521_optionalLine { _af6ed521_optionalLine(int value): value(value) {}; int value; _af6ed521_optionalLine(const _af6ed521_optionalLine &) = delete; } _af6ed521_optionalLine;
 typedef struct _af6ed521_optionalUserData { _af6ed521_optionalUserData(void* value): value(value) {}; void* value; _af6ed521_optionalUserData(const _af6ed521_optionalUserData &) = delete; } _af6ed521_optionalUserData;
-void np_redDestroySampler(_af6ed521_context & context, _af6ed521_gpu & gpu, _af6ed521_sampler & sampler, _af6ed521_optionalFile & optionalFile, _af6ed521_optionalLine & optionalLine, _af6ed521_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroySampler(_af6ed521_context & context, _af6ed521_gpu & gpu, _af6ed521_sampler & sampler, _af6ed521_optionalFile & optionalFile, _af6ed521_optionalLine & optionalLine, _af6ed521_optionalUserData & optionalUserData) {
   redDestroySampler(context.value, gpu.value, sampler.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1093,7 +1101,7 @@ typedef struct _1c72da53_texture { _1c72da53_texture(RedHandleTexture value): va
 typedef struct _1c72da53_optionalFile { _1c72da53_optionalFile(char* value): value(value) {}; char* value; _1c72da53_optionalFile(const _1c72da53_optionalFile &) = delete; } _1c72da53_optionalFile;
 typedef struct _1c72da53_optionalLine { _1c72da53_optionalLine(int value): value(value) {}; int value; _1c72da53_optionalLine(const _1c72da53_optionalLine &) = delete; } _1c72da53_optionalLine;
 typedef struct _1c72da53_optionalUserData { _1c72da53_optionalUserData(void* value): value(value) {}; void* value; _1c72da53_optionalUserData(const _1c72da53_optionalUserData &) = delete; } _1c72da53_optionalUserData;
-void np_redDestroyTexture(_1c72da53_context & context, _1c72da53_gpu & gpu, _1c72da53_texture & texture, _1c72da53_optionalFile & optionalFile, _1c72da53_optionalLine & optionalLine, _1c72da53_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyTexture(_1c72da53_context & context, _1c72da53_gpu & gpu, _1c72da53_texture & texture, _1c72da53_optionalFile & optionalFile, _1c72da53_optionalLine & optionalLine, _1c72da53_optionalUserData & optionalUserData) {
   redDestroyTexture(context.value, gpu.value, texture.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1113,7 +1121,7 @@ typedef struct _deea23f2_gpuCode { _deea23f2_gpuCode(RedHandleGpuCode value): va
 typedef struct _deea23f2_optionalFile { _deea23f2_optionalFile(char* value): value(value) {}; char* value; _deea23f2_optionalFile(const _deea23f2_optionalFile &) = delete; } _deea23f2_optionalFile;
 typedef struct _deea23f2_optionalLine { _deea23f2_optionalLine(int value): value(value) {}; int value; _deea23f2_optionalLine(const _deea23f2_optionalLine &) = delete; } _deea23f2_optionalLine;
 typedef struct _deea23f2_optionalUserData { _deea23f2_optionalUserData(void* value): value(value) {}; void* value; _deea23f2_optionalUserData(const _deea23f2_optionalUserData &) = delete; } _deea23f2_optionalUserData;
-void np_redDestroyGpuCode(_deea23f2_context & context, _deea23f2_gpu & gpu, _deea23f2_gpuCode & gpuCode, _deea23f2_optionalFile & optionalFile, _deea23f2_optionalLine & optionalLine, _deea23f2_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyGpuCode(_deea23f2_context & context, _deea23f2_gpu & gpu, _deea23f2_gpuCode & gpuCode, _deea23f2_optionalFile & optionalFile, _deea23f2_optionalLine & optionalLine, _deea23f2_optionalUserData & optionalUserData) {
   redDestroyGpuCode(context.value, gpu.value, gpuCode.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1133,7 +1141,7 @@ typedef struct _88038ea3_outputDeclaration { _88038ea3_outputDeclaration(RedHand
 typedef struct _88038ea3_optionalFile { _88038ea3_optionalFile(char* value): value(value) {}; char* value; _88038ea3_optionalFile(const _88038ea3_optionalFile &) = delete; } _88038ea3_optionalFile;
 typedef struct _88038ea3_optionalLine { _88038ea3_optionalLine(int value): value(value) {}; int value; _88038ea3_optionalLine(const _88038ea3_optionalLine &) = delete; } _88038ea3_optionalLine;
 typedef struct _88038ea3_optionalUserData { _88038ea3_optionalUserData(void* value): value(value) {}; void* value; _88038ea3_optionalUserData(const _88038ea3_optionalUserData &) = delete; } _88038ea3_optionalUserData;
-void np_redDestroyOutputDeclaration(_88038ea3_context & context, _88038ea3_gpu & gpu, _88038ea3_outputDeclaration & outputDeclaration, _88038ea3_optionalFile & optionalFile, _88038ea3_optionalLine & optionalLine, _88038ea3_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyOutputDeclaration(_88038ea3_context & context, _88038ea3_gpu & gpu, _88038ea3_outputDeclaration & outputDeclaration, _88038ea3_optionalFile & optionalFile, _88038ea3_optionalLine & optionalLine, _88038ea3_optionalUserData & optionalUserData) {
   redDestroyOutputDeclaration(context.value, gpu.value, outputDeclaration.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1153,7 +1161,7 @@ typedef struct _f18dfa11_structDeclaration { _f18dfa11_structDeclaration(RedHand
 typedef struct _f18dfa11_optionalFile { _f18dfa11_optionalFile(char* value): value(value) {}; char* value; _f18dfa11_optionalFile(const _f18dfa11_optionalFile &) = delete; } _f18dfa11_optionalFile;
 typedef struct _f18dfa11_optionalLine { _f18dfa11_optionalLine(int value): value(value) {}; int value; _f18dfa11_optionalLine(const _f18dfa11_optionalLine &) = delete; } _f18dfa11_optionalLine;
 typedef struct _f18dfa11_optionalUserData { _f18dfa11_optionalUserData(void* value): value(value) {}; void* value; _f18dfa11_optionalUserData(const _f18dfa11_optionalUserData &) = delete; } _f18dfa11_optionalUserData;
-void np_redDestroyStructDeclaration(_f18dfa11_context & context, _f18dfa11_gpu & gpu, _f18dfa11_structDeclaration & structDeclaration, _f18dfa11_optionalFile & optionalFile, _f18dfa11_optionalLine & optionalLine, _f18dfa11_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyStructDeclaration(_f18dfa11_context & context, _f18dfa11_gpu & gpu, _f18dfa11_structDeclaration & structDeclaration, _f18dfa11_optionalFile & optionalFile, _f18dfa11_optionalLine & optionalLine, _f18dfa11_optionalUserData & optionalUserData) {
   redDestroyStructDeclaration(context.value, gpu.value, structDeclaration.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1173,7 +1181,7 @@ typedef struct _446caf7a_procedureParameters { _446caf7a_procedureParameters(Red
 typedef struct _446caf7a_optionalFile { _446caf7a_optionalFile(char* value): value(value) {}; char* value; _446caf7a_optionalFile(const _446caf7a_optionalFile &) = delete; } _446caf7a_optionalFile;
 typedef struct _446caf7a_optionalLine { _446caf7a_optionalLine(int value): value(value) {}; int value; _446caf7a_optionalLine(const _446caf7a_optionalLine &) = delete; } _446caf7a_optionalLine;
 typedef struct _446caf7a_optionalUserData { _446caf7a_optionalUserData(void* value): value(value) {}; void* value; _446caf7a_optionalUserData(const _446caf7a_optionalUserData &) = delete; } _446caf7a_optionalUserData;
-void np_redDestroyProcedureParameters(_446caf7a_context & context, _446caf7a_gpu & gpu, _446caf7a_procedureParameters & procedureParameters, _446caf7a_optionalFile & optionalFile, _446caf7a_optionalLine & optionalLine, _446caf7a_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyProcedureParameters(_446caf7a_context & context, _446caf7a_gpu & gpu, _446caf7a_procedureParameters & procedureParameters, _446caf7a_optionalFile & optionalFile, _446caf7a_optionalLine & optionalLine, _446caf7a_optionalUserData & optionalUserData) {
   redDestroyProcedureParameters(context.value, gpu.value, procedureParameters.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1193,7 +1201,7 @@ typedef struct _d2b903f0_procedureCache { _d2b903f0_procedureCache(RedHandleProc
 typedef struct _d2b903f0_optionalFile { _d2b903f0_optionalFile(char* value): value(value) {}; char* value; _d2b903f0_optionalFile(const _d2b903f0_optionalFile &) = delete; } _d2b903f0_optionalFile;
 typedef struct _d2b903f0_optionalLine { _d2b903f0_optionalLine(int value): value(value) {}; int value; _d2b903f0_optionalLine(const _d2b903f0_optionalLine &) = delete; } _d2b903f0_optionalLine;
 typedef struct _d2b903f0_optionalUserData { _d2b903f0_optionalUserData(void* value): value(value) {}; void* value; _d2b903f0_optionalUserData(const _d2b903f0_optionalUserData &) = delete; } _d2b903f0_optionalUserData;
-void np_redDestroyProcedureCache(_d2b903f0_context & context, _d2b903f0_gpu & gpu, _d2b903f0_procedureCache & procedureCache, _d2b903f0_optionalFile & optionalFile, _d2b903f0_optionalLine & optionalLine, _d2b903f0_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyProcedureCache(_d2b903f0_context & context, _d2b903f0_gpu & gpu, _d2b903f0_procedureCache & procedureCache, _d2b903f0_optionalFile & optionalFile, _d2b903f0_optionalLine & optionalLine, _d2b903f0_optionalUserData & optionalUserData) {
   redDestroyProcedureCache(context.value, gpu.value, procedureCache.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1213,7 +1221,7 @@ typedef struct _2beff629_procedure { _2beff629_procedure(RedHandleProcedure valu
 typedef struct _2beff629_optionalFile { _2beff629_optionalFile(char* value): value(value) {}; char* value; _2beff629_optionalFile(const _2beff629_optionalFile &) = delete; } _2beff629_optionalFile;
 typedef struct _2beff629_optionalLine { _2beff629_optionalLine(int value): value(value) {}; int value; _2beff629_optionalLine(const _2beff629_optionalLine &) = delete; } _2beff629_optionalLine;
 typedef struct _2beff629_optionalUserData { _2beff629_optionalUserData(void* value): value(value) {}; void* value; _2beff629_optionalUserData(const _2beff629_optionalUserData &) = delete; } _2beff629_optionalUserData;
-void np_redDestroyProcedure(_2beff629_context & context, _2beff629_gpu & gpu, _2beff629_procedure & procedure, _2beff629_optionalFile & optionalFile, _2beff629_optionalLine & optionalLine, _2beff629_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyProcedure(_2beff629_context & context, _2beff629_gpu & gpu, _2beff629_procedure & procedure, _2beff629_optionalFile & optionalFile, _2beff629_optionalLine & optionalLine, _2beff629_optionalUserData & optionalUserData) {
   redDestroyProcedure(context.value, gpu.value, procedure.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1233,7 +1241,7 @@ typedef struct _39af47cf_output { _39af47cf_output(RedHandleOutput value): value
 typedef struct _39af47cf_optionalFile { _39af47cf_optionalFile(char* value): value(value) {}; char* value; _39af47cf_optionalFile(const _39af47cf_optionalFile &) = delete; } _39af47cf_optionalFile;
 typedef struct _39af47cf_optionalLine { _39af47cf_optionalLine(int value): value(value) {}; int value; _39af47cf_optionalLine(const _39af47cf_optionalLine &) = delete; } _39af47cf_optionalLine;
 typedef struct _39af47cf_optionalUserData { _39af47cf_optionalUserData(void* value): value(value) {}; void* value; _39af47cf_optionalUserData(const _39af47cf_optionalUserData &) = delete; } _39af47cf_optionalUserData;
-void np_redDestroyOutput(_39af47cf_context & context, _39af47cf_gpu & gpu, _39af47cf_output & output, _39af47cf_optionalFile & optionalFile, _39af47cf_optionalLine & optionalLine, _39af47cf_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyOutput(_39af47cf_context & context, _39af47cf_gpu & gpu, _39af47cf_output & output, _39af47cf_optionalFile & optionalFile, _39af47cf_optionalLine & optionalLine, _39af47cf_optionalUserData & optionalUserData) {
   redDestroyOutput(context.value, gpu.value, output.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1253,7 +1261,7 @@ typedef struct _05dd4cf0_cpuSignal { _05dd4cf0_cpuSignal(RedHandleCpuSignal valu
 typedef struct _05dd4cf0_optionalFile { _05dd4cf0_optionalFile(char* value): value(value) {}; char* value; _05dd4cf0_optionalFile(const _05dd4cf0_optionalFile &) = delete; } _05dd4cf0_optionalFile;
 typedef struct _05dd4cf0_optionalLine { _05dd4cf0_optionalLine(int value): value(value) {}; int value; _05dd4cf0_optionalLine(const _05dd4cf0_optionalLine &) = delete; } _05dd4cf0_optionalLine;
 typedef struct _05dd4cf0_optionalUserData { _05dd4cf0_optionalUserData(void* value): value(value) {}; void* value; _05dd4cf0_optionalUserData(const _05dd4cf0_optionalUserData &) = delete; } _05dd4cf0_optionalUserData;
-void np_redDestroyCpuSignal(_05dd4cf0_context & context, _05dd4cf0_gpu & gpu, _05dd4cf0_cpuSignal & cpuSignal, _05dd4cf0_optionalFile & optionalFile, _05dd4cf0_optionalLine & optionalLine, _05dd4cf0_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyCpuSignal(_05dd4cf0_context & context, _05dd4cf0_gpu & gpu, _05dd4cf0_cpuSignal & cpuSignal, _05dd4cf0_optionalFile & optionalFile, _05dd4cf0_optionalLine & optionalLine, _05dd4cf0_optionalUserData & optionalUserData) {
   redDestroyCpuSignal(context.value, gpu.value, cpuSignal.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1273,7 +1281,7 @@ typedef struct _efa16eff_gpuSignal { _efa16eff_gpuSignal(RedHandleGpuSignal valu
 typedef struct _efa16eff_optionalFile { _efa16eff_optionalFile(char* value): value(value) {}; char* value; _efa16eff_optionalFile(const _efa16eff_optionalFile &) = delete; } _efa16eff_optionalFile;
 typedef struct _efa16eff_optionalLine { _efa16eff_optionalLine(int value): value(value) {}; int value; _efa16eff_optionalLine(const _efa16eff_optionalLine &) = delete; } _efa16eff_optionalLine;
 typedef struct _efa16eff_optionalUserData { _efa16eff_optionalUserData(void* value): value(value) {}; void* value; _efa16eff_optionalUserData(const _efa16eff_optionalUserData &) = delete; } _efa16eff_optionalUserData;
-void np_redDestroyGpuSignal(_efa16eff_context & context, _efa16eff_gpu & gpu, _efa16eff_gpuSignal & gpuSignal, _efa16eff_optionalFile & optionalFile, _efa16eff_optionalLine & optionalLine, _efa16eff_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyGpuSignal(_efa16eff_context & context, _efa16eff_gpu & gpu, _efa16eff_gpuSignal & gpuSignal, _efa16eff_optionalFile & optionalFile, _efa16eff_optionalLine & optionalLine, _efa16eff_optionalUserData & optionalUserData) {
   redDestroyGpuSignal(context.value, gpu.value, gpuSignal.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1293,7 +1301,7 @@ typedef struct _9b866b42_gpuToCpuSignal { _9b866b42_gpuToCpuSignal(RedHandleGpuT
 typedef struct _9b866b42_optionalFile { _9b866b42_optionalFile(char* value): value(value) {}; char* value; _9b866b42_optionalFile(const _9b866b42_optionalFile &) = delete; } _9b866b42_optionalFile;
 typedef struct _9b866b42_optionalLine { _9b866b42_optionalLine(int value): value(value) {}; int value; _9b866b42_optionalLine(const _9b866b42_optionalLine &) = delete; } _9b866b42_optionalLine;
 typedef struct _9b866b42_optionalUserData { _9b866b42_optionalUserData(void* value): value(value) {}; void* value; _9b866b42_optionalUserData(const _9b866b42_optionalUserData &) = delete; } _9b866b42_optionalUserData;
-void np_redDestroyGpuToCpuSignal(_9b866b42_context & context, _9b866b42_gpu & gpu, _9b866b42_gpuToCpuSignal & gpuToCpuSignal, _9b866b42_optionalFile & optionalFile, _9b866b42_optionalLine & optionalLine, _9b866b42_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyGpuToCpuSignal(_9b866b42_context & context, _9b866b42_gpu & gpu, _9b866b42_gpuToCpuSignal & gpuToCpuSignal, _9b866b42_optionalFile & optionalFile, _9b866b42_optionalLine & optionalLine, _9b866b42_optionalUserData & optionalUserData) {
   redDestroyGpuToCpuSignal(context.value, gpu.value, gpuToCpuSignal.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1315,7 +1323,7 @@ typedef struct _de2e32b2_callsMemory { _de2e32b2_callsMemory(RedHandleCallsMemor
 typedef struct _de2e32b2_optionalFile { _de2e32b2_optionalFile(char* value): value(value) {}; char* value; _de2e32b2_optionalFile(const _de2e32b2_optionalFile &) = delete; } _de2e32b2_optionalFile;
 typedef struct _de2e32b2_optionalLine { _de2e32b2_optionalLine(int value): value(value) {}; int value; _de2e32b2_optionalLine(const _de2e32b2_optionalLine &) = delete; } _de2e32b2_optionalLine;
 typedef struct _de2e32b2_optionalUserData { _de2e32b2_optionalUserData(void* value): value(value) {}; void* value; _de2e32b2_optionalUserData(const _de2e32b2_optionalUserData &) = delete; } _de2e32b2_optionalUserData;
-void np_redDestroyCalls(_de2e32b2_context & context, _de2e32b2_gpu & gpu, _de2e32b2_calls & calls, _de2e32b2_callsMemory & callsMemory, _de2e32b2_optionalFile & optionalFile, _de2e32b2_optionalLine & optionalLine, _de2e32b2_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redDestroyCalls(_de2e32b2_context & context, _de2e32b2_gpu & gpu, _de2e32b2_calls & calls, _de2e32b2_callsMemory & callsMemory, _de2e32b2_optionalFile & optionalFile, _de2e32b2_optionalLine & optionalLine, _de2e32b2_optionalUserData & optionalUserData) {
   redDestroyCalls(context.value, gpu.value, calls.value, callsMemory.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1341,7 +1349,7 @@ typedef struct _b55c2a5e_outStatuses { _b55c2a5e_outStatuses(RedStatuses* value)
 typedef struct _b55c2a5e_optionalFile { _b55c2a5e_optionalFile(char* value): value(value) {}; char* value; _b55c2a5e_optionalFile(const _b55c2a5e_optionalFile &) = delete; } _b55c2a5e_optionalFile;
 typedef struct _b55c2a5e_optionalLine { _b55c2a5e_optionalLine(int value): value(value) {}; int value; _b55c2a5e_optionalLine(const _b55c2a5e_optionalLine &) = delete; } _b55c2a5e_optionalLine;
 typedef struct _b55c2a5e_optionalUserData { _b55c2a5e_optionalUserData(void* value): value(value) {}; void* value; _b55c2a5e_optionalUserData(const _b55c2a5e_optionalUserData &) = delete; } _b55c2a5e_optionalUserData;
-void np_redProcedureCacheGetBlob(_b55c2a5e_context & context, _b55c2a5e_gpu & gpu, _b55c2a5e_procedureCache & procedureCache, _b55c2a5e_outBlobBytesCount & outBlobBytesCount, _b55c2a5e_outBlob & outBlob, _b55c2a5e_outStatuses & outStatuses, _b55c2a5e_optionalFile & optionalFile, _b55c2a5e_optionalLine & optionalLine, _b55c2a5e_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redProcedureCacheGetBlob(_b55c2a5e_context & context, _b55c2a5e_gpu & gpu, _b55c2a5e_procedureCache & procedureCache, _b55c2a5e_outBlobBytesCount & outBlobBytesCount, _b55c2a5e_outBlob & outBlob, _b55c2a5e_outStatuses & outStatuses, _b55c2a5e_optionalFile & optionalFile, _b55c2a5e_optionalLine & optionalLine, _b55c2a5e_optionalUserData & optionalUserData) {
   redProcedureCacheGetBlob(context.value, gpu.value, procedureCache.value, outBlobBytesCount.value, outBlob.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1367,7 +1375,7 @@ typedef struct _af49ac68_outStatuses { _af49ac68_outStatuses(RedStatuses* value)
 typedef struct _af49ac68_optionalFile { _af49ac68_optionalFile(char* value): value(value) {}; char* value; _af49ac68_optionalFile(const _af49ac68_optionalFile &) = delete; } _af49ac68_optionalFile;
 typedef struct _af49ac68_optionalLine { _af49ac68_optionalLine(int value): value(value) {}; int value; _af49ac68_optionalLine(const _af49ac68_optionalLine &) = delete; } _af49ac68_optionalLine;
 typedef struct _af49ac68_optionalUserData { _af49ac68_optionalUserData(void* value): value(value) {}; void* value; _af49ac68_optionalUserData(const _af49ac68_optionalUserData &) = delete; } _af49ac68_optionalUserData;
-void np_redProcedureCacheMergeCaches(_af49ac68_context & context, _af49ac68_gpu & gpu, _af49ac68_sourceProcedureCachesCount & sourceProcedureCachesCount, _af49ac68_sourceProcedureCaches & sourceProcedureCaches, _af49ac68_targetProcedureCache & targetProcedureCache, _af49ac68_outStatuses & outStatuses, _af49ac68_optionalFile & optionalFile, _af49ac68_optionalLine & optionalLine, _af49ac68_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redProcedureCacheMergeCaches(_af49ac68_context & context, _af49ac68_gpu & gpu, _af49ac68_sourceProcedureCachesCount & sourceProcedureCachesCount, _af49ac68_sourceProcedureCaches & sourceProcedureCaches, _af49ac68_targetProcedureCache & targetProcedureCache, _af49ac68_outStatuses & outStatuses, _af49ac68_optionalFile & optionalFile, _af49ac68_optionalLine & optionalLine, _af49ac68_optionalUserData & optionalUserData) {
   redProcedureCacheMergeCaches(context.value, gpu.value, sourceProcedureCachesCount.value, sourceProcedureCaches.value, targetProcedureCache.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1389,7 +1397,7 @@ typedef struct _3e706476_outStatus { _3e706476_outStatus(RedStatus* value): valu
 typedef struct _3e706476_optionalFile { _3e706476_optionalFile(char* value): value(value) {}; char* value; _3e706476_optionalFile(const _3e706476_optionalFile &) = delete; } _3e706476_optionalFile;
 typedef struct _3e706476_optionalLine { _3e706476_optionalLine(int value): value(value) {}; int value; _3e706476_optionalLine(const _3e706476_optionalLine &) = delete; } _3e706476_optionalLine;
 typedef struct _3e706476_optionalUserData { _3e706476_optionalUserData(void* value): value(value) {}; void* value; _3e706476_optionalUserData(const _3e706476_optionalUserData &) = delete; } _3e706476_optionalUserData;
-void np_redCpuSignalGetStatus(_3e706476_context & context, _3e706476_gpu & gpu, _3e706476_cpuSignal & cpuSignal, _3e706476_outStatus & outStatus, _3e706476_optionalFile & optionalFile, _3e706476_optionalLine & optionalLine, _3e706476_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCpuSignalGetStatus(_3e706476_context & context, _3e706476_gpu & gpu, _3e706476_cpuSignal & cpuSignal, _3e706476_outStatus & outStatus, _3e706476_optionalFile & optionalFile, _3e706476_optionalLine & optionalLine, _3e706476_optionalUserData & optionalUserData) {
   redCpuSignalGetStatus(context.value, gpu.value, cpuSignal.value, outStatus.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1415,7 +1423,7 @@ typedef struct _4a826452_outStatuses { _4a826452_outStatuses(RedStatuses* value)
 typedef struct _4a826452_optionalFile { _4a826452_optionalFile(char* value): value(value) {}; char* value; _4a826452_optionalFile(const _4a826452_optionalFile &) = delete; } _4a826452_optionalFile;
 typedef struct _4a826452_optionalLine { _4a826452_optionalLine(int value): value(value) {}; int value; _4a826452_optionalLine(const _4a826452_optionalLine &) = delete; } _4a826452_optionalLine;
 typedef struct _4a826452_optionalUserData { _4a826452_optionalUserData(void* value): value(value) {}; void* value; _4a826452_optionalUserData(const _4a826452_optionalUserData &) = delete; } _4a826452_optionalUserData;
-void np_redCpuSignalWait(_4a826452_context & context, _4a826452_gpu & gpu, _4a826452_cpuSignalsCount & cpuSignalsCount, _4a826452_cpuSignals & cpuSignals, _4a826452_waitAll & waitAll, _4a826452_outStatuses & outStatuses, _4a826452_optionalFile & optionalFile, _4a826452_optionalLine & optionalLine, _4a826452_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCpuSignalWait(_4a826452_context & context, _4a826452_gpu & gpu, _4a826452_cpuSignalsCount & cpuSignalsCount, _4a826452_cpuSignals & cpuSignals, _4a826452_waitAll & waitAll, _4a826452_outStatuses & outStatuses, _4a826452_optionalFile & optionalFile, _4a826452_optionalLine & optionalLine, _4a826452_optionalUserData & optionalUserData) {
   redCpuSignalWait(context.value, gpu.value, cpuSignalsCount.value, cpuSignals.value, waitAll.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1439,7 +1447,7 @@ typedef struct _fd52e10b_outStatuses { _fd52e10b_outStatuses(RedStatuses* value)
 typedef struct _fd52e10b_optionalFile { _fd52e10b_optionalFile(char* value): value(value) {}; char* value; _fd52e10b_optionalFile(const _fd52e10b_optionalFile &) = delete; } _fd52e10b_optionalFile;
 typedef struct _fd52e10b_optionalLine { _fd52e10b_optionalLine(int value): value(value) {}; int value; _fd52e10b_optionalLine(const _fd52e10b_optionalLine &) = delete; } _fd52e10b_optionalLine;
 typedef struct _fd52e10b_optionalUserData { _fd52e10b_optionalUserData(void* value): value(value) {}; void* value; _fd52e10b_optionalUserData(const _fd52e10b_optionalUserData &) = delete; } _fd52e10b_optionalUserData;
-void np_redCpuSignalUnsignal(_fd52e10b_context & context, _fd52e10b_gpu & gpu, _fd52e10b_cpuSignalsCount & cpuSignalsCount, _fd52e10b_cpuSignals & cpuSignals, _fd52e10b_outStatuses & outStatuses, _fd52e10b_optionalFile & optionalFile, _fd52e10b_optionalLine & optionalLine, _fd52e10b_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCpuSignalUnsignal(_fd52e10b_context & context, _fd52e10b_gpu & gpu, _fd52e10b_cpuSignalsCount & cpuSignalsCount, _fd52e10b_cpuSignals & cpuSignals, _fd52e10b_outStatuses & outStatuses, _fd52e10b_optionalFile & optionalFile, _fd52e10b_optionalLine & optionalLine, _fd52e10b_optionalUserData & optionalUserData) {
   redCpuSignalUnsignal(context.value, gpu.value, cpuSignalsCount.value, cpuSignals.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1461,7 +1469,7 @@ typedef struct _881955d2_outStatus { _881955d2_outStatus(RedStatus* value): valu
 typedef struct _881955d2_optionalFile { _881955d2_optionalFile(char* value): value(value) {}; char* value; _881955d2_optionalFile(const _881955d2_optionalFile &) = delete; } _881955d2_optionalFile;
 typedef struct _881955d2_optionalLine { _881955d2_optionalLine(int value): value(value) {}; int value; _881955d2_optionalLine(const _881955d2_optionalLine &) = delete; } _881955d2_optionalLine;
 typedef struct _881955d2_optionalUserData { _881955d2_optionalUserData(void* value): value(value) {}; void* value; _881955d2_optionalUserData(const _881955d2_optionalUserData &) = delete; } _881955d2_optionalUserData;
-void np_redGpuToCpuSignalGetStatus(_881955d2_context & context, _881955d2_gpu & gpu, _881955d2_gpuToCpuSignal & gpuToCpuSignal, _881955d2_outStatus & outStatus, _881955d2_optionalFile & optionalFile, _881955d2_optionalLine & optionalLine, _881955d2_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redGpuToCpuSignalGetStatus(_881955d2_context & context, _881955d2_gpu & gpu, _881955d2_gpuToCpuSignal & gpuToCpuSignal, _881955d2_outStatus & outStatus, _881955d2_optionalFile & optionalFile, _881955d2_optionalLine & optionalLine, _881955d2_optionalUserData & optionalUserData) {
   redGpuToCpuSignalGetStatus(context.value, gpu.value, gpuToCpuSignal.value, outStatus.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1483,7 +1491,7 @@ typedef struct _ad347b4d_outStatuses { _ad347b4d_outStatuses(RedStatuses* value)
 typedef struct _ad347b4d_optionalFile { _ad347b4d_optionalFile(char* value): value(value) {}; char* value; _ad347b4d_optionalFile(const _ad347b4d_optionalFile &) = delete; } _ad347b4d_optionalFile;
 typedef struct _ad347b4d_optionalLine { _ad347b4d_optionalLine(int value): value(value) {}; int value; _ad347b4d_optionalLine(const _ad347b4d_optionalLine &) = delete; } _ad347b4d_optionalLine;
 typedef struct _ad347b4d_optionalUserData { _ad347b4d_optionalUserData(void* value): value(value) {}; void* value; _ad347b4d_optionalUserData(const _ad347b4d_optionalUserData &) = delete; } _ad347b4d_optionalUserData;
-void np_redGpuToCpuSignalUnsignal(_ad347b4d_context & context, _ad347b4d_gpu & gpu, _ad347b4d_gpuToCpuSignal & gpuToCpuSignal, _ad347b4d_outStatuses & outStatuses, _ad347b4d_optionalFile & optionalFile, _ad347b4d_optionalLine & optionalLine, _ad347b4d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redGpuToCpuSignalUnsignal(_ad347b4d_context & context, _ad347b4d_gpu & gpu, _ad347b4d_gpuToCpuSignal & gpuToCpuSignal, _ad347b4d_outStatuses & outStatuses, _ad347b4d_optionalFile & optionalFile, _ad347b4d_optionalLine & optionalLine, _ad347b4d_optionalUserData & optionalUserData) {
   redGpuToCpuSignalUnsignal(context.value, gpu.value, gpuToCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1509,7 +1517,7 @@ typedef struct _23514538_outStatuses { _23514538_outStatuses(RedStatuses* value)
 typedef struct _23514538_optionalFile { _23514538_optionalFile(char* value): value(value) {}; char* value; _23514538_optionalFile(const _23514538_optionalFile &) = delete; } _23514538_optionalFile;
 typedef struct _23514538_optionalLine { _23514538_optionalLine(int value): value(value) {}; int value; _23514538_optionalLine(const _23514538_optionalLine &) = delete; } _23514538_optionalLine;
 typedef struct _23514538_optionalUserData { _23514538_optionalUserData(void* value): value(value) {}; void* value; _23514538_optionalUserData(const _23514538_optionalUserData &) = delete; } _23514538_optionalUserData;
-void np_redCallsSet(_23514538_context & context, _23514538_gpu & gpu, _23514538_calls & calls, _23514538_callsMemory & callsMemory, _23514538_callsReusable & callsReusable, _23514538_outStatuses & outStatuses, _23514538_optionalFile & optionalFile, _23514538_optionalLine & optionalLine, _23514538_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallsSet(_23514538_context & context, _23514538_gpu & gpu, _23514538_calls & calls, _23514538_callsMemory & callsMemory, _23514538_callsReusable & callsReusable, _23514538_outStatuses & outStatuses, _23514538_optionalFile & optionalFile, _23514538_optionalLine & optionalLine, _23514538_optionalUserData & optionalUserData) {
   redCallsSet(context.value, gpu.value, calls.value, callsMemory.value, callsReusable.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1533,7 +1541,7 @@ typedef struct _2566f99f_outStatuses { _2566f99f_outStatuses(RedStatuses* value)
 typedef struct _2566f99f_optionalFile { _2566f99f_optionalFile(char* value): value(value) {}; char* value; _2566f99f_optionalFile(const _2566f99f_optionalFile &) = delete; } _2566f99f_optionalFile;
 typedef struct _2566f99f_optionalLine { _2566f99f_optionalLine(int value): value(value) {}; int value; _2566f99f_optionalLine(const _2566f99f_optionalLine &) = delete; } _2566f99f_optionalLine;
 typedef struct _2566f99f_optionalUserData { _2566f99f_optionalUserData(void* value): value(value) {}; void* value; _2566f99f_optionalUserData(const _2566f99f_optionalUserData &) = delete; } _2566f99f_optionalUserData;
-void np_redCallsEnd(_2566f99f_context & context, _2566f99f_gpu & gpu, _2566f99f_calls & calls, _2566f99f_callsMemory & callsMemory, _2566f99f_outStatuses & outStatuses, _2566f99f_optionalFile & optionalFile, _2566f99f_optionalLine & optionalLine, _2566f99f_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallsEnd(_2566f99f_context & context, _2566f99f_gpu & gpu, _2566f99f_calls & calls, _2566f99f_callsMemory & callsMemory, _2566f99f_outStatuses & outStatuses, _2566f99f_optionalFile & optionalFile, _2566f99f_optionalLine & optionalLine, _2566f99f_optionalUserData & optionalUserData) {
   redCallsEnd(context.value, gpu.value, calls.value, callsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1555,7 +1563,7 @@ typedef struct _038a00b5_outStatuses { _038a00b5_outStatuses(RedStatuses* value)
 typedef struct _038a00b5_optionalFile { _038a00b5_optionalFile(char* value): value(value) {}; char* value; _038a00b5_optionalFile(const _038a00b5_optionalFile &) = delete; } _038a00b5_optionalFile;
 typedef struct _038a00b5_optionalLine { _038a00b5_optionalLine(int value): value(value) {}; int value; _038a00b5_optionalLine(const _038a00b5_optionalLine &) = delete; } _038a00b5_optionalLine;
 typedef struct _038a00b5_optionalUserData { _038a00b5_optionalUserData(void* value): value(value) {}; void* value; _038a00b5_optionalUserData(const _038a00b5_optionalUserData &) = delete; } _038a00b5_optionalUserData;
-void np_redGetCallProceduresAndAddresses(_038a00b5_context & context, _038a00b5_gpu & gpu, _038a00b5_outCallProceduresAndAddresses & outCallProceduresAndAddresses, _038a00b5_outStatuses & outStatuses, _038a00b5_optionalFile & optionalFile, _038a00b5_optionalLine & optionalLine, _038a00b5_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redGetCallProceduresAndAddresses(_038a00b5_context & context, _038a00b5_gpu & gpu, _038a00b5_outCallProceduresAndAddresses & outCallProceduresAndAddresses, _038a00b5_outStatuses & outStatuses, _038a00b5_optionalFile & optionalFile, _038a00b5_optionalLine & optionalLine, _038a00b5_optionalUserData & optionalUserData) {
   redGetCallProceduresAndAddresses(context.value, gpu.value, outCallProceduresAndAddresses.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -1571,7 +1579,7 @@ typedef struct _87338edd_address { _87338edd_address(RedTypeProcedureCallGpuToCp
 typedef struct _87338edd_calls { _87338edd_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _87338edd_calls(const _87338edd_calls &) = delete; } _87338edd_calls;
 typedef struct _87338edd_signalGpuToCpuSignal { _87338edd_signalGpuToCpuSignal(RedHandleGpuToCpuSignal value): value(value) {}; RedHandleGpuToCpuSignal value; _87338edd_signalGpuToCpuSignal(const _87338edd_signalGpuToCpuSignal &) = delete; } _87338edd_signalGpuToCpuSignal;
 typedef struct _87338edd_setTo8192 { _87338edd_setTo8192(unsigned value): value(value) {}; unsigned value; _87338edd_setTo8192(const _87338edd_setTo8192 &) = delete; } _87338edd_setTo8192;
-void np_redCallGpuToCpuSignalSignal(_87338edd_address & address, _87338edd_calls & calls, _87338edd_signalGpuToCpuSignal & signalGpuToCpuSignal, _87338edd_setTo8192 & setTo8192) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallGpuToCpuSignalSignal(_87338edd_address & address, _87338edd_calls & calls, _87338edd_signalGpuToCpuSignal & signalGpuToCpuSignal, _87338edd_setTo8192 & setTo8192) {
   address.value(calls.value, signalGpuToCpuSignal.value, setTo8192.value);
 }
 #endif
@@ -1591,7 +1599,7 @@ typedef struct _60652b4b_arrayR { _60652b4b_arrayR(RedHandleArray value): value(
 typedef struct _60652b4b_arrayW { _60652b4b_arrayW(RedHandleArray value): value(value) {}; RedHandleArray value; _60652b4b_arrayW(const _60652b4b_arrayW &) = delete; } _60652b4b_arrayW;
 typedef struct _60652b4b_rangesCount { _60652b4b_rangesCount(unsigned value): value(value) {}; unsigned value; _60652b4b_rangesCount(const _60652b4b_rangesCount &) = delete; } _60652b4b_rangesCount;
 typedef struct _60652b4b_ranges { _60652b4b_ranges(RedCopyArrayRange* value): value(value) {}; RedCopyArrayRange* value; _60652b4b_ranges(const _60652b4b_ranges &) = delete; } _60652b4b_ranges;
-void np_redCallCopyArrayToArray(_60652b4b_address & address, _60652b4b_calls & calls, _60652b4b_arrayR & arrayR, _60652b4b_arrayW & arrayW, _60652b4b_rangesCount & rangesCount, _60652b4b_ranges & ranges) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallCopyArrayToArray(_60652b4b_address & address, _60652b4b_calls & calls, _60652b4b_arrayR & arrayR, _60652b4b_arrayW & arrayW, _60652b4b_rangesCount & rangesCount, _60652b4b_ranges & ranges) {
   address.value(calls.value, arrayR.value, arrayW.value, rangesCount.value, ranges.value);
 }
 #endif
@@ -1616,7 +1624,7 @@ typedef struct _14b4d8f4_imageW { _14b4d8f4_imageW(RedHandleImage value): value(
 typedef struct _14b4d8f4_setTo01 { _14b4d8f4_setTo01(unsigned value): value(value) {}; unsigned value; _14b4d8f4_setTo01(const _14b4d8f4_setTo01 &) = delete; } _14b4d8f4_setTo01;
 typedef struct _14b4d8f4_rangesCount { _14b4d8f4_rangesCount(unsigned value): value(value) {}; unsigned value; _14b4d8f4_rangesCount(const _14b4d8f4_rangesCount &) = delete; } _14b4d8f4_rangesCount;
 typedef struct _14b4d8f4_ranges { _14b4d8f4_ranges(RedCopyImageRange* value): value(value) {}; RedCopyImageRange* value; _14b4d8f4_ranges(const _14b4d8f4_ranges &) = delete; } _14b4d8f4_ranges;
-void np_redCallCopyImageToImage(_14b4d8f4_address & address, _14b4d8f4_calls & calls, _14b4d8f4_imageR & imageR, _14b4d8f4_setTo1 & setTo1, _14b4d8f4_imageW & imageW, _14b4d8f4_setTo01 & setTo01, _14b4d8f4_rangesCount & rangesCount, _14b4d8f4_ranges & ranges) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallCopyImageToImage(_14b4d8f4_address & address, _14b4d8f4_calls & calls, _14b4d8f4_imageR & imageR, _14b4d8f4_setTo1 & setTo1, _14b4d8f4_imageW & imageW, _14b4d8f4_setTo01 & setTo01, _14b4d8f4_rangesCount & rangesCount, _14b4d8f4_ranges & ranges) {
   address.value(calls.value, imageR.value, setTo1.value, imageW.value, setTo01.value, rangesCount.value, ranges.value);
 }
 #endif
@@ -1640,7 +1648,7 @@ typedef struct _e68e8cba_imageW { _e68e8cba_imageW(RedHandleImage value): value(
 typedef struct _e68e8cba_setTo1 { _e68e8cba_setTo1(unsigned value): value(value) {}; unsigned value; _e68e8cba_setTo1(const _e68e8cba_setTo1 &) = delete; } _e68e8cba_setTo1;
 typedef struct _e68e8cba_rangesCount { _e68e8cba_rangesCount(unsigned value): value(value) {}; unsigned value; _e68e8cba_rangesCount(const _e68e8cba_rangesCount &) = delete; } _e68e8cba_rangesCount;
 typedef struct _e68e8cba_ranges { _e68e8cba_ranges(RedCopyArrayImageRange* value): value(value) {}; RedCopyArrayImageRange* value; _e68e8cba_ranges(const _e68e8cba_ranges &) = delete; } _e68e8cba_ranges;
-void np_redCallCopyArrayToImage(_e68e8cba_address & address, _e68e8cba_calls & calls, _e68e8cba_arrayR & arrayR, _e68e8cba_imageW & imageW, _e68e8cba_setTo1 & setTo1, _e68e8cba_rangesCount & rangesCount, _e68e8cba_ranges & ranges) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallCopyArrayToImage(_e68e8cba_address & address, _e68e8cba_calls & calls, _e68e8cba_arrayR & arrayR, _e68e8cba_imageW & imageW, _e68e8cba_setTo1 & setTo1, _e68e8cba_rangesCount & rangesCount, _e68e8cba_ranges & ranges) {
   address.value(calls.value, arrayR.value, imageW.value, setTo1.value, rangesCount.value, ranges.value);
 }
 #endif
@@ -1664,7 +1672,7 @@ typedef struct _4f794fd6_setTo1 { _4f794fd6_setTo1(unsigned value): value(value)
 typedef struct _4f794fd6_arrayW { _4f794fd6_arrayW(RedHandleArray value): value(value) {}; RedHandleArray value; _4f794fd6_arrayW(const _4f794fd6_arrayW &) = delete; } _4f794fd6_arrayW;
 typedef struct _4f794fd6_rangesCount { _4f794fd6_rangesCount(unsigned value): value(value) {}; unsigned value; _4f794fd6_rangesCount(const _4f794fd6_rangesCount &) = delete; } _4f794fd6_rangesCount;
 typedef struct _4f794fd6_ranges { _4f794fd6_ranges(RedCopyArrayImageRange* value): value(value) {}; RedCopyArrayImageRange* value; _4f794fd6_ranges(const _4f794fd6_ranges &) = delete; } _4f794fd6_ranges;
-void np_redCallCopyImageToArray(_4f794fd6_address & address, _4f794fd6_calls & calls, _4f794fd6_imageR & imageR, _4f794fd6_setTo1 & setTo1, _4f794fd6_arrayW & arrayW, _4f794fd6_rangesCount & rangesCount, _4f794fd6_ranges & ranges) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallCopyImageToArray(_4f794fd6_address & address, _4f794fd6_calls & calls, _4f794fd6_imageR & imageR, _4f794fd6_setTo1 & setTo1, _4f794fd6_arrayW & arrayW, _4f794fd6_rangesCount & rangesCount, _4f794fd6_ranges & ranges) {
   address.value(calls.value, imageR.value, setTo1.value, arrayW.value, rangesCount.value, ranges.value);
 }
 #endif
@@ -1685,7 +1693,7 @@ typedef struct _1a3e7fa1_vertexCount { _1a3e7fa1_vertexCount(unsigned value): va
 typedef struct _1a3e7fa1_instanceCount { _1a3e7fa1_instanceCount(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_instanceCount(const _1a3e7fa1_instanceCount &) = delete; } _1a3e7fa1_instanceCount;
 typedef struct _1a3e7fa1_vertexFirst { _1a3e7fa1_vertexFirst(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_vertexFirst(const _1a3e7fa1_vertexFirst &) = delete; } _1a3e7fa1_vertexFirst;
 typedef struct _1a3e7fa1_instanceFirst { _1a3e7fa1_instanceFirst(unsigned value): value(value) {}; unsigned value; _1a3e7fa1_instanceFirst(const _1a3e7fa1_instanceFirst &) = delete; } _1a3e7fa1_instanceFirst;
-void np_redCallProcedure(_1a3e7fa1_address & address, _1a3e7fa1_calls & calls, _1a3e7fa1_vertexCount & vertexCount, _1a3e7fa1_instanceCount & instanceCount, _1a3e7fa1_vertexFirst & vertexFirst, _1a3e7fa1_instanceFirst & instanceFirst) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallProcedure(_1a3e7fa1_address & address, _1a3e7fa1_calls & calls, _1a3e7fa1_vertexCount & vertexCount, _1a3e7fa1_instanceCount & instanceCount, _1a3e7fa1_vertexFirst & vertexFirst, _1a3e7fa1_instanceFirst & instanceFirst) {
   address.value(calls.value, vertexCount.value, instanceCount.value, vertexFirst.value, instanceFirst.value);
 }
 #endif
@@ -1707,7 +1715,7 @@ typedef struct _46f9defa_instanceCount { _46f9defa_instanceCount(unsigned value)
 typedef struct _46f9defa_indexFirst { _46f9defa_indexFirst(unsigned value): value(value) {}; unsigned value; _46f9defa_indexFirst(const _46f9defa_indexFirst &) = delete; } _46f9defa_indexFirst;
 typedef struct _46f9defa_vertexBase { _46f9defa_vertexBase(int value): value(value) {}; int value; _46f9defa_vertexBase(const _46f9defa_vertexBase &) = delete; } _46f9defa_vertexBase;
 typedef struct _46f9defa_instanceFirst { _46f9defa_instanceFirst(unsigned value): value(value) {}; unsigned value; _46f9defa_instanceFirst(const _46f9defa_instanceFirst &) = delete; } _46f9defa_instanceFirst;
-void np_redCallProcedureIndexed(_46f9defa_address & address, _46f9defa_calls & calls, _46f9defa_indexCount & indexCount, _46f9defa_instanceCount & instanceCount, _46f9defa_indexFirst & indexFirst, _46f9defa_vertexBase & vertexBase, _46f9defa_instanceFirst & instanceFirst) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallProcedureIndexed(_46f9defa_address & address, _46f9defa_calls & calls, _46f9defa_indexCount & indexCount, _46f9defa_instanceCount & instanceCount, _46f9defa_indexFirst & indexFirst, _46f9defa_vertexBase & vertexBase, _46f9defa_instanceFirst & instanceFirst) {
   address.value(calls.value, indexCount.value, instanceCount.value, indexFirst.value, vertexBase.value, instanceFirst.value);
 }
 #endif
@@ -1725,7 +1733,7 @@ typedef struct _17fa22b3_calls { _17fa22b3_calls(RedHandleCalls value): value(va
 typedef struct _17fa22b3_workgroupsCountX { _17fa22b3_workgroupsCountX(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountX(const _17fa22b3_workgroupsCountX &) = delete; } _17fa22b3_workgroupsCountX;
 typedef struct _17fa22b3_workgroupsCountY { _17fa22b3_workgroupsCountY(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountY(const _17fa22b3_workgroupsCountY &) = delete; } _17fa22b3_workgroupsCountY;
 typedef struct _17fa22b3_workgroupsCountZ { _17fa22b3_workgroupsCountZ(unsigned value): value(value) {}; unsigned value; _17fa22b3_workgroupsCountZ(const _17fa22b3_workgroupsCountZ &) = delete; } _17fa22b3_workgroupsCountZ;
-void np_redCallProcedureCompute(_17fa22b3_address & address, _17fa22b3_calls & calls, _17fa22b3_workgroupsCountX & workgroupsCountX, _17fa22b3_workgroupsCountY & workgroupsCountY, _17fa22b3_workgroupsCountZ & workgroupsCountZ) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallProcedureCompute(_17fa22b3_address & address, _17fa22b3_calls & calls, _17fa22b3_workgroupsCountX & workgroupsCountX, _17fa22b3_workgroupsCountY & workgroupsCountY, _17fa22b3_workgroupsCountZ & workgroupsCountZ) {
   address.value(calls.value, workgroupsCountX.value, workgroupsCountY.value, workgroupsCountZ.value);
 }
 #endif
@@ -1741,7 +1749,7 @@ typedef struct _16d79404_address { _16d79404_address(RedTypeProcedureCallSetProc
 typedef struct _16d79404_calls { _16d79404_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _16d79404_calls(const _16d79404_calls &) = delete; } _16d79404_calls;
 typedef struct _16d79404_procedureType { _16d79404_procedureType(RedProcedureType value): value(value) {}; RedProcedureType value; _16d79404_procedureType(const _16d79404_procedureType &) = delete; } _16d79404_procedureType;
 typedef struct _16d79404_procedure { _16d79404_procedure(RedHandleProcedure value): value(value) {}; RedHandleProcedure value; _16d79404_procedure(const _16d79404_procedure &) = delete; } _16d79404_procedure;
-void np_redCallSetProcedure(_16d79404_address & address, _16d79404_calls & calls, _16d79404_procedureType & procedureType, _16d79404_procedure & procedure) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedure(_16d79404_address & address, _16d79404_calls & calls, _16d79404_procedureType & procedureType, _16d79404_procedure & procedure) {
   address.value(calls.value, procedureType.value, procedure.value);
 }
 #endif
@@ -1759,7 +1767,7 @@ typedef struct _fc588166_calls { _fc588166_calls(RedHandleCalls value): value(va
 typedef struct _fc588166_array { _fc588166_array(RedHandleArray value): value(value) {}; RedHandleArray value; _fc588166_array(const _fc588166_array &) = delete; } _fc588166_array;
 typedef struct _fc588166_setTo0 { _fc588166_setTo0(uint64_t value): value(value) {}; uint64_t value; _fc588166_setTo0(const _fc588166_setTo0 &) = delete; } _fc588166_setTo0;
 typedef struct _fc588166_setTo1 { _fc588166_setTo1(unsigned value): value(value) {}; unsigned value; _fc588166_setTo1(const _fc588166_setTo1 &) = delete; } _fc588166_setTo1;
-void np_redCallSetProcedureIndices(_fc588166_address & address, _fc588166_calls & calls, _fc588166_array & array, _fc588166_setTo0 & setTo0, _fc588166_setTo1 & setTo1) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureIndices(_fc588166_address & address, _fc588166_calls & calls, _fc588166_array & array, _fc588166_setTo0 & setTo0, _fc588166_setTo1 & setTo1) {
   address.value(calls.value, array.value, setTo0.value, setTo1.value);
 }
 #endif
@@ -1781,7 +1789,7 @@ typedef struct _cba9ac89_visibleToStages { _cba9ac89_visibleToStages(RedVisibleT
 typedef struct _cba9ac89_variablesBytesFirst { _cba9ac89_variablesBytesFirst(unsigned value): value(value) {}; unsigned value; _cba9ac89_variablesBytesFirst(const _cba9ac89_variablesBytesFirst &) = delete; } _cba9ac89_variablesBytesFirst;
 typedef struct _cba9ac89_dataBytesCount { _cba9ac89_dataBytesCount(unsigned value): value(value) {}; unsigned value; _cba9ac89_dataBytesCount(const _cba9ac89_dataBytesCount &) = delete; } _cba9ac89_dataBytesCount;
 typedef struct _cba9ac89_data { _cba9ac89_data(void* value): value(value) {}; void* value; _cba9ac89_data(const _cba9ac89_data &) = delete; } _cba9ac89_data;
-void np_redCallSetProcedureParametersVariables(_cba9ac89_address & address, _cba9ac89_calls & calls, _cba9ac89_procedureParameters & procedureParameters, _cba9ac89_visibleToStages & visibleToStages, _cba9ac89_variablesBytesFirst & variablesBytesFirst, _cba9ac89_dataBytesCount & dataBytesCount, _cba9ac89_data & data) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureParametersVariables(_cba9ac89_address & address, _cba9ac89_calls & calls, _cba9ac89_procedureParameters & procedureParameters, _cba9ac89_visibleToStages & visibleToStages, _cba9ac89_variablesBytesFirst & variablesBytesFirst, _cba9ac89_dataBytesCount & dataBytesCount, _cba9ac89_data & data) {
   address.value(calls.value, procedureParameters.value, visibleToStages.value, variablesBytesFirst.value, dataBytesCount.value, data.value);
 }
 #endif
@@ -1807,7 +1815,7 @@ typedef struct _b6fcba5e_structsCount { _b6fcba5e_structsCount(unsigned value): 
 typedef struct _b6fcba5e_structs { _b6fcba5e_structs(RedHandleStruct* value): value(value) {}; RedHandleStruct* value; _b6fcba5e_structs(const _b6fcba5e_structs &) = delete; } _b6fcba5e_structs;
 typedef struct _b6fcba5e_setTo0 { _b6fcba5e_setTo0(unsigned value): value(value) {}; unsigned value; _b6fcba5e_setTo0(const _b6fcba5e_setTo0 &) = delete; } _b6fcba5e_setTo0;
 typedef struct _b6fcba5e_setTo00 { _b6fcba5e_setTo00(size_t value): value(value) {}; size_t value; _b6fcba5e_setTo00(const _b6fcba5e_setTo00 &) = delete; } _b6fcba5e_setTo00;
-void np_redCallSetProcedureParametersStructs(_b6fcba5e_address & address, _b6fcba5e_calls & calls, _b6fcba5e_procedureType & procedureType, _b6fcba5e_procedureParameters & procedureParameters, _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst & procedureParametersDeclarationStructsDeclarationsFirst, _b6fcba5e_structsCount & structsCount, _b6fcba5e_structs & structs, _b6fcba5e_setTo0 & setTo0, _b6fcba5e_setTo00 & setTo00) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureParametersStructs(_b6fcba5e_address & address, _b6fcba5e_calls & calls, _b6fcba5e_procedureType & procedureType, _b6fcba5e_procedureParameters & procedureParameters, _b6fcba5e_procedureParametersDeclarationStructsDeclarationsFirst & procedureParametersDeclarationStructsDeclarationsFirst, _b6fcba5e_structsCount & structsCount, _b6fcba5e_structs & structs, _b6fcba5e_setTo0 & setTo0, _b6fcba5e_setTo00 & setTo00) {
   address.value(calls.value, procedureType.value, procedureParameters.value, procedureParametersDeclarationStructsDeclarationsFirst.value, structsCount.value, structs.value, setTo0.value, setTo00.value);
 }
 #endif
@@ -1829,7 +1837,7 @@ typedef struct _63e4f50e_procedureParameters { _63e4f50e_procedureParameters(Red
 typedef struct _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount { _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount(unsigned value): value(value) {}; unsigned value; _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount(const _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount &) = delete; } _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount;
 typedef struct _63e4f50e_handlesCount { _63e4f50e_handlesCount(unsigned value): value(value) {}; unsigned value; _63e4f50e_handlesCount(const _63e4f50e_handlesCount &) = delete; } _63e4f50e_handlesCount;
 typedef struct _63e4f50e_handles { _63e4f50e_handles(RedProcedureParametersHandle* value): value(value) {}; RedProcedureParametersHandle* value; _63e4f50e_handles(const _63e4f50e_handles &) = delete; } _63e4f50e_handles;
-void np_redCallSetProcedureParametersHandles(_63e4f50e_address & address, _63e4f50e_calls & calls, _63e4f50e_procedureType & procedureType, _63e4f50e_procedureParameters & procedureParameters, _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount & procedureParametersDeclarationStructsDeclarationsCount, _63e4f50e_handlesCount & handlesCount, _63e4f50e_handles & handles) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureParametersHandles(_63e4f50e_address & address, _63e4f50e_calls & calls, _63e4f50e_procedureType & procedureType, _63e4f50e_procedureParameters & procedureParameters, _63e4f50e_procedureParametersDeclarationStructsDeclarationsCount & procedureParametersDeclarationStructsDeclarationsCount, _63e4f50e_handlesCount & handlesCount, _63e4f50e_handles & handles) {
   address.value(calls.value, procedureType.value, procedureParameters.value, procedureParametersDeclarationStructsDeclarationsCount.value, handlesCount.value, handles.value);
 }
 #endif
@@ -1848,7 +1856,7 @@ typedef struct _704bca01_calls { _704bca01_calls(RedHandleCalls value): value(va
 typedef struct _704bca01_constantFactor { _704bca01_constantFactor(float value): value(value) {}; float value; _704bca01_constantFactor(const _704bca01_constantFactor &) = delete; } _704bca01_constantFactor;
 typedef struct _704bca01_clamp { _704bca01_clamp(float value): value(value) {}; float value; _704bca01_clamp(const _704bca01_clamp &) = delete; } _704bca01_clamp;
 typedef struct _704bca01_slopeFactor { _704bca01_slopeFactor(float value): value(value) {}; float value; _704bca01_slopeFactor(const _704bca01_slopeFactor &) = delete; } _704bca01_slopeFactor;
-void np_redCallSetDynamicDepthBias(_704bca01_address & address, _704bca01_calls & calls, _704bca01_constantFactor & constantFactor, _704bca01_clamp & clamp, _704bca01_slopeFactor & slopeFactor) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicDepthBias(_704bca01_address & address, _704bca01_calls & calls, _704bca01_constantFactor & constantFactor, _704bca01_clamp & clamp, _704bca01_slopeFactor & slopeFactor) {
   address.value(calls.value, constantFactor.value, clamp.value, slopeFactor.value);
 }
 #endif
@@ -1866,7 +1874,7 @@ typedef struct _0b3dca08_address { _0b3dca08_address(RedTypeProcedureCallSetDyna
 typedef struct _0b3dca08_calls { _0b3dca08_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _0b3dca08_calls(const _0b3dca08_calls &) = delete; } _0b3dca08_calls;
 typedef struct _0b3dca08_min { _0b3dca08_min(float value): value(value) {}; float value; _0b3dca08_min(const _0b3dca08_min &) = delete; } _0b3dca08_min;
 typedef struct _0b3dca08_max { _0b3dca08_max(float value): value(value) {}; float value; _0b3dca08_max(const _0b3dca08_max &) = delete; } _0b3dca08_max;
-void np_redCallSetDynamicDepthBounds(_0b3dca08_address & address, _0b3dca08_calls & calls, _0b3dca08_min & min, _0b3dca08_max & max) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicDepthBounds(_0b3dca08_address & address, _0b3dca08_calls & calls, _0b3dca08_min & min, _0b3dca08_max & max) {
   address.value(calls.value, min.value, max.value);
 }
 #endif
@@ -1884,7 +1892,7 @@ typedef struct _49fbcd04_address { _49fbcd04_address(RedTypeProcedureCallSetDyna
 typedef struct _49fbcd04_calls { _49fbcd04_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _49fbcd04_calls(const _49fbcd04_calls &) = delete; } _49fbcd04_calls;
 typedef struct _49fbcd04_face { _49fbcd04_face(RedStencilFace value): value(value) {}; RedStencilFace value; _49fbcd04_face(const _49fbcd04_face &) = delete; } _49fbcd04_face;
 typedef struct _49fbcd04_compareMask { _49fbcd04_compareMask(unsigned value): value(value) {}; unsigned value; _49fbcd04_compareMask(const _49fbcd04_compareMask &) = delete; } _49fbcd04_compareMask;
-void np_redCallSetDynamicStencilCompareMask(_49fbcd04_address & address, _49fbcd04_calls & calls, _49fbcd04_face & face, _49fbcd04_compareMask & compareMask) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicStencilCompareMask(_49fbcd04_address & address, _49fbcd04_calls & calls, _49fbcd04_face & face, _49fbcd04_compareMask & compareMask) {
   address.value(calls.value, face.value, compareMask.value);
 }
 #endif
@@ -1902,7 +1910,7 @@ typedef struct _b029fa3c_address { _b029fa3c_address(RedTypeProcedureCallSetDyna
 typedef struct _b029fa3c_calls { _b029fa3c_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _b029fa3c_calls(const _b029fa3c_calls &) = delete; } _b029fa3c_calls;
 typedef struct _b029fa3c_face { _b029fa3c_face(RedStencilFace value): value(value) {}; RedStencilFace value; _b029fa3c_face(const _b029fa3c_face &) = delete; } _b029fa3c_face;
 typedef struct _b029fa3c_writeMask { _b029fa3c_writeMask(unsigned value): value(value) {}; unsigned value; _b029fa3c_writeMask(const _b029fa3c_writeMask &) = delete; } _b029fa3c_writeMask;
-void np_redCallSetDynamicStencilWriteMask(_b029fa3c_address & address, _b029fa3c_calls & calls, _b029fa3c_face & face, _b029fa3c_writeMask & writeMask) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicStencilWriteMask(_b029fa3c_address & address, _b029fa3c_calls & calls, _b029fa3c_face & face, _b029fa3c_writeMask & writeMask) {
   address.value(calls.value, face.value, writeMask.value);
 }
 #endif
@@ -1919,7 +1927,7 @@ typedef struct _2d80c0fb_address { _2d80c0fb_address(RedTypeProcedureCallSetDyna
 typedef struct _2d80c0fb_calls { _2d80c0fb_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _2d80c0fb_calls(const _2d80c0fb_calls &) = delete; } _2d80c0fb_calls;
 typedef struct _2d80c0fb_face { _2d80c0fb_face(RedStencilFace value): value(value) {}; RedStencilFace value; _2d80c0fb_face(const _2d80c0fb_face &) = delete; } _2d80c0fb_face;
 typedef struct _2d80c0fb_reference { _2d80c0fb_reference(unsigned value): value(value) {}; unsigned value; _2d80c0fb_reference(const _2d80c0fb_reference &) = delete; } _2d80c0fb_reference;
-void np_redCallSetDynamicStencilReference(_2d80c0fb_address & address, _2d80c0fb_calls & calls, _2d80c0fb_face & face, _2d80c0fb_reference & reference) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicStencilReference(_2d80c0fb_address & address, _2d80c0fb_calls & calls, _2d80c0fb_face & face, _2d80c0fb_reference & reference) {
   address.value(calls.value, face.value, reference.value);
 }
 #endif
@@ -1933,7 +1941,7 @@ void np_redCallSetDynamicStencilReference(_2d80c0fb_address & address, _2d80c0fb
 typedef struct _8f3db010_address { _8f3db010_address(RedTypeProcedureCallSetDynamicBlendConstants value): value(value) {}; RedTypeProcedureCallSetDynamicBlendConstants value; _8f3db010_address(const _8f3db010_address &) = delete; } _8f3db010_address;
 typedef struct _8f3db010_calls { _8f3db010_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _8f3db010_calls(const _8f3db010_calls &) = delete; } _8f3db010_calls;
 typedef struct _8f3db010_blendConstants { _8f3db010_blendConstants(float* value): value(value) {}; float* value; _8f3db010_blendConstants(const _8f3db010_blendConstants &) = delete; } _8f3db010_blendConstants;
-void np_redCallSetDynamicBlendConstants(_8f3db010_address & address, _8f3db010_calls & calls, _8f3db010_blendConstants & blendConstants) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicBlendConstants(_8f3db010_address & address, _8f3db010_calls & calls, _8f3db010_blendConstants & blendConstants) {
   address.value(calls.value, blendConstants.value);
 }
 #endif
@@ -1957,7 +1965,7 @@ typedef struct _4f3a2630_width { _4f3a2630_width(float value): value(value) {}; 
 typedef struct _4f3a2630_height { _4f3a2630_height(float value): value(value) {}; float value; _4f3a2630_height(const _4f3a2630_height &) = delete; } _4f3a2630_height;
 typedef struct _4f3a2630_depthMin { _4f3a2630_depthMin(float value): value(value) {}; float value; _4f3a2630_depthMin(const _4f3a2630_depthMin &) = delete; } _4f3a2630_depthMin;
 typedef struct _4f3a2630_depthMax { _4f3a2630_depthMax(float value): value(value) {}; float value; _4f3a2630_depthMax(const _4f3a2630_depthMax &) = delete; } _4f3a2630_depthMax;
-void np_redCallSetDynamicViewport(_4f3a2630_address & address, _4f3a2630_calls & calls, _4f3a2630_x & x, _4f3a2630_y & y, _4f3a2630_width & width, _4f3a2630_height & height, _4f3a2630_depthMin & depthMin, _4f3a2630_depthMax & depthMax) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicViewport(_4f3a2630_address & address, _4f3a2630_calls & calls, _4f3a2630_x & x, _4f3a2630_y & y, _4f3a2630_width & width, _4f3a2630_height & height, _4f3a2630_depthMin & depthMin, _4f3a2630_depthMax & depthMax) {
   redCallSetDynamicViewport(address.value, calls.value, x.value, y.value, width.value, height.value, depthMin.value, depthMax.value);
 }
 #endif
@@ -1977,7 +1985,7 @@ typedef struct _e2155dcb_x { _e2155dcb_x(int value): value(value) {}; int value;
 typedef struct _e2155dcb_y { _e2155dcb_y(int value): value(value) {}; int value; _e2155dcb_y(const _e2155dcb_y &) = delete; } _e2155dcb_y;
 typedef struct _e2155dcb_width { _e2155dcb_width(unsigned value): value(value) {}; unsigned value; _e2155dcb_width(const _e2155dcb_width &) = delete; } _e2155dcb_width;
 typedef struct _e2155dcb_height { _e2155dcb_height(unsigned value): value(value) {}; unsigned value; _e2155dcb_height(const _e2155dcb_height &) = delete; } _e2155dcb_height;
-void np_redCallSetDynamicScissor(_e2155dcb_address & address, _e2155dcb_calls & calls, _e2155dcb_x & x, _e2155dcb_y & y, _e2155dcb_width & width, _e2155dcb_height & height) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetDynamicScissor(_e2155dcb_address & address, _e2155dcb_calls & calls, _e2155dcb_x & x, _e2155dcb_y & y, _e2155dcb_width & width, _e2155dcb_height & height) {
   redCallSetDynamicScissor(address.value, calls.value, x.value, y.value, width.value, height.value);
 }
 #endif
@@ -1993,7 +2001,7 @@ typedef struct _e5f0da72_address { _e5f0da72_address(RedTypeProcedureAddressCall
 typedef struct _e5f0da72_calls { _e5f0da72_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _e5f0da72_calls(const _e5f0da72_calls &) = delete; } _e5f0da72_calls;
 typedef struct _e5f0da72_structsMemory { _e5f0da72_structsMemory(RedHandleStructsMemory value): value(value) {}; RedHandleStructsMemory value; _e5f0da72_structsMemory(const _e5f0da72_structsMemory &) = delete; } _e5f0da72_structsMemory;
 typedef struct _e5f0da72_structsMemorySamplers { _e5f0da72_structsMemorySamplers(RedHandleStructsMemory value): value(value) {}; RedHandleStructsMemory value; _e5f0da72_structsMemorySamplers(const _e5f0da72_structsMemorySamplers &) = delete; } _e5f0da72_structsMemorySamplers;
-void np_redCallSetStructsMemory(_e5f0da72_address & address, _e5f0da72_calls & calls, _e5f0da72_structsMemory & structsMemory, _e5f0da72_structsMemorySamplers & structsMemorySamplers) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetStructsMemory(_e5f0da72_address & address, _e5f0da72_calls & calls, _e5f0da72_structsMemory & structsMemory, _e5f0da72_structsMemorySamplers & structsMemorySamplers) {
   redCallSetStructsMemory(address.value, calls.value, structsMemory.value, structsMemorySamplers.value);
 }
 #endif
@@ -2009,7 +2017,7 @@ typedef struct _a823169a_address { _a823169a_address(RedTypeProcedureAddressCall
 typedef struct _a823169a_calls { _a823169a_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _a823169a_calls(const _a823169a_calls &) = delete; } _a823169a_calls;
 typedef struct _a823169a_procedureType { _a823169a_procedureType(RedProcedureType value): value(value) {}; RedProcedureType value; _a823169a_procedureType(const _a823169a_procedureType &) = delete; } _a823169a_procedureType;
 typedef struct _a823169a_procedureParameters { _a823169a_procedureParameters(RedHandleProcedureParameters value): value(value) {}; RedHandleProcedureParameters value; _a823169a_procedureParameters(const _a823169a_procedureParameters &) = delete; } _a823169a_procedureParameters;
-void np_redCallSetProcedureParameters(_a823169a_address & address, _a823169a_calls & calls, _a823169a_procedureType & procedureType, _a823169a_procedureParameters & procedureParameters) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureParameters(_a823169a_address & address, _a823169a_calls & calls, _a823169a_procedureType & procedureType, _a823169a_procedureParameters & procedureParameters) {
   redCallSetProcedureParameters(address.value, calls.value, procedureType.value, procedureParameters.value);
 }
 #endif
@@ -2046,7 +2054,7 @@ typedef struct _be0adeb6_stencilClearValue { _be0adeb6_stencilClearValue(unsigne
 typedef struct _be0adeb6_colorsClearValuesFloat { _be0adeb6_colorsClearValuesFloat(RedColorsClearValuesFloat* value): value(value) {}; RedColorsClearValuesFloat* value; _be0adeb6_colorsClearValuesFloat(const _be0adeb6_colorsClearValuesFloat &) = delete; } _be0adeb6_colorsClearValuesFloat;
 typedef struct _be0adeb6_colorsClearValuesSint { _be0adeb6_colorsClearValuesSint(RedColorsClearValuesSint* value): value(value) {}; RedColorsClearValuesSint* value; _be0adeb6_colorsClearValuesSint(const _be0adeb6_colorsClearValuesSint &) = delete; } _be0adeb6_colorsClearValuesSint;
 typedef struct _be0adeb6_colorsClearValuesUint { _be0adeb6_colorsClearValuesUint(RedColorsClearValuesUint* value): value(value) {}; RedColorsClearValuesUint* value; _be0adeb6_colorsClearValuesUint(const _be0adeb6_colorsClearValuesUint &) = delete; } _be0adeb6_colorsClearValuesUint;
-void np_redCallSetProcedureOutput(_be0adeb6_address & address, _be0adeb6_calls & calls, _be0adeb6_outputDeclaration & outputDeclaration, _be0adeb6_output & output, _be0adeb6_inlineOutput & inlineOutput, _be0adeb6_outputWidth & outputWidth, _be0adeb6_outputHeight & outputHeight, _be0adeb6_outputDepthStencilEnable & outputDepthStencilEnable, _be0adeb6_outputColorsCount & outputColorsCount, _be0adeb6_depthClearValue & depthClearValue, _be0adeb6_stencilClearValue & stencilClearValue, _be0adeb6_colorsClearValuesFloat & colorsClearValuesFloat, _be0adeb6_colorsClearValuesSint & colorsClearValuesSint, _be0adeb6_colorsClearValuesUint & colorsClearValuesUint) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallSetProcedureOutput(_be0adeb6_address & address, _be0adeb6_calls & calls, _be0adeb6_outputDeclaration & outputDeclaration, _be0adeb6_output & output, _be0adeb6_inlineOutput & inlineOutput, _be0adeb6_outputWidth & outputWidth, _be0adeb6_outputHeight & outputHeight, _be0adeb6_outputDepthStencilEnable & outputDepthStencilEnable, _be0adeb6_outputColorsCount & outputColorsCount, _be0adeb6_depthClearValue & depthClearValue, _be0adeb6_stencilClearValue & stencilClearValue, _be0adeb6_colorsClearValuesFloat & colorsClearValuesFloat, _be0adeb6_colorsClearValuesSint & colorsClearValuesSint, _be0adeb6_colorsClearValuesUint & colorsClearValuesUint) {
   redCallSetProcedureOutput(address.value, calls.value, outputDeclaration.value, output.value, inlineOutput.value, outputWidth.value, outputHeight.value, outputDepthStencilEnable.value, outputColorsCount.value, depthClearValue.value, stencilClearValue.value, colorsClearValuesFloat.value, colorsClearValuesSint.value, colorsClearValuesUint.value);
 }
 #endif
@@ -2060,7 +2068,7 @@ void np_redCallSetProcedureOutput(_be0adeb6_address & address, _be0adeb6_calls &
 #else
 typedef struct _0e351483_address { _0e351483_address(RedTypeProcedureAddressCallEndProcedureOutput value): value(value) {}; RedTypeProcedureAddressCallEndProcedureOutput value; _0e351483_address(const _0e351483_address &) = delete; } _0e351483_address;
 typedef struct _0e351483_calls { _0e351483_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _0e351483_calls(const _0e351483_calls &) = delete; } _0e351483_calls;
-void np_redCallEndProcedureOutput(_0e351483_address & address, _0e351483_calls & calls) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallEndProcedureOutput(_0e351483_address & address, _0e351483_calls & calls) {
   redCallEndProcedureOutput(address.value, calls.value);
 }
 #endif
@@ -2094,7 +2102,7 @@ typedef struct _94990c3d_aliases { _94990c3d_aliases(RedAlias* value): value(val
 typedef struct _94990c3d_ordersCount { _94990c3d_ordersCount(unsigned value): value(value) {}; unsigned value; _94990c3d_ordersCount(const _94990c3d_ordersCount &) = delete; } _94990c3d_ordersCount;
 typedef struct _94990c3d_orders { _94990c3d_orders(RedOrder* value): value(value) {}; RedOrder* value; _94990c3d_orders(const _94990c3d_orders &) = delete; } _94990c3d_orders;
 typedef struct _94990c3d_dependencyByRegion { _94990c3d_dependencyByRegion(RedBool32 value): value(value) {}; RedBool32 value; _94990c3d_dependencyByRegion(const _94990c3d_dependencyByRegion &) = delete; } _94990c3d_dependencyByRegion;
-void np_redCallUsageAliasOrderBarrier(_94990c3d_address & address, _94990c3d_calls & calls, _94990c3d_context & context, _94990c3d_arrayUsagesCount & arrayUsagesCount, _94990c3d_arrayUsages & arrayUsages, _94990c3d_imageUsagesCount & imageUsagesCount, _94990c3d_imageUsages & imageUsages, _94990c3d_aliasesCount & aliasesCount, _94990c3d_aliases & aliases, _94990c3d_ordersCount & ordersCount, _94990c3d_orders & orders, _94990c3d_dependencyByRegion & dependencyByRegion) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallUsageAliasOrderBarrier(_94990c3d_address & address, _94990c3d_calls & calls, _94990c3d_context & context, _94990c3d_arrayUsagesCount & arrayUsagesCount, _94990c3d_arrayUsages & arrayUsages, _94990c3d_imageUsagesCount & imageUsagesCount, _94990c3d_imageUsages & imageUsages, _94990c3d_aliasesCount & aliasesCount, _94990c3d_aliases & aliases, _94990c3d_ordersCount & ordersCount, _94990c3d_orders & orders, _94990c3d_dependencyByRegion & dependencyByRegion) {
   redCallUsageAliasOrderBarrier(address.value, calls.value, context.value, arrayUsagesCount.value, arrayUsages.value, imageUsagesCount.value, imageUsages.value, aliasesCount.value, aliases.value, ordersCount.value, orders.value, dependencyByRegion.value);
 }
 #endif
@@ -2109,7 +2117,7 @@ void np_redCallUsageAliasOrderBarrier(_94990c3d_address & address, _94990c3d_cal
 typedef struct _df7c2ff8_address { _df7c2ff8_address(RedTypeProcedureAddressCallMark value): value(value) {}; RedTypeProcedureAddressCallMark value; _df7c2ff8_address(const _df7c2ff8_address &) = delete; } _df7c2ff8_address;
 typedef struct _df7c2ff8_calls { _df7c2ff8_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _df7c2ff8_calls(const _df7c2ff8_calls &) = delete; } _df7c2ff8_calls;
 typedef struct _df7c2ff8_mark { _df7c2ff8_mark(char* value): value(value) {}; char* value; _df7c2ff8_mark(const _df7c2ff8_mark &) = delete; } _df7c2ff8_mark;
-void np_redCallMark(_df7c2ff8_address & address, _df7c2ff8_calls & calls, _df7c2ff8_mark & mark) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallMark(_df7c2ff8_address & address, _df7c2ff8_calls & calls, _df7c2ff8_mark & mark) {
   redCallMark(address.value, calls.value, mark.value);
 }
 #endif
@@ -2123,7 +2131,7 @@ void np_redCallMark(_df7c2ff8_address & address, _df7c2ff8_calls & calls, _df7c2
 typedef struct _601d2b48_address { _601d2b48_address(RedTypeProcedureAddressCallMarkSet value): value(value) {}; RedTypeProcedureAddressCallMarkSet value; _601d2b48_address(const _601d2b48_address &) = delete; } _601d2b48_address;
 typedef struct _601d2b48_calls { _601d2b48_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _601d2b48_calls(const _601d2b48_calls &) = delete; } _601d2b48_calls;
 typedef struct _601d2b48_mark { _601d2b48_mark(char* value): value(value) {}; char* value; _601d2b48_mark(const _601d2b48_mark &) = delete; } _601d2b48_mark;
-void np_redCallMarkSet(_601d2b48_address & address, _601d2b48_calls & calls, _601d2b48_mark & mark) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallMarkSet(_601d2b48_address & address, _601d2b48_calls & calls, _601d2b48_mark & mark) {
   redCallMarkSet(address.value, calls.value, mark.value);
 }
 #endif
@@ -2135,7 +2143,7 @@ void np_redCallMarkSet(_601d2b48_address & address, _601d2b48_calls & calls, _60
 #else
 typedef struct _013a0119_address { _013a0119_address(RedTypeProcedureAddressCallMarkEnd value): value(value) {}; RedTypeProcedureAddressCallMarkEnd value; _013a0119_address(const _013a0119_address &) = delete; } _013a0119_address;
 typedef struct _013a0119_calls { _013a0119_calls(RedHandleCalls value): value(value) {}; RedHandleCalls value; _013a0119_calls(const _013a0119_calls &) = delete; } _013a0119_calls;
-void np_redCallMarkEnd(_013a0119_address & address, _013a0119_calls & calls) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redCallMarkEnd(_013a0119_address & address, _013a0119_calls & calls) {
   redCallMarkEnd(address.value, calls.value);
 }
 #endif
@@ -2163,7 +2171,7 @@ typedef struct _dcc70647_outStatuses { _dcc70647_outStatuses(RedStatuses* value)
 typedef struct _dcc70647_optionalFile { _dcc70647_optionalFile(char* value): value(value) {}; char* value; _dcc70647_optionalFile(const _dcc70647_optionalFile &) = delete; } _dcc70647_optionalFile;
 typedef struct _dcc70647_optionalLine { _dcc70647_optionalLine(int value): value(value) {}; int value; _dcc70647_optionalLine(const _dcc70647_optionalLine &) = delete; } _dcc70647_optionalLine;
 typedef struct _dcc70647_optionalUserData { _dcc70647_optionalUserData(void* value): value(value) {}; void* value; _dcc70647_optionalUserData(const _dcc70647_optionalUserData &) = delete; } _dcc70647_optionalUserData;
-void np_redQueueSubmit(_dcc70647_context & context, _dcc70647_gpu & gpu, _dcc70647_queue & queue, _dcc70647_timelinesCount & timelinesCount, _dcc70647_timelines & timelines, _dcc70647_signalCpuSignal & signalCpuSignal, _dcc70647_outStatuses & outStatuses, _dcc70647_optionalFile & optionalFile, _dcc70647_optionalLine & optionalLine, _dcc70647_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redQueueSubmit(_dcc70647_context & context, _dcc70647_gpu & gpu, _dcc70647_queue & queue, _dcc70647_timelinesCount & timelinesCount, _dcc70647_timelines & timelines, _dcc70647_signalCpuSignal & signalCpuSignal, _dcc70647_outStatuses & outStatuses, _dcc70647_optionalFile & optionalFile, _dcc70647_optionalLine & optionalLine, _dcc70647_optionalUserData & optionalUserData) {
   redQueueSubmit(context.value, gpu.value, queue.value, timelinesCount.value, timelines.value, signalCpuSignal.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -2179,7 +2187,7 @@ typedef struct _3fee9347_mark { _3fee9347_mark(char* value): value(value) {}; ch
 typedef struct _3fee9347_optionalFile { _3fee9347_optionalFile(char* value): value(value) {}; char* value; _3fee9347_optionalFile(const _3fee9347_optionalFile &) = delete; } _3fee9347_optionalFile;
 typedef struct _3fee9347_optionalLine { _3fee9347_optionalLine(int value): value(value) {}; int value; _3fee9347_optionalLine(const _3fee9347_optionalLine &) = delete; } _3fee9347_optionalLine;
 typedef struct _3fee9347_optionalUserData { _3fee9347_optionalUserData(void* value): value(value) {}; void* value; _3fee9347_optionalUserData(const _3fee9347_optionalUserData &) = delete; } _3fee9347_optionalUserData;
-void np_redMark(_3fee9347_mark & mark, _3fee9347_optionalFile & optionalFile, _3fee9347_optionalLine & optionalLine, _3fee9347_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMark(_3fee9347_mark & mark, _3fee9347_optionalFile & optionalFile, _3fee9347_optionalLine & optionalLine, _3fee9347_optionalUserData & optionalUserData) {
   redMark(mark.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -2195,7 +2203,7 @@ typedef struct _cffa758d_mark { _cffa758d_mark(char* value): value(value) {}; ch
 typedef struct _cffa758d_optionalFile { _cffa758d_optionalFile(char* value): value(value) {}; char* value; _cffa758d_optionalFile(const _cffa758d_optionalFile &) = delete; } _cffa758d_optionalFile;
 typedef struct _cffa758d_optionalLine { _cffa758d_optionalLine(int value): value(value) {}; int value; _cffa758d_optionalLine(const _cffa758d_optionalLine &) = delete; } _cffa758d_optionalLine;
 typedef struct _cffa758d_optionalUserData { _cffa758d_optionalUserData(void* value): value(value) {}; void* value; _cffa758d_optionalUserData(const _cffa758d_optionalUserData &) = delete; } _cffa758d_optionalUserData;
-void np_redMarkSet(_cffa758d_mark & mark, _cffa758d_optionalFile & optionalFile, _cffa758d_optionalLine & optionalLine, _cffa758d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMarkSet(_cffa758d_mark & mark, _cffa758d_optionalFile & optionalFile, _cffa758d_optionalLine & optionalLine, _cffa758d_optionalUserData & optionalUserData) {
   redMarkSet(mark.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -2209,7 +2217,7 @@ void np_redMarkSet(_cffa758d_mark & mark, _cffa758d_optionalFile & optionalFile,
 typedef struct _62baadd3_optionalFile { _62baadd3_optionalFile(char* value): value(value) {}; char* value; _62baadd3_optionalFile(const _62baadd3_optionalFile &) = delete; } _62baadd3_optionalFile;
 typedef struct _62baadd3_optionalLine { _62baadd3_optionalLine(int value): value(value) {}; int value; _62baadd3_optionalLine(const _62baadd3_optionalLine &) = delete; } _62baadd3_optionalLine;
 typedef struct _62baadd3_optionalUserData { _62baadd3_optionalUserData(void* value): value(value) {}; void* value; _62baadd3_optionalUserData(const _62baadd3_optionalUserData &) = delete; } _62baadd3_optionalUserData;
-void np_redMarkEnd(_62baadd3_optionalFile & optionalFile, _62baadd3_optionalLine & optionalLine, _62baadd3_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redMarkEnd(_62baadd3_optionalFile & optionalFile, _62baadd3_optionalLine & optionalLine, _62baadd3_optionalUserData & optionalUserData) {
   redMarkEnd(optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -2245,7 +2253,7 @@ typedef struct _27d7343d_outStatuses { _27d7343d_outStatuses(RedStatuses* value)
 typedef struct _27d7343d_optionalFile { _27d7343d_optionalFile(char* value): value(value) {}; char* value; _27d7343d_optionalFile(const _27d7343d_optionalFile &) = delete; } _27d7343d_optionalFile;
 typedef struct _27d7343d_optionalLine { _27d7343d_optionalLine(int value): value(value) {}; int value; _27d7343d_optionalLine(const _27d7343d_optionalLine &) = delete; } _27d7343d_optionalLine;
 typedef struct _27d7343d_optionalUserData { _27d7343d_optionalUserData(void* value): value(value) {}; void* value; _27d7343d_optionalUserData(const _27d7343d_optionalUserData &) = delete; } _27d7343d_optionalUserData;
-void np_redStructsMemoryAllocateWithInlineSamplers(_27d7343d_context & context, _27d7343d_gpu & gpu, _27d7343d_handleName & handleName, _27d7343d_maxStructsCount & maxStructsCount, _27d7343d_maxStructsMembersOfTypeArrayROConstantCount & maxStructsMembersOfTypeArrayROConstantCount, _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount & maxStructsMembersOfTypeArrayROOrArrayRWCount, _27d7343d_maxStructsMembersOfTypeTextureROCount & maxStructsMembersOfTypeTextureROCount, _27d7343d_maxStructsMembersOfTypeTextureRWCount & maxStructsMembersOfTypeTextureRWCount, _27d7343d_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _27d7343d_outStructsMemory & outStructsMemory, _27d7343d_outStatuses & outStatuses, _27d7343d_optionalFile & optionalFile, _27d7343d_optionalLine & optionalLine, _27d7343d_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryAllocateWithInlineSamplers(_27d7343d_context & context, _27d7343d_gpu & gpu, _27d7343d_handleName & handleName, _27d7343d_maxStructsCount & maxStructsCount, _27d7343d_maxStructsMembersOfTypeArrayROConstantCount & maxStructsMembersOfTypeArrayROConstantCount, _27d7343d_maxStructsMembersOfTypeArrayROOrArrayRWCount & maxStructsMembersOfTypeArrayROOrArrayRWCount, _27d7343d_maxStructsMembersOfTypeTextureROCount & maxStructsMembersOfTypeTextureROCount, _27d7343d_maxStructsMembersOfTypeTextureRWCount & maxStructsMembersOfTypeTextureRWCount, _27d7343d_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _27d7343d_outStructsMemory & outStructsMemory, _27d7343d_outStatuses & outStatuses, _27d7343d_optionalFile & optionalFile, _27d7343d_optionalLine & optionalLine, _27d7343d_optionalUserData & optionalUserData) {
   redStructsMemoryAllocateWithInlineSamplers(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeArrayROConstantCount.value, maxStructsMembersOfTypeArrayROOrArrayRWCount.value, maxStructsMembersOfTypeTextureROCount.value, maxStructsMembersOfTypeTextureRWCount.value, maxStructsMembersOfTypeInlineSamplerCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif
@@ -2275,7 +2283,7 @@ typedef struct _cba9611e_outStatuses { _cba9611e_outStatuses(RedStatuses* value)
 typedef struct _cba9611e_optionalFile { _cba9611e_optionalFile(char* value): value(value) {}; char* value; _cba9611e_optionalFile(const _cba9611e_optionalFile &) = delete; } _cba9611e_optionalFile;
 typedef struct _cba9611e_optionalLine { _cba9611e_optionalLine(int value): value(value) {}; int value; _cba9611e_optionalLine(const _cba9611e_optionalLine &) = delete; } _cba9611e_optionalLine;
 typedef struct _cba9611e_optionalUserData { _cba9611e_optionalUserData(void* value): value(value) {}; void* value; _cba9611e_optionalUserData(const _cba9611e_optionalUserData &) = delete; } _cba9611e_optionalUserData;
-void np_redStructsMemoryAllocateSamplersWithInlineSamplers(_cba9611e_context & context, _cba9611e_gpu & gpu, _cba9611e_handleName & handleName, _cba9611e_maxStructsCount & maxStructsCount, _cba9611e_maxStructsMembersOfTypeSamplerCount & maxStructsMembersOfTypeSamplerCount, _cba9611e_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _cba9611e_outStructsMemory & outStructsMemory, _cba9611e_outStatuses & outStatuses, _cba9611e_optionalFile & optionalFile, _cba9611e_optionalLine & optionalLine, _cba9611e_optionalUserData & optionalUserData) {
+REDGPU_NP_DECLSPEC void REDGPU_NP_API np_redStructsMemoryAllocateSamplersWithInlineSamplers(_cba9611e_context & context, _cba9611e_gpu & gpu, _cba9611e_handleName & handleName, _cba9611e_maxStructsCount & maxStructsCount, _cba9611e_maxStructsMembersOfTypeSamplerCount & maxStructsMembersOfTypeSamplerCount, _cba9611e_maxStructsMembersOfTypeInlineSamplerCount & maxStructsMembersOfTypeInlineSamplerCount, _cba9611e_outStructsMemory & outStructsMemory, _cba9611e_outStatuses & outStatuses, _cba9611e_optionalFile & optionalFile, _cba9611e_optionalLine & optionalLine, _cba9611e_optionalUserData & optionalUserData) {
   redStructsMemoryAllocateSamplersWithInlineSamplers(context.value, gpu.value, handleName.value, maxStructsCount.value, maxStructsMembersOfTypeSamplerCount.value, maxStructsMembersOfTypeInlineSamplerCount.value, outStructsMemory.value, outStatuses.value, optionalFile.value, optionalLine.value, optionalUserData.value);
 }
 #endif

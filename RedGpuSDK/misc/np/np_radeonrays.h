@@ -1,5 +1,13 @@
 #pragma once
 
+#ifndef REDGPU_NP_DECLSPEC
+#define REDGPU_NP_DECLSPEC
+#endif
+
+#ifndef REDGPU_NP_API
+#define REDGPU_NP_API
+#endif
+
 #ifdef REDGPU_DISABLE_NAMED_PARAMETERS
 #define np_rrCreateContext rrCreateContext
 #define _76477c39_apiVersion(value) value
@@ -9,7 +17,7 @@
 typedef struct _76477c39_apiVersion { _76477c39_apiVersion(unsigned value): value(value) {}; unsigned value; _76477c39_apiVersion(const _76477c39_apiVersion &) = delete; } _76477c39_apiVersion;
 typedef struct _76477c39_api { _76477c39_api(RRApi value): value(value) {}; RRApi value; _76477c39_api(const _76477c39_api &) = delete; } _76477c39_api;
 typedef struct _76477c39_context { _76477c39_context(RRContext* value): value(value) {}; RRContext* value; _76477c39_context(const _76477c39_context &) = delete; } _76477c39_context;
-RRError np_rrCreateContext(_76477c39_apiVersion & apiVersion, _76477c39_api & api, _76477c39_context & context) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrCreateContext(_76477c39_apiVersion & apiVersion, _76477c39_api & api, _76477c39_context & context) {
   return rrCreateContext(apiVersion.value, api.value, context.value);
 }
 #endif
@@ -19,7 +27,7 @@ RRError np_rrCreateContext(_76477c39_apiVersion & apiVersion, _76477c39_api & ap
 #define _35c0b64a_context(value) value
 #else
 typedef struct _35c0b64a_context { _35c0b64a_context(RRContext value): value(value) {}; RRContext value; _35c0b64a_context(const _35c0b64a_context &) = delete; } _35c0b64a_context;
-RRError np_rrDestroyContext(_35c0b64a_context & context) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrDestroyContext(_35c0b64a_context & context) {
   return rrDestroyContext(context.value);
 }
 #endif
@@ -29,7 +37,7 @@ RRError np_rrDestroyContext(_35c0b64a_context & context) {
 #define _9c179593_logLevel(value) value
 #else
 typedef struct _9c179593_logLevel { _9c179593_logLevel(RRLogLevel value): value(value) {}; RRLogLevel value; _9c179593_logLevel(const _9c179593_logLevel &) = delete; } _9c179593_logLevel;
-RRError np_rrSetLogLevel(_9c179593_logLevel & logLevel) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrSetLogLevel(_9c179593_logLevel & logLevel) {
   return rrSetLogLevel(logLevel.value);
 }
 #endif
@@ -39,7 +47,7 @@ RRError np_rrSetLogLevel(_9c179593_logLevel & logLevel) {
 #define _a3a56cb6_filename(value) value
 #else
 typedef struct _a3a56cb6_filename { _a3a56cb6_filename(char* value): value(value) {}; char* value; _a3a56cb6_filename(const _a3a56cb6_filename &) = delete; } _a3a56cb6_filename;
-RRError np_rrSetLogFile(_a3a56cb6_filename & filename) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrSetLogFile(_a3a56cb6_filename & filename) {
   return rrSetLogFile(filename.value);
 }
 #endif
@@ -61,7 +69,7 @@ typedef struct _f627a18d_buildOptions { _f627a18d_buildOptions(RRBuildOptions* v
 typedef struct _f627a18d_temporaryBuffer { _f627a18d_temporaryBuffer(RRDevicePtr value): value(value) {}; RRDevicePtr value; _f627a18d_temporaryBuffer(const _f627a18d_temporaryBuffer &) = delete; } _f627a18d_temporaryBuffer;
 typedef struct _f627a18d_geometryBuffer { _f627a18d_geometryBuffer(RRDevicePtr value): value(value) {}; RRDevicePtr value; _f627a18d_geometryBuffer(const _f627a18d_geometryBuffer &) = delete; } _f627a18d_geometryBuffer;
 typedef struct _f627a18d_commandStream { _f627a18d_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _f627a18d_commandStream(const _f627a18d_commandStream &) = delete; } _f627a18d_commandStream;
-RRError np_rrCmdBuildGeometry(_f627a18d_context & context, _f627a18d_buildOperation & buildOperation, _f627a18d_buildInput & buildInput, _f627a18d_buildOptions & buildOptions, _f627a18d_temporaryBuffer & temporaryBuffer, _f627a18d_geometryBuffer & geometryBuffer, _f627a18d_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrCmdBuildGeometry(_f627a18d_context & context, _f627a18d_buildOperation & buildOperation, _f627a18d_buildInput & buildInput, _f627a18d_buildOptions & buildOptions, _f627a18d_temporaryBuffer & temporaryBuffer, _f627a18d_geometryBuffer & geometryBuffer, _f627a18d_commandStream & commandStream) {
   return rrCmdBuildGeometry(context.value, buildOperation.value, buildInput.value, buildOptions.value, temporaryBuffer.value, geometryBuffer.value, commandStream.value);
 }
 #endif
@@ -77,7 +85,7 @@ typedef struct _04be2d30_context { _04be2d30_context(RRContext value): value(val
 typedef struct _04be2d30_buildInput { _04be2d30_buildInput(RRGeometryBuildInput* value): value(value) {}; RRGeometryBuildInput* value; _04be2d30_buildInput(const _04be2d30_buildInput &) = delete; } _04be2d30_buildInput;
 typedef struct _04be2d30_buildOptions { _04be2d30_buildOptions(RRBuildOptions* value): value(value) {}; RRBuildOptions* value; _04be2d30_buildOptions(const _04be2d30_buildOptions &) = delete; } _04be2d30_buildOptions;
 typedef struct _04be2d30_memoryRequirements { _04be2d30_memoryRequirements(RRMemoryRequirements* value): value(value) {}; RRMemoryRequirements* value; _04be2d30_memoryRequirements(const _04be2d30_memoryRequirements &) = delete; } _04be2d30_memoryRequirements;
-RRError np_rrGetGeometryBuildMemoryRequirements(_04be2d30_context & context, _04be2d30_buildInput & buildInput, _04be2d30_buildOptions & buildOptions, _04be2d30_memoryRequirements & memoryRequirements) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrGetGeometryBuildMemoryRequirements(_04be2d30_context & context, _04be2d30_buildInput & buildInput, _04be2d30_buildOptions & buildOptions, _04be2d30_memoryRequirements & memoryRequirements) {
   return rrGetGeometryBuildMemoryRequirements(context.value, buildInput.value, buildOptions.value, memoryRequirements.value);
 }
 #endif
@@ -97,7 +105,7 @@ typedef struct _e47f0f00_buildOptions { _e47f0f00_buildOptions(RRBuildOptions* v
 typedef struct _e47f0f00_temporaryBuffer { _e47f0f00_temporaryBuffer(RRDevicePtr value): value(value) {}; RRDevicePtr value; _e47f0f00_temporaryBuffer(const _e47f0f00_temporaryBuffer &) = delete; } _e47f0f00_temporaryBuffer;
 typedef struct _e47f0f00_sceneBuffer { _e47f0f00_sceneBuffer(RRDevicePtr value): value(value) {}; RRDevicePtr value; _e47f0f00_sceneBuffer(const _e47f0f00_sceneBuffer &) = delete; } _e47f0f00_sceneBuffer;
 typedef struct _e47f0f00_commandStream { _e47f0f00_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _e47f0f00_commandStream(const _e47f0f00_commandStream &) = delete; } _e47f0f00_commandStream;
-RRError np_rrCmdBuildScene(_e47f0f00_context & context, _e47f0f00_buildInput & buildInput, _e47f0f00_buildOptions & buildOptions, _e47f0f00_temporaryBuffer & temporaryBuffer, _e47f0f00_sceneBuffer & sceneBuffer, _e47f0f00_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrCmdBuildScene(_e47f0f00_context & context, _e47f0f00_buildInput & buildInput, _e47f0f00_buildOptions & buildOptions, _e47f0f00_temporaryBuffer & temporaryBuffer, _e47f0f00_sceneBuffer & sceneBuffer, _e47f0f00_commandStream & commandStream) {
   return rrCmdBuildScene(context.value, buildInput.value, buildOptions.value, temporaryBuffer.value, sceneBuffer.value, commandStream.value);
 }
 #endif
@@ -113,7 +121,7 @@ typedef struct _abd56990_context { _abd56990_context(RRContext value): value(val
 typedef struct _abd56990_buildInput { _abd56990_buildInput(RRSceneBuildInput* value): value(value) {}; RRSceneBuildInput* value; _abd56990_buildInput(const _abd56990_buildInput &) = delete; } _abd56990_buildInput;
 typedef struct _abd56990_buildOptions { _abd56990_buildOptions(RRBuildOptions* value): value(value) {}; RRBuildOptions* value; _abd56990_buildOptions(const _abd56990_buildOptions &) = delete; } _abd56990_buildOptions;
 typedef struct _abd56990_memoryRequirements { _abd56990_memoryRequirements(RRMemoryRequirements* value): value(value) {}; RRMemoryRequirements* value; _abd56990_memoryRequirements(const _abd56990_memoryRequirements &) = delete; } _abd56990_memoryRequirements;
-RRError np_rrGetSceneBuildMemoryRequirements(_abd56990_context & context, _abd56990_buildInput & buildInput, _abd56990_buildOptions & buildOptions, _abd56990_memoryRequirements & memoryRequirements) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrGetSceneBuildMemoryRequirements(_abd56990_context & context, _abd56990_buildInput & buildInput, _abd56990_buildOptions & buildOptions, _abd56990_memoryRequirements & memoryRequirements) {
   return rrGetSceneBuildMemoryRequirements(context.value, buildInput.value, buildOptions.value, memoryRequirements.value);
 }
 #endif
@@ -141,7 +149,7 @@ typedef struct _b7aaf1b6_queryOutput { _b7aaf1b6_queryOutput(RRIntersectQueryOut
 typedef struct _b7aaf1b6_hits { _b7aaf1b6_hits(RRDevicePtr value): value(value) {}; RRDevicePtr value; _b7aaf1b6_hits(const _b7aaf1b6_hits &) = delete; } _b7aaf1b6_hits;
 typedef struct _b7aaf1b6_scratch { _b7aaf1b6_scratch(RRDevicePtr value): value(value) {}; RRDevicePtr value; _b7aaf1b6_scratch(const _b7aaf1b6_scratch &) = delete; } _b7aaf1b6_scratch;
 typedef struct _b7aaf1b6_commandStream { _b7aaf1b6_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _b7aaf1b6_commandStream(const _b7aaf1b6_commandStream &) = delete; } _b7aaf1b6_commandStream;
-RRError np_rrCmdIntersect(_b7aaf1b6_context & context, _b7aaf1b6_sceneBuffer & sceneBuffer, _b7aaf1b6_query & query, _b7aaf1b6_rays & rays, _b7aaf1b6_rayCount & rayCount, _b7aaf1b6_indirectRayCount & indirectRayCount, _b7aaf1b6_queryOutput & queryOutput, _b7aaf1b6_hits & hits, _b7aaf1b6_scratch & scratch, _b7aaf1b6_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrCmdIntersect(_b7aaf1b6_context & context, _b7aaf1b6_sceneBuffer & sceneBuffer, _b7aaf1b6_query & query, _b7aaf1b6_rays & rays, _b7aaf1b6_rayCount & rayCount, _b7aaf1b6_indirectRayCount & indirectRayCount, _b7aaf1b6_queryOutput & queryOutput, _b7aaf1b6_hits & hits, _b7aaf1b6_scratch & scratch, _b7aaf1b6_commandStream & commandStream) {
   return rrCmdIntersect(context.value, sceneBuffer.value, query.value, rays.value, rayCount.value, indirectRayCount.value, queryOutput.value, hits.value, scratch.value, commandStream.value);
 }
 #endif
@@ -155,7 +163,7 @@ RRError np_rrCmdIntersect(_b7aaf1b6_context & context, _b7aaf1b6_sceneBuffer & s
 typedef struct _c8d2629e_context { _c8d2629e_context(RRContext value): value(value) {}; RRContext value; _c8d2629e_context(const _c8d2629e_context &) = delete; } _c8d2629e_context;
 typedef struct _c8d2629e_rayCount { _c8d2629e_rayCount(unsigned value): value(value) {}; unsigned value; _c8d2629e_rayCount(const _c8d2629e_rayCount &) = delete; } _c8d2629e_rayCount;
 typedef struct _c8d2629e_scratchSize { _c8d2629e_scratchSize(size_t* value): value(value) {}; size_t* value; _c8d2629e_scratchSize(const _c8d2629e_scratchSize &) = delete; } _c8d2629e_scratchSize;
-RRError np_rrGetTraceMemoryRequirements(_c8d2629e_context & context, _c8d2629e_rayCount & rayCount, _c8d2629e_scratchSize & scratchSize) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrGetTraceMemoryRequirements(_c8d2629e_context & context, _c8d2629e_rayCount & rayCount, _c8d2629e_scratchSize & scratchSize) {
   return rrGetTraceMemoryRequirements(context.value, rayCount.value, scratchSize.value);
 }
 #endif
@@ -167,7 +175,7 @@ RRError np_rrGetTraceMemoryRequirements(_c8d2629e_context & context, _c8d2629e_r
 #else
 typedef struct _b1a1c898_context { _b1a1c898_context(RRContext value): value(value) {}; RRContext value; _b1a1c898_context(const _b1a1c898_context &) = delete; } _b1a1c898_context;
 typedef struct _b1a1c898_commandStream { _b1a1c898_commandStream(RRCommandStream* value): value(value) {}; RRCommandStream* value; _b1a1c898_commandStream(const _b1a1c898_commandStream &) = delete; } _b1a1c898_commandStream;
-RRError np_rrAllocateCommandStream(_b1a1c898_context & context, _b1a1c898_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrAllocateCommandStream(_b1a1c898_context & context, _b1a1c898_commandStream & commandStream) {
   return rrAllocateCommandStream(context.value, commandStream.value);
 }
 #endif
@@ -179,7 +187,7 @@ RRError np_rrAllocateCommandStream(_b1a1c898_context & context, _b1a1c898_comman
 #else
 typedef struct _cc8f6825_context { _cc8f6825_context(RRContext value): value(value) {}; RRContext value; _cc8f6825_context(const _cc8f6825_context &) = delete; } _cc8f6825_context;
 typedef struct _cc8f6825_commandStream { _cc8f6825_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _cc8f6825_commandStream(const _cc8f6825_commandStream &) = delete; } _cc8f6825_commandStream;
-RRError np_rrReleaseCommandStream(_cc8f6825_context & context, _cc8f6825_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrReleaseCommandStream(_cc8f6825_context & context, _cc8f6825_commandStream & commandStream) {
   return rrReleaseCommandStream(context.value, commandStream.value);
 }
 #endif
@@ -195,7 +203,7 @@ typedef struct _433bd54e_context { _433bd54e_context(RRContext value): value(val
 typedef struct _433bd54e_commandStream { _433bd54e_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _433bd54e_commandStream(const _433bd54e_commandStream &) = delete; } _433bd54e_commandStream;
 typedef struct _433bd54e_waitEvent { _433bd54e_waitEvent(RREvent value): value(value) {}; RREvent value; _433bd54e_waitEvent(const _433bd54e_waitEvent &) = delete; } _433bd54e_waitEvent;
 typedef struct _433bd54e_outEvent { _433bd54e_outEvent(RREvent* value): value(value) {}; RREvent* value; _433bd54e_outEvent(const _433bd54e_outEvent &) = delete; } _433bd54e_outEvent;
-RRError np_rrSumbitCommandStream(_433bd54e_context & context, _433bd54e_commandStream & commandStream, _433bd54e_waitEvent & waitEvent, _433bd54e_outEvent & outEvent) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrSumbitCommandStream(_433bd54e_context & context, _433bd54e_commandStream & commandStream, _433bd54e_waitEvent & waitEvent, _433bd54e_outEvent & outEvent) {
   return rrSumbitCommandStream(context.value, commandStream.value, waitEvent.value, outEvent.value);
 }
 #endif
@@ -207,7 +215,7 @@ RRError np_rrSumbitCommandStream(_433bd54e_context & context, _433bd54e_commandS
 #else
 typedef struct _e8a5dc0d_context { _e8a5dc0d_context(RRContext value): value(value) {}; RRContext value; _e8a5dc0d_context(const _e8a5dc0d_context &) = delete; } _e8a5dc0d_context;
 typedef struct _e8a5dc0d_event { _e8a5dc0d_event(RREvent value): value(value) {}; RREvent value; _e8a5dc0d_event(const _e8a5dc0d_event &) = delete; } _e8a5dc0d_event;
-RRError np_rrReleaseEvent(_e8a5dc0d_context & context, _e8a5dc0d_event & event) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrReleaseEvent(_e8a5dc0d_context & context, _e8a5dc0d_event & event) {
   return rrReleaseEvent(context.value, event.value);
 }
 #endif
@@ -219,7 +227,7 @@ RRError np_rrReleaseEvent(_e8a5dc0d_context & context, _e8a5dc0d_event & event) 
 #else
 typedef struct _9e2369c1_context { _9e2369c1_context(RRContext value): value(value) {}; RRContext value; _9e2369c1_context(const _9e2369c1_context &) = delete; } _9e2369c1_context;
 typedef struct _9e2369c1_event { _9e2369c1_event(RREvent value): value(value) {}; RREvent value; _9e2369c1_event(const _9e2369c1_event &) = delete; } _9e2369c1_event;
-RRError np_rrWaitEvent(_9e2369c1_context & context, _9e2369c1_event & event) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrWaitEvent(_9e2369c1_context & context, _9e2369c1_event & event) {
   return rrWaitEvent(context.value, event.value);
 }
 #endif
@@ -231,7 +239,7 @@ RRError np_rrWaitEvent(_9e2369c1_context & context, _9e2369c1_event & event) {
 #else
 typedef struct _8d1def0e_context { _8d1def0e_context(RRContext value): value(value) {}; RRContext value; _8d1def0e_context(const _8d1def0e_context &) = delete; } _8d1def0e_context;
 typedef struct _8d1def0e_ptr { _8d1def0e_ptr(RRDevicePtr value): value(value) {}; RRDevicePtr value; _8d1def0e_ptr(const _8d1def0e_ptr &) = delete; } _8d1def0e_ptr;
-RRError np_rrReleaseDevicePtr(_8d1def0e_context & context, _8d1def0e_ptr & ptr) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrReleaseDevicePtr(_8d1def0e_context & context, _8d1def0e_ptr & ptr) {
   return rrReleaseDevicePtr(context.value, ptr.value);
 }
 #endif
@@ -243,7 +251,7 @@ RRError np_rrReleaseDevicePtr(_8d1def0e_context & context, _8d1def0e_ptr & ptr) 
 #else
 typedef struct _1141d4bb_context { _1141d4bb_context(RRContext value): value(value) {}; RRContext value; _1141d4bb_context(const _1141d4bb_context &) = delete; } _1141d4bb_context;
 typedef struct _1141d4bb_commandStream { _1141d4bb_commandStream(RRCommandStream value): value(value) {}; RRCommandStream value; _1141d4bb_commandStream(const _1141d4bb_commandStream &) = delete; } _1141d4bb_commandStream;
-RRError np_rrReleaseExternalCommandStream(_1141d4bb_context & context, _1141d4bb_commandStream & commandStream) {
+REDGPU_NP_DECLSPEC RRError REDGPU_NP_API np_rrReleaseExternalCommandStream(_1141d4bb_context & context, _1141d4bb_commandStream & commandStream) {
   return rrReleaseExternalCommandStream(context.value, commandStream.value);
 }
 #endif
