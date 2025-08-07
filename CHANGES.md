@@ -3,6 +3,9 @@ Aug 07, 2025:
   * REDGPU X backend is removed.
   * REDGPU SDK folders and files structures are changed.
   * REDGPU implementation files, named parameters and named parameters generator are imported from REDGPU 2 git repo, commit 7f417c01ca0036abcfe35fdce00593583f2d6170.
+  * REDGPU implementation: on Windows, C:\Windows\System32\vulkan-1.dll is loaded at runtime now, no need to link vulkan-1.lib anymore.
+  * Small changes and cleanups to implementation only, no API changes were made.
+  * Added RedGpuSDK/misc/examples/ folder.
 
 May 20, 2023:
 

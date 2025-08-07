@@ -1,5 +1,6 @@
 #pragma once
 
+#define redCreateProcedureComputingLanguage_np_count_13
 #define _np1_redCreateProcedureComputingLanguage context
 #define _np2_redCreateProcedureComputingLanguage gpu
 #define _np3_redCreateProcedureComputingLanguage handleName

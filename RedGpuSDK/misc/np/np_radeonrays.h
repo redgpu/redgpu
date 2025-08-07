@@ -1,15 +1,20 @@
 #pragma once
 
+#define rrCreateContext_np_count_3
 #define _np1_rrCreateContext api_version
 #define _np2_rrCreateContext api
 #define _np3_rrCreateContext context
 
+#define rrDestroyContext_np_count_1
 #define _np1_rrDestroyContext context
 
+#define rrSetLogLevel_np_count_1
 #define _np1_rrSetLogLevel log_level
 
+#define rrSetLogFile_np_count_1
 #define _np1_rrSetLogFile filename
 
+#define rrCmdBuildGeometry_np_count_7
 #define _np1_rrCmdBuildGeometry context
 #define _np2_rrCmdBuildGeometry build_operation
 #define _np3_rrCmdBuildGeometry build_input
@@ -18,11 +23,13 @@
 #define _np6_rrCmdBuildGeometry geometry_buffer
 #define _np7_rrCmdBuildGeometry command_stream
 
+#define rrGetGeometryBuildMemoryRequirements_np_count_4
 #define _np1_rrGetGeometryBuildMemoryRequirements context
 #define _np2_rrGetGeometryBuildMemoryRequirements build_input
 #define _np3_rrGetGeometryBuildMemoryRequirements build_options
 #define _np4_rrGetGeometryBuildMemoryRequirements memory_requirements
 
+#define rrCmdBuildScene_np_count_6
 #define _np1_rrCmdBuildScene context
 #define _np2_rrCmdBuildScene build_input
 #define _np3_rrCmdBuildScene build_options
@@ -30,11 +37,13 @@
 #define _np5_rrCmdBuildScene scene_buffer
 #define _np6_rrCmdBuildScene command_stream
 
+#define rrGetSceneBuildMemoryRequirements_np_count_4
 #define _np1_rrGetSceneBuildMemoryRequirements context
 #define _np2_rrGetSceneBuildMemoryRequirements build_input
 #define _np3_rrGetSceneBuildMemoryRequirements build_options
 #define _np4_rrGetSceneBuildMemoryRequirements memory_requirements
 
+#define rrCmdIntersect_np_count_10
 #define _np1_rrCmdIntersect context
 #define _np2_rrCmdIntersect scene_buffer
 #define _np3_rrCmdIntersect query
@@ -46,30 +55,38 @@
 #define _np9_rrCmdIntersect scratch
 #define _np10_rrCmdIntersect command_stream
 
+#define rrGetTraceMemoryRequirements_np_count_3
 #define _np1_rrGetTraceMemoryRequirements context
 #define _np2_rrGetTraceMemoryRequirements ray_count
 #define _np3_rrGetTraceMemoryRequirements scratch_size
 
+#define rrAllocateCommandStream_np_count_2
 #define _np1_rrAllocateCommandStream context
 #define _np2_rrAllocateCommandStream command_stream
 
+#define rrReleaseCommandStream_np_count_2
 #define _np1_rrReleaseCommandStream context
 #define _np2_rrReleaseCommandStream command_stream
 
+#define rrSumbitCommandStream_np_count_4
 #define _np1_rrSumbitCommandStream context
 #define _np2_rrSumbitCommandStream command_stream
 #define _np3_rrSumbitCommandStream wait_event
 #define _np4_rrSumbitCommandStream out_event
 
+#define rrReleaseEvent_np_count_2
 #define _np1_rrReleaseEvent context
 #define _np2_rrReleaseEvent event
 
+#define rrWaitEvent_np_count_2
 #define _np1_rrWaitEvent context
 #define _np2_rrWaitEvent event
 
+#define rrReleaseDevicePtr_np_count_2
 #define _np1_rrReleaseDevicePtr context
 #define _np2_rrReleaseDevicePtr ptr
 
+#define rrReleaseExternalCommandStream_np_count_2
 #define _np1_rrReleaseExternalCommandStream context
 #define _np2_rrReleaseExternalCommandStream command_stream
 

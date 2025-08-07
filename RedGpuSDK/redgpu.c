@@ -65,13 +65,8 @@ int (*redInternalCreateAndroidSurface)(void * instance, const void * createInfo,
 #endif
 
 #ifdef REDGPU_OS_WINDOWS
-#ifdef _WIN64
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#else
 typedef void * HINSTANCE;
 typedef void * HWND;
-#endif
 #endif
 #ifdef REDGPU_OS_LINUX
 #include <X11/Xlib.h>
@@ -1194,8 +1189,8 @@ static void redInternalDebugSendErrorMessage(RedInternalContext InternalContext,
   }
 
 static void redInternalSetStatusErrorDescription(unsigned statusIndex, char * outStatusErrorDescription512) {
-  if (statusIndex >=                 379) { return; }
-  const char * REDGPUStatusCodesInfo[379] = {
+  if (statusIndex >=                 381) { return; }
+  const char * REDGPUStatusCodesInfo[381] = {
     /*[0] =*/ "",
     /*[1] =*/ "redCallSetProcedureParametersHandles: internal query fail",
     /*[2] =*/ "redCallSetProcedureParametersHandles: malloc returned NULL",
@@ -1575,6 +1570,8 @@ static void redInternalSetStatusErrorDescription(unsigned statusIndex, char * ou
     /*[376] =*/ "redCreateArrayTimestamp: create query pool status",
     /*[377] =*/ "redCreateArrayTimestamp: set handle name status",
     /*[378] =*/ "redArrayTimestampRead: get query pool results status",
+    /*[379] =*/ "redCreateContext: LoadLibraryA(\"C:\\Windows\\System32\\vulkan-1.dll\") returned NULL",
+    /*[380] =*/ "redCreateContext: GetProcAddress(vulkan_1_dll, \"vkGetInstanceProcAddr\") returned NULL",
   };
   outStatusErrorDescription512[511] = 0;
   for (unsigned i = 0; i < 511; i += 1) {
@@ -1879,7 +1876,7 @@ static inline void redDebugInternalMemorySet(RedInternalContext ctx, RedHandleGp
 }
 
 static inline RedDebugInternalArray redDebugInternalCreateDebugArray(RedInternalContext ctx, RedHandleGpu gpu, unsigned gpuIndex, const char * handleName, RedArrayType type, uint64_t bytesCount, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedDebugInternalMemoryType memoryType, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
-  RedDebugInternalArray out = {};
+  RedDebugInternalArray out = {0};
 
   redDebugInternalCreateArray(ctx, gpu, gpuIndex, handleName, type, bytesCount, initialQueueFamilyIndex, dedicate, &out.array, outStatuses, optionalFile, optionalLine, optionalUserData);
   if (outStatuses != NULL) {
@@ -1907,7 +1904,7 @@ static inline RedDebugInternalArray redDebugInternalCreateDebugArray(RedInternal
     }
   }
 
-  RedMemoryArray memoryArray   = {};
+  RedMemoryArray memoryArray   = {0};
   memoryArray.setTo1000157000  = 1000157000;
   memoryArray.setTo0           = 0;
   memoryArray.array            = out.array.handle;
@@ -2544,10 +2541,10 @@ static inline void redInlineStructsSet(RedContext context, RedHandleGpu gpu, uns
 
 // Create
 
-#if defined(_WIN32) && !defined(_WIN64)
+#if defined(REDGPU_OS_WINDOWS)
 void * __stdcall LoadLibraryA(const char * lpLibFileName);
 void * __stdcall GetProcAddress(void * hModule, const char * lpProcName);
-#elif defined (REDGPU_OS_ANDROID)
+#elif defined(REDGPU_OS_ANDROID)
 // NOTE(Constantine): Nothing, intentionally.
 #else
 PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance instance, const char * name);
@@ -2648,7 +2645,7 @@ static inline void redInlineDestroyContext(RedContext context, const char * opti
       if (iGpuInfo->debugArrayCpuSignal != NULL) {
         redDebugInternalDestroyCpuSignal(ctx, gpu, iGpuInfo->debugArrayCpuSignal);
       }
-      RedDebugInternalArray defaults = {};
+      RedDebugInternalArray defaults = {0};
       iGpuInfo->debugArray              = defaults;
       iGpuInfo->debugArrayGpuToCpuEvent = NULL;
       iGpuInfo->debugArrayCpuToGpuEvent = NULL;
@@ -2804,7 +2801,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
   RedBool32   __redgpuDebugStatusesWereNotSetByTheUser = 0;
-  RedStatuses __redgpuDebugStatuses = {};
+  RedStatuses __redgpuDebugStatuses = {0};
   __redgpuDebugStatuses.statusProcedureId      = procedureId;
   __redgpuDebugStatuses.statusFile             = optionalFile;
   __redgpuDebugStatuses.statusLine             = optionalLine;
@@ -2939,9 +2936,20 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
   cold->customMallocTagged = customMallocTagged;
   cold->customFreeTagged   = customFreeTagged;
 
-#if defined(_WIN32) && !defined(_WIN64)
+#if defined(REDGPU_OS_WINDOWS)
   void * vulkan_1_dll = LoadLibraryA("C:\\Windows\\System32\\vulkan-1.dll");
+
+  if (vulkan_1_dll == NULL)
+  {
+    REDGPU_CREATE_CONTEXT_DESTROY_CTX_THEN_SET_CTX_TO_NULL_THEN_SET_STATUS_ERROR_THEN_GOTO_EXIT(NULL, 379, RED_STATUS_ERROR_INITIALIZATION_FAILED);
+  }
+
   PFN_vkGetInstanceProcAddr vkGetInstanceProcAddr = (PFN_vkGetInstanceProcAddr)GetProcAddress(vulkan_1_dll, "vkGetInstanceProcAddr");
+
+  if (vkGetInstanceProcAddr == NULL)
+  {
+    REDGPU_CREATE_CONTEXT_DESTROY_CTX_THEN_SET_CTX_TO_NULL_THEN_SET_STATUS_ERROR_THEN_GOTO_EXIT(NULL, 380, RED_STATUS_ERROR_INITIALIZATION_FAILED);
+  }
 #endif
 
 #if defined(REDGPU_OS_ANDROID)
@@ -3005,7 +3013,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
   }
   }
 
-  RedBool32 requestedExtensions[16] = {};
+  RedBool32 requestedExtensions[16] = {0};
   for (unsigned i = 0; i < sdkExtensionsCount; i += 1) {
     unsigned ext = (unsigned)sdkExtensions[i];
     if (ext < 16) {
@@ -3762,11 +3770,11 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
 
     void * propertiesToRequestNext = NULL;
 
-    struct VkPhysicalDeviceDriverPropertiesKHR                    driverProperties                    = {};
-    struct VkPhysicalDeviceDepthStencilResolvePropertiesKHR       depthStencilResolveProperties       = {};
-    struct VkPhysicalDevicePushDescriptorPropertiesKHR            pushDescriptorProperties            = {};
-    struct VkPhysicalDeviceConservativeRasterizationPropertiesEXT conservativeRasterizationProperties = {};
-    VkPhysicalDeviceMaintenance3Properties                        maintenance3Properties              = {};
+    struct VkPhysicalDeviceDriverPropertiesKHR                    driverProperties                    = {0};
+    struct VkPhysicalDeviceDepthStencilResolvePropertiesKHR       depthStencilResolveProperties       = {0};
+    struct VkPhysicalDevicePushDescriptorPropertiesKHR            pushDescriptorProperties            = {0};
+    struct VkPhysicalDeviceConservativeRasterizationPropertiesEXT conservativeRasterizationProperties = {0};
+    VkPhysicalDeviceMaintenance3Properties                        maintenance3Properties              = {0};
 
     RedBool32 wasRequestedAndWasFoundExtensionDriverProperties           = (requestedExtensions[RED_SDK_EXTENSION_DRIVER_PROPERTIES]            == 1) && (redInternalFindDeviceExtension(iGpuInfo, "VK_KHR_driver_properties",          procedureId, 0, optionalFile, optionalLine) == 1);
     RedBool32 wasRequestedAndWasFoundExtensionDepthStencilResolve        = (requestedExtensions[RED_SDK_EXTENSION_RESOLVE_DEPTH_STENCIL]        == 1) && (redInternalFindDeviceExtension(iGpuInfo, "VK_KHR_depth_stencil_resolve",      procedureId, 0, optionalFile, optionalLine) == 1);
@@ -4276,8 +4284,8 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
       RedBool32 variablePointersStorageBuffer;
       RedBool32 variablePointers;
     } VkPhysicalDeviceVariablePointersFeaturesKHR;
-    VkPhysicalDeviceDescriptorIndexingFeaturesEXT descriptorIndexingFeatures = {};
-    VkPhysicalDeviceVariablePointersFeaturesKHR   variablePointersFeatures   = {};
+    VkPhysicalDeviceDescriptorIndexingFeaturesEXT descriptorIndexingFeatures = {0};
+    VkPhysicalDeviceVariablePointersFeaturesKHR   variablePointersFeatures   = {0};
     VkPhysicalDeviceVulkanMemoryModelFeaturesKHR  vulkanMemoryModelFeatures  = iGpuInfo->vkPhysicalDeviceVulkanMemoryModelFeatures;
 
     if (wasRequestedAndWasFoundExtensionRayTracing == 1) {
@@ -4761,7 +4769,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
         unsigned featuresImageTilingLinear;
         unsigned featuresImageTilingSwizzled;
         unsigned featuresBuffer;
-      } formatProperties = {};
+      } formatProperties = {0};
 
       for (unsigned i = 0; i < 131; i += 1) {
         if (i != 0) {
@@ -4778,7 +4786,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
         eGpuInfo->imageFormatsFeatures[i].supportsOutputColorBlend         = ((formatProperties.featuresImageTilingSwizzled & VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT)      == VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT)      ? 1 : 0;
       }
 
-      RedImageFormatLimits imageFormatLimitsDefaults = {};
+      RedImageFormatLimits imageFormatLimitsDefaults = {0};
 
       for (unsigned i = 0; i < 131; i += 1) {
         if (i == 0) {
@@ -4849,7 +4857,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
         RedGpuInfo         * eGpuInfo = &ctx->gpus[i];
         RedInternalGpuInfo * iGpuInfo = &cold->gpus[i];
 
-        RedStatuses statuses = {};
+        RedStatuses statuses = {0};
 
         const uint64_t debugArrayBytesCount = cold->debugArrayStructsCount * cold->debugArrayStructsFloat4sCount * 4 * sizeof(float);
         iGpuInfo->debugArray = redDebugInternalCreateDebugArray(ctx, eGpuInfo->gpu, i, debugArrayHandleName, RED_ARRAY_TYPE_ARRAY_RW, debugArrayBytesCount, -1, 0, RED_DEBUG_INTERNAL_MEMORY_TYPE_UPLOAD, &statuses, optionalFile, optionalLine, optionalUserData);
@@ -4861,7 +4869,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
           if (iGpuInfo->debugArray.memory.handle != NULL) {
             redDebugInternalMemoryFree(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.memory.handle);
           }
-          RedDebugInternalArray defaults = {};
+          RedDebugInternalArray defaults = {0};
           iGpuInfo->debugArray = defaults;
           continue;
         }
@@ -4871,7 +4879,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
           redInternalSetStatus(ctx, eGpuInfo->gpu, &ctx->gpusStatuses[i], 256, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
           redDebugInternalDestroyArray(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.array.handle);
           redDebugInternalMemoryFree(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.memory.handle);
-          RedDebugInternalArray defaults = {};
+          RedDebugInternalArray defaults = {0};
           iGpuInfo->debugArray = defaults;
           continue;
         }
@@ -4881,7 +4889,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
           redInternalSetStatus(ctx, eGpuInfo->gpu, &ctx->gpusStatuses[i], 257, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
           redDebugInternalDestroyArray(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.array.handle);
           redDebugInternalMemoryFree(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.memory.handle);
-          RedDebugInternalArray defaults = {};
+          RedDebugInternalArray defaults = {0};
           iGpuInfo->debugArray = defaults;
           redDebugInternalDestroyEvent(ctx, eGpuInfo->gpu, iGpuInfo->debugArrayGpuToCpuEvent);
           iGpuInfo->debugArrayGpuToCpuEvent = NULL;
@@ -4893,7 +4901,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
           redInternalSetStatus(ctx, eGpuInfo->gpu, &ctx->gpusStatuses[i], 258, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
           redDebugInternalDestroyArray(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.array.handle);
           redDebugInternalMemoryFree(ctx, eGpuInfo->gpu, iGpuInfo->debugArray.memory.handle);
-          RedDebugInternalArray defaults = {};
+          RedDebugInternalArray defaults = {0};
           iGpuInfo->debugArray = defaults;
           redDebugInternalDestroyEvent(ctx, eGpuInfo->gpu, iGpuInfo->debugArrayGpuToCpuEvent);
           iGpuInfo->debugArrayGpuToCpuEvent = NULL;
@@ -6152,7 +6160,7 @@ static inline void redInlineCreateProcedureParameters(RedContext context, RedHan
     }
   }
 
-  VkPushConstantRange constants = {};
+  VkPushConstantRange constants = {0};
   if (procedureParametersDeclaration != NULL) {
     constants.stageFlags = (VkShaderStageFlags)procedureParametersDeclaration->variablesVisibleToStages;
     constants.offset     = 0;
@@ -7285,7 +7293,7 @@ static inline void redInlineCallSetProcedureOutput(RedTypeProcedureAddressCallSe
       clearValues[i].color = color;
     }
   } else {
-    VkClearColorValue color = {};
+    VkClearColorValue color = {0};
     for (unsigned i = 0; i < outputColorsCount; i += 1) {
       clearValues[i].color = color;
     }
@@ -7413,7 +7421,7 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
   } else {
-    RedStatuses statuses = {};
+    RedStatuses statuses = {0};
 
     RedHandleCpuSignal cpuSignal = cold->gpus[gpuIndex].debugArrayCpuSignal;
 
@@ -7577,7 +7585,7 @@ static inline void redInlineDebugArrayCallPrint(RedContext context, RedHandleGpu
   const RedTypeProcedureAddressCallUsageAliasOrderBarrier callUsageOrderBarrier    = (RedTypeProcedureAddressCallUsageAliasOrderBarrier)ctx->internal.gpuProcedureAddresses[gpuIndex].redCallUsageOrderBarrier;
   const RedTypeProcedureCallGpuToCpuSignalSignal          callGpuToCpuSignalSignal = (RedTypeProcedureCallGpuToCpuSignalSignal)ctx->internal.gpuProcedureAddresses[gpuIndex].redCallGpuToCpuSignalSignal;
 
-  RedVkUsageArray debugArrayFlush        = {};
+  RedVkUsageArray debugArrayFlush        = {0};
   debugArrayFlush.setTo44                = 44;
   debugArrayFlush.setTo0                 = 0;
   debugArrayFlush.oldAccesses            = RED_VK_ACCESS_BITFLAG_COPY_R | RED_VK_ACCESS_BITFLAG_COPY_W | RED_VK_ACCESS_BITFLAG_STRUCT_RESOURCE_R | RED_VK_ACCESS_BITFLAG_STRUCT_RESOURCE_W;
@@ -7603,7 +7611,7 @@ static inline void redInlineDebugArrayCallPrint(RedContext context, RedHandleGpu
   );
   vk->vkCmdResetEvent((VkCommandBuffer)calls, debugArrayCpuToGpuEvent, VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT);
 
-  RedVkUsageArray debugArrayInvalidate          = {};
+  RedVkUsageArray debugArrayInvalidate        = {0};
   debugArrayInvalidate.setTo44                = 44;
   debugArrayInvalidate.setTo0                 = 0;
   debugArrayInvalidate.oldAccesses            = RED_VK_ACCESS_BITFLAG_CPU;
@@ -7785,7 +7793,7 @@ static inline void redInlineCreatePresent(RedContext context, RedHandleGpu gpu, 
   int isImagesCountSetToMaxValue = imagesCount == 0xFFFFFFFF ? 1 : 0;
 
   if (isImagesCountSetToMaxValue == 1) {
-    RedSurfaceCurrentPropertiesAndPresentLimits surfaceCurrentPropertiesAndPresentLimits = {};
+    RedSurfaceCurrentPropertiesAndPresentLimits surfaceCurrentPropertiesAndPresentLimits = {0};
     redInlineSurfaceGetCurrentPropertiesAndPresentLimits(context, gpu, surface, &surfaceCurrentPropertiesAndPresentLimits, outStatuses, optionalFile, optionalLine, optionalUserData);
     imagesCount = surfaceCurrentPropertiesAndPresentLimits.minPresentImagesCount;
   }
@@ -8278,7 +8286,6 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateWithInlineSamplers(RedCo
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, maxStructsMembersOfTypeArrayROConstantCount, maxStructsMembersOfTypeArrayROOrArrayRWCount, maxStructsMembersOfTypeInlineSamplerCount, maxStructsMembersOfTypeTextureROCount, maxStructsMembersOfTypeTextureRWCount, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
   redInternalMarkEnd();
-  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplersWithInlineSamplers(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeSamplerCount, unsigned maxStructsMembersOfTypeInlineSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8286,7 +8293,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplersWithInlineSample
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, 0, 0, maxStructsMembersOfTypeSamplerCount + maxStructsMembersOfTypeInlineSamplerCount, 0, 0, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd(__FUNCTION__);
+  redInternalMarkEnd();
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemorySuballocateStructs(RedContext context, RedHandleGpu gpu, const char ** handleNames, RedHandleStructsMemory structsMemory, unsigned structsDeclarationsCount, const RedHandleStructDeclaration * structsDeclarations, RedHandleStruct * outStructs, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {

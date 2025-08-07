@@ -1,5 +1,6 @@
 #pragma once
 
+#define redCreateSurfaceWin32_np_count_10
 #define _np1_redCreateSurfaceWin32 context
 #define _np2_redCreateSurfaceWin32 gpu
 #define _np3_redCreateSurfaceWin32 handleName
@@ -11,6 +12,7 @@
 #define _np9_redCreateSurfaceWin32 optionalLine
 #define _np10_redCreateSurfaceWin32 optionalUserData
 
+#define redCreateSurfaceXlibOrXcb_np_count_12
 #define _np1_redCreateSurfaceXlibOrXcb context
 #define _np2_redCreateSurfaceXlibOrXcb gpu
 #define _np3_redCreateSurfaceXlibOrXcb handleName
@@ -24,6 +26,7 @@
 #define _np11_redCreateSurfaceXlibOrXcb optionalLine
 #define _np12_redCreateSurfaceXlibOrXcb optionalUserData
 
+#define redCreatePresent_np_count_23
 #define _np1_redCreatePresent context
 #define _np2_redCreatePresent gpu
 #define _np3_redCreatePresent queue
@@ -48,6 +51,7 @@
 #define _np22_redCreatePresent optionalLine
 #define _np23_redCreatePresent optionalUserData
 
+#define redDestroySurface_np_count_6
 #define _np1_redDestroySurface context
 #define _np2_redDestroySurface gpu
 #define _np3_redDestroySurface surface
@@ -55,6 +59,7 @@
 #define _np5_redDestroySurface optionalLine
 #define _np6_redDestroySurface optionalUserData
 
+#define redDestroyPresent_np_count_6
 #define _np1_redDestroyPresent context
 #define _np2_redDestroyPresent gpu
 #define _np3_redDestroyPresent present
@@ -62,6 +67,7 @@
 #define _np5_redDestroyPresent optionalLine
 #define _np6_redDestroyPresent optionalUserData
 
+#define redQueueFamilyIndexGetSupportsPresent_np_count_11
 #define _np1_redQueueFamilyIndexGetSupportsPresent context
 #define _np2_redQueueFamilyIndexGetSupportsPresent gpu
 #define _np3_redQueueFamilyIndexGetSupportsPresent queueFamilyIndex
@@ -74,6 +80,7 @@
 #define _np10_redQueueFamilyIndexGetSupportsPresent optionalLine
 #define _np11_redQueueFamilyIndexGetSupportsPresent optionalUserData
 
+#define redSurfaceGetPresentFeatures_np_count_8
 #define _np1_redSurfaceGetPresentFeatures context
 #define _np2_redSurfaceGetPresentFeatures gpu
 #define _np3_redSurfaceGetPresentFeatures surface
@@ -83,6 +90,7 @@
 #define _np7_redSurfaceGetPresentFeatures optionalLine
 #define _np8_redSurfaceGetPresentFeatures optionalUserData
 
+#define redSurfaceGetCurrentPropertiesAndPresentLimits_np_count_8
 #define _np1_redSurfaceGetCurrentPropertiesAndPresentLimits context
 #define _np2_redSurfaceGetCurrentPropertiesAndPresentLimits gpu
 #define _np3_redSurfaceGetCurrentPropertiesAndPresentLimits surface
@@ -92,6 +100,7 @@
 #define _np7_redSurfaceGetCurrentPropertiesAndPresentLimits optionalLine
 #define _np8_redSurfaceGetCurrentPropertiesAndPresentLimits optionalUserData
 
+#define redPresentGetImageIndex_np_count_10
 #define _np1_redPresentGetImageIndex context
 #define _np2_redPresentGetImageIndex gpu
 #define _np3_redPresentGetImageIndex present
@@ -103,6 +112,7 @@
 #define _np9_redPresentGetImageIndex optionalLine
 #define _np10_redPresentGetImageIndex optionalUserData
 
+#define redQueuePresent_np_count_13
 #define _np1_redQueuePresent context
 #define _np2_redQueuePresent gpu
 #define _np3_redQueuePresent queue
