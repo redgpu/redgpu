@@ -1,3 +1,9 @@
+Aug 07, 2025:
+
+  * REDGPU X backend is removed.
+  * REDGPU SDK folders and files structures are changed.
+  * REDGPU implementation files, named parameters and named parameters generator are imported from REDGPU 2 git repo, commit 7f417c01ca0036abcfe35fdce00593583f2d6170.
+
 May 20, 2023:
 
   * `RED_CONTEXT_OPTIONAL_SETTINGS_CREATE_CONTEXT_PERFORMANCE` enum value is changed to `4`.
