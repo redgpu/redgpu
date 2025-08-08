@@ -1,3 +1,8 @@
+Aug 08, 2025:
+
+  * Added more examples to RedGpuSDK/misc/examples/ folder.
+  * Added generation of npNfp macros to RedGpuSDK/misc/npgenerator/npgenerator_np_h_generator.cpp to call function pointers with named parameters.
+
 Aug 07, 2025:
 
   * REDGPU X backend is removed.

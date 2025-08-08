@@ -36,6 +36,32 @@ int main() {
 
       printf("\n");
     }
+
+    // NOTE(Constantine): Aug 07, 2025: function pointer np versions.
+    {
+      for (int i = 0; i < maxParametersCount; i += 1) {
+
+        printf("#define np%dfp(ProcedureName, ProcedureCall, \\\n", i + 1);
+
+        for (int j = 0; j < (i + 1); j += 1) {
+          printf("  p%d_PassedName, p%d", j + 1, j + 1);
+          if (j != i) {
+            printf(",");
+          }
+          printf(" \\\n");
+        }
+
+        printf(") \\\n");
+        printf("  ProcedureCall(");
+        for (int j = 0; j < (i + 1); j += 1) {
+          if (j != 0) printf(", ");
+          printf("p%d", j + 1);
+        }
+        printf(")\n");
+
+        printf("\n");
+      }
+    }
   }
   printf("#else // #ifdef REDGPU_DISABLE_NAMED_PARAMETERS\n");
   printf("\n");
@@ -77,6 +103,40 @@ int main() {
       }
 
       printf("\n");
+    }
+
+    // NOTE(Constantine): Aug 07, 2025: function pointer np versions.
+    {
+      for (int i = 0; i < maxParametersCount; i += 1) {
+
+        printf("#define np%dfp(ProcedureName, ProcedureCall, \\\n", i + 1);
+
+        for (int j = 0; j < (i + 1); j += 1) {
+          printf("  p%d_PassedName, p%d", j + 1, j + 1);
+          if (j != i) {
+            printf(",");
+          }
+          printf(" \\\n");
+        }
+
+        printf(") \\\n");
+        printf("  ProcedureCall(");
+        for (int j = 0; j < (i + 1); j += 1) {
+          if (j != 0) printf(", ");
+          printf("p%d", j + 1);
+        }
+        printf("); \\\n");
+
+        for (int j = 0; j < (i + 1); j += 1) {
+          printf("  static_assert(std::string_view(p%d_PassedName) == NP_STRINGIFY(_np%d_##ProcedureName), \"Expected parameter name: \" #ProcedureName \"(\" NP_STRINGIFY(_np%d_##ProcedureName) \": ...), got: \" #ProcedureName \"(\" p%d_PassedName \": ...)\")", j + 1, j + 1, j + 1, j + 1);
+          if (j != i) {
+            printf("; \\");
+          }
+          printf("\n");
+        }
+
+        printf("\n");
+      }
     }
   }
   printf("#endif // #ifdef REDGPU_DISABLE_NAMED_PARAMETERS\n");
