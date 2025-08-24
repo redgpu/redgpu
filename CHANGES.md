@@ -1,6 +1,7 @@
 Aug 24, 2025:
 
   * Make all code compile as C by default.
+  * Named parameters generator now accepts filename as an argument.
 
 Aug 08, 2025:
 

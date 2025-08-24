@@ -3,7 +3,12 @@
 #include <fstream>
 #include <sstream>
 
-int main() {
+int main(int ArgsCount, const char ** Args) {
+  if (ArgsCount <= 1) {
+    printf("Error: pass filename as an argument to npgenerator.exe\n");
+    exit(0);
+  }
+
   // NOTE(Constantine):
   //
   // The rules:
@@ -25,9 +30,9 @@ int main() {
   srand(time(0));
 
   std::string line;
-  std::ifstream file("functions.txt");
+  std::ifstream file(Args[1]);
   if (file.is_open() == false) {
-    printf("Error: can't open functions.txt file.\n");
+    printf("Error: can't open \"%s\" file.\n", Args[1]);
   } else {
      printf("#pragma once\n");
      printf("\n");
