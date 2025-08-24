@@ -17,7 +17,7 @@ clang main.c redgpu.o
 
 int main() {
   RedContext redcontext = NULL;
-  np18(redCreateContext,
+  np(redCreateContext,
     "malloc", malloc,
     "free", free,
     "optionalMallocTagged", NULL,

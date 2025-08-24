@@ -604,7 +604,7 @@ REDGPU_DECLSPEC unsigned REDGPU_API redHelperGetMemoryTypeIndex(const RedGpuInfo
 
 void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandleImage image, RedImagePartBitflags allParts, RedHandleQueue queueToSubmitImageStateChange, unsigned queueFamilyIndexToSubmitImageStateChange, RedStatuses * outStatuses, char * optionalFile, int optionalLine, void * optionalUserData) {
   RedCallProceduresAndAddresses callProceduresAndAddresses = {0};
-  np7(redGetCallProceduresAndAddresses,
+  np(redGetCallProceduresAndAddresses,
     "context", context,
     "gpu", gpu,
     "outCallProceduresAndAddresses", &callProceduresAndAddresses,
@@ -615,7 +615,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   );
 
   RedCalls calls = {0};
-  np9(redCreateCalls,
+  np(redCreateCalls,
     "context", context,
     "gpu", gpu,
     "handleName", NULL,
@@ -627,7 +627,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
     "optionalUserData", optionalUserData
   );
 
-  np9(redCallsSet,
+  np(redCallsSet,
     "context", context,
     "gpu", gpu,
     "calls", calls.handle,
@@ -655,7 +655,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   imageUsage.imageLevelsCount       = -1;
   imageUsage.imageLayersFirst       = 0;
   imageUsage.imageLayersCount       = -1;
-  np12(redCallUsageAliasOrderBarrier,
+  np(redCallUsageAliasOrderBarrier,
     "address", callProceduresAndAddresses.redCallUsageAliasOrderBarrier,
     "calls", calls.handle,
     "context", context,
@@ -670,7 +670,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
     "dependencyByRegion", 0
   );
 
-  np8(redCallsEnd,
+  np(redCallsEnd,
     "context", context,
     "gpu", gpu,
     "calls", calls.handle,
@@ -682,7 +682,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   );
 
   RedHandleCpuSignal cpuSignal = NULL;
-  np9(redCreateCpuSignal,
+  np(redCreateCpuSignal,
     "context", context,
     "gpu", gpu,
     "handleName", NULL,
@@ -704,7 +704,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   timeline.calls                             = &calls.handle;
   timeline.signalGpuSignalsCount             = 0;
   timeline.signalGpuSignals                  = NULL;
-  np10(redQueueSubmit,
+  np(redQueueSubmit,
     "context", context,
     "gpu", gpu,
     "queue", queueToSubmitImageStateChange,
@@ -717,7 +717,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
     "optionalUserData", optionalUserData
   );
 
-  np9(redCpuSignalWait,
+  np(redCpuSignalWait,
     "context", context,
     "gpu", gpu,
     "cpuSignalsCount", 1,
@@ -729,7 +729,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
     "optionalUserData", optionalUserData
   );
 
-  np6(redDestroyCpuSignal,
+  np(redDestroyCpuSignal,
     "context", context,
     "gpu", gpu,
     "cpuSignal", cpuSignal,
@@ -738,7 +738,7 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
     "optionalUserData", optionalUserData
   );
 
-  np7(redDestroyCalls,
+  np(redDestroyCalls,
     "context", context,
     "gpu", gpu,
     "calls", calls.handle,
@@ -882,7 +882,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
     assert(out.imageLayersCount <= REDGPU_HELPER_LOAD_IMAGE_MAX_LAYERS_COUNT);
   }
 
-  np20(redCreateImage,
+  np(redCreateImage,
     "context", context,
     "gpu", gpu,
     "handleName", handleName,
@@ -905,7 +905,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
     "optionalUserData", optionalUserData
   );
 
-  np13(redMemoryAllocate,
+  np(redMemoryAllocate,
     "context", context,
     "gpu", gpu,
     "handleName", handleName,
@@ -927,7 +927,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
   memoryImage.image            = out.image.handle;
   memoryImage.memory           = out.imageMemory;
   memoryImage.memoryBytesFirst = 0;
-  np10(redMemorySet,
+  np(redMemorySet,
     "context", context,
     "gpu", gpu,
     "memoryArraysCount", 0,
@@ -940,7 +940,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
     "optionalUserData", optionalUserData
   );
 
-  np17(redCreateTexture,
+  np(redCreateTexture,
     "context", context,
     "gpu", gpu,
     "handleName", handleName,
@@ -1008,7 +1008,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
       layerPath[layerPathLength + 4] = 0;
       out.imagesData[i][j] = redHelperLoadImageDataRead(layerPath, optionalFile, optionalLine);
       size_t arrayBytesCount = out.imagesData[i][j].bytesCount;
-      np14(redCreateArray,
+      np(redCreateArray,
         "context", context,
         "gpu", gpu,
         "handleName", handleName,
@@ -1024,7 +1024,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
         "optionalLine", optionalLine,
         "optionalUserData", optionalUserData
       );
-      np13(redMemoryAllocateMappable,
+      np(redMemoryAllocateMappable,
         "context", context,
         "gpu", gpu,
         "handleName", handleName,
@@ -1045,7 +1045,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
       memoryArray.array            = out.arrays[i][j].handle;
       memoryArray.memory           = out.arraysMemory[i][j];
       memoryArray.memoryBytesFirst = 0;
-      np10(redMemorySet,
+      np(redMemorySet,
         "context", context,
         "gpu", gpu,
         "memoryArraysCount", 1,
@@ -1058,7 +1058,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
         "optionalUserData", optionalUserData
       );
       void * pointer = NULL;
-      np10(redMemoryMap,
+      np(redMemoryMap,
         "context", context,
         "gpu", gpu,
         "mappableMemory", out.arraysMemory[i][j],
@@ -1079,7 +1079,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
         memoryRange.mappableMemory                = out.arraysMemory[i][j];
         memoryRange.mappableMemoryRangeBytesFirst = 0;
         memoryRange.mappableMemoryRangeBytesCount = out.imagesData[i][j].bytesCount;
-        np8(redMemoryNonCoherentFlush,
+        np(redMemoryNonCoherentFlush,
           "context", context,
           "gpu", gpu,
           "mappableMemoryRangesCount", 1,
@@ -1094,7 +1094,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
   }
 
   RedCallProceduresAndAddresses callProceduresAndAddresses = {0};
-  np7(redGetCallProceduresAndAddresses,
+  np(redGetCallProceduresAndAddresses,
     "context", context,
     "gpu", gpu,
     "outCallProceduresAndAddresses", &callProceduresAndAddresses,
@@ -1125,7 +1125,7 @@ RedHelperLoadImage redHelperLoadImage(RedContext context, RedHandleGpu gpu, cons
       copy.imageExtent.texelsCountWidth  = width;
       copy.imageExtent.texelsCountHeight = height;
       copy.imageExtent.texelsCountDepth  = 1;
-      np6fp(redCallCopyArrayToImage, callProceduresAndAddresses.redCallCopyArrayToImage,
+      npfp(redCallCopyArrayToImage, callProceduresAndAddresses.redCallCopyArrayToImage,
         "calls", callsToRecordImageUploadingInto,
         "arrayR", out.arrays[i][j].handle,
         "imageW", out.image.handle,
@@ -1204,7 +1204,7 @@ int main() {
   };
 #endif
   RedContext context = NULL;
-  np18(redCreateContext,
+  np(redCreateContext,
     "malloc", malloc,
     "free", free,
     "optionalMallocTagged", NULL,
@@ -1236,7 +1236,7 @@ int main() {
   unsigned           queueFamilyIndex =  context->gpus[0].queuesFamilyIndex[0];
 
   RedCallProceduresAndAddresses callsPA = {0};
-  np7(redGetCallProceduresAndAddresses,
+  np(redGetCallProceduresAndAddresses,
     "context", context,
     "gpu", gpu,
     "outCallProceduresAndAddresses", &callsPA,
@@ -1247,7 +1247,7 @@ int main() {
   );
 
   RedHandleSampler samplerAnisotropic = NULL;
-  np21(redCreateSampler,
+  np(redCreateSampler,
     "context", context,
     "gpu", gpu,
     "handleName", "samplerAnisotropic",
@@ -1272,7 +1272,7 @@ int main() {
   );
 
   RedHandleSampler samplerLinear = NULL;
-  np21(redCreateSampler,
+  np(redCreateSampler,
     "context", context,
     "gpu", gpu,
     "handleName", "samplerLinear",
@@ -1297,7 +1297,7 @@ int main() {
   );
 
   RedCalls callsUploads = {0};
-  np9(redCreateCallsReusable,
+  np(redCreateCallsReusable,
     "context", context,
     "gpu", gpu,
     "handleName", "callsUploads",
@@ -1311,7 +1311,7 @@ int main() {
 
   size_t   meshIndicesCpuBytesCount = GlobalSponzaMeshesIndicesSizeof;
   RedArray meshIndicesCpu           = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshIndicesCpu",
@@ -1329,7 +1329,7 @@ int main() {
   );
 
   RedArray meshIndicesGpu = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshIndicesGpu",
@@ -1348,7 +1348,7 @@ int main() {
 
   size_t   meshVerticesCpuBytesCount = GlobalSponzaMeshesVerticesSizeof;
   RedArray meshVerticesCpu           = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshVerticesCpu",
@@ -1366,7 +1366,7 @@ int main() {
   );
 
   RedArray meshVerticesGpu = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshVerticesGpu",
@@ -1385,7 +1385,7 @@ int main() {
 
   size_t   meshUvsCpuBytesCount = GlobalSponzaMeshesUvsSizeof;
   RedArray meshUvsCpu           = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshUvsCpu",
@@ -1403,7 +1403,7 @@ int main() {
   );
 
   RedArray meshUvsGpu = {0};
-  np14(redCreateArray,
+  np(redCreateArray,
     "context", context,
     "gpu", gpu,
     "handleName", "meshUvsGpu",
@@ -1421,7 +1421,7 @@ int main() {
   );
 
   RedHandleMemory meshIndicesCpuMemory = {0};
-  np13(redMemoryAllocateMappable,
+  np(redMemoryAllocateMappable,
     "context", context,
     "gpu", gpu,
     "handleName", "meshIndicesCpuMemory",
@@ -1438,7 +1438,7 @@ int main() {
   );
 
   RedHandleMemory meshIndicesGpuMemory = {0};
-  np13(redMemoryAllocate,
+  np(redMemoryAllocate,
     "context", context,
     "gpu", gpu,
     "handleName", "meshIndicesGpuMemory",
@@ -1455,7 +1455,7 @@ int main() {
   );
 
   RedHandleMemory meshVerticesCpuMemory = {0};
-  np13(redMemoryAllocateMappable,
+  np(redMemoryAllocateMappable,
     "context", context,
     "gpu", gpu,
     "handleName", "meshVerticesCpuMemory",
@@ -1472,7 +1472,7 @@ int main() {
   );
 
   RedHandleMemory meshVerticesGpuMemory = {0};
-  np13(redMemoryAllocate,
+  np(redMemoryAllocate,
     "context", context,
     "gpu", gpu,
     "handleName", "meshVerticesGpuMemory",
@@ -1489,7 +1489,7 @@ int main() {
   );
 
   RedHandleMemory meshUvsCpuMemory = {0};
-  np13(redMemoryAllocateMappable,
+  np(redMemoryAllocateMappable,
     "context", context,
     "gpu", gpu,
     "handleName", "meshUvsCpuMemory",
@@ -1506,7 +1506,7 @@ int main() {
   );
 
   RedHandleMemory meshUvsGpuMemory = {0};
-  np13(redMemoryAllocate,
+  np(redMemoryAllocate,
     "context", context,
     "gpu", gpu,
     "handleName", "meshUvsGpuMemory",
@@ -1554,7 +1554,7 @@ int main() {
     memorysArrays[5].array            = meshUvsGpu.handle;
     memorysArrays[5].memory           = meshUvsGpuMemory;
     memorysArrays[5].memoryBytesFirst = 0;
-    np10(redMemorySet,
+    np(redMemorySet,
       "context", context,
       "gpu", gpu,
       "memoryArraysCount", _countof(memorysArrays),
@@ -1569,7 +1569,7 @@ int main() {
   }
 
   void * meshIndicesCpuMemoryPointer = NULL;
-  np10(redMemoryMap,
+  np(redMemoryMap,
     "context", context,
     "gpu", gpu,
     "mappableMemory", meshIndicesCpuMemory,
@@ -1584,7 +1584,7 @@ int main() {
   void * volatile meshIndicesCpuMemoryVolatilePointer = meshIndicesCpuMemoryPointer;
 
   void * meshVerticesCpuMemoryPointer = NULL;
-  np10(redMemoryMap,
+  np(redMemoryMap,
     "context", context,
     "gpu", gpu,
     "mappableMemory", meshVerticesCpuMemory,
@@ -1599,7 +1599,7 @@ int main() {
   void * volatile meshVerticesCpuMemoryVolatilePointer = meshVerticesCpuMemoryPointer;
 
   void * meshUvsCpuMemoryPointer = NULL;
-  np10(redMemoryMap,
+  np(redMemoryMap,
     "context", context,
     "gpu", gpu,
     "mappableMemory", meshUvsCpuMemory,
@@ -1633,7 +1633,7 @@ int main() {
   memorysRangesToFlush[2].mappableMemory                = meshUvsCpuMemory;
   memorysRangesToFlush[2].mappableMemoryRangeBytesFirst = 0;
   memorysRangesToFlush[2].mappableMemoryRangeBytesCount = GlobalSponzaMeshesUvsSizeof;
-  np8(redMemoryNonCoherentFlush,
+  np(redMemoryNonCoherentFlush,
     "context", context,
     "gpu", gpu,
     "mappableMemoryRangesCount", _countof(memorysRangesToFlush),
@@ -1644,7 +1644,7 @@ int main() {
     "optionalUserData", NULL
   );
 
-  np9(redCallsSet,
+  np(redCallsSet,
     "context", context,
     "gpu", gpu,
     "calls", callsUploads.handle,
@@ -1661,7 +1661,7 @@ int main() {
     copyArrayRange.arrayRBytesFirst = 0;
     copyArrayRange.arrayWBytesFirst = 0;
     copyArrayRange.bytesCount       = GlobalSponzaMeshesIndicesSizeof;
-    np5fp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
+    npfp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
       "calls", callsUploads.handle,
       "arrayR", meshIndicesCpu.handle,
       "arrayW", meshIndicesGpu.handle,
@@ -1674,7 +1674,7 @@ int main() {
     copyArrayRange.arrayRBytesFirst = 0;
     copyArrayRange.arrayWBytesFirst = 0;
     copyArrayRange.bytesCount       = GlobalSponzaMeshesVerticesSizeof;
-    np5fp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
+    npfp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
       "calls", callsUploads.handle,
       "arrayR", meshVerticesCpu.handle,
       "arrayW", meshVerticesGpu.handle,
@@ -1687,7 +1687,7 @@ int main() {
     copyArrayRange.arrayRBytesFirst = 0;
     copyArrayRange.arrayWBytesFirst = 0;
     copyArrayRange.bytesCount       = GlobalSponzaMeshesUvsSizeof;
-    np5fp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
+    npfp(redCallCopyArrayToArray, callsPA.redCallCopyArrayToArray,
       "calls", callsUploads.handle,
       "arrayR", meshUvsCpu.handle,
       "arrayW", meshUvsGpu.handle,
@@ -1701,7 +1701,7 @@ int main() {
   RedHelperLoadImage images64x256  = redHelperLoadImage(/*RedContext context*/context, /*RedHandleGpu gpu*/gpu, /*const RedGpuInfo * gpuInfo*/gpuInfo, /*RedHandleCalls callsToRecordImageUploadingInto*/callsUploads.handle, /*RedHandleQueue queueToSubmitImageStateChange*/queue, /*unsigned queueFamilyIndexToSubmitImageStateChange*/queueFamilyIndex, /*char * handleName*/"images64x256",  /*const char * path*/"sponza_textures/64x256",  /*unsigned levelsDirDigitsCount*/2, /*const char * levelsDirDigitsFormat*/"%02d", /*unsigned layersDirDigitsCount*/3, /*const char * layersDirDigitsFormat*/"%03d", /*unsigned width*/ 64, /*unsigned height*/256, /*RedStatuses * outStatuses*/NULL, /*char * optionalFile*/__FILE__, /*int optionalLine*/__LINE__, /*void * optionalUserData*/NULL);
   RedHelperLoadImage images64x64   = redHelperLoadImage(/*RedContext context*/context, /*RedHandleGpu gpu*/gpu, /*const RedGpuInfo * gpuInfo*/gpuInfo, /*RedHandleCalls callsToRecordImageUploadingInto*/callsUploads.handle, /*RedHandleQueue queueToSubmitImageStateChange*/queue, /*unsigned queueFamilyIndexToSubmitImageStateChange*/queueFamilyIndex, /*char * handleName*/"images64x64",   /*const char * path*/"sponza_textures/64x64",   /*unsigned levelsDirDigitsCount*/2, /*const char * levelsDirDigitsFormat*/"%02d", /*unsigned layersDirDigitsCount*/3, /*const char * layersDirDigitsFormat*/"%03d", /*unsigned width*/ 64, /*unsigned height*/ 64, /*RedStatuses * outStatuses*/NULL, /*char * optionalFile*/__FILE__, /*int optionalLine*/__LINE__, /*void * optionalUserData*/NULL);
 
-  np8(redCallsEnd,
+  np(redCallsEnd,
     "context", context,
     "gpu", gpu,
     "calls", callsUploads.handle,
@@ -1714,7 +1714,7 @@ int main() {
 
   {
     RedHandleCpuSignal cpuSignal = NULL;
-    np9(redCreateCpuSignal,
+    np(redCreateCpuSignal,
       "context", context,
       "gpu", gpu,
       "handleName", NULL,
@@ -1736,7 +1736,7 @@ int main() {
     timeline.calls                             = &callsUploads.handle;
     timeline.signalGpuSignalsCount             = 0;
     timeline.signalGpuSignals                  = NULL;
-    np10(redQueueSubmit,
+    np(redQueueSubmit,
       "context", context,
       "gpu", gpu,
       "queue", queue,
@@ -1749,7 +1749,7 @@ int main() {
       "optionalUserData", NULL
     );
 
-    np9(redCpuSignalWait,
+    np(redCpuSignalWait,
       "context", context,
       "gpu", gpu,
       "cpuSignalsCount", 1,
@@ -1761,7 +1761,7 @@ int main() {
       "optionalUserData", NULL
     );
 
-    np6(redDestroyCpuSignal,
+    np(redDestroyCpuSignal,
       "context", context,
       "gpu", gpu,
       "cpuSignal", cpuSignal,
@@ -1778,7 +1778,7 @@ int main() {
   RedHandleTexture  presentTextures [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
 
 #ifdef _WIN32
-  np10(redCreateSurfaceWin32,
+  np(redCreateSurfaceWin32,
     "context", context,
     "gpu", gpu,
     "handleName", "surface",
@@ -1794,7 +1794,7 @@ int main() {
   RedQueueFamilyIndexGetSupportsPresentOnSurface queueFamilyIndexSupportsPresentOnSurface = {0};
   queueFamilyIndexSupportsPresentOnSurface.surface                                     = surface;
   queueFamilyIndexSupportsPresentOnSurface.outQueueFamilyIndexSupportsPresentOnSurface = 0;
-  np11(redQueueFamilyIndexGetSupportsPresent,
+  np(redQueueFamilyIndexGetSupportsPresent,
     "context", context,
     "gpu", gpu,
     "queueFamilyIndex", queueFamilyIndex,
@@ -1813,7 +1813,7 @@ int main() {
   }
   
   RedSurfaceCurrentPropertiesAndPresentLimits surfaceCurrentPropertiesAndPresentLimits = {0};
-  np8(redSurfaceGetCurrentPropertiesAndPresentLimits,
+  np(redSurfaceGetCurrentPropertiesAndPresentLimits,
     "context", context,
     "gpu", gpu,
     "surface", surface,
@@ -1827,7 +1827,7 @@ int main() {
   if (surfaceCurrentPropertiesAndPresentLimits.currentSurfaceWidth  != -1) { windowWidth  = surfaceCurrentPropertiesAndPresentLimits.currentSurfaceWidth;  }
   if (surfaceCurrentPropertiesAndPresentLimits.currentSurfaceHeight != -1) { windowHeight = surfaceCurrentPropertiesAndPresentLimits.currentSurfaceHeight; }
   
-  np23(redCreatePresent,
+  np(redCreatePresent,
     "context", context,
     "gpu", gpu,
     "queue", queue,
@@ -1860,7 +1860,7 @@ int main() {
   RedHandleTexture depthMsaaTexture [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   RedHandleTexture colorMsaaTexture [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {
-    np20(redCreateImage,
+    np(redCreateImage,
       "context", context,
       "gpu", gpu,
       "handleName", "depthMsaa",
@@ -1882,7 +1882,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np20(redCreateImage,
+    np(redCreateImage,
       "context", context,
       "gpu", gpu,
       "handleName", "colorMsaa",
@@ -1904,7 +1904,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np13(redMemoryAllocate,
+    np(redMemoryAllocate,
       "context", context,
       "gpu", gpu,
       "handleName", "depthMsaaMemory",
@@ -1919,7 +1919,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np13(redMemoryAllocate,
+    np(redMemoryAllocate,
       "context", context,
       "gpu", gpu,
       "handleName", "colorMsaaMemory",
@@ -1945,7 +1945,7 @@ int main() {
     memorysImages[1].image            = colorMsaa[i].handle;
     memorysImages[1].memory           = colorMsaaMemory[i];
     memorysImages[1].memoryBytesFirst = 0;
-    np10(redMemorySet,
+    np(redMemorySet,
       "context", context,
       "gpu", gpu,
       "memoryArraysCount", 0,
@@ -1957,7 +1957,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np17(redCreateTexture,
+    np(redCreateTexture,
       "context", context,
       "gpu", gpu,
       "handleName", "depthMsaaTexture",
@@ -1976,7 +1976,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np17(redCreateTexture,
+    np(redCreateTexture,
       "context", context,
       "gpu", gpu,
       "handleName", "colorMsaaTexture",
@@ -2025,7 +2025,7 @@ int main() {
   RedHandleCpuSignal cpusig        [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   RedHandleGpuSignal gpusig        [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {
-    np8(redCreateGpuSignal,
+    np(redCreateGpuSignal,
       "context", context,
       "gpu", gpu,
       "handleName", "gpusigPresent",
@@ -2035,7 +2035,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np9(redCreateCpuSignal,
+    np(redCreateCpuSignal,
       "context", context,
       "gpu", gpu,
       "handleName", "cpusig",
@@ -2046,7 +2046,7 @@ int main() {
       "optionalLine", __LINE__,
       "optionalUserData", NULL
     );
-    np8(redCreateGpuSignal,
+    np(redCreateGpuSignal,
       "context", context,
       "gpu", gpu,
       "handleName", "gpusig",
@@ -2060,7 +2060,7 @@ int main() {
 
   RedCalls calls[REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {
-    np9(redCreateCalls,
+    np(redCreateCalls,
       "context", context,
       "gpu", gpu,
       "handleName", "calls",
@@ -2129,7 +2129,7 @@ int main() {
   resolveSources.resolveDepthStencil = 0;
   resolveSources.resolveColors       = 1;
   RedHandleOutputDeclaration outputDeclaration = NULL;
-  np12(redCreateOutputDeclaration,
+  np(redCreateOutputDeclaration,
     "context", context,
     "gpu", gpu,
     "handleName", "outputDeclaration",
@@ -2167,7 +2167,7 @@ int main() {
     outputMembersResolveTargets.colors[5]    = NULL;
     outputMembersResolveTargets.colors[6]    = NULL;
     outputMembersResolveTargets.colors[7]    = NULL;
-    np13(redCreateOutput,
+    np(redCreateOutput,
       "context", context,
       "gpu", gpu,
       "handleName", NULL,
@@ -2191,7 +2191,7 @@ int main() {
   structDeclarationSamplersMembers[0].visibleToStages = RED_VISIBLE_TO_STAGE_BITFLAG_VERTEX | RED_VISIBLE_TO_STAGE_BITFLAG_FRAGMENT;
   structDeclarationSamplersMembers[0].inlineSampler   = NULL;
   RedHandleStructDeclaration structDeclarationSamplers = NULL;
-  np13(redCreateStructDeclaration,
+  np(redCreateStructDeclaration,
     "context", context,
     "gpu", gpu,
     "handleName", "structDeclarationSamplers",
@@ -2227,7 +2227,7 @@ int main() {
   arrayROs[0].slot = 0;
   arrayROs[1].slot = 1;
   RedHandleStructDeclaration structDeclaration = NULL;
-  np13(redCreateStructDeclaration,
+  np(redCreateStructDeclaration,
     "context", context,
     "gpu", gpu,
     "handleName", "structDeclaration",
@@ -2257,7 +2257,7 @@ int main() {
   procedureParametersDeclaration.structsDeclarations[6]   = NULL;
   procedureParametersDeclaration.handlesDeclaration       = NULL;
   RedHandleProcedureParameters procedureParameters = NULL;
-  np9(redCreateProcedureParameters,
+  np(redCreateProcedureParameters,
     "context", context,
     "gpu", gpu,
     "handleName", "procedureParameters",
@@ -2270,7 +2270,7 @@ int main() {
   );
 
   RedHandleStructsMemory structsMemorySamplers = NULL;
-  np10(redStructsMemoryAllocateSamplers,
+  np(redStructsMemoryAllocateSamplers,
     "context", context,
     "gpu", gpu,
     "handleName", "structsMemorySamplers",
@@ -2284,7 +2284,7 @@ int main() {
   );
 
   RedHandleStructsMemory structsMemory = NULL;
-  np13(redStructsMemoryAllocate,
+  np(redStructsMemoryAllocate,
     "context", context,
     "gpu", gpu,
     "handleName", "structsMemory",
@@ -2308,7 +2308,7 @@ int main() {
     const char * structsHandleNames[2] = {0};
     structsHandleNames[0] = "structsSamplers[0]";
     structsHandleNames[1] = "structsSamplers[1]";
-    np11(redStructsMemorySuballocateStructs,
+    np(redStructsMemorySuballocateStructs,
       "context", context,
       "gpu", gpu,
       "handleNames", structsHandleNames,
@@ -2331,7 +2331,7 @@ int main() {
     const char * structsHandleNames[2] = {0};
     structsHandleNames[0] = "structs[0]";
     structsHandleNames[1] = "structs[1]";
-    np11(redStructsMemorySuballocateStructs,
+    np(redStructsMemorySuballocateStructs,
       "context", context,
       "gpu", gpu,
       "handleNames", structsHandleNames,
@@ -2413,7 +2413,7 @@ int main() {
     structMembers[3].textures  = textures;
     structMembers[3].arrays    = NULL;
     structMembers[3].setTo00   = 0;
-    np7(redStructsSet,
+    np(redStructsSet,
       "context", context,
       "gpu", gpu,
       "structsMembersCount", _countof(structMembers),
@@ -2490,7 +2490,7 @@ int main() {
     structMembers[3].textures  = textures;
     structMembers[3].arrays    = NULL;
     structMembers[3].setTo00   = 0;
-    np7(redStructsSet,
+    np(redStructsSet,
       "context", context,
       "gpu", gpu,
       "structsMembersCount", _countof(structMembers),
@@ -2521,7 +2521,7 @@ int main() {
       fflush(stdout);
     }
 
-    np10(redCreateGpuCode,
+    np(redCreateGpuCode,
       "context", context,
       "gpu", gpu,
       "handleName", "gpuCodeVS",
@@ -2556,7 +2556,7 @@ int main() {
       fflush(stdout);
     }
 
-    np10(redCreateGpuCode,
+    np(redCreateGpuCode,
       "context", context,
       "gpu", gpu,
       "handleName", "gpuCodeFS",
@@ -2703,7 +2703,7 @@ int main() {
     state.outputColorsBlendAlphaOp[5]                    = RED_BLEND_OP_ADD;
     state.outputColorsBlendAlphaOp[6]                    = RED_BLEND_OP_ADD;
     state.outputColorsBlendAlphaOp[7]                    = RED_BLEND_OP_ADD;
-    np19(redCreateProcedure,
+    np(redCreateProcedure,
       "context", context,
       "gpu", gpu,
       "handleName", "procedureDraw",
@@ -2808,7 +2808,7 @@ int main() {
       state.outputColorsBlendAlphaFactorTarget[i]        = RED_BLEND_FACTOR_ONE_MINUS_SOURCE_ALPHA;
       state.outputColorsBlendAlphaOp[i]                  = RED_BLEND_OP_ADD;
     }
-    np19(redCreateProcedure,
+    np(redCreateProcedure,
       "context", context,
       "gpu", gpu,
       "handleName", "procedureDrawBlend",
@@ -2916,7 +2916,7 @@ int main() {
 
     RedHandleGpuSignal gpusigPresentInconsistent = NULL;
     if (REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES == 1) {
-      np8(redCreateGpuSignal,
+      np(redCreateGpuSignal,
         "context", context,
         "gpu", gpu,
         "handleName", "gpusigPresent",
@@ -2928,7 +2928,7 @@ int main() {
       );
       
       F = f;
-      np10(redPresentGetImageIndex,
+      np(redPresentGetImageIndex,
         "context", context,
         "gpu", gpu,
         "present", present,
@@ -2942,7 +2942,7 @@ int main() {
       );
     }
 
-    np9(redCpuSignalWait,
+    np(redCpuSignalWait,
       "context", context,
       "gpu", gpu,
       "cpuSignalsCount", 1,
@@ -2959,7 +2959,7 @@ int main() {
       gpusigPresent[f] = gpusigPresentInconsistent;
     }
 
-    np8(redCpuSignalUnsignal,
+    np(redCpuSignalUnsignal,
       "context", context,
       "gpu", gpu,
       "cpuSignalsCount", 1,
@@ -2970,7 +2970,7 @@ int main() {
       "optionalUserData", NULL
     );
 
-    np9(redCallsSet,
+    np(redCallsSet,
       "context", context,
       "gpu", gpu,
       "calls", calls[f].handle,
@@ -3000,7 +3000,7 @@ int main() {
         imageUsage.imageLevelsCount       = -1;
         imageUsage.imageLayersFirst       = 0;
         imageUsage.imageLayersCount       = -1;
-        np12(redCallUsageAliasOrderBarrier,
+        np(redCallUsageAliasOrderBarrier,
           "address", callsPA.redCallUsageAliasOrderBarrier,
           "calls", calls[f].handle,
           "context", context,
@@ -3026,7 +3026,7 @@ int main() {
         colorsClearValuesFloat.a[0] = 1.f;
         float    depthClearValue   = 0.f;
         unsigned stencilClearValue = 0;
-        np14(redCallSetProcedureOutput,
+        np(redCallSetProcedureOutput,
           "address", callsPA.redCallSetProcedureOutput,
           "calls", calls[f].handle,
           "outputDeclaration", outputDeclaration,
@@ -3042,19 +3042,19 @@ int main() {
           "colorsClearValuesSint", NULL,
           "colorsClearValuesUint", NULL
         );
-        np4(redCallSetStructsMemory,
+        np(redCallSetStructsMemory,
           "address", callsPA.redCallSetStructsMemory,
           "calls", calls[f].handle,
           "structsMemory", structsMemory,
           "structsMemorySamplers", structsMemorySamplers
         );
         {
-          np3fp(redCallSetProcedure, callsPA.redCallSetProcedure,
+          npfp(redCallSetProcedure, callsPA.redCallSetProcedure,
             "calls", calls[f].handle,
             "procedureType", RED_PROCEDURE_TYPE_DRAW,
             "procedure", procedureDraw
           );
-          np4(redCallSetProcedureParameters,
+          np(redCallSetProcedureParameters,
             "address", callsPA.redCallSetProcedureParameters,
             "calls", calls[f].handle,
             "procedureType", RED_PROCEDURE_TYPE_DRAW,
@@ -3063,7 +3063,7 @@ int main() {
           RedHandleStruct structsToSet[2] = {0};
           structsToSet[0] = structs[0];
           structsToSet[1] = structsSamplers[0];
-          np8fp(redCallSetProcedureParametersStructs, callsPA.redCallSetProcedureParametersStructs,
+          npfp(redCallSetProcedureParametersStructs, callsPA.redCallSetProcedureParametersStructs,
             "calls", calls[f].handle,
             "procedureType", RED_PROCEDURE_TYPE_DRAW,
             "procedureParameters", procedureParameters,
@@ -3073,13 +3073,13 @@ int main() {
             "setTo0", 0,
             "setTo00", 0
           );
-          np4fp(redCallSetProcedureIndices, callsPA.redCallSetProcedureIndices,
+          npfp(redCallSetProcedureIndices, callsPA.redCallSetProcedureIndices,
             "calls", calls[f].handle,
             "array", meshIndicesGpu.handle,
             "setTo0", 0,
             "setTo1", 1
           );
-          np6fp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
+          npfp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
             "calls", calls[f].handle,
             "procedureParameters", procedureParameters,
             "visibleToStages", RED_VISIBLE_TO_STAGE_BITFLAG_VERTEX | RED_VISIBLE_TO_STAGE_BITFLAG_FRAGMENT,
@@ -3087,7 +3087,7 @@ int main() {
             "dataBytesCount", 4 * sizeof(float),
             "data", cameraPosition
           );
-          np6fp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
+          npfp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
             "calls", calls[f].handle,
             "procedureParameters", procedureParameters,
             "visibleToStages", RED_VISIBLE_TO_STAGE_BITFLAG_VERTEX | RED_VISIBLE_TO_STAGE_BITFLAG_FRAGMENT,
@@ -3116,7 +3116,7 @@ int main() {
             if (textureSelectIndices[1] == (unsigned)-1) {
               textureSelectIndices[1] = 13; // NOTE: An arbitrary choice
             }
-            np6fp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
+            npfp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
               "calls", calls[f].handle,
               "procedureParameters", procedureParameters,
               "visibleToStages", RED_VISIBLE_TO_STAGE_BITFLAG_VERTEX | RED_VISIBLE_TO_STAGE_BITFLAG_FRAGMENT,
@@ -3125,7 +3125,7 @@ int main() {
               "data", textureSelectIndices
             );
             redCallMarkSet(callsPA.redCallMarkSet, calls[f].handle, "redCallProcedureIndexed");
-            np6fp(redCallProcedureIndexed, callsPA.redCallProcedureIndexed,
+            npfp(redCallProcedureIndexed, callsPA.redCallProcedureIndexed,
               "calls", calls[f].handle,
               "indexCount", GlobalSponzaMeshesSubmeshVertexEnd[i] - GlobalSponzaMeshesSubmeshVertexBegin[i],
               "instanceCount", 1,
@@ -3137,7 +3137,7 @@ int main() {
           }
         }
         {
-          np3fp(redCallSetProcedure, callsPA.redCallSetProcedure,
+          npfp(redCallSetProcedure, callsPA.redCallSetProcedure,
             "calls", calls[f].handle,
             "procedureType", RED_PROCEDURE_TYPE_DRAW,
             "procedure", procedureDrawBlend
@@ -3145,7 +3145,7 @@ int main() {
           RedHandleStruct structsToSet[2] = {0};
           structsToSet[0] = structs[1];
           structsToSet[1] = structsSamplers[1];
-          np8fp(redCallSetProcedureParametersStructs, callsPA.redCallSetProcedureParametersStructs,
+          npfp(redCallSetProcedureParametersStructs, callsPA.redCallSetProcedureParametersStructs,
             "calls", calls[f].handle,
             "procedureType", RED_PROCEDURE_TYPE_DRAW,
             "procedureParameters", procedureParameters,
@@ -3176,7 +3176,7 @@ int main() {
             if (textureSelectIndices[1] == (unsigned)-1) {
               textureSelectIndices[1] = 13; // NOTE: An arbitrary choice
             }
-            np6fp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
+            npfp(redCallSetProcedureParametersVariables, callsPA.redCallSetProcedureParametersVariables,
               "calls", calls[f].handle,
               "procedureParameters", procedureParameters,
               "visibleToStages", RED_VISIBLE_TO_STAGE_BITFLAG_VERTEX | RED_VISIBLE_TO_STAGE_BITFLAG_FRAGMENT,
@@ -3185,7 +3185,7 @@ int main() {
               "data", textureSelectIndices
             );
             redCallMarkSet(callsPA.redCallMarkSet, calls[f].handle, "redCallProcedureIndexed");
-            np6fp(redCallProcedureIndexed, callsPA.redCallProcedureIndexed,
+            npfp(redCallProcedureIndexed, callsPA.redCallProcedureIndexed,
               "calls", calls[f].handle,
               "indexCount", GlobalSponzaMeshesSubmeshVertexEnd[i] - GlobalSponzaMeshesSubmeshVertexBegin[i],
               "instanceCount", 1,
@@ -3196,7 +3196,7 @@ int main() {
             redCallMarkEnd(callsPA.redCallMarkEnd, calls[f].handle);
           }
         }
-        np2(redCallEndProcedureOutput, "address", callsPA.redCallEndProcedureOutput, "calls", calls[f].handle);
+        np(redCallEndProcedureOutput, "address", callsPA.redCallEndProcedureOutput, "calls", calls[f].handle);
         redCallMarkEnd(callsPA.redCallMarkEnd, calls[f].handle);
       }
 
@@ -3218,7 +3218,7 @@ int main() {
         imageUsage.imageLevelsCount       = -1;
         imageUsage.imageLayersFirst       = 0;
         imageUsage.imageLayersCount       = -1;
-        np12(redCallUsageAliasOrderBarrier,
+        np(redCallUsageAliasOrderBarrier,
           "address", callsPA.redCallUsageAliasOrderBarrier,
           "calls", calls[f].handle,
           "context", context,
@@ -3235,7 +3235,7 @@ int main() {
         redCallMarkEnd(callsPA.redCallMarkEnd, calls[f].handle);
       }
     }
-    np8(redCallsEnd,
+    np(redCallsEnd,
       "context", context,
       "gpu", gpu,
       "calls", calls[f].handle,
@@ -3248,7 +3248,7 @@ int main() {
 
     if (REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES == 0) {
       F = f;
-      np10(redPresentGetImageIndex,
+      np(redPresentGetImageIndex,
         "context", context,
         "gpu", gpu,
         "present", present,
@@ -3281,7 +3281,7 @@ int main() {
       timelines[0].calls                             = callsHandles;
       timelines[0].signalGpuSignalsCount             = 1;
       timelines[0].signalGpuSignals                  = &gpusig[f];
-      np10(redQueueSubmit,
+      np(redQueueSubmit,
         "context", context,
         "gpu", gpu,
         "queue", queue,
@@ -3295,7 +3295,7 @@ int main() {
       );
     }
 
-    np13(redQueuePresent,
+    np(redQueuePresent,
       "context", context,
       "gpu", gpu,
       "queue", queue,
@@ -3320,7 +3320,7 @@ int main() {
 
   redQueuePresent(context, gpu, queue, 0, NULL, 0, NULL, NULL, NULL, NULL, __FILE__, __LINE__, NULL);
 
-  np9(redCpuSignalWait,
+  np(redCpuSignalWait,
     "context", context,
     "gpu", gpu,
     "cpuSignalsCount", REDGPU_PROGRAM_PRESENT_IMAGES_COUNT,
