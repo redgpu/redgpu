@@ -2,6 +2,7 @@ Aug 24, 2025:
 
   * Make all code compile as C by default.
   * Named parameters generator now accepts filename as an argument.
+  * Add np() and npfp() named parameters metamacros.
 
 Aug 08, 2025:
 

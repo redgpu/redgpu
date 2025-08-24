@@ -80,7 +80,6 @@ int main(int ArgsCount, const char ** Args) {
         sprintf(randomHex + i, "%x", rand() % 16);
       }
 
-      printf("#define %s_np_count_%zu\n", s_FunctionName.c_str(), s_ParameterNames.size());
       for (size_t i = 0, count = s_ParameterNames.size(); i < count; i += 1) {
         printf("#define _np%zu_%s %s\n", i + 1, s_FunctionName.c_str(), s_ParameterNames[i].c_str());
       }
