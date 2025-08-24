@@ -1,6 +1,5 @@
 #pragma once
 
-#define redDebugArrayGetHandle_np_count_6
 #define _np1_redDebugArrayGetHandle context
 #define _np2_redDebugArrayGetHandle gpu
 #define _np3_redDebugArrayGetHandle outStatuses
@@ -8,7 +7,6 @@
 #define _np5_redDebugArrayGetHandle optionalLine
 #define _np6_redDebugArrayGetHandle optionalUserData
 
-#define redDebugArrayCallPrint_np_count_7
 #define _np1_redDebugArrayCallPrint context
 #define _np2_redDebugArrayCallPrint gpu
 #define _np3_redDebugArrayCallPrint calls

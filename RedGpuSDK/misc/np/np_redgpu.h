@@ -1,6 +1,5 @@
 #pragma once
 
-#define redMemoryGetBudget_np_count_7
 #define _np1_redMemoryGetBudget context
 #define _np2_redMemoryGetBudget gpu
 #define _np3_redMemoryGetBudget outMemoryBudget
@@ -9,7 +8,6 @@
 #define _np6_redMemoryGetBudget optionalLine
 #define _np7_redMemoryGetBudget optionalUserData
 
-#define redMemoryAllocate_np_count_13
 #define _np1_redMemoryAllocate context
 #define _np2_redMemoryAllocate gpu
 #define _np3_redMemoryAllocate handleName
@@ -24,7 +22,6 @@
 #define _np12_redMemoryAllocate optionalLine
 #define _np13_redMemoryAllocate optionalUserData
 
-#define redMemoryAllocateMappable_np_count_13
 #define _np1_redMemoryAllocateMappable context
 #define _np2_redMemoryAllocateMappable gpu
 #define _np3_redMemoryAllocateMappable handleName
@@ -39,7 +36,6 @@
 #define _np12_redMemoryAllocateMappable optionalLine
 #define _np13_redMemoryAllocateMappable optionalUserData
 
-#define redMemoryFree_np_count_6
 #define _np1_redMemoryFree context
 #define _np2_redMemoryFree gpu
 #define _np3_redMemoryFree memory
@@ -47,7 +43,6 @@
 #define _np5_redMemoryFree optionalLine
 #define _np6_redMemoryFree optionalUserData
 
-#define redMemorySet_np_count_10
 #define _np1_redMemorySet context
 #define _np2_redMemorySet gpu
 #define _np3_redMemorySet memoryArraysCount
@@ -59,7 +54,6 @@
 #define _np9_redMemorySet optionalLine
 #define _np10_redMemorySet optionalUserData
 
-#define redMemoryMap_np_count_10
 #define _np1_redMemoryMap context
 #define _np2_redMemoryMap gpu
 #define _np3_redMemoryMap mappableMemory
@@ -71,7 +65,6 @@
 #define _np9_redMemoryMap optionalLine
 #define _np10_redMemoryMap optionalUserData
 
-#define redMemoryUnmap_np_count_6
 #define _np1_redMemoryUnmap context
 #define _np2_redMemoryUnmap gpu
 #define _np3_redMemoryUnmap mappableMemory
@@ -79,7 +72,6 @@
 #define _np5_redMemoryUnmap optionalLine
 #define _np6_redMemoryUnmap optionalUserData
 
-#define redMemoryNonCoherentFlush_np_count_8
 #define _np1_redMemoryNonCoherentFlush context
 #define _np2_redMemoryNonCoherentFlush gpu
 #define _np3_redMemoryNonCoherentFlush mappableMemoryRangesCount
@@ -89,7 +81,6 @@
 #define _np7_redMemoryNonCoherentFlush optionalLine
 #define _np8_redMemoryNonCoherentFlush optionalUserData
 
-#define redMemoryNonCoherentInvalidate_np_count_8
 #define _np1_redMemoryNonCoherentInvalidate context
 #define _np2_redMemoryNonCoherentInvalidate gpu
 #define _np3_redMemoryNonCoherentInvalidate mappableMemoryRangesCount
@@ -99,7 +90,6 @@
 #define _np7_redMemoryNonCoherentInvalidate optionalLine
 #define _np8_redMemoryNonCoherentInvalidate optionalUserData
 
-#define redStructsMemoryAllocate_np_count_13
 #define _np1_redStructsMemoryAllocate context
 #define _np2_redStructsMemoryAllocate gpu
 #define _np3_redStructsMemoryAllocate handleName
@@ -114,7 +104,6 @@
 #define _np12_redStructsMemoryAllocate optionalLine
 #define _np13_redStructsMemoryAllocate optionalUserData
 
-#define redStructsMemoryAllocateSamplers_np_count_10
 #define _np1_redStructsMemoryAllocateSamplers context
 #define _np2_redStructsMemoryAllocateSamplers gpu
 #define _np3_redStructsMemoryAllocateSamplers handleName
@@ -126,7 +115,6 @@
 #define _np9_redStructsMemoryAllocateSamplers optionalLine
 #define _np10_redStructsMemoryAllocateSamplers optionalUserData
 
-#define redStructsMemorySuballocateStructs_np_count_11
 #define _np1_redStructsMemorySuballocateStructs context
 #define _np2_redStructsMemorySuballocateStructs gpu
 #define _np3_redStructsMemorySuballocateStructs handleNames
@@ -139,7 +127,6 @@
 #define _np10_redStructsMemorySuballocateStructs optionalLine
 #define _np11_redStructsMemorySuballocateStructs optionalUserData
 
-#define redStructsMemoryReset_np_count_7
 #define _np1_redStructsMemoryReset context
 #define _np2_redStructsMemoryReset gpu
 #define _np3_redStructsMemoryReset structsMemory
@@ -148,7 +135,6 @@
 #define _np6_redStructsMemoryReset optionalLine
 #define _np7_redStructsMemoryReset optionalUserData
 
-#define redStructsMemoryFree_np_count_6
 #define _np1_redStructsMemoryFree context
 #define _np2_redStructsMemoryFree gpu
 #define _np3_redStructsMemoryFree structsMemory
@@ -156,7 +142,6 @@
 #define _np5_redStructsMemoryFree optionalLine
 #define _np6_redStructsMemoryFree optionalUserData
 
-#define redStructsSet_np_count_7
 #define _np1_redStructsSet context
 #define _np2_redStructsSet gpu
 #define _np3_redStructsSet structsMembersCount
@@ -165,7 +150,6 @@
 #define _np6_redStructsSet optionalLine
 #define _np7_redStructsSet optionalUserData
 
-#define redCreateContext_np_count_18
 #define _np1_redCreateContext malloc
 #define _np2_redCreateContext free
 #define _np3_redCreateContext optionalMallocTagged
@@ -185,7 +169,6 @@
 #define _np17_redCreateContext optionalLine
 #define _np18_redCreateContext optionalUserData
 
-#define redCreateArray_np_count_14
 #define _np1_redCreateArray context
 #define _np2_redCreateArray gpu
 #define _np3_redCreateArray handleName
@@ -201,7 +184,6 @@
 #define _np13_redCreateArray optionalLine
 #define _np14_redCreateArray optionalUserData
 
-#define redCreateImage_np_count_20
 #define _np1_redCreateImage context
 #define _np2_redCreateImage gpu
 #define _np3_redCreateImage handleName
@@ -223,7 +205,6 @@
 #define _np19_redCreateImage optionalLine
 #define _np20_redCreateImage optionalUserData
 
-#define redCreateSampler_np_count_21
 #define _np1_redCreateSampler context
 #define _np2_redCreateSampler gpu
 #define _np3_redCreateSampler handleName
@@ -246,7 +227,6 @@
 #define _np20_redCreateSampler optionalLine
 #define _np21_redCreateSampler optionalUserData
 
-#define redCreateTexture_np_count_17
 #define _np1_redCreateTexture context
 #define _np2_redCreateTexture gpu
 #define _np3_redCreateTexture handleName
@@ -265,7 +245,6 @@
 #define _np16_redCreateTexture optionalLine
 #define _np17_redCreateTexture optionalUserData
 
-#define redCreateGpuCode_np_count_10
 #define _np1_redCreateGpuCode context
 #define _np2_redCreateGpuCode gpu
 #define _np3_redCreateGpuCode handleName
@@ -277,7 +256,6 @@
 #define _np9_redCreateGpuCode optionalLine
 #define _np10_redCreateGpuCode optionalUserData
 
-#define redCreateOutputDeclaration_np_count_12
 #define _np1_redCreateOutputDeclaration context
 #define _np2_redCreateOutputDeclaration gpu
 #define _np3_redCreateOutputDeclaration handleName
@@ -291,7 +269,6 @@
 #define _np11_redCreateOutputDeclaration optionalLine
 #define _np12_redCreateOutputDeclaration optionalUserData
 
-#define redCreateStructDeclaration_np_count_13
 #define _np1_redCreateStructDeclaration context
 #define _np2_redCreateStructDeclaration gpu
 #define _np3_redCreateStructDeclaration handleName
@@ -306,7 +283,6 @@
 #define _np12_redCreateStructDeclaration optionalLine
 #define _np13_redCreateStructDeclaration optionalUserData
 
-#define redCreateProcedureParameters_np_count_9
 #define _np1_redCreateProcedureParameters context
 #define _np2_redCreateProcedureParameters gpu
 #define _np3_redCreateProcedureParameters handleName
@@ -317,7 +293,6 @@
 #define _np8_redCreateProcedureParameters optionalLine
 #define _np9_redCreateProcedureParameters optionalUserData
 
-#define redCreateProcedureCache_np_count_10
 #define _np1_redCreateProcedureCache context
 #define _np2_redCreateProcedureCache gpu
 #define _np3_redCreateProcedureCache handleName
@@ -329,7 +304,6 @@
 #define _np9_redCreateProcedureCache optionalLine
 #define _np10_redCreateProcedureCache optionalUserData
 
-#define redCreateProcedure_np_count_19
 #define _np1_redCreateProcedure context
 #define _np2_redCreateProcedure gpu
 #define _np3_redCreateProcedure handleName
@@ -350,7 +324,6 @@
 #define _np18_redCreateProcedure optionalLine
 #define _np19_redCreateProcedure optionalUserData
 
-#define redCreateProcedureCompute_np_count_12
 #define _np1_redCreateProcedureCompute context
 #define _np2_redCreateProcedureCompute gpu
 #define _np3_redCreateProcedureCompute handleName
@@ -364,7 +337,6 @@
 #define _np11_redCreateProcedureCompute optionalLine
 #define _np12_redCreateProcedureCompute optionalUserData
 
-#define redCreateOutput_np_count_13
 #define _np1_redCreateOutput context
 #define _np2_redCreateOutput gpu
 #define _np3_redCreateOutput handleName
@@ -379,7 +351,6 @@
 #define _np12_redCreateOutput optionalLine
 #define _np13_redCreateOutput optionalUserData
 
-#define redCreateCpuSignal_np_count_9
 #define _np1_redCreateCpuSignal context
 #define _np2_redCreateCpuSignal gpu
 #define _np3_redCreateCpuSignal handleName
@@ -390,7 +361,6 @@
 #define _np8_redCreateCpuSignal optionalLine
 #define _np9_redCreateCpuSignal optionalUserData
 
-#define redCreateGpuSignal_np_count_8
 #define _np1_redCreateGpuSignal context
 #define _np2_redCreateGpuSignal gpu
 #define _np3_redCreateGpuSignal handleName
@@ -400,7 +370,6 @@
 #define _np7_redCreateGpuSignal optionalLine
 #define _np8_redCreateGpuSignal optionalUserData
 
-#define redCreateGpuToCpuSignal_np_count_8
 #define _np1_redCreateGpuToCpuSignal context
 #define _np2_redCreateGpuToCpuSignal gpu
 #define _np3_redCreateGpuToCpuSignal handleName
@@ -410,7 +379,6 @@
 #define _np7_redCreateGpuToCpuSignal optionalLine
 #define _np8_redCreateGpuToCpuSignal optionalUserData
 
-#define redCreateCalls_np_count_9
 #define _np1_redCreateCalls context
 #define _np2_redCreateCalls gpu
 #define _np3_redCreateCalls handleName
@@ -421,7 +389,6 @@
 #define _np8_redCreateCalls optionalLine
 #define _np9_redCreateCalls optionalUserData
 
-#define redCreateCallsReusable_np_count_9
 #define _np1_redCreateCallsReusable context
 #define _np2_redCreateCallsReusable gpu
 #define _np3_redCreateCallsReusable handleName
@@ -432,13 +399,11 @@
 #define _np8_redCreateCallsReusable optionalLine
 #define _np9_redCreateCallsReusable optionalUserData
 
-#define redDestroyContext_np_count_4
 #define _np1_redDestroyContext context
 #define _np2_redDestroyContext optionalFile
 #define _np3_redDestroyContext optionalLine
 #define _np4_redDestroyContext optionalUserData
 
-#define redDestroyArray_np_count_6
 #define _np1_redDestroyArray context
 #define _np2_redDestroyArray gpu
 #define _np3_redDestroyArray array
@@ -446,7 +411,6 @@
 #define _np5_redDestroyArray optionalLine
 #define _np6_redDestroyArray optionalUserData
 
-#define redDestroyImage_np_count_6
 #define _np1_redDestroyImage context
 #define _np2_redDestroyImage gpu
 #define _np3_redDestroyImage image
@@ -454,7 +418,6 @@
 #define _np5_redDestroyImage optionalLine
 #define _np6_redDestroyImage optionalUserData
 
-#define redDestroySampler_np_count_6
 #define _np1_redDestroySampler context
 #define _np2_redDestroySampler gpu
 #define _np3_redDestroySampler sampler
@@ -462,7 +425,6 @@
 #define _np5_redDestroySampler optionalLine
 #define _np6_redDestroySampler optionalUserData
 
-#define redDestroyTexture_np_count_6
 #define _np1_redDestroyTexture context
 #define _np2_redDestroyTexture gpu
 #define _np3_redDestroyTexture texture
@@ -470,7 +432,6 @@
 #define _np5_redDestroyTexture optionalLine
 #define _np6_redDestroyTexture optionalUserData
 
-#define redDestroyGpuCode_np_count_6
 #define _np1_redDestroyGpuCode context
 #define _np2_redDestroyGpuCode gpu
 #define _np3_redDestroyGpuCode gpuCode
@@ -478,7 +439,6 @@
 #define _np5_redDestroyGpuCode optionalLine
 #define _np6_redDestroyGpuCode optionalUserData
 
-#define redDestroyOutputDeclaration_np_count_6
 #define _np1_redDestroyOutputDeclaration context
 #define _np2_redDestroyOutputDeclaration gpu
 #define _np3_redDestroyOutputDeclaration outputDeclaration
@@ -486,7 +446,6 @@
 #define _np5_redDestroyOutputDeclaration optionalLine
 #define _np6_redDestroyOutputDeclaration optionalUserData
 
-#define redDestroyStructDeclaration_np_count_6
 #define _np1_redDestroyStructDeclaration context
 #define _np2_redDestroyStructDeclaration gpu
 #define _np3_redDestroyStructDeclaration structDeclaration
@@ -494,7 +453,6 @@
 #define _np5_redDestroyStructDeclaration optionalLine
 #define _np6_redDestroyStructDeclaration optionalUserData
 
-#define redDestroyProcedureParameters_np_count_6
 #define _np1_redDestroyProcedureParameters context
 #define _np2_redDestroyProcedureParameters gpu
 #define _np3_redDestroyProcedureParameters procedureParameters
@@ -502,7 +460,6 @@
 #define _np5_redDestroyProcedureParameters optionalLine
 #define _np6_redDestroyProcedureParameters optionalUserData
 
-#define redDestroyProcedureCache_np_count_6
 #define _np1_redDestroyProcedureCache context
 #define _np2_redDestroyProcedureCache gpu
 #define _np3_redDestroyProcedureCache procedureCache
@@ -510,7 +467,6 @@
 #define _np5_redDestroyProcedureCache optionalLine
 #define _np6_redDestroyProcedureCache optionalUserData
 
-#define redDestroyProcedure_np_count_6
 #define _np1_redDestroyProcedure context
 #define _np2_redDestroyProcedure gpu
 #define _np3_redDestroyProcedure procedure
@@ -518,7 +474,6 @@
 #define _np5_redDestroyProcedure optionalLine
 #define _np6_redDestroyProcedure optionalUserData
 
-#define redDestroyOutput_np_count_6
 #define _np1_redDestroyOutput context
 #define _np2_redDestroyOutput gpu
 #define _np3_redDestroyOutput output
@@ -526,7 +481,6 @@
 #define _np5_redDestroyOutput optionalLine
 #define _np6_redDestroyOutput optionalUserData
 
-#define redDestroyCpuSignal_np_count_6
 #define _np1_redDestroyCpuSignal context
 #define _np2_redDestroyCpuSignal gpu
 #define _np3_redDestroyCpuSignal cpuSignal
@@ -534,7 +488,6 @@
 #define _np5_redDestroyCpuSignal optionalLine
 #define _np6_redDestroyCpuSignal optionalUserData
 
-#define redDestroyGpuSignal_np_count_6
 #define _np1_redDestroyGpuSignal context
 #define _np2_redDestroyGpuSignal gpu
 #define _np3_redDestroyGpuSignal gpuSignal
@@ -542,7 +495,6 @@
 #define _np5_redDestroyGpuSignal optionalLine
 #define _np6_redDestroyGpuSignal optionalUserData
 
-#define redDestroyGpuToCpuSignal_np_count_6
 #define _np1_redDestroyGpuToCpuSignal context
 #define _np2_redDestroyGpuToCpuSignal gpu
 #define _np3_redDestroyGpuToCpuSignal gpuToCpuSignal
@@ -550,7 +502,6 @@
 #define _np5_redDestroyGpuToCpuSignal optionalLine
 #define _np6_redDestroyGpuToCpuSignal optionalUserData
 
-#define redDestroyCalls_np_count_7
 #define _np1_redDestroyCalls context
 #define _np2_redDestroyCalls gpu
 #define _np3_redDestroyCalls calls
@@ -559,7 +510,6 @@
 #define _np6_redDestroyCalls optionalLine
 #define _np7_redDestroyCalls optionalUserData
 
-#define redProcedureCacheGetBlob_np_count_9
 #define _np1_redProcedureCacheGetBlob context
 #define _np2_redProcedureCacheGetBlob gpu
 #define _np3_redProcedureCacheGetBlob procedureCache
@@ -570,7 +520,6 @@
 #define _np8_redProcedureCacheGetBlob optionalLine
 #define _np9_redProcedureCacheGetBlob optionalUserData
 
-#define redProcedureCacheMergeCaches_np_count_9
 #define _np1_redProcedureCacheMergeCaches context
 #define _np2_redProcedureCacheMergeCaches gpu
 #define _np3_redProcedureCacheMergeCaches sourceProcedureCachesCount
@@ -581,7 +530,6 @@
 #define _np8_redProcedureCacheMergeCaches optionalLine
 #define _np9_redProcedureCacheMergeCaches optionalUserData
 
-#define redCpuSignalGetStatus_np_count_7
 #define _np1_redCpuSignalGetStatus context
 #define _np2_redCpuSignalGetStatus gpu
 #define _np3_redCpuSignalGetStatus cpuSignal
@@ -590,7 +538,6 @@
 #define _np6_redCpuSignalGetStatus optionalLine
 #define _np7_redCpuSignalGetStatus optionalUserData
 
-#define redCpuSignalWait_np_count_9
 #define _np1_redCpuSignalWait context
 #define _np2_redCpuSignalWait gpu
 #define _np3_redCpuSignalWait cpuSignalsCount
@@ -601,7 +548,6 @@
 #define _np8_redCpuSignalWait optionalLine
 #define _np9_redCpuSignalWait optionalUserData
 
-#define redCpuSignalUnsignal_np_count_8
 #define _np1_redCpuSignalUnsignal context
 #define _np2_redCpuSignalUnsignal gpu
 #define _np3_redCpuSignalUnsignal cpuSignalsCount
@@ -611,7 +557,6 @@
 #define _np7_redCpuSignalUnsignal optionalLine
 #define _np8_redCpuSignalUnsignal optionalUserData
 
-#define redGpuToCpuSignalGetStatus_np_count_7
 #define _np1_redGpuToCpuSignalGetStatus context
 #define _np2_redGpuToCpuSignalGetStatus gpu
 #define _np3_redGpuToCpuSignalGetStatus gpuToCpuSignal
@@ -620,7 +565,6 @@
 #define _np6_redGpuToCpuSignalGetStatus optionalLine
 #define _np7_redGpuToCpuSignalGetStatus optionalUserData
 
-#define redGpuToCpuSignalUnsignal_np_count_7
 #define _np1_redGpuToCpuSignalUnsignal context
 #define _np2_redGpuToCpuSignalUnsignal gpu
 #define _np3_redGpuToCpuSignalUnsignal gpuToCpuSignal
@@ -629,7 +573,6 @@
 #define _np6_redGpuToCpuSignalUnsignal optionalLine
 #define _np7_redGpuToCpuSignalUnsignal optionalUserData
 
-#define redCallsSet_np_count_9
 #define _np1_redCallsSet context
 #define _np2_redCallsSet gpu
 #define _np3_redCallsSet calls
@@ -640,7 +583,6 @@
 #define _np8_redCallsSet optionalLine
 #define _np9_redCallsSet optionalUserData
 
-#define redCallsEnd_np_count_8
 #define _np1_redCallsEnd context
 #define _np2_redCallsEnd gpu
 #define _np3_redCallsEnd calls
@@ -650,7 +592,6 @@
 #define _np7_redCallsEnd optionalLine
 #define _np8_redCallsEnd optionalUserData
 
-#define redGetCallProceduresAndAddresses_np_count_7
 #define _np1_redGetCallProceduresAndAddresses context
 #define _np2_redGetCallProceduresAndAddresses gpu
 #define _np3_redGetCallProceduresAndAddresses outCallProceduresAndAddresses
@@ -659,19 +600,16 @@
 #define _np6_redGetCallProceduresAndAddresses optionalLine
 #define _np7_redGetCallProceduresAndAddresses optionalUserData
 
-#define redCallGpuToCpuSignalSignal_np_count_3
 #define _np1_redCallGpuToCpuSignalSignal calls
 #define _np2_redCallGpuToCpuSignalSignal signalGpuToCpuSignal
 #define _np3_redCallGpuToCpuSignalSignal setTo8192
 
-#define redCallCopyArrayToArray_np_count_5
 #define _np1_redCallCopyArrayToArray calls
 #define _np2_redCallCopyArrayToArray arrayR
 #define _np3_redCallCopyArrayToArray arrayW
 #define _np4_redCallCopyArrayToArray rangesCount
 #define _np5_redCallCopyArrayToArray ranges
 
-#define redCallCopyImageToImage_np_count_7
 #define _np1_redCallCopyImageToImage calls
 #define _np2_redCallCopyImageToImage imageR
 #define _np3_redCallCopyImageToImage setTo1
@@ -680,7 +618,6 @@
 #define _np6_redCallCopyImageToImage rangesCount
 #define _np7_redCallCopyImageToImage ranges
 
-#define redCallCopyArrayToImage_np_count_6
 #define _np1_redCallCopyArrayToImage calls
 #define _np2_redCallCopyArrayToImage arrayR
 #define _np3_redCallCopyArrayToImage imageW
@@ -688,7 +625,6 @@
 #define _np5_redCallCopyArrayToImage rangesCount
 #define _np6_redCallCopyArrayToImage ranges
 
-#define redCallCopyImageToArray_np_count_6
 #define _np1_redCallCopyImageToArray calls
 #define _np2_redCallCopyImageToArray imageR
 #define _np3_redCallCopyImageToArray setTo1
@@ -696,14 +632,12 @@
 #define _np5_redCallCopyImageToArray rangesCount
 #define _np6_redCallCopyImageToArray ranges
 
-#define redCallProcedure_np_count_5
 #define _np1_redCallProcedure calls
 #define _np2_redCallProcedure vertexCount
 #define _np3_redCallProcedure instanceCount
 #define _np4_redCallProcedure vertexFirst
 #define _np5_redCallProcedure instanceFirst
 
-#define redCallProcedureIndexed_np_count_6
 #define _np1_redCallProcedureIndexed calls
 #define _np2_redCallProcedureIndexed indexCount
 #define _np3_redCallProcedureIndexed instanceCount
@@ -711,24 +645,20 @@
 #define _np5_redCallProcedureIndexed vertexBase
 #define _np6_redCallProcedureIndexed instanceFirst
 
-#define redCallProcedureCompute_np_count_4
 #define _np1_redCallProcedureCompute calls
 #define _np2_redCallProcedureCompute workgroupsCountX
 #define _np3_redCallProcedureCompute workgroupsCountY
 #define _np4_redCallProcedureCompute workgroupsCountZ
 
-#define redCallSetProcedure_np_count_3
 #define _np1_redCallSetProcedure calls
 #define _np2_redCallSetProcedure procedureType
 #define _np3_redCallSetProcedure procedure
 
-#define redCallSetProcedureIndices_np_count_4
 #define _np1_redCallSetProcedureIndices calls
 #define _np2_redCallSetProcedureIndices array
 #define _np3_redCallSetProcedureIndices setTo0
 #define _np4_redCallSetProcedureIndices setTo1
 
-#define redCallSetProcedureParametersVariables_np_count_6
 #define _np1_redCallSetProcedureParametersVariables calls
 #define _np2_redCallSetProcedureParametersVariables procedureParameters
 #define _np3_redCallSetProcedureParametersVariables visibleToStages
@@ -736,7 +666,6 @@
 #define _np5_redCallSetProcedureParametersVariables dataBytesCount
 #define _np6_redCallSetProcedureParametersVariables data
 
-#define redCallSetProcedureParametersStructs_np_count_8
 #define _np1_redCallSetProcedureParametersStructs calls
 #define _np2_redCallSetProcedureParametersStructs procedureType
 #define _np3_redCallSetProcedureParametersStructs procedureParameters
@@ -746,7 +675,6 @@
 #define _np7_redCallSetProcedureParametersStructs setTo0
 #define _np8_redCallSetProcedureParametersStructs setTo00
 
-#define redCallSetProcedureParametersHandles_np_count_6
 #define _np1_redCallSetProcedureParametersHandles calls
 #define _np2_redCallSetProcedureParametersHandles procedureType
 #define _np3_redCallSetProcedureParametersHandles procedureParameters
@@ -754,37 +682,30 @@
 #define _np5_redCallSetProcedureParametersHandles handlesCount
 #define _np6_redCallSetProcedureParametersHandles handles
 
-#define redCallSetDynamicDepthBias_np_count_4
 #define _np1_redCallSetDynamicDepthBias calls
 #define _np2_redCallSetDynamicDepthBias constantFactor
 #define _np3_redCallSetDynamicDepthBias clamp
 #define _np4_redCallSetDynamicDepthBias slopeFactor
 
-#define redCallSetDynamicDepthBounds_np_count_3
 #define _np1_redCallSetDynamicDepthBounds calls
 #define _np2_redCallSetDynamicDepthBounds min
 #define _np3_redCallSetDynamicDepthBounds max
 
-#define redCallSetDynamicStencilCompareMask_np_count_3
 #define _np1_redCallSetDynamicStencilCompareMask calls
 #define _np2_redCallSetDynamicStencilCompareMask face
 #define _np3_redCallSetDynamicStencilCompareMask compareMask
 
-#define redCallSetDynamicStencilWriteMask_np_count_3
 #define _np1_redCallSetDynamicStencilWriteMask calls
 #define _np2_redCallSetDynamicStencilWriteMask face
 #define _np3_redCallSetDynamicStencilWriteMask writeMask
 
-#define redCallSetDynamicStencilReference_np_count_3
 #define _np1_redCallSetDynamicStencilReference calls
 #define _np2_redCallSetDynamicStencilReference face
 #define _np3_redCallSetDynamicStencilReference reference
 
-#define redCallSetDynamicBlendConstants_np_count_2
 #define _np1_redCallSetDynamicBlendConstants calls
 #define _np2_redCallSetDynamicBlendConstants blendConstants
 
-#define redCallSetDynamicViewport_np_count_8
 #define _np1_redCallSetDynamicViewport address
 #define _np2_redCallSetDynamicViewport calls
 #define _np3_redCallSetDynamicViewport x
@@ -794,7 +715,6 @@
 #define _np7_redCallSetDynamicViewport depthMin
 #define _np8_redCallSetDynamicViewport depthMax
 
-#define redCallSetDynamicScissor_np_count_6
 #define _np1_redCallSetDynamicScissor address
 #define _np2_redCallSetDynamicScissor calls
 #define _np3_redCallSetDynamicScissor x
@@ -802,19 +722,16 @@
 #define _np5_redCallSetDynamicScissor width
 #define _np6_redCallSetDynamicScissor height
 
-#define redCallSetStructsMemory_np_count_4
 #define _np1_redCallSetStructsMemory address
 #define _np2_redCallSetStructsMemory calls
 #define _np3_redCallSetStructsMemory structsMemory
 #define _np4_redCallSetStructsMemory structsMemorySamplers
 
-#define redCallSetProcedureParameters_np_count_4
 #define _np1_redCallSetProcedureParameters address
 #define _np2_redCallSetProcedureParameters calls
 #define _np3_redCallSetProcedureParameters procedureType
 #define _np4_redCallSetProcedureParameters procedureParameters
 
-#define redCallSetProcedureOutput_np_count_14
 #define _np1_redCallSetProcedureOutput address
 #define _np2_redCallSetProcedureOutput calls
 #define _np3_redCallSetProcedureOutput outputDeclaration
@@ -830,11 +747,9 @@
 #define _np13_redCallSetProcedureOutput colorsClearValuesSint
 #define _np14_redCallSetProcedureOutput colorsClearValuesUint
 
-#define redCallEndProcedureOutput_np_count_2
 #define _np1_redCallEndProcedureOutput address
 #define _np2_redCallEndProcedureOutput calls
 
-#define redCallUsageAliasOrderBarrier_np_count_12
 #define _np1_redCallUsageAliasOrderBarrier address
 #define _np2_redCallUsageAliasOrderBarrier calls
 #define _np3_redCallUsageAliasOrderBarrier context
@@ -848,21 +763,17 @@
 #define _np11_redCallUsageAliasOrderBarrier orders
 #define _np12_redCallUsageAliasOrderBarrier dependencyByRegion
 
-#define redCallMark_np_count_3
 #define _np1_redCallMark address
 #define _np2_redCallMark calls
 #define _np3_redCallMark mark
 
-#define redCallMarkSet_np_count_3
 #define _np1_redCallMarkSet address
 #define _np2_redCallMarkSet calls
 #define _np3_redCallMarkSet mark
 
-#define redCallMarkEnd_np_count_2
 #define _np1_redCallMarkEnd address
 #define _np2_redCallMarkEnd calls
 
-#define redQueueSubmit_np_count_10
 #define _np1_redQueueSubmit context
 #define _np2_redQueueSubmit gpu
 #define _np3_redQueueSubmit queue
@@ -874,24 +785,20 @@
 #define _np9_redQueueSubmit optionalLine
 #define _np10_redQueueSubmit optionalUserData
 
-#define redMark_np_count_4
 #define _np1_redMark mark
 #define _np2_redMark optionalFile
 #define _np3_redMark optionalLine
 #define _np4_redMark optionalUserData
 
-#define redMarkSet_np_count_4
 #define _np1_redMarkSet mark
 #define _np2_redMarkSet optionalFile
 #define _np3_redMarkSet optionalLine
 #define _np4_redMarkSet optionalUserData
 
-#define redMarkEnd_np_count_3
 #define _np1_redMarkEnd optionalFile
 #define _np2_redMarkEnd optionalLine
 #define _np3_redMarkEnd optionalUserData
 
-#define redStructsMemoryAllocateWithInlineSamplers_np_count_14
 #define _np1_redStructsMemoryAllocateWithInlineSamplers context
 #define _np2_redStructsMemoryAllocateWithInlineSamplers gpu
 #define _np3_redStructsMemoryAllocateWithInlineSamplers handleName
@@ -907,7 +814,6 @@
 #define _np13_redStructsMemoryAllocateWithInlineSamplers optionalLine
 #define _np14_redStructsMemoryAllocateWithInlineSamplers optionalUserData
 
-#define redStructsMemoryAllocateSamplersWithInlineSamplers_np_count_11
 #define _np1_redStructsMemoryAllocateSamplersWithInlineSamplers context
 #define _np2_redStructsMemoryAllocateSamplersWithInlineSamplers gpu
 #define _np3_redStructsMemoryAllocateSamplersWithInlineSamplers handleName

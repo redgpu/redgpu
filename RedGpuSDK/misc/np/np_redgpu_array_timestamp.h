@@ -1,6 +1,5 @@
 #pragma once
 
-#define redCreateArrayTimestamp_np_count_9
 #define _np1_redCreateArrayTimestamp context
 #define _np2_redCreateArrayTimestamp gpu
 #define _np3_redCreateArrayTimestamp handleName
@@ -11,7 +10,6 @@
 #define _np8_redCreateArrayTimestamp optionalLine
 #define _np9_redCreateArrayTimestamp optionalUserData
 
-#define redDestroyArrayTimestamp_np_count_6
 #define _np1_redDestroyArrayTimestamp context
 #define _np2_redDestroyArrayTimestamp gpu
 #define _np3_redDestroyArrayTimestamp arrayTimestamp
@@ -19,13 +17,11 @@
 #define _np5_redDestroyArrayTimestamp optionalLine
 #define _np6_redDestroyArrayTimestamp optionalUserData
 
-#define redCallArrayTimestampWrite_np_count_4
 #define _np1_redCallArrayTimestampWrite calls
 #define _np2_redCallArrayTimestampWrite context
 #define _np3_redCallArrayTimestampWrite arrayTimestamp
 #define _np4_redCallArrayTimestampWrite index
 
-#define redArrayTimestampRead_np_count_10
 #define _np1_redArrayTimestampRead context
 #define _np2_redArrayTimestampRead gpu
 #define _np3_redArrayTimestampRead arrayTimestamp

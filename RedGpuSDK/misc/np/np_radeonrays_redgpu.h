@@ -1,12 +1,10 @@
 #pragma once
 
-#define rrGetDevicePtrFromVkBuffer_np_count_4
 #define _np1_rrGetDevicePtrFromVkBuffer context
 #define _np2_rrGetDevicePtrFromVkBuffer resource
 #define _np3_rrGetDevicePtrFromVkBuffer offset
 #define _np4_rrGetDevicePtrFromVkBuffer device_ptr
 
-#define rrCreateContextVk_np_count_6
 #define _np1_rrCreateContextVk api_version
 #define _np2_rrCreateContextVk device
 #define _np3_rrCreateContextVk physical_device
@@ -14,22 +12,18 @@
 #define _np5_rrCreateContextVk queue_family_index
 #define _np6_rrCreateContextVk context
 
-#define rrGetCommandStreamFromVkCommandBuffer_np_count_3
 #define _np1_rrGetCommandStreamFromVkCommandBuffer context
 #define _np2_rrGetCommandStreamFromVkCommandBuffer command_buffer
 #define _np3_rrGetCommandStreamFromVkCommandBuffer command_stream
 
-#define rrAllocateDeviceBuffer_np_count_3
 #define _np1_rrAllocateDeviceBuffer context
 #define _np2_rrAllocateDeviceBuffer size
 #define _np3_rrAllocateDeviceBuffer device_ptr
 
-#define rrMapDevicePtr_np_count_3
 #define _np1_rrMapDevicePtr context
 #define _np2_rrMapDevicePtr device_ptr
 #define _np3_rrMapDevicePtr mapping_ptr
 
-#define rrUnmapDevicePtr_np_count_3
 #define _np1_rrUnmapDevicePtr context
 #define _np2_rrUnmapDevicePtr device_ptr
 #define _np3_rrUnmapDevicePtr mapping_ptr
