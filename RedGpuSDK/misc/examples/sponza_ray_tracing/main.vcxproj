@@ -13,7 +13,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ItemGroup>
     <ClCompile Include="C:\RedGpuSDK\redgpu.c" />
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -26,6 +26,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
+      <StackReserveSize>512000000</StackReserveSize>
     </Link>
   </ItemDefinitionGroup>
 </Project>
