@@ -1,3 +1,7 @@
+Aug 24, 2025:
+
+  * Make all code compile as C by default.
+
 Aug 08, 2025:
 
   * Added more examples to RedGpuSDK/misc/examples/ folder.

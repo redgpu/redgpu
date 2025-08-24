@@ -1,9 +1,14 @@
 #if 0
 clang -c C:/RedGpuSDK/redgpu.c
-clang++ -std=c++17 main.cpp redgpu.o
+clang main.c redgpu.o
+#endif
+
+#ifndef __cplusplus
+#define REDGPU_DISABLE_NAMED_PARAMETERS
 #endif
 
 #include "C:/RedGpuSDK/redgpu.h"
+
 #include "C:/RedGpuSDK/misc/np/np.h"
 #include "C:/RedGpuSDK/misc/np/np_redgpu.h"
 

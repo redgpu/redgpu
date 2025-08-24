@@ -1,10 +1,6 @@
-#define USE_REDGPU_X
-
-#ifdef _WIN32
 #include "C:/RedGpuSDK/redgpu.h"
 #include "C:/RedGpuSDK/radeonrays.h"
 #include "C:/RedGpuSDK/radeonrays_redgpu.h"
-#endif // _WIN32
 
 #include <stdlib.h>
 #include <stdio.h>
