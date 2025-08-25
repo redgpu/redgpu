@@ -1,4 +1,6 @@
+#ifndef REDGPU_COMPILE_SWITCH
 #define REDGPU_COMPILE_SWITCH 0
+#endif
 
 #define REDGPU_COMPILE_SWITCH_RELEASE 0
 #define REDGPU_COMPILE_SWITCH_NVTX    1
@@ -4984,7 +4986,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].memoryHeaps = NULL;\n",                                   gpuIndex);
         }
         for (unsigned i = 0; i < context->gpus[gpuIndex].memoryHeapsCount; i += 1) {
-        REDGPU_PRINTF("context.gpus[%d].memoryHeaps[%d].memoryBytesCount = %lu;\n",               gpuIndex, i, (unsigned long)context->gpus[gpuIndex].memoryHeaps[i].memoryBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].memoryHeaps[%d].memoryBytesCount = %zu;\n",               gpuIndex, i, (uint64_t)context->gpus[gpuIndex].memoryHeaps[i].memoryBytesCount);
         REDGPU_PRINTF("context.gpus[%d].memoryHeaps[%d].isGpuVram = %d;\n",                       gpuIndex, i, context->gpus[gpuIndex].memoryHeaps[i].isGpuVram);
         }
         REDGPU_PRINTF("context.gpus[%d].memoryHeapsDescription = NULL;\n",                        gpuIndex);
@@ -5019,15 +5021,15 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].queuesCopyLimits[%d].copyBlockTexelsCountDepth = %d;\n",  gpuIndex, i, context->gpus[gpuIndex].queuesCopyLimits[i].copyBlockTexelsCountDepth);
         }
         REDGPU_PRINTF("context.gpus[%d].maxMemoryAllocateCount = %d;\n",                          gpuIndex, context->gpus[gpuIndex].maxMemoryAllocateCount);
-        REDGPU_PRINTF("context.gpus[%d].minMemoryAllocateBytesAlignment = %lu;\n",                gpuIndex, (unsigned long)context->gpus[gpuIndex].minMemoryAllocateBytesAlignment);
-        REDGPU_PRINTF("context.gpus[%d].maxMemoryAllocateBytesCount = %lu;\n",                    gpuIndex, (unsigned long)context->gpus[gpuIndex].maxMemoryAllocateBytesCount);
-        REDGPU_PRINTF("context.gpus[%d].minMemoryNonCoherentBlockBytesCount = %lu;\n",            gpuIndex, (unsigned long)context->gpus[gpuIndex].minMemoryNonCoherentBlockBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].minMemoryAllocateBytesAlignment = %zu;\n",                gpuIndex, (uint64_t)context->gpus[gpuIndex].minMemoryAllocateBytesAlignment);
+        REDGPU_PRINTF("context.gpus[%d].maxMemoryAllocateBytesCount = %zu;\n",                    gpuIndex, (uint64_t)context->gpus[gpuIndex].maxMemoryAllocateBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].minMemoryNonCoherentBlockBytesCount = %zu;\n",            gpuIndex, (uint64_t)context->gpus[gpuIndex].minMemoryNonCoherentBlockBytesCount);
         REDGPU_PRINTF("context.gpus[%d].maxCreateSamplerCount = %d;\n",                           gpuIndex, context->gpus[gpuIndex].maxCreateSamplerCount);
-        REDGPU_PRINTF("context.gpus[%d].minMemoryPageSeparationArrayImageBytesCount = %lu;\n",    gpuIndex, (unsigned long)context->gpus[gpuIndex].minMemoryPageSeparationArrayImageBytesCount);
-        REDGPU_PRINTF("context.gpus[%d].minArrayROCStructMemberRangeBytesAlignment = %lu;\n",     gpuIndex, (unsigned long)context->gpus[gpuIndex].minArrayROCStructMemberRangeBytesAlignment);
-        REDGPU_PRINTF("context.gpus[%d].maxArrayROCStructMemberRangeBytesCount = %lu;\n",         gpuIndex, (unsigned long)context->gpus[gpuIndex].maxArrayROCStructMemberRangeBytesCount);
-        REDGPU_PRINTF("context.gpus[%d].minArrayRORWStructMemberRangeBytesAlignment = %lu;\n",    gpuIndex, (unsigned long)context->gpus[gpuIndex].minArrayRORWStructMemberRangeBytesAlignment);
-        REDGPU_PRINTF("context.gpus[%d].maxArrayRORWStructMemberRangeBytesCount = %lu;\n",        gpuIndex, (unsigned long)context->gpus[gpuIndex].maxArrayRORWStructMemberRangeBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].minMemoryPageSeparationArrayImageBytesCount = %zu;\n",    gpuIndex, (uint64_t)context->gpus[gpuIndex].minMemoryPageSeparationArrayImageBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].minArrayROCStructMemberRangeBytesAlignment = %zu;\n",     gpuIndex, (uint64_t)context->gpus[gpuIndex].minArrayROCStructMemberRangeBytesAlignment);
+        REDGPU_PRINTF("context.gpus[%d].maxArrayROCStructMemberRangeBytesCount = %zu;\n",         gpuIndex, (uint64_t)context->gpus[gpuIndex].maxArrayROCStructMemberRangeBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].minArrayRORWStructMemberRangeBytesAlignment = %zu;\n",    gpuIndex, (uint64_t)context->gpus[gpuIndex].minArrayRORWStructMemberRangeBytesAlignment);
+        REDGPU_PRINTF("context.gpus[%d].maxArrayRORWStructMemberRangeBytesCount = %zu;\n",        gpuIndex, (uint64_t)context->gpus[gpuIndex].maxArrayRORWStructMemberRangeBytesCount);
         REDGPU_PRINTF("context.gpus[%d].maxArrayIndexUint32Value = %d;\n",                        gpuIndex, context->gpus[gpuIndex].maxArrayIndexUint32Value);
         REDGPU_PRINTF("context.gpus[%d].maxImageDimensions1D = %d;\n",                            gpuIndex, context->gpus[gpuIndex].maxImageDimensions1D);
         REDGPU_PRINTF("context.gpus[%d].maxImageDimensions2D = %d;\n",                            gpuIndex, context->gpus[gpuIndex].maxImageDimensions2D);
@@ -5087,8 +5089,8 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].minInterpolateAtOffset = %.9g;\n",                        gpuIndex, context->gpus[gpuIndex].minInterpolateAtOffset);
         REDGPU_PRINTF("context.gpus[%d].maxInterpolateAtOffset = %.9g;\n",                        gpuIndex, context->gpus[gpuIndex].maxInterpolateAtOffset);
         REDGPU_PRINTF("context.gpus[%d].precisionBitsInterpolateAtOffset = %d;\n",                gpuIndex, context->gpus[gpuIndex].precisionBitsInterpolateAtOffset);
-        REDGPU_PRINTF("context.gpus[%d].optimalCopyArrayImageRangeArrayBytesFirstBytesAlignment = %lu;\n",           gpuIndex, (unsigned long)context->gpus[gpuIndex].optimalCopyArrayImageRangeArrayBytesFirstBytesAlignment);
-        REDGPU_PRINTF("context.gpus[%d].optimalCopyArrayImageRangeArrayTexelsCountToNextRowBytesAlignment = %lu;\n", gpuIndex, (unsigned long)context->gpus[gpuIndex].optimalCopyArrayImageRangeArrayTexelsCountToNextRowBytesAlignment);
+        REDGPU_PRINTF("context.gpus[%d].optimalCopyArrayImageRangeArrayBytesFirstBytesAlignment = %zu;\n",           gpuIndex, (uint64_t)context->gpus[gpuIndex].optimalCopyArrayImageRangeArrayBytesFirstBytesAlignment);
+        REDGPU_PRINTF("context.gpus[%d].optimalCopyArrayImageRangeArrayTexelsCountToNextRowBytesAlignment = %zu;\n", gpuIndex, (uint64_t)context->gpus[gpuIndex].optimalCopyArrayImageRangeArrayTexelsCountToNextRowBytesAlignment);
         REDGPU_PRINTF("context.gpus[%d].supportsWsi = %d;\n",                                                        gpuIndex, context->gpus[gpuIndex].supportsWsi);
         REDGPU_PRINTF("context.gpus[%d].supportsMemoryGetBudget = %d;\n",                                            gpuIndex, context->gpus[gpuIndex].supportsMemoryGetBudget);
         REDGPU_PRINTF("context.gpus[%d].supportsFullArrayIndexUint32Value = %d;\n",                                  gpuIndex, context->gpus[gpuIndex].supportsFullArrayIndexUint32Value);
@@ -5134,7 +5136,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions1D[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions1D[i].status));
         }
         } else {
@@ -5149,7 +5151,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2D[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2D[i].status));
         }
         } else {
@@ -5164,7 +5166,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DMultisample[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DMultisample[i].status));
         }
         } else {
@@ -5179,7 +5181,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions2DWithTextureDimensionsCubeAndCubeLayered[i].status));
         }
         } else {
@@ -5194,7 +5196,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3D[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3D[i].status));
         }
         } else {
@@ -5209,7 +5211,7 @@ exit:;
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].maxLevelsCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].maxLevelsCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].maxLayersCount = %d;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].maxLayersCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].supportedMultisampleCounts = %s | %s | %s | %s | %s;\n", gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_MULTISAMPLE_COUNT_BITFLAGS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].supportedMultisampleCounts));
-        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].maxBytesCount = %lu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (unsigned long)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].maxBytesCount);
+        REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].maxBytesCount = %zu;\n",                                 gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), (uint64_t)context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].maxBytesCount);
         REDGPU_PRINTF("context.gpus[%d].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[%s].status = %s;\n",                                         gpuIndex, REDGPU_PRINT_FORMAT((RedFormat)i), REDGPU_PRINT_STATUS(context->gpus[gpuIndex].imageFormatsLimitsImageDimensions3DWithTextureDimensions2DAnd2DLayered[i].status));
         }
         } else {

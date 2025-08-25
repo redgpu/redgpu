@@ -1,3 +1,7 @@
+Aug 25, 2025:
+
+  * REDGPU debug library: unsigned long is not enough to print max bytes counts, changing all of them to print as uint64_t.
+
 Aug 24, 2025:
 
   * Make all code compile as C by default.
