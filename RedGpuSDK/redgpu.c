@@ -1782,8 +1782,10 @@ static inline void redDebugInternalCreateArray(RedInternalContext ctx, RedHandle
   }
   redInternalSetStatus(ctx, gpu, outStatuses, 190, vk->vkCreateBuffer((VkDevice)gpu, &info, NULL, (VkBuffer *)&outArray->handle), procedureId, optionalFile, optionalLine, optionalUserData);
 
-  VkMemoryRequirements memoryRequirements;
-  vk->vkGetBufferMemoryRequirements((VkDevice)gpu, (VkBuffer)outArray->handle, &memoryRequirements);
+  VkMemoryRequirements memoryRequirements = {0};
+  if (outArray->handle != NULL) {
+    vk->vkGetBufferMemoryRequirements((VkDevice)gpu, (VkBuffer)outArray->handle, &memoryRequirements);
+  }
   outArray->memoryBytesCount     = memoryRequirements.size;
   outArray->memoryBytesAlignment = memoryRequirements.alignment;
   outArray->memoryTypesSupported = memoryRequirements.memoryTypeBits;
@@ -5454,8 +5456,10 @@ static inline void redInlineCreateArray(RedContext context, RedHandleGpu gpu, co
   }
   redInternalSetStatus(ctx, gpu, outStatuses, 260, vk->vkCreateBuffer((VkDevice)gpu, &info, NULL, (VkBuffer *)&outArray->handle), procedureId, optionalFile, optionalLine, optionalUserData);
 
-  VkMemoryRequirements memoryRequirements;
-  vk->vkGetBufferMemoryRequirements((VkDevice)gpu, (VkBuffer)outArray->handle, &memoryRequirements);
+  VkMemoryRequirements memoryRequirements = {0};
+  if (outArray->handle != NULL) {
+    vk->vkGetBufferMemoryRequirements((VkDevice)gpu, (VkBuffer)outArray->handle, &memoryRequirements);
+  }
   outArray->memoryBytesCount     = memoryRequirements.size;
   outArray->memoryBytesAlignment = memoryRequirements.alignment;
   outArray->memoryTypesSupported = memoryRequirements.memoryTypeBits;
@@ -5568,8 +5572,10 @@ static inline void redInlineCreateImage(RedContext context, RedHandleGpu gpu, co
   info.initialLayout           = VK_IMAGE_LAYOUT_UNDEFINED;
   redInternalSetStatus(ctx, gpu, outStatuses, 263, vk->vkCreateImage((VkDevice)gpu, &info, NULL, (VkImage *)&outImage->handle), procedureId, optionalFile, optionalLine, optionalUserData);
 
-  VkMemoryRequirements memoryRequirements;
-  vk->vkGetImageMemoryRequirements((VkDevice)gpu, (VkImage)outImage->handle, &memoryRequirements);
+  VkMemoryRequirements memoryRequirements = {0};
+  if (outImage->handle != NULL) {
+    vk->vkGetImageMemoryRequirements((VkDevice)gpu, (VkImage)outImage->handle, &memoryRequirements);
+  }
   outImage->memoryBytesCount     = memoryRequirements.size;
   outImage->memoryBytesAlignment = memoryRequirements.alignment;
   outImage->memoryTypesSupported = memoryRequirements.memoryTypeBits;
@@ -6795,13 +6801,17 @@ static inline void redInlineCreateCalls(RedContext context, RedHandleGpu gpu, co
   commandPoolInfo.queueFamilyIndex = queueFamilyIndex;
   redInternalSetStatus(ctx, gpu, outStatuses, 303, vk->vkCreateCommandPool((VkDevice)gpu, &commandPoolInfo, NULL, (VkCommandPool *)&outCalls->memory), procedureId, optionalFile, optionalLine, optionalUserData);
 
-  VkCommandBufferAllocateInfo commandBufferInfo;
-  commandBufferInfo.sType              = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  commandBufferInfo.pNext              = NULL;
-  commandBufferInfo.commandPool        = (VkCommandPool)outCalls->memory;
-  commandBufferInfo.level              = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  commandBufferInfo.commandBufferCount = 1;
-  redInternalSetStatus(ctx, gpu, outStatuses, 304, vk->vkAllocateCommandBuffers((VkDevice)gpu, &commandBufferInfo, (VkCommandBuffer *)&outCalls->handle), procedureId, optionalFile, optionalLine, optionalUserData);
+  if (outCalls->memory == NULL) {
+    outCalls->handle = NULL;
+  } else {
+    VkCommandBufferAllocateInfo commandBufferInfo;
+    commandBufferInfo.sType              = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    commandBufferInfo.pNext              = NULL;
+    commandBufferInfo.commandPool        = (VkCommandPool)outCalls->memory;
+    commandBufferInfo.level              = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    commandBufferInfo.commandBufferCount = 1;
+    redInternalSetStatus(ctx, gpu, outStatuses, 304, vk->vkAllocateCommandBuffers((VkDevice)gpu, &commandBufferInfo, (VkCommandBuffer *)&outCalls->handle), procedureId, optionalFile, optionalLine, optionalUserData);
+  }
 
   outCalls->reusable = 0;
 
@@ -6856,13 +6866,17 @@ static inline void redInlineCreateCallsReusable(RedContext context, RedHandleGpu
   commandPoolInfo.queueFamilyIndex = queueFamilyIndex;
   redInternalSetStatus(ctx, gpu, outStatuses, 309, vk->vkCreateCommandPool((VkDevice)gpu, &commandPoolInfo, NULL, (VkCommandPool *)&outCalls->memory), procedureId, optionalFile, optionalLine, optionalUserData);
 
-  VkCommandBufferAllocateInfo commandBufferInfo;
-  commandBufferInfo.sType              = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-  commandBufferInfo.pNext              = NULL;
-  commandBufferInfo.commandPool        = (VkCommandPool)outCalls->memory;
-  commandBufferInfo.level              = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
-  commandBufferInfo.commandBufferCount = 1;
-  redInternalSetStatus(ctx, gpu, outStatuses, 310, vk->vkAllocateCommandBuffers((VkDevice)gpu, &commandBufferInfo, (VkCommandBuffer *)&outCalls->handle), procedureId, optionalFile, optionalLine, optionalUserData);
+  if (outCalls->memory == NULL) {
+    outCalls->handle = NULL;
+  } else {
+    VkCommandBufferAllocateInfo commandBufferInfo;
+    commandBufferInfo.sType              = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+    commandBufferInfo.pNext              = NULL;
+    commandBufferInfo.commandPool        = (VkCommandPool)outCalls->memory;
+    commandBufferInfo.level              = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+    commandBufferInfo.commandBufferCount = 1;
+    redInternalSetStatus(ctx, gpu, outStatuses, 310, vk->vkAllocateCommandBuffers((VkDevice)gpu, &commandBufferInfo, (VkCommandBuffer *)&outCalls->handle), procedureId, optionalFile, optionalLine, optionalUserData);
+  }
 
   outCalls->reusable = 1;
 

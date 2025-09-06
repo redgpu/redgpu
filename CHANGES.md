@@ -1,3 +1,7 @@
+Sep 06, 2025:
+
+  * Fixed bugs where programs could crash on resources that couldn't be created due to RED_STATUS_ERROR_OUT_OF_GPU_MEMORY.
+
 Aug 25, 2025:
 
   * REDGPU debug library: unsigned long is not enough to print max bytes counts, changing all of them to print as uint64_t.
