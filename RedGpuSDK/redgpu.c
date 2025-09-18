@@ -8348,7 +8348,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateContext(RedTypeProcedureMalloc customMa
   redInternalMarkEnd();
 }
 
-REDGPU_DECLSPEC void REDGPU_API redCreateArray(RedContext context, RedHandleGpu gpu, const char * handleName, RedArrayType type, uint64_t bytesCount, uint64_t structuredBufferElementBytesCount, RedAccessBitflags initialAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedArray * outArray, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
+REDGPU_DECLSPEC void REDGPU_API redCreateArray(RedContext context, RedHandleGpu gpu, const char * handleName, RedArrayType type, uint64_t bytesCount, uint64_t structuredBufferElementBytesCount, RedAccessBitflags restrictToAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedArray * outArray, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
   const RedProcedureId procedureId = RED_PROCEDURE_ID_redCreateArray;
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateArray(context, gpu, handleName, type, bytesCount, initialQueueFamilyIndex, dedicate, outArray, outStatuses, optionalFile, optionalLine, optionalUserData);
@@ -8356,7 +8356,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateArray(RedContext context, RedHandleGpu 
   redInternalMarkEnd();
 }
 
-REDGPU_DECLSPEC void REDGPU_API redCreateImage(RedContext context, RedHandleGpu gpu, const char * handleName, RedImageDimensions dimensions, RedFormat format, unsigned width, unsigned height, unsigned depth, unsigned levelsCount, unsigned layersCount, RedMultisampleCountBitflag multisampleCount, RedAccessBitflags restrictToAccess, RedAccessBitflags initialAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedImage * outImage, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
+REDGPU_DECLSPEC void REDGPU_API redCreateImage(RedContext context, RedHandleGpu gpu, const char * handleName, RedImageDimensions dimensions, RedFormat format, unsigned width, unsigned height, unsigned depth, unsigned levelsCount, unsigned layersCount, RedMultisampleCountBitflag multisampleCount, RedAccessBitflags restrictToAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedImage * outImage, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
   const RedProcedureId procedureId = RED_PROCEDURE_ID_redCreateImage;
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateImage(context, gpu, handleName, dimensions, format, width, height, depth, levelsCount, layersCount, multisampleCount, restrictToAccess, initialQueueFamilyIndex, dedicate, outImage, outStatuses, optionalFile, optionalLine, optionalUserData);

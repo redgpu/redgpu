@@ -1,3 +1,8 @@
+Sep 18, 2025:
+
+  * redgpu.h: redCreateArray::initialAccess parameter is removed and replaced with redCreateArray::restrictToAccess parameter.
+  * redgpu.h: redCreateImage::initialAccess parameter is removed.
+
 Sep 06, 2025:
 
   * Fixed bugs where programs could crash on resources that couldn't be created due to RED_STATUS_ERROR_OUT_OF_GPU_MEMORY.

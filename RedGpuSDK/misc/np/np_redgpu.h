@@ -175,7 +175,7 @@
 #define _np4_redCreateArray type
 #define _np5_redCreateArray bytesCount
 #define _np6_redCreateArray structuredBufferElementBytesCount
-#define _np7_redCreateArray initialAccess
+#define _np7_redCreateArray restrictToAccess
 #define _np8_redCreateArray initialQueueFamilyIndex
 #define _np9_redCreateArray dedicate
 #define _np10_redCreateArray outArray
@@ -196,14 +196,13 @@
 #define _np10_redCreateImage layersCount
 #define _np11_redCreateImage multisampleCount
 #define _np12_redCreateImage restrictToAccess
-#define _np13_redCreateImage initialAccess
-#define _np14_redCreateImage initialQueueFamilyIndex
-#define _np15_redCreateImage dedicate
-#define _np16_redCreateImage outImage
-#define _np17_redCreateImage outStatuses
-#define _np18_redCreateImage optionalFile
-#define _np19_redCreateImage optionalLine
-#define _np20_redCreateImage optionalUserData
+#define _np13_redCreateImage initialQueueFamilyIndex
+#define _np14_redCreateImage dedicate
+#define _np15_redCreateImage outImage
+#define _np16_redCreateImage outStatuses
+#define _np17_redCreateImage optionalFile
+#define _np18_redCreateImage optionalLine
+#define _np19_redCreateImage optionalUserData
 
 #define _np1_redCreateSampler context
 #define _np2_redCreateSampler gpu
