@@ -2,6 +2,7 @@ Sep 18, 2025:
 
   * redgpu.h: redCreateArray::initialAccess parameter is removed and replaced with redCreateArray::restrictToAccess parameter.
   * redgpu.h: redCreateImage::initialAccess parameter is removed.
+  * Update the examples.
 
 Sep 06, 2025:
 
