@@ -1,3 +1,7 @@
+May 15, 2026:
+
+  * Fixed bugs where VK_ATTACHMENT_*_OP_DONT_CARE flags could cause garbage writes to textures.
+
 Sep 18, 2025:
 
   * redgpu.h: redCreateArray::initialAccess parameter is removed and replaced with redCreateArray::restrictToAccess parameter.

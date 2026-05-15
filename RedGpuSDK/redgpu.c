@@ -5799,8 +5799,8 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
       attachmentDescriptions[i].samples        = (VkSampleCountFlagBits)outputDeclarationMembers->colorsMultisampleCount[i];
       attachmentDescriptions[i].loadOp         = (VkAttachmentLoadOp)outputDeclarationMembers->colorsSetProcedureOutputOp[i];
       attachmentDescriptions[i].storeOp        = (VkAttachmentStoreOp)outputDeclarationMembers->colorsEndProcedureOutputOp[i];
-      attachmentDescriptions[i].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-      attachmentDescriptions[i].stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+      attachmentDescriptions[i].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_LOAD;
+      attachmentDescriptions[i].stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
       attachmentDescriptions[i].initialLayout  = VK_IMAGE_LAYOUT_GENERAL;
       attachmentDescriptions[i].finalLayout    = VK_IMAGE_LAYOUT_GENERAL;
     }
@@ -5830,10 +5830,10 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
           attachmentDescriptions[index].flags          = outputDeclarationMembers->colorsSharesMemoryWithAnotherMember[i] == 1 ? VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT : 0;
           attachmentDescriptions[index].format         = (VkFormat)outputDeclarationMembers->colorsFormat[i];
           attachmentDescriptions[index].samples        = VK_SAMPLE_COUNT_1_BIT;
-          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_LOAD;
           attachmentDescriptions[index].storeOp        = VK_ATTACHMENT_STORE_OP_STORE;
-          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-          attachmentDescriptions[index].stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_LOAD;
+          attachmentDescriptions[index].stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
           attachmentDescriptions[index].initialLayout  = VK_IMAGE_LAYOUT_GENERAL;
           attachmentDescriptions[index].finalLayout    = VK_IMAGE_LAYOUT_GENERAL;
         }
@@ -5846,9 +5846,9 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
           attachmentDescriptions[index].flags          = outputDeclarationMembers->depthStencilSharesMemoryWithAnotherMember == 1 ? VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT : 0;
           attachmentDescriptions[index].format         = (VkFormat)outputDeclarationMembers->depthStencilFormat;
           attachmentDescriptions[index].samples        = VK_SAMPLE_COUNT_1_BIT;
-          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_LOAD;
           attachmentDescriptions[index].storeOp        = VK_ATTACHMENT_STORE_OP_STORE;
-          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_LOAD;
           attachmentDescriptions[index].stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
           attachmentDescriptions[index].initialLayout  = VK_IMAGE_LAYOUT_GENERAL;
           attachmentDescriptions[index].finalLayout    = VK_IMAGE_LAYOUT_GENERAL;
@@ -5966,8 +5966,8 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
       attachmentDescriptions[i].samples        = (VkSampleCountFlagBits)outputDeclarationMembers->colorsMultisampleCount[i];
       attachmentDescriptions[i].loadOp         = (VkAttachmentLoadOp)outputDeclarationMembers->colorsSetProcedureOutputOp[i];
       attachmentDescriptions[i].storeOp        = (VkAttachmentStoreOp)outputDeclarationMembers->colorsEndProcedureOutputOp[i];
-      attachmentDescriptions[i].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-      attachmentDescriptions[i].stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+      attachmentDescriptions[i].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_LOAD;
+      attachmentDescriptions[i].stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
       attachmentDescriptions[i].initialLayout  = VK_IMAGE_LAYOUT_GENERAL;
       attachmentDescriptions[i].finalLayout    = VK_IMAGE_LAYOUT_GENERAL;
     }
@@ -5993,10 +5993,10 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
           attachmentDescriptions[index].flags          = outputDeclarationMembers->colorsSharesMemoryWithAnotherMember[i] == 1 ? VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT : 0;
           attachmentDescriptions[index].format         = (VkFormat)outputDeclarationMembers->colorsFormat[i];
           attachmentDescriptions[index].samples        = VK_SAMPLE_COUNT_1_BIT;
-          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
+          attachmentDescriptions[index].loadOp         = VK_ATTACHMENT_LOAD_OP_LOAD;
           attachmentDescriptions[index].storeOp        = VK_ATTACHMENT_STORE_OP_STORE;
-          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_DONT_CARE;
-          attachmentDescriptions[index].stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;
+          attachmentDescriptions[index].stencilLoadOp  = VK_ATTACHMENT_LOAD_OP_LOAD;
+          attachmentDescriptions[index].stencilStoreOp = VK_ATTACHMENT_STORE_OP_STORE;
           attachmentDescriptions[index].initialLayout  = VK_IMAGE_LAYOUT_GENERAL;
           attachmentDescriptions[index].finalLayout    = VK_IMAGE_LAYOUT_GENERAL;
         }
