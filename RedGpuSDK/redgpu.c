@@ -58,12 +58,12 @@ int (*redInternalCreateAndroidSurface)(void * instance, const void * createInfo,
 #include "C:/RedGpuSDK/redgpu_array_timestamp.h"
 #include "C:/RedGpuSDK/redgpu_print.h"
 #else
-#include "/opt/RedGpuSDK/redgpu.h"
-#include "/opt/RedGpuSDK/redgpu_wsi.h"
-#include "/opt/RedGpuSDK/redgpu_computing_language.h"
-#include "/opt/RedGpuSDK/redgpu_context_from_vk.h"
-#include "/opt/RedGpuSDK/redgpu_array_timestamp.h"
-#include "/opt/RedGpuSDK/redgpu_print.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_wsi.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_computing_language.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_context_from_vk.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_array_timestamp.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_print.h"
 #endif
 
 #ifdef REDGPU_OS_WINDOWS
@@ -103,7 +103,7 @@ typedef void * HWND;
 #ifdef REDGPU_OS_WINDOWS
 #include "C:/RedGpuSDK/redgpu_debug.h"
 #else
-#include "/opt/RedGpuSDK/redgpu_debug.h"
+#include "/home/linuxbrew/RedGpuSDK/redgpu_debug.h"
 #endif
 #include <string.h> // For strcmp
 #include <stdio.h>  // For printf
@@ -2821,11 +2821,11 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
 #ifdef REDGPU_OS_LINUX
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
   if (0) {
-    setenv("VK_LAYER_PATH", "/opt/RedGpuSDK/sdk/1.1.106.0/x86_64/etc/explicit_layer.d/", 0);
-    dlopen("/opt/RedGpuSDK/sdk/1.1.106.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
+    setenv("VK_LAYER_PATH", "/home/linuxbrew/RedGpuSDK/sdk/1.1.106.0/x86_64/etc/explicit_layer.d/", 0);
+    dlopen("/home/linuxbrew/RedGpuSDK/sdk/1.1.106.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
   } else if (sdkVersion == RED_SDK_VERSION_1_0_135) {
-    setenv("VK_LAYER_PATH", "/opt/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d/", 0);
-    dlopen("/opt/RedGpuSDK/sdk/1.2.135.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
+    setenv("VK_LAYER_PATH", "/home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d/", 0);
+    dlopen("/home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
   }
 #endif
 #endif

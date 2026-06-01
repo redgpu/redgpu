@@ -1,3 +1,7 @@
+Jun 01, 2026:
+
+  * Bazzite/SteamOS is the only supported Linux distro now. RedGpuSDK now must be placed not in /opt/ folder, but in /home/linuxbrew/ folder.
+
 May 15, 2026:
 
   * Fixed bugs where VK_ATTACHMENT_*_OP_DONT_CARE flags could cause garbage writes to textures.
