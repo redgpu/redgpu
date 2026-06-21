@@ -1,3 +1,7 @@
+Jun 21, 2026:
+
+  * Fix redgpu.cpp for modern compilers that refuse to compile old goto code.
+
 Jun 01, 2026:
 
   * Bazzite/SteamOS is the only supported Linux distro now. RedGpuSDK now must be placed not in /opt/ folder, but in /home/linuxbrew/ folder.

@@ -111,6 +111,7 @@ typedef void * HWND;
 #ifdef REDGPU_OS_LINUX
 #include <dlfcn.h>  // For dlopen
 #endif
+#include <stdlib.h> // For setenv
 #endif
 
 #ifdef REDGPU_COMPILE_SWITCH_LOG
@@ -1885,7 +1886,7 @@ static inline RedDebugInternalArray redDebugInternalCreateDebugArray(RedInternal
   redDebugInternalCreateArray(ctx, gpu, gpuIndex, handleName, type, bytesCount, initialQueueFamilyIndex, dedicate, &out.array, outStatuses, optionalFile, optionalLine, optionalUserData);
   if (outStatuses != NULL) {
     if (outStatuses[0].statusError != RED_STATUS_SUCCESS) {
-      goto exit;
+      return out;
     }
   }
 
@@ -1898,13 +1899,13 @@ static inline RedDebugInternalArray redDebugInternalCreateDebugArray(RedInternal
         outStatuses[0].statusErrorProcedureId = RED_PROCEDURE_ID_redMemoryAllocate;
       }
     }
-    goto exit;
+    return out;
   }
 
   redDebugInternalMemoryAllocate(ctx, gpu, gpuIndex, handleName, out.array.memoryBytesCount, memoryTypeIndex, 1, dedicate == 1 ? out.array.handle : NULL, NULL, &out.memory, outStatuses, optionalFile, optionalLine, optionalUserData, RED_PROCEDURE_ID_redMemoryAllocateMappable);
   if (outStatuses != NULL) {
     if (outStatuses[0].statusError != RED_STATUS_SUCCESS) {
-      goto exit;
+      return out;
     }
   }
 
@@ -1915,8 +1916,6 @@ static inline RedDebugInternalArray redDebugInternalCreateDebugArray(RedInternal
   memoryArray.memory           = out.memory.handle;
   memoryArray.memoryBytesFirst = 0;
   redDebugInternalMemorySet(ctx, gpu, gpuIndex, 1, &memoryArray, 0, NULL, outStatuses, optionalFile, optionalLine, optionalUserData);
-
-exit:;
 
   return out;
 }
@@ -2017,7 +2016,8 @@ static inline void redDebugInternalDestroyCpuSignal(RedInternalContext ctx, RedH
       redInlineDestroyContext((RedContext)ctx, optionalFile, optionalLine, optionalUserData); \
       ctx = NULL; \
       redInternalSetStatus(ctx, gpu, outStatuses, status_index, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData); \
-      goto exit; \
+      outContext[0] = (RedContext)ctx; \
+      return; \
     } \
   }
 
@@ -2026,7 +2026,8 @@ static inline void redDebugInternalDestroyCpuSignal(RedInternalContext ctx, RedH
     redInlineDestroyContext((RedContext)ctx, optionalFile, optionalLine, optionalUserData); \
     ctx = NULL; \
     redInternalSetStatus(ctx, gpu, outStatuses, status_index, (VkResult)status_error, procedureId, optionalFile, optionalLine, optionalUserData); \
-    goto exit; \
+    outContext[0] = (RedContext)ctx; \
+    return; \
   } while (0)
 
 #define REDGPU_ARRAY_MEMSET(structure_pointer, structure_count) \
@@ -2113,14 +2114,14 @@ static inline void redInlineMemoryGetBudget(RedContext context, RedHandleGpu gpu
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 204, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   if (redInternalGpuExtensionIsEnabled(ctx, gpuIndex, RED_INTERNAL_GPU_EXTENSION_BITFLAG_MEMORY_GET_BUDGET))
   {
   } else {
     redInternalSetStatus(ctx, gpu, outStatuses, 205, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   RedHandleGpuDevice gpuDevice = context->gpus[gpuIndex].gpuDevice;
@@ -2130,9 +2131,6 @@ static inline void redInlineMemoryGetBudget(RedContext context, RedHandleGpu gpu
   physicalDeviceMemoryProperties2.pNext = outMemoryBudget;
   // physicalDeviceMemoryProperties2.memoryProperties
   vk->vkGetPhysicalDeviceMemoryProperties2KHR((VkPhysicalDevice)gpuDevice, &physicalDeviceMemoryProperties2);
-
-exit:;
-
 }
 
 static inline void redInlineMemoryAllocate(RedContext context, RedHandleGpu gpu, const char * handleName, uint64_t bytesCount, unsigned memoryTypeIndex, RedHandleArray dedicateToArray, RedHandleImage dedicateToImage, RedHandleMemory * outMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData, RedProcedureId procedureId) {
@@ -2152,7 +2150,8 @@ static inline void redInlineMemoryAllocate(RedContext context, RedHandleGpu gpu,
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 206, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    outMemory[0] = handle;
+    return;
   }
 
   RedBool32 isCpuMappable = context->gpus[gpuIndex].memoryTypes[memoryTypeIndex].isCpuMappable;
@@ -2167,7 +2166,8 @@ static inline void redInlineMemoryAllocate(RedContext context, RedHandleGpu gpu,
       struct RedInternalVirtualHandleMemoryAllocationMappable * packed = (struct RedInternalVirtualHandleMemoryAllocationMappable *)REDGPU_INTERNAL_ADAPTIVE_MALLOC(sizeof(struct RedInternalVirtualHandleMemoryAllocationMappable) + (size_t)bytesCount, 47);
       if (packed == NULL) {
         redInternalSetStatus(ctx, gpu, outStatuses, 207, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-        goto exit;
+        outMemory[0] = handle;
+        return;
       }
       redInternalMemoryClear(packed, sizeof(struct RedInternalVirtualHandleMemoryAllocationMappable) + (size_t)bytesCount);
 
@@ -2189,7 +2189,8 @@ static inline void redInlineMemoryAllocate(RedContext context, RedHandleGpu gpu,
       struct RedInternalVirtualHandleMemoryAllocationNonMappable * packed = (struct RedInternalVirtualHandleMemoryAllocationNonMappable *)REDGPU_INTERNAL_ADAPTIVE_MALLOC(sizeof(struct RedInternalVirtualHandleMemoryAllocationNonMappable), 48);
       if (packed == NULL) {
         redInternalSetStatus(ctx, gpu, outStatuses, 208, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-        goto exit;
+        outMemory[0] = handle;
+        return;
       }
       redInternalMemoryClear(packed, sizeof(struct RedInternalVirtualHandleMemoryAllocationNonMappable));
 
@@ -2241,8 +2242,6 @@ static inline void redInlineMemoryAllocate(RedContext context, RedHandleGpu gpu,
     handleVirtual->handleActual = handle;
     handle = (RedHandleMemory)(void *)handleVirtual;
   }
-
-exit:;
 
   outMemory[0] = handle;
 }
@@ -2615,7 +2614,7 @@ static inline void redInlineDestroyContext(RedContext context, const char * opti
   const RedProcedureId procedureId = RED_PROCEDURE_ID_redDestroyContext;
 
   if (context == NULL) {
-    goto exit;
+    return;
   }
 
   RedInternalContext ctx = (RedInternalContext)context;
@@ -2790,9 +2789,6 @@ static inline void redInlineDestroyContext(RedContext context, const char * opti
   REDGPU_INTERNAL_ADAPTIVE_FREE_STABLE(ctx->internal.instanceProcedureAddresses, 84);
   REDGPU_INTERNAL_ADAPTIVE_FREE_STABLE(ctx->internal.cold, 85);
   REDGPU_INTERNAL_ADAPTIVE_FREE_STABLE(ctx, 86);
-
-exit:;
-
 }
 
 #ifdef __clang__
@@ -2909,7 +2905,8 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
   RedInternalContext ctx = (RedInternalContext)REDGPU_INTERNAL_ADAPTIVE_MALLOC_STABLE(sizeof(ctx[0]), 1);
   if (ctx == NULL) {
     redInternalSetStatus(ctx, NULL, outStatuses, 235, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    outContext[0] = (RedContext)ctx;
+    return;
   }
   redInternalMemoryClear(ctx, sizeof(ctx[0]));
 
@@ -2918,7 +2915,8 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     REDGPU_INTERNAL_ADAPTIVE_FREE_STABLE(ctx, 87);
     ctx = NULL;
     redInternalSetStatus(ctx, NULL, outStatuses, 236, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    outContext[0] = (RedContext)ctx;
+    return;
   }
   redInternalMemoryClear(ctx->internal.cold, sizeof(ctx->internal.cold[0]));
 
@@ -2928,7 +2926,8 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     REDGPU_INTERNAL_ADAPTIVE_FREE_STABLE(ctx, 89);
     ctx = NULL;
     redInternalSetStatus(ctx, NULL, outStatuses, 237, (VkResult)RED_STATUS_ERROR_OUT_OF_CPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    outContext[0] = (RedContext)ctx;
+    return;
   }
   redInternalMemoryClear(ctx->internal.instanceProcedureAddresses, sizeof(ctx->internal.instanceProcedureAddresses[0]));
 
@@ -4933,8 +4932,6 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     }
   }
 
-exit:;
-
   outContext[0] = (RedContext)ctx;
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
@@ -5420,7 +5417,7 @@ static inline void redInlineCreateArray(RedContext context, RedHandleGpu gpu, co
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 259, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   if (redInternalGpuExtensionIsEnabled(ctx, gpuIndex, RED_INTERNAL_GPU_EXTENSION_BITFLAG_DEDICATE_MEMORY_NV))
@@ -5475,9 +5472,6 @@ static inline void redInlineCreateArray(RedContext context, RedHandleGpu gpu, co
       redInternalSetStatus(ctx, gpu, outStatuses, 261, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateImage(RedContext context, RedHandleGpu gpu, const char * handleName, RedImageDimensions dimensions, RedFormat format, unsigned width, unsigned height, unsigned depth, unsigned levelsCount, unsigned layersCount, RedMultisampleCountBitflag multisampleCount, RedAccessBitflags restrictToAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedImage * outImage, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -5496,7 +5490,7 @@ static inline void redInlineCreateImage(RedContext context, RedHandleGpu gpu, co
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 262, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   VkImageUsageFlags imageUsagePossible = redInternalImageGetUsage(ctx, gpuIndex, format, multisampleCount == RED_MULTISAMPLE_COUNT_BITFLAG_1 ? 0 : 1);
@@ -5591,9 +5585,6 @@ static inline void redInlineCreateImage(RedContext context, RedHandleGpu gpu, co
       redInternalSetStatus(ctx, gpu, outStatuses, 264, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateSampler(RedContext context, RedHandleGpu gpu, const char * handleName, RedSamplerFiltering filteringMag, RedSamplerFiltering filteringMin, RedSamplerFilteringMip filteringMip, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateU, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateV, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateW, float mipLodBias, RedBool32 enableAnisotropy, float maxAnisotropy, RedBool32 enableCompare, RedCompareOp compareOp, float minLod, float maxLod, RedBool32 unnormalizedCoordinates, RedHandleSampler * outSampler, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -5716,7 +5707,7 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 271, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   const unsigned  colorsCount        = outputDeclarationMembers == NULL ? 0 : outputDeclarationMembers->colorsCount;
@@ -6071,9 +6062,6 @@ static inline void redInlineCreateOutputDeclaration(RedContext context, RedHandl
       redInternalSetStatus(ctx, gpu, outStatuses, 274, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateStructDeclaration(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned structDeclarationMembersCount, const RedStructDeclarationMember * structDeclarationMembers, RedBool32 procedureParametersHandlesDeclaration, RedHandleStructDeclaration * outStructDeclaration, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -6092,7 +6080,7 @@ static inline void redInlineCreateStructDeclaration(RedContext context, RedHandl
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 275, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   const unsigned  gpuVendorId       = ctx->gpus[gpuIndex].gpuVendorId;
@@ -6119,9 +6107,6 @@ static inline void redInlineCreateStructDeclaration(RedContext context, RedHandl
       redInternalSetStatus(ctx, gpu, outStatuses, 278, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateProcedureParameters(RedContext context, RedHandleGpu gpu, const char * handleName, const RedProcedureParametersDeclaration * procedureParametersDeclaration, RedHandleProcedureParameters * outProcedureParameters, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -6140,7 +6125,7 @@ static inline void redInlineCreateProcedureParameters(RedContext context, RedHan
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 280, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   {
@@ -6152,7 +6137,7 @@ static inline void redInlineCreateProcedureParameters(RedContext context, RedHan
     }
     if (allStructsDeclarationsCount > 8) {
       redInternalSetStatus(ctx, gpu, outStatuses, 281, (VkResult)RED_STATUS_ERROR_OUT_OF_GPU_MEMORY, procedureId, optionalFile, optionalLine, optionalUserData);
-      goto exit;
+      return;
     }
   }
 
@@ -6195,9 +6180,6 @@ static inline void redInlineCreateProcedureParameters(RedContext context, RedHan
       redInternalSetStatus(ctx, gpu, outStatuses, 283, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateProcedureCache(RedContext context, RedHandleGpu gpu, const char * handleName, uint64_t fromBlobBytesCount, const void * fromBlob, RedHandleProcedureCache * outProcedureCache, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -6245,7 +6227,7 @@ static inline void redInlineCreateProcedure(RedContext context, RedHandleGpu gpu
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 288, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   struct {
@@ -6543,9 +6525,6 @@ static inline void redInlineCreateProcedure(RedContext context, RedHandleGpu gpu
       redInternalSetStatus(ctx, gpu, outStatuses, 290, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateProcedureCompute(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleProcedureCache procedureCache, RedHandleProcedureParameters procedureParameters, const char * gpuCodeMainProcedureName, RedHandleGpuCode gpuCode, const void * stateExtension, RedHandleProcedure * outProcedure, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData, RedProcedureId procedureId) {
@@ -6625,7 +6604,7 @@ void redInlineCreateOutput(RedContext context, RedHandleGpu gpu, const char * ha
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 293, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   const unsigned  colorsCount        = outputMembers == NULL ? 0 : (outputMembers->colorsCount);
@@ -6695,9 +6674,6 @@ void redInlineCreateOutput(RedContext context, RedHandleGpu gpu, const char * ha
       redInternalSetStatus(ctx, gpu, outStatuses, 295, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 static inline void redInlineCreateCpuSignal(RedContext context, RedHandleGpu gpu, const char * handleName, RedBool32 createSignaled, RedHandleCpuSignal * outCpuSignal, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -7051,15 +7027,12 @@ static inline void redInlineDestroyCalls(RedContext context, RedHandleGpu gpu, R
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, NULL, 314, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   RedHandleCallsMemory handle = callsMemory;
 
   vk->vkDestroyCommandPool((VkDevice)gpu, (VkCommandPool)handle, NULL);
-
-exit:;
-
 }
 
 // Procedure cache
@@ -7417,7 +7390,7 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 326, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 #else
   const RedProcedureId procedureId = RED_PROCEDURE_ID_redQueueSubmit;
@@ -7461,7 +7434,7 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
             outStatuses[0].statusErrorProcedureId = procedureId;
           }
         }
-        goto exit;
+        return;
       }
       const RedBool32 hasDebugArrayPrintCallback = cold->debugArrayPrintCallback != NULL;
       float4 * debugArrayData = (float4 *)cold->gpus[gpuIndex].debugArray.memory.pointer;
@@ -7500,7 +7473,7 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
               outStatuses[0].statusErrorProcedureId = procedureId;
             }
           }
-          goto exit;
+          return;
         }
       }
       REDGPU_FFLUSH(stdout);
@@ -7515,15 +7488,12 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
               outStatuses[0].statusErrorProcedureId = procedureId;
             }
           }
-          goto exit;
+          return;
         }
       }
     }
   }
 #endif
-
-exit:;
-
 }
 
 
@@ -7586,12 +7556,12 @@ static inline void redInlineDebugArrayCallPrint(RedContext context, RedHandleGpu
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 331, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   if (ctx->internal.cold->gpus[gpuIndex].debugArrayFeatureIsSupported == 0) {
     redInternalSetStatus(ctx, gpu, outStatuses, 332, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   const RedHandleArray debugArray              = ctx->internal.cold->gpus[gpuIndex].debugArray.array.handle;
@@ -7641,9 +7611,6 @@ static inline void redInlineDebugArrayCallPrint(RedContext context, RedHandleGpu
 #else
   redInternalSetStatus(ctx, gpu, outStatuses, 356, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
 #endif
-
-exit:;
-
 }
 
 
@@ -7803,7 +7770,7 @@ static inline void redInlineCreatePresent(RedContext context, RedHandleGpu gpu, 
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 336, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   int isImagesCountSetToMaxValue = imagesCount == 0xFFFFFFFF ? 1 : 0;
@@ -7865,7 +7832,7 @@ static inline void redInlineCreatePresent(RedContext context, RedHandleGpu gpu, 
   redInternalSetStatus(ctx, gpu, outStatuses, 338, vk->vkGetSwapchainImagesKHR((VkDevice)gpu, (VkSwapchainKHR)(outPresent[0]), &returnedImagesCount, NULL), procedureId, optionalFile, optionalLine, optionalUserData);
   if (isImagesCountSetToMaxValue == 0 && returnedImagesCount != imagesCount) {
     redInternalSetStatus(ctx, gpu, outStatuses, 339, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
   redInternalSetStatus(ctx, gpu, outStatuses, 340, vk->vkGetSwapchainImagesKHR((VkDevice)gpu, (VkSwapchainKHR)(outPresent[0]), &returnedImagesCount, (VkImage *)outImages), procedureId, optionalFile, optionalLine, optionalUserData);
 
@@ -7918,9 +7885,6 @@ static inline void redInlineCreatePresent(RedContext context, RedHandleGpu gpu, 
       redInternalSetStatus(ctx, gpu, outStatuses, 343, vk->vkSetDebugUtilsObjectNameEXT((VkDevice)gpu, &info), procedureId, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-exit:;
-
 }
 
 // Destroy
@@ -7961,7 +7925,7 @@ static inline void redInlineQueueFamilyIndexGetSupportsPresent(RedContext contex
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 344, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   RedHandleGpuDevice gpuDevice = context->gpus[gpuIndex].gpuDevice;
@@ -7997,9 +7961,6 @@ static inline void redInlineQueueFamilyIndexGetSupportsPresent(RedContext contex
   if (supportsPresentOnSurface != NULL) {
     redInternalSetStatus(ctx, gpu, outStatuses, 345, vk->vkGetPhysicalDeviceSurfaceSupportKHR((VkPhysicalDevice)gpuDevice, queueFamilyIndex, (VkSurfaceKHR)supportsPresentOnSurface->surface, &supportsPresentOnSurface->outQueueFamilyIndexSupportsPresentOnSurface), procedureId, optionalFile, optionalLine, optionalUserData);
   }
-
-exit:;
-
 }
 
 // Surface
@@ -8020,7 +7981,7 @@ static inline void redInlineSurfaceGetPresentFeatures(RedContext context, RedHan
 
   if (gpuIndex == (unsigned)-1) {
     redInternalSetStatus(ctx, gpu, outStatuses, 346, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
+    return;
   }
 
   RedHandleGpuDevice gpuDevice = context->gpus[gpuIndex].gpuDevice;
@@ -8054,9 +8015,6 @@ static inline void redInlineSurfaceGetPresentFeatures(RedContext context, RedHan
       outSurfacePresentFeatures->supportsPresentVsyncModeOnRelaxed = 1;
     }
   }
-
-exit:;
-
 }
 
 // Present
@@ -8862,35 +8820,39 @@ REDGPU_DECLSPEC void REDGPU_API redCreatePresent(RedContext context, RedHandleGp
 
   RedInternalContext ctx = (RedInternalContext)context;
 
-  unsigned gpuIndex = (unsigned)-1;
-  for (unsigned i = 0; i < ctx->internal.hotGpuHandlesCount; i += 1) {
-    if (ctx->internal.hotGpuHandles[i] == gpu) {
-      gpuIndex = i;
-      break;
+  {
+    unsigned gpuIndex = (unsigned)-1;
+    for (unsigned i = 0; i < ctx->internal.hotGpuHandlesCount; i += 1) {
+      if (ctx->internal.hotGpuHandles[i] == gpu) {
+        gpuIndex = i;
+        break;
+      }
+    }
+
+    if (gpuIndex == (unsigned)-1) {
+      redInternalSetStatus(ctx, gpu, outStatuses, 360, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
+      goto exit;
+    }
+
+    unsigned queueIndex = (unsigned)-1;
+    for (unsigned i = 0, count = ctx->gpus[gpuIndex].queuesCount; i < count; i += 1) {
+      if (ctx->gpus[gpuIndex].queues[i] == queue) {
+        queueIndex = i;
+        break;
+      }
+    }
+
+    if (queueIndex == (unsigned)-1) {
+      redInternalSetStatus(ctx, gpu, outStatuses, 361, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
+      goto exit;
+    }
+
+    {
+      unsigned initialQueueFamilyIndex = ctx->gpus[gpuIndex].queuesFamilyIndex[queueIndex];
+
+      redInlineCreatePresent(context, gpu, handleName, surface, imagesCount, imagesWidth, imagesHeight, imagesLayersCount, imagesRestrictToAccess, initialQueueFamilyIndex, transform, compositeAlpha, vsyncMode, clipped, oldPresent, outPresent, outImages, outTextures, outStatuses, optionalFile, optionalLine, optionalUserData);
     }
   }
-
-  if (gpuIndex == (unsigned)-1) {
-    redInternalSetStatus(ctx, gpu, outStatuses, 360, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
-  }
-
-  unsigned queueIndex = (unsigned)-1;
-  for (unsigned i = 0, count = ctx->gpus[gpuIndex].queuesCount; i < count; i += 1) {
-    if (ctx->gpus[gpuIndex].queues[i] == queue) {
-      queueIndex = i;
-      break;
-    }
-  }
-
-  if (queueIndex == (unsigned)-1) {
-    redInternalSetStatus(ctx, gpu, outStatuses, 361, (VkResult)RED_STATUS_ERROR_INITIALIZATION_FAILED, procedureId, optionalFile, optionalLine, optionalUserData);
-    goto exit;
-  }
-
-  unsigned initialQueueFamilyIndex = ctx->gpus[gpuIndex].queuesFamilyIndex[queueIndex];
-
-  redInlineCreatePresent(context, gpu, handleName, surface, imagesCount, imagesWidth, imagesHeight, imagesLayersCount, imagesRestrictToAccess, initialQueueFamilyIndex, transform, compositeAlpha, vsyncMode, clipped, oldPresent, outPresent, outImages, outTextures, outStatuses, optionalFile, optionalLine, optionalUserData);
 
 exit:;
 
