@@ -1,3 +1,7 @@
+Jun 27, 2026:
+
+  * Header include paths are now relative.
+
 Jun 21, 2026:
 
   * Fix redgpu.cpp for modern compilers that refuse to compile old goto code.

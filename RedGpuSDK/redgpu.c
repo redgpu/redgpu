@@ -50,21 +50,12 @@ int (*redInternalCreateAndroidSurface)(void * instance, const void * createInfo,
 #define REDGPU_DECLTYPE typeof
 #endif
 
-#ifdef REDGPU_OS_WINDOWS
-#include "C:/RedGpuSDK/redgpu.h"
-#include "C:/RedGpuSDK/redgpu_wsi.h"
-#include "C:/RedGpuSDK/redgpu_computing_language.h"
-#include "C:/RedGpuSDK/redgpu_context_from_vk.h"
-#include "C:/RedGpuSDK/redgpu_array_timestamp.h"
-#include "C:/RedGpuSDK/redgpu_print.h"
-#else
-#include "/home/linuxbrew/RedGpuSDK/redgpu.h"
-#include "/home/linuxbrew/RedGpuSDK/redgpu_wsi.h"
-#include "/home/linuxbrew/RedGpuSDK/redgpu_computing_language.h"
-#include "/home/linuxbrew/RedGpuSDK/redgpu_context_from_vk.h"
-#include "/home/linuxbrew/RedGpuSDK/redgpu_array_timestamp.h"
-#include "/home/linuxbrew/RedGpuSDK/redgpu_print.h"
-#endif
+#include "redgpu.h"
+#include "redgpu_wsi.h"
+#include "redgpu_computing_language.h"
+#include "redgpu_context_from_vk.h"
+#include "redgpu_array_timestamp.h"
+#include "redgpu_print.h"
 
 #ifdef REDGPU_OS_WINDOWS
 typedef void * HINSTANCE;
