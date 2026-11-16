@@ -1,3 +1,7 @@
+Nov 15, 2026:
+
+  * WIP: Named parameters v2 is replaced with v3 which fully supports C language now and doesn't require headers generation.
+
 Jun 27, 2026:
 
   * Header include paths are now relative.

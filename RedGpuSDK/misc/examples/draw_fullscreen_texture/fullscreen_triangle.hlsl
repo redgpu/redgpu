@@ -1,5 +1,8 @@
-// dxc.exe fullscreen_triangle.hlsl -DVS -T vs_6_0 -Fo fullscreen_triangle_vs.ir -spirv
-// dxc.exe fullscreen_triangle.hlsl -DFS -T ps_6_0 -Fo fullscreen_triangle_fs.ir -spirv
+#if 0
+/opt/dxc fullscreen_triangle.hlsl -DVS -T vs_6_0 -Fo fullscreen_triangle_vs.ir -spirv
+/opt/dxc fullscreen_triangle.hlsl -DFS -T ps_6_0 -Fo fullscreen_triangle_fs.ir -spirv
+exit
+#endif
 
 [[vk::binding(0, 0)]] SamplerState imageSampler: register(s0, space0);
 [[vk::binding(1, 0)]] Texture2D    imageTexture: register(t0, space1);

@@ -1,5 +1,8 @@
-// dxc.exe geometry.hlsl -DVS -T vs_6_0 -Fo geometry_vs.ir -spirv
-// dxc.exe geometry.hlsl -DFS -T ps_6_0 -Fo geometry_fs.ir -spirv
+#if 0
+/opt/dxc geometry.hlsl -DVS -T vs_6_0 -Fo geometry_vs.ir -spirv
+/opt/dxc geometry.hlsl -DFS -T ps_6_0 -Fo geometry_fs.ir -spirv
+exit
+#endif
 
 struct RootSignatureConstants {
   float4 cameraPosition;

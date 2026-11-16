@@ -1,31 +1,40 @@
-#define REDGPU_PROGRAM_PRESENT_IMAGES_COUNT               2
+#if 0
+brew install vulkan-loader libx11 glfw
+gcc main.c /home/linuxbrew/RedGpuSDK/redgpu.c -I/home/linuxbrew/.linuxbrew/include/ -I/home/linuxbrew/.linuxbrew/Cellar/xorgproto/2025.1/include/ -I/var/home/linuxbrew/.linuxbrew/Cellar/libxcb/1.17.0/include/ /home/linuxbrew/.linuxbrew/Cellar/glfw/3.5.1/lib/libglfw3.a /home/linuxbrew/.linuxbrew/lib/libX11.so /home/linuxbrew/.linuxbrew/lib/libvulkan.so -lm
+exit
+#endif
+
+#define REDGPU_PROGRAM_PRESENT_IMAGES_COUNT               3
 #define REDGPU_PROGRAM_PRESENT_VSYNC_MODE                 RED_PRESENT_VSYNC_MODE_ON
 #define REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES 1
 
-#ifndef __cplusplus
-#define REDGPU_DISABLE_NAMED_PARAMETERS
+#ifdef _WIN32
+  #include "C:/RedGpuSDK/redgpu.h"
+  #include "C:/RedGpuSDK/redgpu_wsi.h"
+#else
+  #include "/home/linuxbrew/RedGpuSDK/redgpu.h"
+  #include "/home/linuxbrew/RedGpuSDK/redgpu_wsi.h"
 #endif
 
-#include "C:/RedGpuSDK/redgpu.h"
-#include "C:/RedGpuSDK/redgpu_wsi.h"
-
-#include "C:/RedGpuSDK/misc/np/np.h"
-#include "C:/RedGpuSDK/misc/np/np_redgpu.h"
-#include "C:/RedGpuSDK/misc/np/np_redgpu_wsi.h"
-
 #ifdef _WIN32
-#define GLFW_INCLUDE_NONE
-#define GLFW_EXPOSE_NATIVE_WIN32
-#include "glfw-3.4.bin.WIN64/include/GLFW/glfw3.h" // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
-#include "glfw-3.4.bin.WIN64/include/GLFW/glfw3native.h" // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
-#pragma comment(lib, "glfw-3.4.bin.WIN64/lib-vc2019/glfw3_mt.lib") // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
+  #define GLFW_INCLUDE_NONE
+  #define GLFW_EXPOSE_NATIVE_WIN32
+  #include "glfw-3.4.bin.WIN64/include/GLFW/glfw3.h" // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
+  #include "glfw-3.4.bin.WIN64/include/GLFW/glfw3native.h" // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
+  #pragma comment(lib, "glfw-3.4.bin.WIN64/lib-vc2019/glfw3_mt.lib") // https://github.com/glfw/glfw/releases/download/3.4/glfw-3.4.bin.WIN64.zip
+#else
+  #define GLFW_INCLUDE_NONE
+  #define GLFW_EXPOSE_NATIVE_X11
+  #include "/home/linuxbrew/.linuxbrew/Cellar/glfw/3.5.1/include/GLFW/glfw3.h"       // GLFW 3.5.1 as of Sep 12, 2026.
+  #include "/home/linuxbrew/.linuxbrew/Cellar/glfw/3.5.1/include/GLFW/glfw3native.h" // GLFW 3.5.1 as of Sep 12, 2026.
 #endif
 
 #include <malloc.h> // For malloc, free
+#include <assert.h> // For assert
 #include <stdio.h>  // For printf, fflush
 
-#ifndef _countof
-#define _countof(array) (sizeof(array) / sizeof((array)[0]))
+#ifndef countof
+  #define countof(array) (sizeof(array) / sizeof((array)[0]))
 #endif
 
 typedef enum RedHelperMemoryType {
@@ -34,7 +43,7 @@ typedef enum RedHelperMemoryType {
   RED_HELPER_MEMORY_TYPE_READBACK = 2,
 } RedHelperMemoryType;
 
-REDGPU_DECLSPEC unsigned REDGPU_API redHelperGetMemoryTypeIndex(const RedGpuInfo * gpuInfo, RedHelperMemoryType memoryType, unsigned memoryTypesSupported) {
+npf(static unsigned, redHelperGetMemoryTypeIndex, const RedGpuInfo *,gpuInfo, RedHelperMemoryType,memoryType, unsigned,memoryTypesSupported) {
   const unsigned        memoryTypesCount = gpuInfo->memoryTypesCount;
   const RedMemoryType * memoryTypes      = gpuInfo->memoryTypes;
 
@@ -117,44 +126,46 @@ REDGPU_DECLSPEC unsigned REDGPU_API redHelperGetMemoryTypeIndex(const RedGpuInfo
     }
   }
 
+  assert(!"[redHelperGetMemoryTypeIndex] Error: memory type index not found.");
+
   return -1;
 }
 
-void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandleImage image, RedImagePartBitflags allParts, RedHandleQueue queueToSubmitImageStateChange, unsigned queueFamilyIndexToSubmitImageStateChange, RedStatuses * outStatuses, char * optionalFile, int optionalLine, void * optionalUserData) {
+npf(static void, redHelperImageSetStateUsable, RedContext,context, RedHandleGpu,gpu, RedHandleImage,image, RedImagePartBitflags,allParts, RedHandleQueue,queueToSubmitImageStateChange, unsigned,queueFamilyIndexToSubmitImageStateChange, RedStatuses *,outStatuses, char *,optionalFile, int,optionalLine, void *,optionalUserData) {
   RedCallProceduresAndAddresses callProceduresAndAddresses = {0};
   np(redGetCallProceduresAndAddresses,
-    "context", context,
-    "gpu", gpu,
-    "outCallProceduresAndAddresses", &callProceduresAndAddresses,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    outCallProceduresAndAddresses, &callProceduresAndAddresses,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   RedCalls calls = {0};
   np(redCreateCalls,
-    "context", context,
-    "gpu", gpu,
-    "handleName", NULL,
-    "queueFamilyIndex", queueFamilyIndexToSubmitImageStateChange,
-    "outCalls", &calls,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    handleName, NULL,
+    queueFamilyIndex, queueFamilyIndexToSubmitImageStateChange,
+    outCalls, &calls,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   np(redCallsSet,
-    "context", context,
-    "gpu", gpu,
-    "calls", calls.handle,
-    "callsMemory", calls.memory,
-    "callsReusable", calls.reusable,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    calls, calls.handle,
+    callsMemory, calls.memory,
+    callsReusable, calls.reusable,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   RedUsageImage imageUsage = {0};
@@ -174,42 +185,42 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   imageUsage.imageLayersFirst       = 0;
   imageUsage.imageLayersCount       = -1;
   np(redCallUsageAliasOrderBarrier,
-    "address", callProceduresAndAddresses.redCallUsageAliasOrderBarrier,
-    "calls", calls.handle,
-    "context", context,
-    "arrayUsagesCount", 0,
-    "arrayUsages", NULL,
-    "imageUsagesCount", 1,
-    "imageUsages", &imageUsage,
-    "aliasesCount", 0,
-    "aliases", NULL,
-    "ordersCount", 0,
-    "orders", NULL,
-    "dependencyByRegion", 0
+    address, callProceduresAndAddresses.redCallUsageAliasOrderBarrier,
+    calls, calls.handle,
+    context, context,
+    arrayUsagesCount, 0,
+    arrayUsages, NULL,
+    imageUsagesCount, 1,
+    imageUsages, &imageUsage,
+    aliasesCount, 0,
+    aliases, NULL,
+    ordersCount, 0,
+    orders, NULL,
+    dependencyByRegion, 0
   );
 
   np(redCallsEnd,
-    "context", context,
-    "gpu", gpu,
-    "calls", calls.handle,
-    "callsMemory", calls.memory,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    calls, calls.handle,
+    callsMemory, calls.memory,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   RedHandleCpuSignal cpuSignal = NULL;
   np(redCreateCpuSignal,
-    "context", context,
-    "gpu", gpu,
-    "handleName", NULL,
-    "createSignaled", 0,
-    "outCpuSignal", &cpuSignal,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    handleName, NULL,
+    createSignaled, 0,
+    outCpuSignal, &cpuSignal,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   RedGpuTimeline timeline = {0};
@@ -223,47 +234,47 @@ void redHelperImageSetStateUsable(RedContext context, RedHandleGpu gpu, RedHandl
   timeline.signalGpuSignalsCount             = 0;
   timeline.signalGpuSignals                  = NULL;
   np(redQueueSubmit,
-    "context", context,
-    "gpu", gpu,
-    "queue", queueToSubmitImageStateChange,
-    "timelinesCount", 1,
-    "timelines", &timeline,
-    "signalCpuSignal", cpuSignal,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    queue, queueToSubmitImageStateChange,
+    timelinesCount, 1,
+    timelines, &timeline,
+    signalCpuSignal, cpuSignal,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   np(redCpuSignalWait,
-    "context", context,
-    "gpu", gpu,
-    "cpuSignalsCount", 1,
-    "cpuSignals", &cpuSignal,
-    "waitAll", 1,
-    "outStatuses", outStatuses,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    cpuSignalsCount, 1,
+    cpuSignals, &cpuSignal,
+    waitAll, 1,
+    outStatuses, outStatuses,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   np(redDestroyCpuSignal,
-    "context", context,
-    "gpu", gpu,
-    "cpuSignal", cpuSignal,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    cpuSignal, cpuSignal,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 
   np(redDestroyCalls,
-    "context", context,
-    "gpu", gpu,
-    "calls", calls.handle,
-    "callsMemory", calls.memory,
-    "optionalFile", optionalFile,
-    "optionalLine", optionalLine,
-    "optionalUserData", optionalUserData
+    context, context,
+    gpu, gpu,
+    calls, calls.handle,
+    callsMemory, calls.memory,
+    optionalFile, optionalFile,
+    optionalLine, optionalLine,
+    optionalUserData, optionalUserData
   );
 }
 
@@ -276,9 +287,7 @@ int main() {
   glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
   GLFWwindow * window = glfwCreateWindow(windowWidth, windowHeight, "REDGPU Example: Texture", NULL, NULL);
 
-#ifdef _WIN32
-  unsigned extensions[] = {
-    RED_SDK_EXTENSION_TREAT_ALL_MAPPABLE_MEMORY_AS_NON_COHERENT,
+  unsigned extensions[8] = {
     RED_SDK_EXTENSION_DRIVER_PROPERTIES,
     RED_SDK_EXTENSION_RESOLVE_DEPTH_STENCIL,
     RED_SDK_EXTENSION_DEDICATE_MEMORY,
@@ -286,29 +295,34 @@ int main() {
     RED_SDK_EXTENSION_BATCH_MEMORY_SET,
     RED_SDK_EXTENSION_RASTERIZATION_MODE,
     RED_SDK_EXTENSION_FORMAL_MEMORY_MODEL,
-    RED_SDK_EXTENSION_WSI_WIN32
+    RED_SDK_EXTENSION_NONE
   };
-#endif
+  #ifdef _WIN32
+  extensions[7] = RED_SDK_EXTENSION_WSI_WIN32;
+  #else
+  extensions[7] = RED_SDK_EXTENSION_WSI_XLIB;
+  #endif
+
   RedContext context = NULL;
   np(redCreateContext,
-    "malloc", malloc,
-    "free", free,
-    "optionalMallocTagged", NULL,
-    "optionalFreeTagged", NULL,
-    "debugCallback", NULL,
-    "sdkVersion", RED_SDK_VERSION_1_0_135,
-    "sdkExtensionsCount", _countof(extensions),
-    "sdkExtensions", extensions,
-    "optionalProgramName", NULL,
-    "optionalProgramVersion", 0,
-    "optionalEngineName", NULL,
-    "optionalEngineVersion", 0,
-    "optionalSettings", NULL,
-    "outContext", &context,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    malloc, malloc,
+    free, free,
+    optionalMallocTagged, NULL,
+    optionalFreeTagged, NULL,
+    debugCallback, NULL,
+    sdkVersion, RED_SDK_VERSION_1_0_135,
+    sdkExtensionsCount, countof(extensions),
+    sdkExtensions, extensions,
+    optionalProgramName, NULL,
+    optionalProgramVersion, 0,
+    optionalEngineName, NULL,
+    optionalEngineVersion, 0,
+    optionalSettings, NULL,
+    outContext, &context,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleGpu       gpu              =  context->gpus[0].gpu;
@@ -318,38 +332,38 @@ int main() {
 
   RedCallProceduresAndAddresses callsPA = {0};
   np(redGetCallProceduresAndAddresses,
-    "context", context,
-    "gpu", gpu,
-    "outCallProceduresAndAddresses", &callsPA,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    outCallProceduresAndAddresses, &callsPA,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleSampler imageSampler = NULL;
   np(redCreateSampler,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "imageSampler",
-    "filteringMag", RED_SAMPLER_FILTERING_NEAREST,
-    "filteringMin", RED_SAMPLER_FILTERING_NEAREST,
-    "filteringMip", RED_SAMPLER_FILTERING_MIP_NEAREST,
-    "behaviorOutsideTextureCoordinateU", RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
-    "behaviorOutsideTextureCoordinateV", RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
-    "behaviorOutsideTextureCoordinateW", RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
-    "mipLodBias", 0.f,
-    "enableAnisotropy", 0,
-    "maxAnisotropy", 0.f,
-    "enableCompare", 0,
-    "compareOp", RED_COMPARE_OP_NEVER,
-    "minLod", 0.f,
-    "maxLod", 1.f,
-    "outSampler", &imageSampler,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "imageSampler",
+    filteringMag, RED_SAMPLER_FILTERING_NEAREST,
+    filteringMin, RED_SAMPLER_FILTERING_NEAREST,
+    filteringMip, RED_SAMPLER_FILTERING_MIP_NEAREST,
+    behaviorOutsideTextureCoordinateU, RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
+    behaviorOutsideTextureCoordinateV, RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
+    behaviorOutsideTextureCoordinateW, RED_SAMPLER_BEHAVIOR_OUTSIDE_TEXTURE_COORDINATE_REPEAT,
+    mipLodBias, 0.f,
+    enableAnisotropy, 0,
+    maxAnisotropy, 0.f,
+    enableCompare, 0,
+    compareOp, RED_COMPARE_OP_NEVER,
+    minLod, 0.f,
+    maxLod, 1.f,
+    outSampler, &imageSampler,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   typedef struct float4 {
@@ -367,37 +381,37 @@ int main() {
 
   RedArray pixels = {0};
   np(redCreateArray,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "pixels",
-    "type", RED_ARRAY_TYPE_ARRAY_RO,
-    "bytesCount", pixelsBytesCount,
-    "structuredBufferElementBytesCount", 0,
-    "restrictToAccess", 0,
-    "initialQueueFamilyIndex", queueFamilyIndex,
-    "dedicate", 0,
-    "outArray", &pixels,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "pixels",
+    type, RED_ARRAY_TYPE_ARRAY_RO,
+    bytesCount, pixelsBytesCount,
+    structuredBufferElementBytesCount, 0,
+    restrictToAccess, 0,
+    initialQueueFamilyIndex, queueFamilyIndex,
+    dedicate, 0,
+    outArray, &pixels,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleMemory pixelsMemory = NULL;
   np(redMemoryAllocateMappable,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "pixelsMemory",
-    "dedicate", 0,
-    "array", pixels.handle,
-    "arrayMemoryBytesCount", pixels.memoryBytesCount,
-    "memoryTypeIndex", redHelperGetMemoryTypeIndex(gpuInfo, RED_HELPER_MEMORY_TYPE_UPLOAD, pixels.memoryTypesSupported),
-    "memoryBitflags", 0,
-    "outMemory", &pixelsMemory,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "pixelsMemory",
+    dedicate, 0,
+    array, pixels.handle,
+    arrayMemoryBytesCount, pixels.memoryBytesCount,
+    memoryTypeIndex, redHelperGetMemoryTypeIndex(gpuInfo, RED_HELPER_MEMORY_TYPE_UPLOAD, pixels.memoryTypesSupported),
+    memoryBitflags, 0,
+    outMemory, &pixelsMemory,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
     
   RedMemoryArray memoryArray = {0};
@@ -407,30 +421,30 @@ int main() {
   memoryArray.memory           = pixelsMemory;
   memoryArray.memoryBytesFirst = 0;
   np(redMemorySet,
-    "context", context,
-    "gpu", gpu,
-    "memoryArraysCount", 1,
-    "memoryArrays", &memoryArray,
-    "memoryImagesCount", 0,
-    "memoryImages", NULL,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    memoryArraysCount, 1,
+    memoryArrays, &memoryArray,
+    memoryImagesCount, 0,
+    memoryImages, NULL,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   void * pointer = NULL;
   np(redMemoryMap,
-    "context", context,
-    "gpu", gpu,
-    "mappableMemory", pixelsMemory,
-    "mappableMemoryBytesFirst", 0,
-    "mappableMemoryBytesCount", pixelsBytesCount,
-    "outVolatilePointer", &pointer,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    mappableMemory, pixelsMemory,
+    mappableMemoryBytesFirst, 0,
+    mappableMemoryBytesCount, pixelsBytesCount,
+    outVolatilePointer, &pointer,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
   Pixel * volatile pixelsPointer = (Pixel * volatile)pointer;
 
@@ -455,54 +469,54 @@ int main() {
   memoryRangeToFlush.mappableMemoryRangeBytesFirst = 0;
   memoryRangeToFlush.mappableMemoryRangeBytesCount = sizeof(data);
   np(redMemoryNonCoherentFlush,
-    "context", context,
-    "gpu", gpu,
-    "mappableMemoryRangesCount", 1,
-    "mappableMemoryRanges", &memoryRangeToFlush,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    mappableMemoryRangesCount, 1,
+    mappableMemoryRanges, &memoryRangeToFlush,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedImage image = {0};
   np(redCreateImage,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "image",
-    "dimensions", RED_IMAGE_DIMENSIONS_2D,
-    "format", RED_FORMAT_RGBA_32_32_32_32_FLOAT,
-    "width", 8,
-    "height", 8,
-    "depth", 1,
-    "levelsCount", 1,
-    "layersCount", 1,
-    "multisampleCount", RED_MULTISAMPLE_COUNT_BITFLAG_1,
-    "restrictToAccess", 0,
-    "initialQueueFamilyIndex", queueFamilyIndex,
-    "dedicate", 0,
-    "outImage", &image,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "image",
+    dimensions, RED_IMAGE_DIMENSIONS_2D,
+    format, RED_FORMAT_RGBA_32_32_32_32_FLOAT,
+    width, 8,
+    height, 8,
+    depth, 1,
+    levelsCount, 1,
+    layersCount, 1,
+    multisampleCount, RED_MULTISAMPLE_COUNT_BITFLAG_1,
+    restrictToAccess, 0,
+    initialQueueFamilyIndex, queueFamilyIndex,
+    dedicate, 0,
+    outImage, &image,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
     
   RedHandleMemory imageMemory = NULL;
   np(redMemoryAllocate,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "imageMemory",
-    "bytesCount", image.memoryBytesCount,
-    "memoryTypeIndex", redHelperGetMemoryTypeIndex(gpuInfo, RED_HELPER_MEMORY_TYPE_VRAM, image.memoryTypesSupported),
-    "dedicateToArray", NULL,
-    "dedicateToImage", NULL,
-    "memoryBitflags", 0,
-    "outMemory", &imageMemory,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "imageMemory",
+    bytesCount, image.memoryBytesCount,
+    memoryTypeIndex, redHelperGetMemoryTypeIndex(gpuInfo, RED_HELPER_MEMORY_TYPE_VRAM, image.memoryTypesSupported),
+    dedicateToArray, NULL,
+    dedicateToImage, NULL,
+    memoryBitflags, 0,
+    outMemory, &imageMemory,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedMemoryImage memoryImage = {0};
@@ -512,40 +526,51 @@ int main() {
   memoryImage.memory           = imageMemory;
   memoryImage.memoryBytesFirst = 0;
   np(redMemorySet,
-    "context", context,
-    "gpu", gpu,
-    "memoryArraysCount", 0,
-    "memoryArrays", NULL,
-    "memoryImagesCount", 1,
-    "memoryImages", &memoryImage,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    memoryArraysCount, 0,
+    memoryArrays, NULL,
+    memoryImagesCount, 1,
+    memoryImages, &memoryImage,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleTexture imageTexture = NULL;
   np(redCreateTexture,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "imageTexture",
-    "image", image.handle,
-    "parts", RED_IMAGE_PART_BITFLAG_COLOR,
-    "dimensions", RED_TEXTURE_DIMENSIONS_2D,
-    "format", RED_FORMAT_RGBA_32_32_32_32_FLOAT,
-    "levelsFirst", 0,
-    "levelsCount", 1,
-    "layersFirst", 0,
-    "layersCount", 1,
-    "restrictToAccess", 0,
-    "outTexture", &imageTexture,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "imageTexture",
+    image, image.handle,
+    parts, RED_IMAGE_PART_BITFLAG_COLOR,
+    dimensions, RED_TEXTURE_DIMENSIONS_2D,
+    format, RED_FORMAT_RGBA_32_32_32_32_FLOAT,
+    levelsFirst, 0,
+    levelsCount, 1,
+    layersFirst, 0,
+    layersCount, 1,
+    restrictToAccess, 0,
+    outTexture, &imageTexture,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
-  redHelperImageSetStateUsable(context, gpu, image.handle, RED_IMAGE_PART_BITFLAG_COLOR, queue, queueFamilyIndex, NULL, __FILE__, __LINE__, NULL);
+  np(redHelperImageSetStateUsable,
+    context, context,
+    gpu, gpu,
+    image, image.handle,
+    allParts, RED_IMAGE_PART_BITFLAG_COLOR,
+    queueToSubmitImageStateChange, queue,
+    queueFamilyIndexToSubmitImageStateChange, queueFamilyIndex,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
+  );
 
   RedHandleSurface  surface                                               = NULL;
   RedHandlePresent  present                                               = NULL;
@@ -553,80 +578,101 @@ int main() {
   RedHandleImage    presentImages   [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   RedHandleTexture  presentTextures [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
 
-#ifdef _WIN32
+  #ifdef _WIN32
   np(redCreateSurfaceWin32,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "surface",
-    "win32Hinstance", GetModuleHandle(NULL),
-    "win32Hwnd", glfwGetWin32Window(window),
-    "outSurface", &surface,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "surface",
+    win32Hinstance, GetModuleHandle(NULL),
+    win32Hwnd, glfwGetWin32Window(window),
+    outSurface, &surface,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
-#endif
+  #else
+  {
+    Display * x11display = glfwGetX11Display();
+    Window x11window = glfwGetX11Window(window);
+    assert(x11display != NULL || !"On Wayland, you need to run the app like this: XDG_SESSION_TYPE=x11 ./a.out");
+    assert(x11window  != 0    || !"On Wayland, you need to run the app like this: XDG_SESSION_TYPE=x11 ./a.out");
+    np(redCreateSurfaceXlibOrXcb,
+      context, context,
+      gpu, gpu,
+      handleName, "surface",
+      xlibDisplay, x11display,
+      xlibWindow, x11window,
+      xcbConnection, NULL,
+      xcbWindow, 0,
+      outSurface, &surface,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
+    );
+  }
+  #endif
   RedQueueFamilyIndexGetSupportsPresentOnSurface queueFamilyIndexSupportsPresentOnSurface = {0};
   queueFamilyIndexSupportsPresentOnSurface.surface                                     = surface;
   queueFamilyIndexSupportsPresentOnSurface.outQueueFamilyIndexSupportsPresentOnSurface = 0;
   np(redQueueFamilyIndexGetSupportsPresent,
-    "context", context,
-    "gpu", gpu,
-    "queueFamilyIndex", queueFamilyIndex,
-    "supportsPresentOnWin32", NULL,
-    "supportsPresentOnXlib", NULL,
-    "supportsPresentOnXcb", NULL,
-    "supportsPresentOnSurface", &queueFamilyIndexSupportsPresentOnSurface,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    queueFamilyIndex, queueFamilyIndex,
+    supportsPresentOnWin32, NULL,
+    supportsPresentOnXlib, NULL,
+    supportsPresentOnXcb, NULL,
+    supportsPresentOnSurface, &queueFamilyIndexSupportsPresentOnSurface,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
   if (queueFamilyIndexSupportsPresentOnSurface.outQueueFamilyIndexSupportsPresentOnSurface == 0) {
-    printf("Error: queueFamilyIndexSupportsPresentOnSurface.outQueueFamilyIndexSupportsPresentOnSurface == 0\n");
+    printf("[REDGPU][%s:%d] Error: queueFamilyIndexSupportsPresentOnSurface.outQueueFamilyIndexSupportsPresentOnSurface == 0\n", __FILE__, __LINE__);
     fflush(stdout);
   }
 
   RedSurfaceCurrentPropertiesAndPresentLimits surfaceCurrentPropertiesAndPresentLimits = {0};
   np(redSurfaceGetCurrentPropertiesAndPresentLimits,
-    "context", context,
-    "gpu", gpu,
-    "surface", surface,
-    "outSurfaceCurrentPropertiesAndPresentLimits", &surfaceCurrentPropertiesAndPresentLimits,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    surface, surface,
+    outSurfaceCurrentPropertiesAndPresentLimits, &surfaceCurrentPropertiesAndPresentLimits,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   if (surfaceCurrentPropertiesAndPresentLimits.currentSurfaceWidth  != -1) { windowWidth  = surfaceCurrentPropertiesAndPresentLimits.currentSurfaceWidth;  }
   if (surfaceCurrentPropertiesAndPresentLimits.currentSurfaceHeight != -1) { windowHeight = surfaceCurrentPropertiesAndPresentLimits.currentSurfaceHeight; }
 
   np(redCreatePresent,
-    "context", context,
-    "gpu", gpu,
-    "queue", queue,
-    "handleName", "present",
-    "surface", surface,
-    "imagesCount", REDGPU_PROGRAM_PRESENT_IMAGES_COUNT,
-    "imagesWidth", windowWidth,
-    "imagesHeight", windowHeight,
-    "imagesLayersCount", 1,
-    "imagesRestrictToAccess", presentImagesAccess,
-    "transform", RED_SURFACE_TRANSFORM_BITFLAG_IDENTITY,
-    "compositeAlpha", RED_SURFACE_COMPOSITE_ALPHA_BITFLAG_OPAQUE,
-    "vsyncMode", REDGPU_PROGRAM_PRESENT_VSYNC_MODE,
-    "clipped", 0,
-    "discardAfterPresent", 0,
-    "oldPresent", NULL,
-    "outPresent", &present,
-    "outImages", presentImages,
-    "outTextures", presentTextures,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    queue, queue,
+    handleName, "present",
+    surface, surface,
+    imagesCount, REDGPU_PROGRAM_PRESENT_IMAGES_COUNT,
+    imagesWidth, windowWidth,
+    imagesHeight, windowHeight,
+    imagesLayersCount, 1,
+    imagesRestrictToAccess, presentImagesAccess,
+    transform, RED_SURFACE_TRANSFORM_BITFLAG_IDENTITY,
+    compositeAlpha, RED_SURFACE_COMPOSITE_ALPHA_BITFLAG_OPAQUE,
+    vsyncMode, REDGPU_PROGRAM_PRESENT_VSYNC_MODE,
+    clipped, 0,
+    discardAfterPresent, 0,
+    oldPresent, NULL,
+    outPresent, &present,
+    outImages, presentImages,
+    outTextures, presentTextures,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleGpuSignal gpusigPresent [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
@@ -634,50 +680,50 @@ int main() {
   RedHandleGpuSignal gpusig        [REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {
     np(redCreateGpuSignal,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "gpusigPresent",
-      "outGpuSignal", &gpusigPresent[i],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "gpusigPresent",
+      outGpuSignal, &gpusigPresent[i],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
     np(redCreateCpuSignal,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "cpusig",
-      "createSignaled", 1,
-      "outCpuSignal", &cpusig[i],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "cpusig",
+      createSignaled, 1,
+      outCpuSignal, &cpusig[i],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
     np(redCreateGpuSignal,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "gpusig",
-      "outGpuSignal", &gpusig[i],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "gpusig",
+      outGpuSignal, &gpusig[i],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
   }
 
   RedCalls calls[REDGPU_PROGRAM_PRESENT_IMAGES_COUNT] = {0};
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {
     np(redCreateCalls,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "calls",
-      "queueFamilyIndex", queueFamilyIndex,
-      "outCalls", &calls[i],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "calls",
+      queueFamilyIndex, queueFamilyIndex,
+      outCalls, &calls[i],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
   }
 
@@ -734,18 +780,18 @@ int main() {
     members.colorsSharesMemoryWithAnotherMember[6]    = 0;
     members.colorsSharesMemoryWithAnotherMember[7]    = 0;
     np(redCreateOutputDeclaration,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "outputDeclaration",
-      "outputDeclarationMembers", &members,
-      "outputDeclarationMembersResolveSources", NULL,
-      "dependencyByRegion", 0,
-      "dependencyByRegionAllowUsageAliasOrderBarriers", 0,
-      "outOutputDeclaration", &outputDeclaration,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "outputDeclaration",
+      outputDeclarationMembers, &members,
+      outputDeclarationMembersResolveSources, NULL,
+      dependencyByRegion, 0,
+      dependencyByRegionAllowUsageAliasOrderBarriers, 0,
+      outOutputDeclaration, &outputDeclaration,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
   }
 
@@ -763,19 +809,19 @@ int main() {
     outputMembers.colors[6]        = NULL;
     outputMembers.colors[7]        = NULL;
     np(redCreateOutput,
-      "context", context,
-      "gpu", gpu,
-      "handleName", NULL,
-      "outputDeclaration", outputDeclaration,
-      "outputMembers", &outputMembers,
-      "outputMembersResolveTargets", NULL,
-      "width", windowWidth,
-      "height", windowHeight,
-      "outOutput", &rendertargets[i],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, NULL,
+      outputDeclaration, outputDeclaration,
+      outputMembers, &outputMembers,
+      outputMembersResolveTargets, NULL,
+      width, windowWidth,
+      height, windowHeight,
+      outOutput, &rendertargets[i],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
   }
 
@@ -792,19 +838,19 @@ int main() {
   structDeclarationMembers[1].inlineSampler   = NULL;
   RedHandleStructDeclaration structDeclaration = NULL;
   np(redCreateStructDeclaration,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "structDeclaration",
-    "structDeclarationMembersCount", _countof(structDeclarationMembers),
-    "structDeclarationMembers", structDeclarationMembers,
-    "structDeclarationMembersArrayROCount", 0,
-    "structDeclarationMembersArrayRO", NULL,
-    "procedureParametersHandlesDeclaration", 0,
-    "outStructDeclaration", &structDeclaration,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "structDeclaration",
+    structDeclarationMembersCount, countof(structDeclarationMembers),
+    structDeclarationMembers, structDeclarationMembers,
+    structDeclarationMembersArrayROCount, 0,
+    structDeclarationMembersArrayRO, NULL,
+    procedureParametersHandlesDeclaration, 0,
+    outStructDeclaration, &structDeclaration,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedProcedureParametersDeclaration procedureParametersDeclaration = {0};
@@ -822,50 +868,50 @@ int main() {
   procedureParametersDeclaration.handlesDeclaration         = NULL;
   RedHandleProcedureParameters procedureParameters = NULL;
   np(redCreateProcedureParameters,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "procedureParameters",
-    "procedureParametersDeclaration", &procedureParametersDeclaration,
-    "outProcedureParameters", &procedureParameters,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "procedureParameters",
+    procedureParametersDeclaration, &procedureParametersDeclaration,
+    outProcedureParameters, &procedureParameters,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleStructsMemory structsMemory = NULL;
   np(redStructsMemoryAllocateWithInlineSamplers,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "structsMemory",
-    "maxStructsCount", 1,
-    "maxStructsMembersOfTypeArrayROConstantCount", 0,
-    "maxStructsMembersOfTypeArrayROOrArrayRWCount", 0,
-    "maxStructsMembersOfTypeTextureROCount", 1,
-    "maxStructsMembersOfTypeTextureRWCount", 0,
-    "maxStructsMembersOfTypeInlineSamplerCount", 1,
-    "outStructsMemory", &structsMemory,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "structsMemory",
+    maxStructsCount, 1,
+    maxStructsMembersOfTypeArrayROConstantCount, 0,
+    maxStructsMembersOfTypeArrayROOrArrayRWCount, 0,
+    maxStructsMembersOfTypeTextureROCount, 1,
+    maxStructsMembersOfTypeTextureRWCount, 0,
+    maxStructsMembersOfTypeInlineSamplerCount, 1,
+    outStructsMemory, &structsMemory,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   const char * structsHandleNames[1] = {0};
   structsHandleNames[0] = "structs[0]";
   RedHandleStruct structs[1] = {0};
   np(redStructsMemorySuballocateStructs,
-    "context", context,
-    "gpu", gpu,
-    "handleNames", structsHandleNames,
-    "structsMemory", structsMemory,
-    "structsDeclarationsCount", 1,
-    "structsDeclarations", &structDeclaration,
-    "outStructs", structs,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleNames, structsHandleNames,
+    structsMemory, structsMemory,
+    structsDeclarationsCount, 1,
+    structsDeclarations, &structDeclaration,
+    outStructs, structs,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedStructMemberTexture texture = {0};
@@ -884,13 +930,13 @@ int main() {
   structMembers[0].arrays    = NULL;
   structMembers[0].setTo00   = 0;
   np(redStructsSet,
-    "context", context,
-    "gpu", gpu,
-    "structsMembersCount", _countof(structMembers),
-    "structsMembers", structMembers,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    structsMembersCount, countof(structMembers),
+    structsMembers, structMembers,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   RedHandleGpuCode gpuCodeVS = NULL;
@@ -909,21 +955,21 @@ int main() {
       fread(irCode, 1, irCodeBytesCount, irCodeFd);
       fclose(irCodeFd);
     } else {
-      printf("[REDGPU]: gpuCodeVS::filepath(%s): fopen returned NULL\n", filepath);
+      printf("[REDGPU][%s:%d]: gpuCodeVS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
       fflush(stdout);
     }
 
     np(redCreateGpuCode,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "gpuCodeVS",
-      "irBytesCount", irCodeBytesCount,
-      "ir", irCode,
-      "outGpuCode", &gpuCodeVS,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "gpuCodeVS",
+      irBytesCount, irCodeBytesCount,
+      ir, irCode,
+      outGpuCode, &gpuCodeVS,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
 
     if (irCode != NULL) {
@@ -944,21 +990,21 @@ int main() {
       fread(irCode, 1, irCodeBytesCount, irCodeFd);
       fclose(irCodeFd);
     } else {
-      printf("[REDGPU]: gpuCodeFS::filepath(%s): fopen returned NULL\n", filepath);
+      printf("[REDGPU][%s:%d]: gpuCodeFS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
       fflush(stdout);
     }
 
     np(redCreateGpuCode,
-      "context", context,
-      "gpu", gpu,
-      "handleName", "gpuCodeFS",
-      "irBytesCount", irCodeBytesCount,
-      "ir", irCode,
-      "outGpuCode", &gpuCodeFS,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      handleName, "gpuCodeFS",
+      irBytesCount, irCodeBytesCount,
+      ir, irCode,
+      outGpuCode, &gpuCodeFS,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
 
     if (irCode != NULL) {
@@ -1048,29 +1094,31 @@ int main() {
   }
   RedHandleProcedure procedureDraw = NULL;
   np(redCreateProcedure,
-    "context", context,
-    "gpu", gpu,
-    "handleName", "procedureDraw",
-    "procedureCache", NULL,
-    "outputDeclaration", outputDeclaration,
-    "procedureParameters", procedureParameters,
-    "gpuCodeVertexMainProcedureName", "main",
-    "gpuCodeVertex", gpuCodeVS,
-    "gpuCodeFragmentMainProcedureName", "main",
-    "gpuCodeFragment", gpuCodeFS,
-    "state", &state,
-    "stateExtension", NULL,
-    "deriveBase", 0,
-    "deriveFrom", NULL,
-    "outProcedure", &procedureDraw,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    handleName, "procedureDraw",
+    procedureCache, NULL,
+    outputDeclaration, outputDeclaration,
+    procedureParameters, procedureParameters,
+    gpuCodeVertexMainProcedureName, "main",
+    gpuCodeVertex, gpuCodeVS,
+    gpuCodeFragmentMainProcedureName, "main",
+    gpuCodeFragment, gpuCodeFS,
+    state, &state,
+    stateExtension, NULL,
+    deriveBase, 0,
+    deriveFrom, NULL,
+    outProcedure, &procedureDraw,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   unsigned F = 0;
   unsigned f = 0;
+
+  RedBool32 uploadTextureOnce = 1;
 
   while (glfwWindowShouldClose(window) == 0) {
     glfwPollEvents();
@@ -1078,41 +1126,41 @@ int main() {
     RedHandleGpuSignal gpusigPresentInconsistent = NULL;
     if (REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES == 1) {
       np(redCreateGpuSignal,
-        "context", context,
-        "gpu", gpu,
-        "handleName", "gpusigPresent",
-        "outGpuSignal", &gpusigPresentInconsistent,
-        "outStatuses", NULL,
-        "optionalFile", __FILE__,
-        "optionalLine", __LINE__,
-        "optionalUserData", NULL
+        context, context,
+        gpu, gpu,
+        handleName, "gpusigPresent",
+        outGpuSignal, &gpusigPresentInconsistent,
+        outStatuses, NULL,
+        optionalFile, __FILE__,
+        optionalLine, __LINE__,
+        optionalUserData, NULL
       );
 
       F = f;
       np(redPresentGetImageIndex,
-        "context", context,
-        "gpu", gpu,
-        "present", present,
-        "signalCpuSignal", NULL,
-        "signalGpuSignal", gpusigPresentInconsistent,
-        "outImageIndex", &f,
-        "outStatuses", NULL,
-        "optionalFile", __FILE__,
-        "optionalLine", __LINE__,
-        "optionalUserData", NULL
+        context, context,
+        gpu, gpu,
+        present, present,
+        signalCpuSignal, NULL,
+        signalGpuSignal, gpusigPresentInconsistent,
+        outImageIndex, &f,
+        outStatuses, NULL,
+        optionalFile, __FILE__,
+        optionalLine, __LINE__,
+        optionalUserData, NULL
       );
     }
 
     np(redCpuSignalWait,
-      "context", context,
-      "gpu", gpu,
-      "cpuSignalsCount", 1,
-      "cpuSignals", &cpusig[f],
-      "waitAll", 1,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      cpuSignalsCount, 1,
+      cpuSignals, &cpusig[f],
+      waitAll, 1,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
 
     if (REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES == 1) {
@@ -1121,30 +1169,30 @@ int main() {
     }
 
     np(redCpuSignalUnsignal,
-      "context", context,
-      "gpu", gpu,
-      "cpuSignalsCount", 1,
-      "cpuSignals", &cpusig[f],
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      cpuSignalsCount, 1,
+      cpuSignals, &cpusig[f],
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
 
     np(redCallsSet,
-      "context", context,
-      "gpu", gpu,
-      "calls", calls[f].handle,
-      "callsMemory", calls[f].memory,
-      "callsReusable", calls[f].reusable,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      calls, calls[f].handle,
+      callsMemory, calls[f].memory,
+      callsReusable, calls[f].reusable,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
     {
       {
-        np(redCallMarkSet, "address", callsPA.redCallMarkSet, "calls", calls[f].handle, "mark", "redCallUsageAliasOrderBarrier RED_STATE_UNUSABLE -> RED_STATE_USABLE");
+        np(redCallMarkSet, address, callsPA.redCallMarkSet, calls, calls[f].handle, mark, "redCallUsageAliasOrderBarrier RED_STATE_UNUSABLE -> RED_STATE_USABLE");
         RedUsageImage imageUsage = {0};
         imageUsage.barrierSplit           = RED_BARRIER_SPLIT_NONE;
         imageUsage.oldAccessStages        = 0;
@@ -1162,144 +1210,146 @@ int main() {
         imageUsage.imageLayersFirst       = 0;
         imageUsage.imageLayersCount       = -1;
         np(redCallUsageAliasOrderBarrier,
-          "address", callsPA.redCallUsageAliasOrderBarrier,
-          "calls", calls[f].handle,
-          "context", context,
-          "arrayUsagesCount", 0,
-          "arrayUsages", NULL,
-          "imageUsagesCount", 1,
-          "imageUsages", &imageUsage,
-          "aliasesCount", 0,
-          "aliases", NULL,
-          "ordersCount", 0,
-          "orders", NULL,
-          "dependencyByRegion", 0
+          address, callsPA.redCallUsageAliasOrderBarrier,
+          calls, calls[f].handle,
+          context, context,
+          arrayUsagesCount, 0,
+          arrayUsages, NULL,
+          imageUsagesCount, 1,
+          imageUsages, &imageUsage,
+          aliasesCount, 0,
+          aliases, NULL,
+          ordersCount, 0,
+          orders, NULL,
+          dependencyByRegion, 0
         );
-        np(redCallMarkEnd, "address", callsPA.redCallMarkEnd, "calls", calls[f].handle);
+        np(redCallMarkEnd, address, callsPA.redCallMarkEnd, calls, calls[f].handle);
+      }
+
+      if (uploadTextureOnce == 1) {
+        {
+          np(redCallMarkSet, address, callsPA.redCallMarkSet, calls, calls[f].handle, mark, "Copy array to image");
+          RedCopyArrayImageRange copy = {0};
+          copy.arrayBytesFirst               = 0;
+          copy.arrayTexelsCountToNextRow     = 16;
+          copy.arrayTexelsCountToNextLayerOr3DDepthSliceDividedByTexelsCountToNextRow = 0;
+          copy.imageParts.allParts           = RED_IMAGE_PART_BITFLAG_COLOR;
+          copy.imageParts.level              = 0;
+          copy.imageParts.layersFirst        = 0;
+          copy.imageParts.layersCount        = 1;
+          copy.imageOffset.texelX            = 0;
+          copy.imageOffset.texelY            = 0;
+          copy.imageOffset.texelZ            = 0;
+          copy.imageExtent.texelsCountWidth  = 8;
+          copy.imageExtent.texelsCountHeight = 8;
+          copy.imageExtent.texelsCountDepth  = 1;
+          npfp(redCallCopyArrayToImage, callsPA.redCallCopyArrayToImage,
+            calls, calls[f].handle,
+            arrayR, pixels.handle,
+            imageW, image.handle,
+            setTo1, 1,
+            rangesCount, 1,
+            ranges, &copy
+          );
+          np(redCallMarkEnd, address, callsPA.redCallMarkEnd, calls, calls[f].handle);
+        }
+
+        {
+          np(redCallMarkSet, address, callsPA.redCallMarkSet, calls, calls[f].handle, mark, "redCallUsageAliasOrderBarrier COPY_W -> STRUCT_RESOURCE_R");
+          RedUsageImage imageUsage = {0};
+          imageUsage.barrierSplit           = RED_BARRIER_SPLIT_NONE;
+          imageUsage.oldAccessStages        = RED_ACCESS_STAGE_BITFLAG_COPY;
+          imageUsage.newAccessStages        = RED_ACCESS_STAGE_BITFLAG_FRAGMENT;
+          imageUsage.oldAccess              = RED_ACCESS_BITFLAG_COPY_W;
+          imageUsage.newAccess              = RED_ACCESS_BITFLAG_STRUCT_RESOURCE_NON_FRAGMENT_STAGE_R | RED_ACCESS_BITFLAG_STRUCT_RESOURCE_FRAGMENT_STAGE_R;
+          imageUsage.oldState               = RED_STATE_USABLE;
+          imageUsage.newState               = RED_STATE_USABLE;
+          imageUsage.queueFamilyIndexSource = -1;
+          imageUsage.queueFamilyIndexTarget = -1;
+          imageUsage.image                  = image.handle;
+          imageUsage.imageAllParts          = RED_IMAGE_PART_BITFLAG_COLOR;
+          imageUsage.imageLevelsFirst       = 0;
+          imageUsage.imageLevelsCount       = -1;
+          imageUsage.imageLayersFirst       = 0;
+          imageUsage.imageLayersCount       = -1;
+          np(redCallUsageAliasOrderBarrier,
+            address, callsPA.redCallUsageAliasOrderBarrier,
+            calls, calls[f].handle,
+            context, context,
+            arrayUsagesCount, 0,
+            arrayUsages, NULL,
+            imageUsagesCount, 1,
+            imageUsages, &imageUsage,
+            aliasesCount, 0,
+            aliases, NULL,
+            ordersCount, 0,
+            orders, NULL,
+            dependencyByRegion, 0
+          );
+          np(redCallMarkEnd, address, callsPA.redCallMarkEnd, calls, calls[f].handle);
+        }
       }
 
       {
-        np(redCallMarkSet, "address", callsPA.redCallMarkSet, "calls", calls[f].handle, "mark", "Copy array to image");
-        RedCopyArrayImageRange copy = {0};
-        copy.arrayBytesFirst               = 0;
-        copy.arrayTexelsCountToNextRow     = 16;
-        copy.arrayTexelsCountToNextLayerOr3DDepthSliceDividedByTexelsCountToNextRow = 0;
-        copy.imageParts.allParts           = RED_IMAGE_PART_BITFLAG_COLOR;
-        copy.imageParts.level              = 0;
-        copy.imageParts.layersFirst        = 0;
-        copy.imageParts.layersCount        = 1;
-        copy.imageOffset.texelX            = 0;
-        copy.imageOffset.texelY            = 0;
-        copy.imageOffset.texelZ            = 0;
-        copy.imageExtent.texelsCountWidth  = 8;
-        copy.imageExtent.texelsCountHeight = 8;
-        copy.imageExtent.texelsCountDepth  = 1;
-        npfp(redCallCopyArrayToImage, callsPA.redCallCopyArrayToImage,
-          "calls", calls[f].handle,
-          "arrayR", pixels.handle,
-          "imageW", image.handle,
-          "setTo1", 1,
-          "rangesCount", 1,
-          "ranges", &copy
-        );
-        np(redCallMarkEnd, "address", callsPA.redCallMarkEnd, "calls", calls[f].handle);
-      }
-
-      {
-        np(redCallMarkSet, "address", callsPA.redCallMarkSet, "calls", calls[f].handle, "mark", "redCallUsageAliasOrderBarrier COPY_W -> STRUCT_RESOURCE_R");
-        RedUsageImage imageUsage = {0};
-        imageUsage.barrierSplit           = RED_BARRIER_SPLIT_NONE;
-        imageUsage.oldAccessStages        = RED_ACCESS_STAGE_BITFLAG_COPY;
-        imageUsage.newAccessStages        = RED_ACCESS_STAGE_BITFLAG_FRAGMENT;
-        imageUsage.oldAccess              = RED_ACCESS_BITFLAG_COPY_W;
-        imageUsage.newAccess              = RED_ACCESS_BITFLAG_STRUCT_RESOURCE_NON_FRAGMENT_STAGE_R | RED_ACCESS_BITFLAG_STRUCT_RESOURCE_FRAGMENT_STAGE_R;
-        imageUsage.oldState               = RED_STATE_USABLE;
-        imageUsage.newState               = RED_STATE_USABLE;
-        imageUsage.queueFamilyIndexSource = -1;
-        imageUsage.queueFamilyIndexTarget = -1;
-        imageUsage.image                  = image.handle;
-        imageUsage.imageAllParts          = RED_IMAGE_PART_BITFLAG_COLOR;
-        imageUsage.imageLevelsFirst       = 0;
-        imageUsage.imageLevelsCount       = -1;
-        imageUsage.imageLayersFirst       = 0;
-        imageUsage.imageLayersCount       = -1;
-        np(redCallUsageAliasOrderBarrier,
-          "address", callsPA.redCallUsageAliasOrderBarrier,
-          "calls", calls[f].handle,
-          "context", context,
-          "arrayUsagesCount", 0,
-          "arrayUsages", NULL,
-          "imageUsagesCount", 1,
-          "imageUsages", &imageUsage,
-          "aliasesCount", 0,
-          "aliases", NULL,
-          "ordersCount", 0,
-          "orders", NULL,
-          "dependencyByRegion", 0
-        );
-        np(redCallMarkEnd, "address", callsPA.redCallMarkEnd, "calls", calls[f].handle);
-      }
-
-      {
-        np(redCallMarkSet, "address", callsPA.redCallMarkSet, "calls", calls[f].handle, "mark", "redCallProcedure");
+        np(redCallMarkSet, address, callsPA.redCallMarkSet, calls, calls[f].handle, mark, "redCallProcedure");
 
         np(redCallSetProcedureOutput,
-          "address", callsPA.redCallSetProcedureOutput,
-          "calls", calls[f].handle,
-          "outputDeclaration", outputDeclaration,
-          "output", rendertargets[f].handle,
-          "inlineOutput", NULL,
-          "outputWidth", rendertargets[f].width,
-          "outputHeight", rendertargets[f].height,
-          "outputDepthStencilEnable", rendertargets[f].depthStencilEnable,
-          "outputColorsCount", rendertargets[f].colorsCount,
-          "depthClearValue", 0.f,
-          "stencilClearValue", 0,
-          "colorsClearValuesFloat", NULL,
-          "colorsClearValuesSint", NULL,
-          "colorsClearValuesUint", NULL
+          address, callsPA.redCallSetProcedureOutput,
+          calls, calls[f].handle,
+          outputDeclaration, outputDeclaration,
+          output, rendertargets[f].handle,
+          inlineOutput, NULL,
+          outputWidth, rendertargets[f].width,
+          outputHeight, rendertargets[f].height,
+          outputDepthStencilEnable, rendertargets[f].depthStencilEnable,
+          outputColorsCount, rendertargets[f].colorsCount,
+          depthClearValue, 0.f,
+          stencilClearValue, 0,
+          colorsClearValuesFloat, NULL,
+          colorsClearValuesSint, NULL,
+          colorsClearValuesUint, NULL
         );
         np(redCallSetStructsMemory,
-          "address", callsPA.redCallSetStructsMemory,
-          "calls", calls[f].handle,
-          "structsMemory", structsMemory,
-          "structsMemorySamplers", NULL
+          address, callsPA.redCallSetStructsMemory,
+          calls, calls[f].handle,
+          structsMemory, structsMemory,
+          structsMemorySamplers, NULL
         );
         npfp(redCallSetProcedure, callsPA.redCallSetProcedure,
-          "calls", calls[f].handle,
-          "procedureType", RED_PROCEDURE_TYPE_DRAW,
-          "procedure", procedureDraw
+          calls, calls[f].handle,
+          procedureType, RED_PROCEDURE_TYPE_DRAW,
+          procedure, procedureDraw
         );
         np(redCallSetProcedureParameters,
-          "address", callsPA.redCallSetProcedureParameters,
-          "calls", calls[f].handle,
-          "procedureType", RED_PROCEDURE_TYPE_DRAW,
-          "procedureParameters", procedureParameters
+          address, callsPA.redCallSetProcedureParameters,
+          calls, calls[f].handle,
+          procedureType, RED_PROCEDURE_TYPE_DRAW,
+          procedureParameters, procedureParameters
         );
         npfp(redCallSetProcedureParametersStructs, callsPA.redCallSetProcedureParametersStructs,
-          "calls", calls[f].handle,
-          "procedureType", RED_PROCEDURE_TYPE_DRAW,
-          "procedureParameters", procedureParameters,
-          "procedureParametersDeclarationStructsDeclarationsFirst", 0,
-          "structsCount", 1,
-          "structs", &structs[0],
-          "setTo0", 0,
-          "setTo00", 0
+          calls, calls[f].handle,
+          procedureType, RED_PROCEDURE_TYPE_DRAW,
+          procedureParameters, procedureParameters,
+          procedureParametersDeclarationStructsDeclarationsFirst, 0,
+          structsCount, 1,
+          structs, &structs[0],
+          setTo0, 0,
+          setTo00, 0
         );
         npfp(redCallProcedure, callsPA.redCallProcedure,
-          "calls", calls[f].handle,
-          "vertexCount", 3,
-          "instanceCount", 1,
-          "vertexFirst", 0,
-          "instanceFirst", 0
+          calls, calls[f].handle,
+          vertexCount, 3,
+          instanceCount, 1,
+          vertexFirst, 0,
+          instanceFirst, 0
         );
-        np(redCallEndProcedureOutput, "address", callsPA.redCallEndProcedureOutput, "calls", calls[f].handle);
+        np(redCallEndProcedureOutput, address, callsPA.redCallEndProcedureOutput, calls, calls[f].handle);
 
-        np(redCallMarkEnd, "address", callsPA.redCallMarkEnd, "calls", calls[f].handle);
+        np(redCallMarkEnd, address, callsPA.redCallMarkEnd, calls, calls[f].handle);
       }
 
       {
-        np(redCallMarkSet, "address", callsPA.redCallMarkSet, "calls", calls[f].handle, "mark", "redCallUsageAliasOrderBarrier RED_STATE_USABLE -> RED_STATE_PRESENT");
+        np(redCallMarkSet, address, callsPA.redCallMarkSet, calls, calls[f].handle, mark, "redCallUsageAliasOrderBarrier RED_STATE_USABLE -> RED_STATE_PRESENT");
         RedUsageImage imageUsage = {0};
         imageUsage.barrierSplit           = RED_BARRIER_SPLIT_NONE;
         imageUsage.oldAccessStages        = RED_ACCESS_STAGE_BITFLAG_OUTPUT_COLOR;
@@ -1317,46 +1367,46 @@ int main() {
         imageUsage.imageLayersFirst       = 0;
         imageUsage.imageLayersCount       = -1;
         np(redCallUsageAliasOrderBarrier,
-          "address", callsPA.redCallUsageAliasOrderBarrier,
-          "calls", calls[f].handle,
-          "context", context,
-          "arrayUsagesCount", 0,
-          "arrayUsages", NULL,
-          "imageUsagesCount", 1,
-          "imageUsages", &imageUsage,
-          "aliasesCount", 0,
-          "aliases", NULL,
-          "ordersCount", 0,
-          "orders", NULL,
-          "dependencyByRegion", 0
+          address, callsPA.redCallUsageAliasOrderBarrier,
+          calls, calls[f].handle,
+          context, context,
+          arrayUsagesCount, 0,
+          arrayUsages, NULL,
+          imageUsagesCount, 1,
+          imageUsages, &imageUsage,
+          aliasesCount, 0,
+          aliases, NULL,
+          ordersCount, 0,
+          orders, NULL,
+          dependencyByRegion, 0
         );
-        np(redCallMarkEnd, "address", callsPA.redCallMarkEnd, "calls", calls[f].handle);
+        np(redCallMarkEnd, address, callsPA.redCallMarkEnd, calls, calls[f].handle);
       }
     }
     np(redCallsEnd,
-      "context", context,
-      "gpu", gpu,
-      "calls", calls[f].handle,
-      "callsMemory", calls[f].memory,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      calls, calls[f].handle,
+      callsMemory, calls[f].memory,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
 
     if (REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES == 0) {
       F = f;
       np(redPresentGetImageIndex,
-        "context", context,
-        "gpu", gpu,
-        "present", present,
-        "signalCpuSignal", NULL,
-        "signalGpuSignal", gpusigPresent[F],
-        "outImageIndex", &f,
-        "outStatuses", NULL,
-        "optionalFile", __FILE__,
-        "optionalLine", __LINE__,
-        "optionalUserData", NULL
+        context, context,
+        gpu, gpu,
+        present, present,
+        signalCpuSignal, NULL,
+        signalGpuSignal, gpusigPresent[F],
+        outImageIndex, &f,
+        outStatuses, NULL,
+        optionalFile, __FILE__,
+        optionalLine, __LINE__,
+        optionalUserData, NULL
       );
       if (F != f) {
         printf("%s\n", "[REDGPU][Assert]: Present image indices are inconsistent. Set REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES to 1 and recompile the program.\n");
@@ -1375,39 +1425,45 @@ int main() {
       timelines[0].waitForAndUnsignalGpuSignalsCount = 1;
       timelines[0].waitForAndUnsignalGpuSignals      = &gpusigPresent[f];
       timelines[0].setTo65536                        = arrayOf65536;
-      timelines[0].callsCount                        = _countof(callsHandles);
+      timelines[0].callsCount                        = countof(callsHandles);
       timelines[0].calls                             = callsHandles;
       timelines[0].signalGpuSignalsCount             = 1;
       timelines[0].signalGpuSignals                  = &gpusig[f];
       np(redQueueSubmit,
-        "context", context,
-        "gpu", gpu,
-        "queue", queue,
-        "timelinesCount", _countof(timelines),
-        "timelines", timelines,
-        "signalCpuSignal", cpusig[f],
-        "outStatuses", NULL,
-        "optionalFile", __FILE__,
-        "optionalLine", __LINE__,
-        "optionalUserData", NULL
+        context, context,
+        gpu, gpu,
+        queue, queue,
+        timelinesCount, countof(timelines),
+        timelines, timelines,
+        signalCpuSignal, cpusig[f],
+        outStatuses, NULL,
+        optionalFile, __FILE__,
+        optionalLine, __LINE__,
+        optionalUserData, NULL
       );
     }
 
     np(redQueuePresent,
-      "context", context,
-      "gpu", gpu,
-      "queue", queue,
-      "waitForAndUnsignalGpuSignalsCount", 1,
-      "waitForAndUnsignalGpuSignals", &gpusig[f],
-      "presentsCount", 1,
-      "presents", &present,
-      "presentsImageIndex", &f,
-      "outPresentsStatus", NULL,
-      "outStatuses", NULL,
-      "optionalFile", __FILE__,
-      "optionalLine", __LINE__,
-      "optionalUserData", NULL
+      context, context,
+      gpu, gpu,
+      queue, queue,
+      waitForAndUnsignalGpuSignalsCount, 1,
+      waitForAndUnsignalGpuSignals, &gpusig[f],
+      presentsCount, 1,
+      presents, &present,
+      presentsImageIndex, &f,
+      outPresentsStatus, NULL,
+      outStatuses, NULL,
+      optionalFile, __FILE__,
+      optionalLine, __LINE__,
+      optionalUserData, NULL
     );
+
+    if (uploadTextureOnce == 1) {
+      // Wait for texture upload to finish
+      redQueuePresent(context, gpu, queue, 0, NULL, 0, NULL, NULL, NULL, NULL, __FILE__, __LINE__, NULL);
+      uploadTextureOnce = 0;
+    }
 
     f += 1;
     f %= REDGPU_PROGRAM_PRESENT_IMAGES_COUNT;
@@ -1416,15 +1472,15 @@ int main() {
   redQueuePresent(context, gpu, queue, 0, NULL, 0, NULL, NULL, NULL, NULL, __FILE__, __LINE__, NULL);
 
   np(redCpuSignalWait,
-    "context", context,
-    "gpu", gpu,
-    "cpuSignalsCount", REDGPU_PROGRAM_PRESENT_IMAGES_COUNT,
-    "cpuSignals", cpusig,
-    "waitAll", 1,
-    "outStatuses", NULL,
-    "optionalFile", __FILE__,
-    "optionalLine", __LINE__,
-    "optionalUserData", NULL
+    context, context,
+    gpu, gpu,
+    cpuSignalsCount, REDGPU_PROGRAM_PRESENT_IMAGES_COUNT,
+    cpuSignals, cpusig,
+    waitAll, 1,
+    outStatuses, NULL,
+    optionalFile, __FILE__,
+    optionalLine, __LINE__,
+    optionalUserData, NULL
   );
 
   for (unsigned i = 0; i < REDGPU_PROGRAM_PRESENT_IMAGES_COUNT; i += 1) {

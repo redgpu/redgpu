@@ -308,15 +308,15 @@ extern "C" {
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_NVTX
 #define redInternalMark(mark)    nvtxMarkA(mark)
 #define redInternalMarkSet(mark) nvtxRangePushA(mark)
-#define redInternalMarkEnd()     nvtxRangePop()
+#define redInternalMarkEnd(mark) nvtxRangePop()
 #elif REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_GPUVIS
 #define redInternalMark(mark)    gpuvis_trace_printf(optionalFile == NULL ? "%s%s%s\n" : "%s [%s:%s]\n", mark, optionalFile == NULL ? "" : optionalFile, optionalFile == NULL ? "" : std::to_string(optionalLine).c_str())
 #define redInternalMarkSet(mark) GPUVIS_TRACE_BLOCKF(optionalFile == NULL ? "%s%s%s"   : "%s [%s:%s]",   mark, optionalFile == NULL ? "" : optionalFile, optionalFile == NULL ? "" : std::to_string(optionalLine).c_str())
-#define redInternalMarkEnd()
+#define redInternalMarkEnd(mark)
 #else
 #define redInternalMark(mark)
 #define redInternalMarkSet(mark)
-#define redInternalMarkEnd()
+#define redInternalMarkEnd(mark)
 #endif
 
 static inline void redInternalMarkStatus(RedStatus status) {
@@ -2811,6 +2811,20 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     setenv("VK_LAYER_PATH", "/home/linuxbrew/RedGpuSDK/sdk/1.1.106.0/x86_64/etc/explicit_layer.d/", 0);
     dlopen("/home/linuxbrew/RedGpuSDK/sdk/1.1.106.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
   } else if (sdkVersion == RED_SDK_VERSION_1_0_135) {
+
+    // NOTE(Constantine):
+    //
+    // Newer Vulkan SDK (like v1.4.350.0) setup for REDGPU SDK's redgpu.cpp with '#define REDGPU_COMPILE_SWITCH 3' on Bazzite / SteamOS:
+    //
+    // $ file /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d
+    // /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d: cannot open `/home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d' (No such file or directory)
+    // $ file /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/share/vulkan/explicit_layer.d/
+    // /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/share/vulkan/explicit_layer.d/: directory
+    // $ mkdir -p /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/
+    // $ ln -s /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/share/vulkan/explicit_layer.d/ /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/
+    // $ file /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d/
+    // /home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d/: directory
+
     setenv("VK_LAYER_PATH", "/home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/etc/vulkan/explicit_layer.d/", 0);
     dlopen("/home/linuxbrew/RedGpuSDK/sdk/1.2.135.0/x86_64/lib/libVkLayer_khronos_validation.so", RTLD_LAZY);
   }
@@ -3169,7 +3183,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
   }
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_NVTX || REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_GPUVIS
-  redInternalMarkEnd();
+  redInternalMarkEnd("vkCreateInstance");
   }
 #endif
 
@@ -4340,7 +4354,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     }
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_NVTX || REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_GPUVIS
-    redInternalMarkEnd();
+    redInternalMarkEnd("vkCreateDevice");
     }
 #endif
   }
@@ -8166,7 +8180,7 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryGetBudget(RedContext context, RedHandle
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryGetBudget(context, gpu, outMemoryBudget, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryAllocate(RedContext context, RedHandleGpu gpu, const char * handleName, uint64_t bytesCount, unsigned memoryTypeIndex, RedHandleArray dedicateToArray, RedHandleImage dedicateToImage, unsigned memoryBitflags, RedHandleMemory * outMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8174,7 +8188,7 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryAllocate(RedContext context, RedHandleG
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryAllocate(context, gpu, handleName, bytesCount, memoryTypeIndex, dedicateToArray, dedicateToImage, outMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryAllocateMappable(RedContext context, RedHandleGpu gpu, const char * handleName, RedBool32 dedicate, RedHandleArray array, uint64_t arrayMemoryBytesCount, unsigned memoryTypeIndex, unsigned memoryBitflags, RedHandleMemory * outMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8182,13 +8196,13 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryAllocateMappable(RedContext context, Re
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryAllocate(context, gpu, handleName, arrayMemoryBytesCount, memoryTypeIndex, dedicate == 1 ? array : NULL, NULL, outMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryFree(RedContext context, RedHandleGpu gpu, RedHandleMemory memory, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryFree(context, gpu, memory, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemorySet(RedContext context, RedHandleGpu gpu, unsigned memoryArraysCount, const RedMemoryArray * memoryArrays, unsigned memoryImagesCount, const RedMemoryImage * memoryImages, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8196,7 +8210,7 @@ REDGPU_DECLSPEC void REDGPU_API redMemorySet(RedContext context, RedHandleGpu gp
   redInternalMarkSet(__FUNCTION__);
   redInlineMemorySet(context, gpu, memoryArraysCount, memoryArrays, memoryImagesCount, memoryImages, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryMap(RedContext context, RedHandleGpu gpu, RedHandleMemory mappableMemory, uint64_t mappableMemoryBytesFirst, uint64_t mappableMemoryBytesCount, void ** outVolatilePointer, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8204,13 +8218,13 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryMap(RedContext context, RedHandleGpu gp
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryMap(context, gpu, mappableMemory, mappableMemoryBytesFirst, mappableMemoryBytesCount, outVolatilePointer, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryUnmap(RedContext context, RedHandleGpu gpu, RedHandleMemory mappableMemory, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryUnmap(context, gpu, mappableMemory, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryNonCoherentFlush(RedContext context, RedHandleGpu gpu, unsigned mappableMemoryRangesCount, const RedMappableMemoryRange * mappableMemoryRanges, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8218,7 +8232,7 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryNonCoherentFlush(RedContext context, Re
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryNonCoherentFlush(context, gpu, mappableMemoryRangesCount, mappableMemoryRanges, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMemoryNonCoherentInvalidate(RedContext context, RedHandleGpu gpu, unsigned mappableMemoryRangesCount, const RedMappableMemoryRange * mappableMemoryRanges, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8226,7 +8240,7 @@ REDGPU_DECLSPEC void REDGPU_API redMemoryNonCoherentInvalidate(RedContext contex
   redInternalMarkSet(__FUNCTION__);
   redInlineMemoryNonCoherentInvalidate(context, gpu, mappableMemoryRangesCount, mappableMemoryRanges, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocate(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeArrayROConstantCount, unsigned maxStructsMembersOfTypeArrayROOrArrayRWCount, unsigned maxStructsMembersOfTypeTextureROCount, unsigned maxStructsMembersOfTypeTextureRWCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8234,7 +8248,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocate(RedContext context, Red
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, maxStructsMembersOfTypeArrayROConstantCount, maxStructsMembersOfTypeArrayROOrArrayRWCount, 0, maxStructsMembersOfTypeTextureROCount, maxStructsMembersOfTypeTextureRWCount, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplers(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8242,7 +8256,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplers(RedContext cont
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, 0, 0, maxStructsMembersOfTypeSamplerCount, 0, 0, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateWithInlineSamplers(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeArrayROConstantCount, unsigned maxStructsMembersOfTypeArrayROOrArrayRWCount, unsigned maxStructsMembersOfTypeTextureROCount, unsigned maxStructsMembersOfTypeTextureRWCount, unsigned maxStructsMembersOfTypeInlineSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8250,7 +8264,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateWithInlineSamplers(RedCo
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, maxStructsMembersOfTypeArrayROConstantCount, maxStructsMembersOfTypeArrayROOrArrayRWCount, maxStructsMembersOfTypeInlineSamplerCount, maxStructsMembersOfTypeTextureROCount, maxStructsMembersOfTypeTextureRWCount, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplersWithInlineSamplers(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned maxStructsCount, unsigned maxStructsMembersOfTypeSamplerCount, unsigned maxStructsMembersOfTypeInlineSamplerCount, RedHandleStructsMemory * outStructsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8258,7 +8272,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryAllocateSamplersWithInlineSample
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryAllocate(context, gpu, handleName, maxStructsCount, 0, 0, maxStructsMembersOfTypeSamplerCount + maxStructsMembersOfTypeInlineSamplerCount, 0, 0, outStructsMemory, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemorySuballocateStructs(RedContext context, RedHandleGpu gpu, const char ** handleNames, RedHandleStructsMemory structsMemory, unsigned structsDeclarationsCount, const RedHandleStructDeclaration * structsDeclarations, RedHandleStruct * outStructs, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8266,7 +8280,7 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemorySuballocateStructs(RedContext co
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemorySuballocateStructs(context, gpu, handleNames, structsMemory, structsDeclarationsCount, structsDeclarations, outStructs, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryReset(RedContext context, RedHandleGpu gpu, RedHandleStructsMemory structsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8274,19 +8288,19 @@ REDGPU_DECLSPEC void REDGPU_API redStructsMemoryReset(RedContext context, RedHan
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryReset(context, gpu, structsMemory, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsMemoryFree(RedContext context, RedHandleGpu gpu, RedHandleStructsMemory structsMemory, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsMemoryFree(context, gpu, structsMemory, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redStructsSet(RedContext context, RedHandleGpu gpu, unsigned structsMembersCount, const RedStructMember * structsMembers, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineStructsSet(context, gpu, structsMembersCount, structsMembers, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedureFree customFree, RedTypeProcedureMallocTagged optionalMallocTagged, RedTypeProcedureFreeTagged optionalFreeTagged, RedTypeProcedureDebugCallback debugCallback, RedSdkVersion sdkVersion, unsigned sdkExtensionsCount, const unsigned * sdkExtensions, const char * optionalProgramName, unsigned optionalProgramVersion, const char * optionalEngineName, unsigned optionalEngineVersion, const void * optionalSettings, RedContext * outContext, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8294,7 +8308,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateContext(RedTypeProcedureMalloc customMa
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateContext(customMalloc, customFree, optionalMallocTagged, optionalFreeTagged, debugCallback, sdkVersion, sdkExtensionsCount, sdkExtensions, optionalProgramName, optionalProgramVersion, optionalEngineName, optionalEngineVersion, optionalSettings, outContext, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateArray(RedContext context, RedHandleGpu gpu, const char * handleName, RedArrayType type, uint64_t bytesCount, uint64_t structuredBufferElementBytesCount, RedAccessBitflags restrictToAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedArray * outArray, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8302,7 +8316,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateArray(RedContext context, RedHandleGpu 
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateArray(context, gpu, handleName, type, bytesCount, initialQueueFamilyIndex, dedicate, outArray, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateImage(RedContext context, RedHandleGpu gpu, const char * handleName, RedImageDimensions dimensions, RedFormat format, unsigned width, unsigned height, unsigned depth, unsigned levelsCount, unsigned layersCount, RedMultisampleCountBitflag multisampleCount, RedAccessBitflags restrictToAccess, unsigned initialQueueFamilyIndex, RedBool32 dedicate, RedImage * outImage, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8310,7 +8324,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateImage(RedContext context, RedHandleGpu 
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateImage(context, gpu, handleName, dimensions, format, width, height, depth, levelsCount, layersCount, multisampleCount, restrictToAccess, initialQueueFamilyIndex, dedicate, outImage, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateSampler(RedContext context, RedHandleGpu gpu, const char * handleName, RedSamplerFiltering filteringMag, RedSamplerFiltering filteringMin, RedSamplerFilteringMip filteringMip, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateU, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateV, RedSamplerBehaviorOutsideTextureCoordinate behaviorOutsideTextureCoordinateW, float mipLodBias, RedBool32 enableAnisotropy, float maxAnisotropy, RedBool32 enableCompare, RedCompareOp compareOp, float minLod, float maxLod, RedHandleSampler * outSampler, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8318,7 +8332,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateSampler(RedContext context, RedHandleGp
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateSampler(context, gpu, handleName, filteringMag, filteringMin, filteringMip, behaviorOutsideTextureCoordinateU, behaviorOutsideTextureCoordinateV, behaviorOutsideTextureCoordinateW, mipLodBias, enableAnisotropy, maxAnisotropy, enableCompare, compareOp, minLod, maxLod, 0, outSampler, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateTexture(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleImage image, RedImagePartBitflags parts, RedTextureDimensions dimensions, RedFormat format, unsigned levelsFirst, unsigned levelsCount, unsigned layersFirst, unsigned layersCount, RedAccessBitflags restrictToAccess, RedHandleTexture * outTexture, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8326,7 +8340,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateTexture(RedContext context, RedHandleGp
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateTexture(context, gpu, handleName, image, parts, dimensions, format, levelsFirst, levelsCount, layersFirst, layersCount, outTexture, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateGpuCode(RedContext context, RedHandleGpu gpu, const char * handleName, uint64_t irBytesCount, const void * ir, RedHandleGpuCode * outGpuCode, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8334,7 +8348,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateGpuCode(RedContext context, RedHandleGp
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateGpuCode(context, gpu, handleName, irBytesCount, ir, outGpuCode, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateOutputDeclaration(RedContext context, RedHandleGpu gpu, const char * handleName, const RedOutputDeclarationMembers * outputDeclarationMembers, const RedOutputDeclarationMembersResolveSources * outputDeclarationMembersResolveSources, RedBool32 dependencyByRegion, RedBool32 dependencyByRegionAllowUsageAliasOrderBarriers, RedHandleOutputDeclaration * outOutputDeclaration, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8342,7 +8356,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateOutputDeclaration(RedContext context, R
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateOutputDeclaration(context, gpu, handleName, outputDeclarationMembers, outputDeclarationMembersResolveSources, dependencyByRegion, dependencyByRegionAllowUsageAliasOrderBarriers, outOutputDeclaration, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateStructDeclaration(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned structDeclarationMembersCount, const RedStructDeclarationMember * structDeclarationMembers, unsigned structDeclarationMembersArrayROCount, const RedStructDeclarationMemberArrayRO * structDeclarationMembersArrayRO, RedBool32 procedureParametersHandlesDeclaration, RedHandleStructDeclaration * outStructDeclaration, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8350,7 +8364,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateStructDeclaration(RedContext context, R
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateStructDeclaration(context, gpu, handleName, structDeclarationMembersCount, structDeclarationMembers, procedureParametersHandlesDeclaration, outStructDeclaration, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateProcedureParameters(RedContext context, RedHandleGpu gpu, const char * handleName, const RedProcedureParametersDeclaration * procedureParametersDeclaration, RedHandleProcedureParameters * outProcedureParameters, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8358,7 +8372,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateProcedureParameters(RedContext context,
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateProcedureParameters(context, gpu, handleName, procedureParametersDeclaration, outProcedureParameters, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateProcedureCache(RedContext context, RedHandleGpu gpu, const char * handleName, uint64_t fromBlobBytesCount, const void * fromBlob, RedHandleProcedureCache * outProcedureCache, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8366,7 +8380,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateProcedureCache(RedContext context, RedH
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateProcedureCache(context, gpu, handleName, fromBlobBytesCount, fromBlob, outProcedureCache, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateProcedure(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleProcedureCache procedureCache, RedHandleOutputDeclaration outputDeclaration, RedHandleProcedureParameters procedureParameters, const char * gpuCodeVertexMainProcedureName, RedHandleGpuCode gpuCodeVertex, const char * gpuCodeFragmentMainProcedureName, RedHandleGpuCode gpuCodeFragment, const RedProcedureState * state, const void * stateExtension, RedBool32 deriveBase, RedHandleProcedure deriveFrom, RedHandleProcedure * outProcedure, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8374,7 +8388,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateProcedure(RedContext context, RedHandle
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateProcedure(context, gpu, handleName, procedureCache, outputDeclaration, procedureParameters, gpuCodeVertexMainProcedureName, gpuCodeVertex, gpuCodeFragmentMainProcedureName, gpuCodeFragment, state, stateExtension, deriveBase, deriveFrom, outProcedure, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateProcedureCompute(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleProcedureCache procedureCache, RedHandleProcedureParameters procedureParameters, const char * gpuCodeMainProcedureName, RedHandleGpuCode gpuCode, RedHandleProcedure * outProcedure, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8382,7 +8396,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateProcedureCompute(RedContext context, Re
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateProcedureCompute(context, gpu, handleName, procedureCache, procedureParameters, gpuCodeMainProcedureName, gpuCode, NULL, outProcedure, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateProcedureComputingLanguage(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleProcedureCache procedureCache, RedHandleProcedureParameters procedureParameters, const char * gpuCodeMainProcedureName, RedHandleGpuCode gpuCode, const void * stateExtension, RedHandleProcedure * outProcedure, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8390,7 +8404,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateProcedureComputingLanguage(RedContext c
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateProcedureCompute(context, gpu, handleName, procedureCache, procedureParameters, gpuCodeMainProcedureName, gpuCode, stateExtension, outProcedure, outStatuses, optionalFile, optionalLine, optionalUserData, procedureId);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateOutput(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleOutputDeclaration outputDeclaration, const RedOutputMembers * outputMembers, const RedOutputMembersResolveTargets * outputMembersResolveTargets, unsigned width, unsigned height, RedOutput * outOutput, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8398,7 +8412,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateOutput(RedContext context, RedHandleGpu
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateOutput(context, gpu, handleName, outputDeclaration, outputMembers, outputMembersResolveTargets, width, height, outOutput, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateCpuSignal(RedContext context, RedHandleGpu gpu, const char * handleName, RedBool32 createSignaled, RedHandleCpuSignal * outCpuSignal, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8406,7 +8420,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateCpuSignal(RedContext context, RedHandle
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateCpuSignal(context, gpu, handleName, createSignaled, outCpuSignal, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateGpuSignal(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleGpuSignal * outGpuSignal, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8414,7 +8428,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateGpuSignal(RedContext context, RedHandle
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateGpuSignal(context, gpu, handleName, outGpuSignal, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateGpuToCpuSignal(RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleGpuToCpuSignal * outGpuToCpuSignal, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8422,7 +8436,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateGpuToCpuSignal(RedContext context, RedH
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateGpuToCpuSignal(context, gpu, handleName, outGpuToCpuSignal, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateCalls(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned queueFamilyIndex, RedCalls * outCalls, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8430,7 +8444,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateCalls(RedContext context, RedHandleGpu 
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateCalls(context, gpu, handleName, queueFamilyIndex, outCalls, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateCallsReusable(RedContext context, RedHandleGpu gpu, const char * handleName, unsigned queueFamilyIndex, RedCalls * outCalls, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8438,103 +8452,103 @@ REDGPU_DECLSPEC void REDGPU_API redCreateCallsReusable(RedContext context, RedHa
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateCallsReusable(context, gpu, handleName, queueFamilyIndex, outCalls, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyContext(RedContext context, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyContext(context, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyArray(RedContext context, RedHandleGpu gpu, RedHandleArray array, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyArray(context, gpu, array, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyImage(RedContext context, RedHandleGpu gpu, RedHandleImage image, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyImage(context, gpu, image, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroySampler(RedContext context, RedHandleGpu gpu, RedHandleSampler sampler, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroySampler(context, gpu, sampler, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyTexture(RedContext context, RedHandleGpu gpu, RedHandleTexture texture, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyTexture(context, gpu, texture, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyGpuCode(RedContext context, RedHandleGpu gpu, RedHandleGpuCode gpuCode, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyGpuCode(context, gpu, gpuCode, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyOutputDeclaration(RedContext context, RedHandleGpu gpu, RedHandleOutputDeclaration outputDeclaration, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyOutputDeclaration(context, gpu, outputDeclaration, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyStructDeclaration(RedContext context, RedHandleGpu gpu, RedHandleStructDeclaration structDeclaration, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyStructDeclaration(context, gpu, structDeclaration, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyProcedureParameters(RedContext context, RedHandleGpu gpu, RedHandleProcedureParameters procedureParameters, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyProcedureParameters(context, gpu, procedureParameters, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyProcedureCache(RedContext context, RedHandleGpu gpu, RedHandleProcedureCache procedureCache, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyProcedureCache(context, gpu, procedureCache, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyProcedure(RedContext context, RedHandleGpu gpu, RedHandleProcedure procedure, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyProcedure(context, gpu, procedure, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyOutput(RedContext context, RedHandleGpu gpu, RedHandleOutput output, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyOutput(context, gpu, output, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyCpuSignal(RedContext context, RedHandleGpu gpu, RedHandleCpuSignal cpuSignal, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyCpuSignal(context, gpu, cpuSignal, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyGpuSignal(RedContext context, RedHandleGpu gpu, RedHandleGpuSignal gpuSignal, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyGpuSignal(context, gpu, gpuSignal, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyGpuToCpuSignal(RedContext context, RedHandleGpu gpu, RedHandleGpuToCpuSignal gpuToCpuSignal, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyGpuToCpuSignal(context, gpu, gpuToCpuSignal, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyCalls(RedContext context, RedHandleGpu gpu, RedHandleCalls calls, RedHandleCallsMemory callsMemory, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyCalls(context, gpu, callsMemory, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redProcedureCacheGetBlob(RedContext context, RedHandleGpu gpu, RedHandleProcedureCache procedureCache, uint64_t * outBlobBytesCount, void * outBlob, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8542,7 +8556,7 @@ REDGPU_DECLSPEC void REDGPU_API redProcedureCacheGetBlob(RedContext context, Red
   redInternalMarkSet(__FUNCTION__);
   redInlineProcedureCacheGetBlob(context, gpu, procedureCache, outBlobBytesCount, outBlob, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redProcedureCacheMergeCaches(RedContext context, RedHandleGpu gpu, unsigned sourceProcedureCachesCount, const RedHandleProcedureCache * sourceProcedureCaches, RedHandleProcedureCache targetProcedureCache, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8550,13 +8564,13 @@ REDGPU_DECLSPEC void REDGPU_API redProcedureCacheMergeCaches(RedContext context,
   redInternalMarkSet(__FUNCTION__);
   redInlineProcedureCacheMergeCaches(context, gpu, sourceProcedureCachesCount, sourceProcedureCaches, targetProcedureCache, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCpuSignalGetStatus(RedContext context, RedHandleGpu gpu, RedHandleCpuSignal cpuSignal, RedStatus * outStatus, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineCpuSignalGetStatus(context, gpu, cpuSignal, outStatus, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCpuSignalWait(RedContext context, RedHandleGpu gpu, unsigned cpuSignalsCount, const RedHandleCpuSignal * cpuSignals, RedBool32 waitAll, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8564,7 +8578,7 @@ REDGPU_DECLSPEC void REDGPU_API redCpuSignalWait(RedContext context, RedHandleGp
   redInternalMarkSet(__FUNCTION__);
   redInlineCpuSignalWait(context, gpu, cpuSignalsCount, cpuSignals, waitAll, (uint64_t)-1, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCpuSignalUnsignal(RedContext context, RedHandleGpu gpu, unsigned cpuSignalsCount, const RedHandleCpuSignal * cpuSignals, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8572,13 +8586,13 @@ REDGPU_DECLSPEC void REDGPU_API redCpuSignalUnsignal(RedContext context, RedHand
   redInternalMarkSet(__FUNCTION__);
   redInlineCpuSignalUnsignal(context, gpu, cpuSignalsCount, cpuSignals, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redGpuToCpuSignalGetStatus(RedContext context, RedHandleGpu gpu, RedHandleGpuToCpuSignal gpuToCpuSignal, RedStatus * outStatus, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineGpuToCpuSignalGetStatus(context, gpu, gpuToCpuSignal, outStatus, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redGpuToCpuSignalUnsignal(RedContext context, RedHandleGpu gpu, RedHandleGpuToCpuSignal gpuToCpuSignal, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8586,7 +8600,7 @@ REDGPU_DECLSPEC void REDGPU_API redGpuToCpuSignalUnsignal(RedContext context, Re
   redInternalMarkSet(__FUNCTION__);
   redInlineGpuToCpuSignalUnsignal(context, gpu, gpuToCpuSignal, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCallsSet(RedContext context, RedHandleGpu gpu, RedHandleCalls calls, RedHandleCallsMemory callsMemory, RedBool32 callsReusable, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8595,7 +8609,7 @@ REDGPU_DECLSPEC void REDGPU_API redCallsSet(RedContext context, RedHandleGpu gpu
   redInlineCallsReset(context, gpu, callsMemory, outStatuses, optionalFile, optionalLine, optionalUserData);
   redInlineCallsSet(context, gpu, calls, callsReusable, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCallsEnd(RedContext context, RedHandleGpu gpu, RedHandleCalls calls, RedHandleCallsMemory callsMemory, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8603,7 +8617,7 @@ REDGPU_DECLSPEC void REDGPU_API redCallsEnd(RedContext context, RedHandleGpu gpu
   redInternalMarkSet(__FUNCTION__);
   redInlineCallsEnd(context, gpu, calls, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redGetCallProceduresAndAddresses(RedContext context, RedHandleGpu gpu, RedCallProceduresAndAddresses * outCallProceduresAndAddresses, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8744,7 +8758,7 @@ REDGPU_DECLSPEC void REDGPU_API redQueueSubmit(RedContext context, RedHandleGpu 
   redInternalMarkSet(__FUNCTION__);
   redInlineQueueSubmit(context, gpu, queue, timelinesCount, timelines, signalCpuSignal, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redMark(const char * mark, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8762,19 +8776,19 @@ REDGPU_DECLSPEC void REDGPU_API redMarkEnd(const char * optionalFile, int option
 REDGPU_DECLSPEC void REDGPU_API redGpuVisTracingStart(const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineGpuVisTracingStart(optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redGpuVisTracingCapture(const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineGpuVisTracingCapture(optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redGpuVisTracingStop(const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineGpuVisTracingStop(optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceWin32(RedContext context, RedHandleGpu gpu, const char * handleName, const void * win32Hinstance, const void * win32Hwnd, RedHandleSurface * outSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8788,7 +8802,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceWin32(RedContext context, RedHan
   redInternalSetStatus(ctx, gpu, outStatuses, 359, (VkResult)RED_STATUS_ERROR_FEATURE_IS_NOT_FOUND, procedureId, optionalFile, optionalLine, optionalUserData);
 #endif
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceXlibOrXcb(RedContext context, RedHandleGpu gpu, const char * handleName, const void * xlibDisplay, unsigned long xlibWindow, const void * xcbConnection, unsigned xcbWindow, RedHandleSurface * outSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8802,7 +8816,7 @@ REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceXlibOrXcb(RedContext context, Re
   redInlineCreateSurfaceXlibOrXcb(context, gpu, handleName, xlibDisplay, xlibWindow, xcbConnection, xcbWindow, outSurface, outStatuses, optionalFile, optionalLine, optionalUserData);
 #endif
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCreatePresent(RedContext context, RedHandleGpu gpu, RedHandleQueue queue, const char * handleName, RedHandleSurface surface, unsigned imagesCount, unsigned imagesWidth, unsigned imagesHeight, unsigned imagesLayersCount, RedAccessBitflags imagesRestrictToAccess, RedSurfaceTransformBitflag transform, RedSurfaceCompositeAlphaBitflag compositeAlpha, RedPresentVsyncMode vsyncMode, RedBool32 clipped, RedBool32 discardAfterPresent, RedHandlePresent oldPresent, RedHandlePresent * outPresent, RedHandleImage * outImages, RedHandleTexture * outTextures, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8849,19 +8863,19 @@ exit:;
 
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
 
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroySurface(RedContext context, RedHandleGpu gpu, RedHandleSurface surface, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroySurface(context, gpu, surface, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyPresent(RedContext context, RedHandleGpu gpu, RedHandlePresent present, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyPresent(context, gpu, present, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redQueueFamilyIndexGetSupportsPresent(RedContext context, RedHandleGpu gpu, unsigned queueFamilyIndex, RedQueueFamilyIndexGetSupportsPresentOnWin32 * supportsPresentOnWin32, RedQueueFamilyIndexGetSupportsPresentOnXlib * supportsPresentOnXlib, RedQueueFamilyIndexGetSupportsPresentOnXcb * supportsPresentOnXcb, RedQueueFamilyIndexGetSupportsPresentOnSurface * supportsPresentOnSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8869,7 +8883,7 @@ REDGPU_DECLSPEC void REDGPU_API redQueueFamilyIndexGetSupportsPresent(RedContext
   redInternalMarkSet(__FUNCTION__);
   redInlineQueueFamilyIndexGetSupportsPresent(context, gpu, queueFamilyIndex, supportsPresentOnWin32, supportsPresentOnXlib, supportsPresentOnXcb, supportsPresentOnSurface, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redSurfaceGetPresentFeatures(RedContext context, RedHandleGpu gpu, RedHandleSurface surface, RedSurfacePresentFeatures * outSurfacePresentFeatures, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8877,7 +8891,7 @@ REDGPU_DECLSPEC void REDGPU_API redSurfaceGetPresentFeatures(RedContext context,
   redInternalMarkSet(__FUNCTION__);
   redInlineSurfaceGetPresentFeatures(context, gpu, surface, outSurfacePresentFeatures, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redSurfaceGetCurrentPropertiesAndPresentLimits(RedContext context, RedHandleGpu gpu, RedHandleSurface surface, RedSurfaceCurrentPropertiesAndPresentLimits * outSurfaceCurrentPropertiesAndPresentLimits, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8885,7 +8899,7 @@ REDGPU_DECLSPEC void REDGPU_API redSurfaceGetCurrentPropertiesAndPresentLimits(R
   redInternalMarkSet(__FUNCTION__);
   redInlineSurfaceGetCurrentPropertiesAndPresentLimits(context, gpu, surface, outSurfaceCurrentPropertiesAndPresentLimits, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redPresentGetImageIndex(RedContext context, RedHandleGpu gpu, RedHandlePresent present, RedHandleCpuSignal signalCpuSignal, RedHandleGpuSignal signalGpuSignal, unsigned * outImageIndex, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8893,7 +8907,7 @@ REDGPU_DECLSPEC void REDGPU_API redPresentGetImageIndex(RedContext context, RedH
   redInternalMarkSet(__FUNCTION__);
   redInlinePresentGetImageIndex(context, gpu, present, signalCpuSignal, signalGpuSignal, outImageIndex, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redQueuePresent(RedContext context, RedHandleGpu gpu, RedHandleQueue queue, unsigned waitForAndUnsignalGpuSignalsCount, const RedHandleGpuSignal * waitForAndUnsignalGpuSignals, unsigned presentsCount, const RedHandlePresent * presents, const unsigned * presentsImageIndex, RedStatus * outPresentsStatus, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8901,7 +8915,7 @@ REDGPU_DECLSPEC void REDGPU_API redQueuePresent(RedContext context, RedHandleGpu
   redInternalMarkSet(__FUNCTION__);
   redInlineQueuePresent(context, gpu, queue, waitForAndUnsignalGpuSignalsCount, waitForAndUnsignalGpuSignals, presentsCount, presents, presentsImageIndex, outPresentsStatus, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC RedHandleArray REDGPU_API redDebugArrayGetHandle(RedContext context, RedHandleGpu gpu, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData) {
@@ -8922,13 +8936,13 @@ REDGPU_DECLSPEC void REDGPU_API redCreateArrayTimestamp(RedContext context, RedH
   redInternalMarkSet(__FUNCTION__);
   redInlineCreateArrayTimestamp(context, gpu, handleName, count, outArrayTimestamp, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redDestroyArrayTimestamp(RedContext context, RedHandleGpu gpu, RedHandleArrayTimestamp arrayTimestamp, const char * optionalFile, int optionalLine, void * optionalUserData) {
   redInternalMarkSet(__FUNCTION__);
   redInlineDestroyArrayTimestamp(context, gpu, arrayTimestamp, optionalFile, optionalLine, optionalUserData);
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 REDGPU_DECLSPEC void REDGPU_API redCallArrayTimestampWrite(RedHandleCalls calls, RedContext context, RedHandleArrayTimestamp arrayTimestamp, unsigned index) {
@@ -8943,7 +8957,7 @@ REDGPU_DECLSPEC void REDGPU_API redArrayTimestampRead(RedContext context, RedHan
   redInternalMarkSet(__FUNCTION__);
   redInlineArrayTimestampRead(context, gpu, arrayTimestamp, rangeFirst, rangeCount, out64BitTicksCounts, outStatuses, optionalFile, optionalLine, optionalUserData);
   REDGPU_INTERNAL_FINALIZE_OUTSTATUSES
-  redInternalMarkEnd();
+  redInternalMarkEnd(__FUNCTION__);
 }
 
 #ifdef __cplusplus

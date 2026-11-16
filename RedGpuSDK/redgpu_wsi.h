@@ -99,31 +99,31 @@ typedef struct RedSurfaceCurrentPropertiesAndPresentLimits {
 
 // Create
 
-REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceWin32     (RedContext context, RedHandleGpu gpu, const char * handleName, const void * win32Hinstance, const void * win32Hwnd, RedHandleSurface * outSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redCreateSurfaceXlibOrXcb (RedContext context, RedHandleGpu gpu, const char * handleName, const void * xlibDisplay, unsigned long xlibWindow, const void * xcbConnection, unsigned xcbWindow, RedHandleSurface * outSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redCreatePresent          (RedContext context, RedHandleGpu gpu, RedHandleQueue queue, const char * handleName, RedHandleSurface surface, unsigned imagesCount, unsigned imagesWidth, unsigned imagesHeight, unsigned imagesLayersCount, RedAccessBitflags imagesRestrictToAccess, RedSurfaceTransformBitflag transform, RedSurfaceCompositeAlphaBitflag compositeAlpha, RedPresentVsyncMode vsyncMode, RedBool32 clipped, RedBool32 discardAfterPresent, RedHandlePresent oldPresent, RedHandlePresent * outPresent, RedHandleImage * outImages, RedHandleTexture * outTextures, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCreateSurfaceWin32,     RedContext,context, RedHandleGpu,gpu, const char *,handleName, const void *,win32Hinstance, const void *,win32Hwnd, RedHandleSurface *,outSurface, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCreateSurfaceXlibOrXcb, RedContext,context, RedHandleGpu,gpu, const char *,handleName, const void *,xlibDisplay, unsigned long,xlibWindow, const void *,xcbConnection, unsigned,xcbWindow, RedHandleSurface *,outSurface, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCreatePresent,          RedContext,context, RedHandleGpu,gpu, RedHandleQueue,queue, const char *,handleName, RedHandleSurface,surface, unsigned,imagesCount, unsigned,imagesWidth, unsigned,imagesHeight, unsigned,imagesLayersCount, RedAccessBitflags,imagesRestrictToAccess, RedSurfaceTransformBitflag,transform, RedSurfaceCompositeAlphaBitflag,compositeAlpha, RedPresentVsyncMode,vsyncMode, RedBool32,clipped, RedBool32,discardAfterPresent, RedHandlePresent,oldPresent, RedHandlePresent *,outPresent, RedHandleImage *,outImages, RedHandleTexture *,outTextures, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 // Destroy
 
-REDGPU_DECLSPEC void REDGPU_API redDestroySurface         (RedContext context, RedHandleGpu gpu, RedHandleSurface surface, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redDestroyPresent         (RedContext context, RedHandleGpu gpu, RedHandlePresent present, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redDestroySurface,         RedContext,context, RedHandleGpu,gpu, RedHandleSurface,surface, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redDestroyPresent,         RedContext,context, RedHandleGpu,gpu, RedHandlePresent,present, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 // Queue family index
 
-REDGPU_DECLSPEC void REDGPU_API redQueueFamilyIndexGetSupportsPresent          (RedContext context, RedHandleGpu gpu, unsigned queueFamilyIndex, RedQueueFamilyIndexGetSupportsPresentOnWin32 * supportsPresentOnWin32, RedQueueFamilyIndexGetSupportsPresentOnXlib * supportsPresentOnXlib, RedQueueFamilyIndexGetSupportsPresentOnXcb * supportsPresentOnXcb, RedQueueFamilyIndexGetSupportsPresentOnSurface * supportsPresentOnSurface, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redQueueFamilyIndexGetSupportsPresent,          RedContext,context, RedHandleGpu,gpu, unsigned,queueFamilyIndex, RedQueueFamilyIndexGetSupportsPresentOnWin32 *,supportsPresentOnWin32, RedQueueFamilyIndexGetSupportsPresentOnXlib *,supportsPresentOnXlib, RedQueueFamilyIndexGetSupportsPresentOnXcb *,supportsPresentOnXcb, RedQueueFamilyIndexGetSupportsPresentOnSurface *,supportsPresentOnSurface, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 // Surface
 
-REDGPU_DECLSPEC void REDGPU_API redSurfaceGetPresentFeatures                   (RedContext context, RedHandleGpu gpu, RedHandleSurface surface, RedSurfacePresentFeatures * outSurfacePresentFeatures, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redSurfaceGetCurrentPropertiesAndPresentLimits (RedContext context, RedHandleGpu gpu, RedHandleSurface surface, RedSurfaceCurrentPropertiesAndPresentLimits * outSurfaceCurrentPropertiesAndPresentLimits, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redSurfaceGetPresentFeatures,                   RedContext,context, RedHandleGpu,gpu, RedHandleSurface,surface, RedSurfacePresentFeatures *,outSurfacePresentFeatures, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redSurfaceGetCurrentPropertiesAndPresentLimits, RedContext,context, RedHandleGpu,gpu, RedHandleSurface,surface, RedSurfaceCurrentPropertiesAndPresentLimits *,outSurfaceCurrentPropertiesAndPresentLimits, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 // Present
 
-REDGPU_DECLSPEC void REDGPU_API redPresentGetImageIndex   (RedContext context, RedHandleGpu gpu, RedHandlePresent present, RedHandleCpuSignal signalCpuSignal, RedHandleGpuSignal signalGpuSignal, unsigned * outImageIndex, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redPresentGetImageIndex,   RedContext,context, RedHandleGpu,gpu, RedHandlePresent,present, RedHandleCpuSignal,signalCpuSignal, RedHandleGpuSignal,signalGpuSignal, unsigned *,outImageIndex, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 // Queue
 
-REDGPU_DECLSPEC void REDGPU_API redQueuePresent           (RedContext context, RedHandleGpu gpu, RedHandleQueue queue, unsigned waitForAndUnsignalGpuSignalsCount, const RedHandleGpuSignal * waitForAndUnsignalGpuSignals, unsigned presentsCount, const RedHandlePresent * presents, const unsigned * presentsImageIndex, RedStatus * outPresentsStatus, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redQueuePresent,           RedContext,context, RedHandleGpu,gpu, RedHandleQueue,queue, unsigned,waitForAndUnsignalGpuSignalsCount, const RedHandleGpuSignal *,waitForAndUnsignalGpuSignals, unsigned,presentsCount, const RedHandlePresent *,presents, const unsigned *,presentsImageIndex, RedStatus *,outPresentsStatus, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 #ifdef __cplusplus
 }
