@@ -126,12 +126,12 @@ npf(static unsigned, redHelperGetMemoryTypeIndex, const RedGpuInfo *,gpuInfo, Re
     }
   }
 
-  assert(!"[redHelperGetMemoryTypeIndex] Error: memory type index not found.");
+  assert(!"[REDGPU][redHelperGetMemoryTypeIndex] Error: memory type index not found.");
 
   return -1;
 }
 
-npf(static void, redHelperImageSetStateUsable, RedContext,context, RedHandleGpu,gpu, RedHandleImage,image, RedImagePartBitflags,allParts, RedHandleQueue,queueToSubmitImageStateChange, unsigned,queueFamilyIndexToSubmitImageStateChange, RedStatuses *,outStatuses, char *,optionalFile, int,optionalLine, void *,optionalUserData) {
+npf(static void, redHelperImageSetStateUsable, RedContext,context, RedHandleGpu,gpu, RedHandleImage,image, RedImagePartBitflags,allParts, RedHandleQueue,queueToSubmitImageStateChange, unsigned,queueFamilyIndexToSubmitImageStateChange, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData) {
   RedCallProceduresAndAddresses callProceduresAndAddresses = {0};
   np(redGetCallProceduresAndAddresses,
     context, context,
@@ -955,7 +955,7 @@ int main() {
       fread(irCode, 1, irCodeBytesCount, irCodeFd);
       fclose(irCodeFd);
     } else {
-      printf("[REDGPU][%s:%d]: gpuCodeVS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
+      printf("[REDGPU][%s:%d] Error: gpuCodeVS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
       fflush(stdout);
     }
 
@@ -990,7 +990,7 @@ int main() {
       fread(irCode, 1, irCodeBytesCount, irCodeFd);
       fclose(irCodeFd);
     } else {
-      printf("[REDGPU][%s:%d]: gpuCodeFS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
+      printf("[REDGPU][%s:%d] Error: gpuCodeFS::filepath(%s): fopen returned NULL\n", __FILE__, __LINE__, filepath);
       fflush(stdout);
     }
 
@@ -1409,7 +1409,7 @@ int main() {
         optionalUserData, NULL
       );
       if (F != f) {
-        printf("%s\n", "[REDGPU][Assert]: Present image indices are inconsistent. Set REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES to 1 and recompile the program.\n");
+        printf("%s\n", "[REDGPU] Error: Present image indices are inconsistent. Set REDGPU_PROGRAM_INCONSISTENT_PRESENT_IMAGE_INDICES to 1 and recompile the program.\n");
         return 1;
       }
     }

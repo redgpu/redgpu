@@ -2792,7 +2792,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
   RedBool32   __redgpuDebugStatusesWereNotSetByTheUser = 0;
-  RedStatuses __redgpuDebugStatuses = {0};
+  RedStatuses __redgpuDebugStatuses = {(RedStatus)0};
   __redgpuDebugStatuses.statusProcedureId      = procedureId;
   __redgpuDebugStatuses.statusFile             = optionalFile;
   __redgpuDebugStatuses.statusLine             = optionalLine;
@@ -3782,7 +3782,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
     struct VkPhysicalDeviceDepthStencilResolvePropertiesKHR       depthStencilResolveProperties       = {0};
     struct VkPhysicalDevicePushDescriptorPropertiesKHR            pushDescriptorProperties            = {0};
     struct VkPhysicalDeviceConservativeRasterizationPropertiesEXT conservativeRasterizationProperties = {0};
-    VkPhysicalDeviceMaintenance3Properties                        maintenance3Properties              = {0};
+    VkPhysicalDeviceMaintenance3Properties                        maintenance3Properties              = {(VkStructureType)0};
 
     RedBool32 wasRequestedAndWasFoundExtensionDriverProperties           = (requestedExtensions[RED_SDK_EXTENSION_DRIVER_PROPERTIES]            == 1) && (redInternalFindDeviceExtension(iGpuInfo, "VK_KHR_driver_properties",          procedureId, 0, optionalFile, optionalLine) == 1);
     RedBool32 wasRequestedAndWasFoundExtensionDepthStencilResolve        = (requestedExtensions[RED_SDK_EXTENSION_RESOLVE_DEPTH_STENCIL]        == 1) && (redInternalFindDeviceExtension(iGpuInfo, "VK_KHR_depth_stencil_resolve",      procedureId, 0, optionalFile, optionalLine) == 1);
@@ -4865,7 +4865,7 @@ void redInlineCreateContext(RedTypeProcedureMalloc customMalloc, RedTypeProcedur
         RedGpuInfo         * eGpuInfo = &ctx->gpus[i];
         RedInternalGpuInfo * iGpuInfo = &cold->gpus[i];
 
-        RedStatuses statuses = {0};
+        RedStatuses statuses = {(RedStatus)0};
 
         const uint64_t debugArrayBytesCount = cold->debugArrayStructsCount * cold->debugArrayStructsFloat4sCount * 4 * sizeof(float);
         iGpuInfo->debugArray = redDebugInternalCreateDebugArray(ctx, eGpuInfo->gpu, i, debugArrayHandleName, RED_ARRAY_TYPE_ARRAY_RW, debugArrayBytesCount, -1, 0, RED_DEBUG_INTERNAL_MEMORY_TYPE_UPLOAD, &statuses, optionalFile, optionalLine, optionalUserData);
@@ -7415,7 +7415,7 @@ static inline void redInlineQueueSubmit(RedContext context, RedHandleGpu gpu, Re
 
 #if REDGPU_COMPILE_SWITCH == REDGPU_COMPILE_SWITCH_DEBUG
   } else {
-    RedStatuses statuses = {0};
+    RedStatuses statuses = {(RedStatus)0};
 
     RedHandleCpuSignal cpuSignal = cold->gpus[gpuIndex].debugArrayCpuSignal;
 
