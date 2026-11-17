@@ -35,7 +35,7 @@ extern "C" {
  * @param device_ptr RR device pointer to the resource.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrGetDevicePtrFromVkBuffer(RRContext context, RedHandleArray resource, size_t offset, RRDevicePtr* device_ptr);
+npf(RR_API RRError, rrGetDevicePtrFromVkBuffer, RRContext,context, RedHandleArray,resource, size_t,offset, RRDevicePtr *,device_ptr);
 
 /** @brief Create context from existing Vulkan device.
  *
@@ -47,12 +47,12 @@ RR_API RRError rrGetDevicePtrFromVkBuffer(RRContext context, RedHandleArray reso
  * @param context RR context.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrCreateContextVk(uint32_t           api_version,
-                                 RedHandleGpu       device,
-                                 RedHandleGpuDevice physical_device,
-                                 RedHandleQueue     command_queue,
-                                 uint32_t           queue_family_index,
-                                 RRContext*         context);
+npf(RR_API RRError, rrCreateContextVk, uint32_t,          api_version,
+                                       RedHandleGpu,      device,
+                                       RedHandleGpuDevice,physical_device,
+                                       RedHandleQueue,    command_queue,
+                                       uint32_t,          queue_family_index,
+                                       RRContext *,       context);
 
 /** @brief Obtain command stream from Vulkan command buffer.
  *
@@ -61,9 +61,9 @@ RR_API RRError rrCreateContextVk(uint32_t           api_version,
  * @param command_stream RR command stream.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrGetCommandStreamFromVkCommandBuffer(RRContext        context,
-                                                     RedHandleCalls   command_buffer,
-                                                     RRCommandStream* command_stream);
+npf(RR_API RRError, rrGetCommandStreamFromVkCommandBuffer, RRContext,        context,
+                                                           RedHandleCalls,   command_buffer,
+                                                           RRCommandStream *,command_stream);
 
 /** @brief Obtain device pointer to allocated Vulkan buffer.
  * 
@@ -74,7 +74,7 @@ RR_API RRError rrGetCommandStreamFromVkCommandBuffer(RRContext        context,
  * @param device_ptr RR device pointer to the resource.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrAllocateDeviceBuffer(RRContext context, size_t size, RRDevicePtr* device_ptr);
+npf(RR_API RRError, rrAllocateDeviceBuffer, RRContext,context, size_t,size, RRDevicePtr *,device_ptr);
 
 /** @brief Map device pointer to host ptr.
  *
@@ -83,7 +83,7 @@ RR_API RRError rrAllocateDeviceBuffer(RRContext context, size_t size, RRDevicePt
  * @param mapping_ptr pointer to mapping host memory.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrMapDevicePtr(RRContext context, RRDevicePtr device_ptr, void** mapping_ptr);
+npf(RR_API RRError, rrMapDevicePtr, RRContext,context, RRDevicePtr,device_ptr, void **,mapping_ptr);
 
 /** @brief Unmap device pointer to host ptr.
  *
@@ -92,7 +92,7 @@ RR_API RRError rrMapDevicePtr(RRContext context, RRDevicePtr device_ptr, void** 
  * @param mapping_ptr pointer to mapping host memory.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrUnmapDevicePtr(RRContext context, RRDevicePtr device_ptr, void** mapping_ptr);
+npf(RR_API RRError, rrUnmapDevicePtr, RRContext,context, RRDevicePtr,device_ptr, void **,mapping_ptr);
 
 #ifdef __cplusplus
 }

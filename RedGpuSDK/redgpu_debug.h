@@ -17,8 +17,8 @@ typedef struct RedContextOptionalSettingsDebugArray {
   RedTypeProcedureDebugArrayPrintCallback printCallback;
 } RedContextOptionalSettingsDebugArray;
 
-REDGPU_DECLSPEC RedHandleArray REDGPU_API redDebugArrayGetHandle(RedContext context, RedHandleGpu gpu, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void           REDGPU_API redDebugArrayCallPrint(RedContext context, RedHandleGpu gpu, RedHandleCalls calls, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC RedHandleArray REDGPU_API, redDebugArrayGetHandle, RedContext,context, RedHandleGpu,gpu, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void           REDGPU_API, redDebugArrayCallPrint, RedContext,context, RedHandleGpu,gpu, RedHandleCalls,calls, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 #ifdef __cplusplus
 }

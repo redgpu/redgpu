@@ -1,18 +1,35 @@
-#include "C:/RedGpuSDK/redgpu.h"
-#include "C:/RedGpuSDK/radeonrays.h"
-#include "C:/RedGpuSDK/radeonrays_redgpu.h"
+#if 0
+brew install vulkan-loader
+gcc -c /home/linuxbrew/RedGpuSDK/redgpu.c
+gcc main.c redgpu.o /home/linuxbrew/.linuxbrew/lib/libvulkan.so /home/linuxbrew/RedGpuSDK/libradeonrays.so
+exit
+ulimit -s unlimited && LD_LIBRARY_PATH=/home/linuxbrew/RedGpuSDK/ ./a.out
+#endif
+
+#ifdef _WIN32
+  #include "C:/RedGpuSDK/redgpu.h"
+  #include "C:/RedGpuSDK/radeonrays.h"
+  #include "C:/RedGpuSDK/radeonrays_redgpu.h"
+#else
+  #include "/home/linuxbrew/RedGpuSDK/redgpu.h"
+  #include "/home/linuxbrew/RedGpuSDK/radeonrays.h"
+  #include "/home/linuxbrew/RedGpuSDK/radeonrays_redgpu.h"
+#endif
 
 #include <string.h> // For memcpy
-#include <stdlib.h>
-#include <stdio.h>
+#include <assert.h> // For assert
+#include <stdlib.h> // For malloc
+#include <stdio.h>  // For printf
 
-//#include "mesh_data.h"
 #include "mesh_data_positions.h"
 #include "mesh_data_indices.h"
 #include "stb_image_write.h"
+#ifdef _WIN32
+  #pragma comment(lib, "C:/RedGpuSDK/radeonrays.dll.lib")
+#endif
 
-#ifndef _countof
-#define _countof(x) (sizeof(x) / sizeof((x)[0]))
+#ifndef countof
+  #define countof(x) (sizeof(x) / sizeof((x)[0]))
 #endif
 
 typedef enum RedHelperMemoryType {
@@ -21,7 +38,7 @@ typedef enum RedHelperMemoryType {
   RED_HELPER_MEMORY_TYPE_READBACK = 2,
 } RedHelperMemoryType;
 
-REDGPU_DECLSPEC unsigned REDGPU_API redHelperGetMemoryTypeIndex(const RedGpuInfo * gpuInfo, RedHelperMemoryType memoryType, unsigned memoryTypesSupported) {
+npf(static unsigned, redHelperGetMemoryTypeIndex, const RedGpuInfo *,gpuInfo, RedHelperMemoryType,memoryType, unsigned,memoryTypesSupported) {
   const unsigned        memoryTypesCount = gpuInfo->memoryTypesCount;
   const RedMemoryType * memoryTypes      = gpuInfo->memoryTypes;
 
@@ -104,18 +121,20 @@ REDGPU_DECLSPEC unsigned REDGPU_API redHelperGetMemoryTypeIndex(const RedGpuInfo
     }
   }
 
+  assert(!"[REDGPU][redHelperGetMemoryTypeIndex] Error: memory type index not found.");
+
   return -1;
 }
 
-RedBool32 debugCallback(RedDebugCallbackSeverity severity, RedDebugCallbackTypeBitflags types, const RedDebugCallbackData * data, RedContext context) {
+static RedBool32 debugCallback(RedDebugCallbackSeverity severity, RedDebugCallbackTypeBitflags types, const RedDebugCallbackData * data, RedContext context) {
   printf("[REDGPU][DEBUG CALLBACK MESSAGE] %s\n", data->message);
   fflush(stdout);
   return 0;
 }
 
-RRError rrCheckCallError(const char * file, int line, RRError error, const char * call) {
+static RRError rrCheckCallError(const char * file, int line, RRError error, const char * call) {
   if (error != RR_SUCCESS) {
-    printf("[REDGPU RadeonRays][%s][%d][RR_ERROR]: %d == %s", file, line, error, call);
+    printf("[REDGPU RadeonRays][%s][%d] RRError %d == %s", file, line, error, call);
     fflush(stdout);
   }
   return error;
@@ -124,14 +143,14 @@ RRError rrCheckCallError(const char * file, int line, RRError error, const char 
 #define RR_CHECK(CALL) rrCheckCallError(__FILE__, __LINE__, CALL, #CALL)
 
 int main() {
-#ifdef _WIN32
+  #ifdef _WIN32
   unsigned extensions[2] = {RED_SDK_EXTENSION_RAY_TRACING, RED_SDK_EXTENSION_WSI_WIN32};
-#else
+  #else
   unsigned extensions[2] = {RED_SDK_EXTENSION_RAY_TRACING, RED_SDK_EXTENSION_WSI_XLIB};
-#endif
+  #endif
   RedContext  redcontext = NULL;
   RedStatuses statuses   = {0};
-  redCreateContext(malloc, free, NULL, NULL, debugCallback, RED_SDK_VERSION_1_0_135, _countof(extensions), extensions, NULL, 0, NULL, 0, NULL, &redcontext, &statuses, __FILE__, __LINE__, NULL);
+  redCreateContext(malloc, free, NULL, NULL, debugCallback, RED_SDK_VERSION_1_0_135, countof(extensions), extensions, NULL, 0, NULL, 0, NULL, &redcontext, &statuses, __FILE__, __LINE__, NULL);
 
   // https://github.com/GPUOpen-LibrariesAndSDKs/RadeonRays_SDK/tree/4.1/test/test_vk/basic_test.h#L266
 
@@ -206,7 +225,7 @@ int main() {
       memoryArrays[3].memory           = index_buffer_memory_gpu;
       memoryArrays[3].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     memcpy(vertex_buffer_memory_cpu_pointer, &vertices[0], sizeof(vertices));
@@ -299,7 +318,7 @@ int main() {
       memoryArrays[1].memory           = geometry_memory;
       memoryArrays[1].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     RRDevicePtr geometry_ptr = NULL;
@@ -411,7 +430,7 @@ int main() {
       memoryArrays[3].memory           = index_buffer_memory_gpu;
       memoryArrays[3].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     memcpy(vertex_buffer_memory_cpu_pointer, &mesh_data_positions[0], sizeof(mesh_data_positions));
@@ -507,7 +526,7 @@ int main() {
       memoryArrays[1].memory           = geometry_memory;
       memoryArrays[1].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     RRDevicePtr geometry_ptr = NULL;
@@ -591,7 +610,7 @@ int main() {
       memoryArrays[2].memory           = hits_buffer_memory_gpu;
       memoryArrays[2].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     memcpy(rays_buffer_memory_cpu_pointer, &rays[0], sizeof(rays));
@@ -657,7 +676,7 @@ int main() {
       memoryArrays[0].memory           = scratch_buffer_memory_gpu;
       memoryArrays[0].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
     RRDevicePtr scratch_trace_ptr = NULL;
     RR_CHECK(rrGetDevicePtrFromVkBuffer(context, scratch_buffer_gpu.handle, 0, &scratch_trace_ptr));
@@ -683,7 +702,7 @@ int main() {
       memoryArrays[0].memory           = staging_hits_memory;
       memoryArrays[0].memoryBytesFirst = 0;
 
-      redMemorySet(redcontext, redcontext->gpus[0].gpu, _countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
+      redMemorySet(redcontext, redcontext->gpus[0].gpu, countof(memoryArrays), memoryArrays, 0, NULL, NULL, __FILE__, __LINE__, NULL);
     }
 
     RedCalls copy_command_buffer = {0};
@@ -789,11 +808,5 @@ int main() {
   redDestroyContext(redcontext, __FILE__, __LINE__, NULL);
 }
 
-//#define TINYOBJLOADER_IMPLEMENTATION
-//#include "tiny_obj_loader.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
-
-#ifdef _WIN32
-#pragma comment(lib, "C:/RedGpuSDK/radeonrays.dll.lib")
-#endif

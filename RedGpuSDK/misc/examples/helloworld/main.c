@@ -7,8 +7,20 @@ exit
 
 #ifdef _WIN32
   #include "C:/RedGpuSDK/redgpu.h"
+  #include "C:/RedGpuSDK/redgpu_wsi.h"
+  #include "C:/RedGpuSDK/redgpu_array_timestamp.h"
+  #include "C:/RedGpuSDK/redgpu_computing_language.h"
+  #include "C:/RedGpuSDK/redgpu_debug.h"
+  #include "C:/RedGpuSDK/radeonrays.h"
+  #include "C:/RedGpuSDK/radeonrays_redgpu.h"
 #else
   #include "/home/linuxbrew/RedGpuSDK/redgpu.h"
+  #include "/home/linuxbrew/RedGpuSDK/redgpu_wsi.h"
+  #include "/home/linuxbrew/RedGpuSDK/redgpu_array_timestamp.h"
+  #include "/home/linuxbrew/RedGpuSDK/redgpu_computing_language.h"
+  #include "/home/linuxbrew/RedGpuSDK/redgpu_debug.h"
+  #include "/home/linuxbrew/RedGpuSDK/radeonrays.h"
+  #include "/home/linuxbrew/RedGpuSDK/radeonrays_redgpu.h"
 #endif
 
 #include <stdlib.h> // For malloc, free

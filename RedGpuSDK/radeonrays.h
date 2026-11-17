@@ -273,7 +273,7 @@ extern "C" {
  * @param context Created context.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrCreateContext(uint32_t api_version, RRApi api, RRContext* context);
+npf(RR_API RRError, rrCreateContext, uint32_t,api_version, RRApi,api, RRContext *,context);
 
 /** @brief Destory RR API context.
  *
@@ -283,7 +283,7 @@ RR_API RRError rrCreateContext(uint32_t api_version, RRApi api, RRContext* conte
  * @param context API context.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrDestroyContext(RRContext context);
+npf(RR_API RRError, rrDestroyContext, RRContext,context);
 
 /** @brief Set log level
  *
@@ -292,7 +292,7 @@ RR_API RRError rrDestroyContext(RRContext context);
  * @param preferred log level.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrSetLogLevel(RRLogLevel log_level);
+npf(RR_API RRError, rrSetLogLevel, RRLogLevel,log_level);
 
 /** @brief Set logging file
  *
@@ -301,7 +301,7 @@ RR_API RRError rrSetLogLevel(RRLogLevel log_level);
  * @param preferred log file
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrSetLogFile(char const* filename);
+npf(RR_API RRError, rrSetLogFile, char const *,filename);
 
 /** @brief Build or update a geometry.
  *
@@ -319,13 +319,13 @@ RR_API RRError rrSetLogFile(char const* filename);
  * @return Error in case of a failure, RRSuccess otherwise.
  */
 
-RR_API RRError rrCmdBuildGeometry(RRContext                   context,
-                                  RRBuildOperation            build_operation,
-                                  const RRGeometryBuildInput* build_input,
-                                  const RRBuildOptions*       build_options,
-                                  RRDevicePtr                 temporary_buffer,
-                                  RRDevicePtr                 geometry_buffer,
-                                  RRCommandStream             command_stream);
+npf(RR_API RRError, rrCmdBuildGeometry, RRContext,                   context,
+                                        RRBuildOperation,            build_operation,
+                                        const RRGeometryBuildInput *,build_input,
+                                        const RRBuildOptions *,      build_options,
+                                        RRDevicePtr,                 temporary_buffer,
+                                        RRDevicePtr,                 geometry_buffer,
+                                        RRCommandStream,             command_stream);
 
 /** @brief Get memory requirements for geometry build.
  *
@@ -335,10 +335,10 @@ RR_API RRError rrCmdBuildGeometry(RRContext                   context,
  * @param memory_requirements Pointer to write result to.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrGetGeometryBuildMemoryRequirements(RRContext                   context,
-                                                    const RRGeometryBuildInput* build_input,
-                                                    const RRBuildOptions*       build_options,
-                                                    RRMemoryRequirements*       memory_requirements);
+npf(RR_API RRError, rrGetGeometryBuildMemoryRequirements, RRContext,                   context,
+                                                          const RRGeometryBuildInput *,build_input,
+                                                          const RRBuildOptions *,      build_options,
+                                                          RRMemoryRequirements *,      memory_requirements);
 
 /** @brief Build or update a scene.
  *
@@ -354,12 +354,12 @@ RR_API RRError rrGetGeometryBuildMemoryRequirements(RRContext                   
  * @param command_stream Command stream to write command.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrCmdBuildScene(RRContext                context,
-                               const RRSceneBuildInput* build_input,
-                               const RRBuildOptions*    build_options,
-                               RRDevicePtr              temporary_buffer,
-                               RRDevicePtr              scene_buffer,
-                               RRCommandStream          command_stream);
+npf(RR_API RRError, rrCmdBuildScene, RRContext,                context,
+                                     const RRSceneBuildInput *,build_input,
+                                     const RRBuildOptions *,   build_options,
+                                     RRDevicePtr,              temporary_buffer,
+                                     RRDevicePtr,              scene_buffer,
+                                     RRCommandStream,          command_stream);
 
 /** @brief Get memory requirements for scene build.
  *
@@ -369,10 +369,10 @@ RR_API RRError rrCmdBuildScene(RRContext                context,
  * @param memory_requirements Pointer to write result to.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrGetSceneBuildMemoryRequirements(RRContext                context,
-                                                 const RRSceneBuildInput* build_input,
-                                                 const RRBuildOptions*    build_options,
-                                                 RRMemoryRequirements*    memory_requirements);
+npf(RR_API RRError, rrGetSceneBuildMemoryRequirements, RRContext,                context,
+                                                       const RRSceneBuildInput *,build_input,
+                                                       const RRBuildOptions *,   build_options,
+                                                       RRMemoryRequirements *,   memory_requirements);
 
 /** @brief Intersect ray buffer.
  *
@@ -388,16 +388,16 @@ RR_API RRError rrGetSceneBuildMemoryRequirements(RRContext                contex
  * @param command_stream to write command to.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrCmdIntersect(RRContext              context,
-                              RRDevicePtr            scene_buffer,
-                              RRIntersectQuery       query,
-                              RRDevicePtr            rays,
-                              uint32_t               ray_count,
-                              RRDevicePtr            indirect_ray_count,
-                              RRIntersectQueryOutput query_output,
-                              RRDevicePtr            hits,
-                              RRDevicePtr            scratch,
-                              RRCommandStream        command_stream);
+npf(RR_API RRError, rrCmdIntersect, RRContext,             context,
+                                    RRDevicePtr,           scene_buffer,
+                                    RRIntersectQuery,      query,
+                                    RRDevicePtr,           rays,
+                                    uint32_t,              ray_count,
+                                    RRDevicePtr,           indirect_ray_count,
+                                    RRIntersectQueryOutput,query_output,
+                                    RRDevicePtr,           hits,
+                                    RRDevicePtr,           scratch,
+                                    RRCommandStream,       command_stream);
 
 /** @brief Get memory requirements for trace scracth buffer.
  *
@@ -406,7 +406,7 @@ RR_API RRError rrCmdIntersect(RRContext              context,
  * @param scratch_size Pointer to write result to.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrGetTraceMemoryRequirements(RRContext context, uint32_t ray_count, size_t* scratch_size);
+npf(RR_API RRError, rrGetTraceMemoryRequirements, RRContext,context, uint32_t,ray_count, size_t *,scratch_size);
 
 /** @brief Allocate command stream.
  *
@@ -415,7 +415,7 @@ RR_API RRError rrGetTraceMemoryRequirements(RRContext context, uint32_t ray_coun
  * @return Error in case of a failure, RRSuccess
  * otherwise.
  */
-RR_API RRError rrAllocateCommandStream(RRContext context, RRCommandStream* command_stream);
+npf(RR_API RRError, rrAllocateCommandStream, RRContext,context, RRCommandStream *,command_stream);
 
 /** @brief Release command stream.
  *
@@ -424,7 +424,7 @@ RR_API RRError rrAllocateCommandStream(RRContext context, RRCommandStream* comma
  * @return Error in case of a failure, RRSuccess
  * otherwise.
  */
-RR_API RRError rrReleaseCommandStream(RRContext context, RRCommandStream command_stream);
+npf(RR_API RRError, rrReleaseCommandStream, RRContext,context, RRCommandStream,command_stream);
 
 /** @brief Submit command stream.
  *
@@ -435,10 +435,10 @@ RR_API RRError rrReleaseCommandStream(RRContext context, RRCommandStream command
  * @return Error in case of a failure, RRSuccess
  * otherwise.
  */
-RR_API RRError rrSumbitCommandStream(RRContext       context,
-                                     RRCommandStream command_stream,
-                                     RREvent         wait_event,
-                                     RREvent*        out_event);
+npf(RR_API RRError, rrSumbitCommandStream, RRContext,      context,
+                                           RRCommandStream,command_stream,
+                                           RREvent,        wait_event,
+                                           RREvent *,      out_event);
 
 /** @brief Release an event.
  *
@@ -446,7 +446,7 @@ RR_API RRError rrSumbitCommandStream(RRContext       context,
  * @param event Event to release.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrReleaseEvent(RRContext context, RREvent event);
+npf(RR_API RRError, rrReleaseEvent, RRContext,context, RREvent,event);
 
 /** @brief Wait for an event on CPU.
  *
@@ -454,7 +454,7 @@ RR_API RRError rrReleaseEvent(RRContext context, RREvent event);
  * @param event Event to wait for.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrWaitEvent(RRContext context, RREvent event);
+npf(RR_API RRError, rrWaitEvent, RRContext,context, RREvent,event);
 
 /** @brief Release a device pointer.
  *
@@ -462,7 +462,7 @@ RR_API RRError rrWaitEvent(RRContext context, RREvent event);
  * @param ptr Device pointer to release.
  * @return Error in case of a failure, RRSuccess otherwise.
  */
-RR_API RRError rrReleaseDevicePtr(RRContext context, RRDevicePtr ptr);
+npf(RR_API RRError, rrReleaseDevicePtr, RRContext,context, RRDevicePtr,ptr);
 
 /** @brief Release command stream obtained via rrGetCommandStreamFrom*BackendCmdBuffer*.
  *
@@ -470,7 +470,7 @@ RR_API RRError rrReleaseDevicePtr(RRContext context, RRDevicePtr ptr);
  * @param command_stream Command stream to release.
  * @return Error in case of a failure, rrSuccess otherwise.
  */
-RR_API RRError rrReleaseExternalCommandStream(RRContext context, RRCommandStream command_stream);
+npf(RR_API RRError, rrReleaseExternalCommandStream, RRContext,context, RRCommandStream,command_stream);
 
 #ifdef __cplusplus
 }

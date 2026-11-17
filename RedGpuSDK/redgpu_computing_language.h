@@ -53,7 +53,7 @@ typedef struct RedProcedureComputingLanguageStateExtensionSpecializationConstant
   const void *                                                specData;
 } RedProcedureComputingLanguageStateExtensionSpecializationConstants;
 
-REDGPU_DECLSPEC void REDGPU_API redCreateProcedureComputingLanguage (RedContext context, RedHandleGpu gpu, const char * handleName, RedHandleProcedureCache procedureCache, RedHandleProcedureParameters procedureParameters, const char * gpuCodeMainProcedureName, RedHandleGpuCode gpuCode, const void * stateExtension, RedHandleProcedure * outProcedure, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCreateProcedureComputingLanguage, RedContext,context, RedHandleGpu,gpu, const char *,handleName, RedHandleProcedureCache,procedureCache, RedHandleProcedureParameters,procedureParameters, const char *,gpuCodeMainProcedureName, RedHandleGpuCode,gpuCode, const void *,stateExtension, RedHandleProcedure *,outProcedure, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 #ifdef __cplusplus
 }

@@ -40,10 +40,10 @@ typedef enum RedHandleType1 {
   RED_HANDLE_TYPE_ARRAY_TIMESTAMP = 12,
 } RedHandleType1;
 
-REDGPU_DECLSPEC void REDGPU_API redCreateArrayTimestamp    (RedContext context, RedHandleGpu gpu, const char * handleName, unsigned count, RedHandleArrayTimestamp * outArrayTimestamp, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redDestroyArrayTimestamp   (RedContext context, RedHandleGpu gpu, RedHandleArrayTimestamp arrayTimestamp, const char * optionalFile, int optionalLine, void * optionalUserData);
-REDGPU_DECLSPEC void REDGPU_API redCallArrayTimestampWrite (RedHandleCalls calls, RedContext context, RedHandleArrayTimestamp arrayTimestamp, unsigned index);
-REDGPU_DECLSPEC void REDGPU_API redArrayTimestampRead      (RedContext context, RedHandleGpu gpu, RedHandleArrayTimestamp arrayTimestamp, unsigned rangeFirst, unsigned rangeCount, void * out64BitTicksCounts, RedStatuses * outStatuses, const char * optionalFile, int optionalLine, void * optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCreateArrayTimestamp,    RedContext,context, RedHandleGpu,gpu, const char *,handleName, unsigned,count, RedHandleArrayTimestamp *,outArrayTimestamp, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redDestroyArrayTimestamp,   RedContext,context, RedHandleGpu,gpu, RedHandleArrayTimestamp,arrayTimestamp, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
+npf(REDGPU_DECLSPEC void REDGPU_API, redCallArrayTimestampWrite, RedHandleCalls,calls, RedContext,context, RedHandleArrayTimestamp,arrayTimestamp, unsigned,index);
+npf(REDGPU_DECLSPEC void REDGPU_API, redArrayTimestampRead,      RedContext,context, RedHandleGpu,gpu, RedHandleArrayTimestamp,arrayTimestamp, unsigned,rangeFirst, unsigned,rangeCount, void *,out64BitTicksCounts, RedStatuses *,outStatuses, const char *,optionalFile, int,optionalLine, void *,optionalUserData);
 
 #ifdef __cplusplus
 }
